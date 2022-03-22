@@ -11,16 +11,19 @@ public class test : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             UIManager.instance.Move(testObj, new Vector3(5f, 2f, 0f), 3f, DG.Tweening.Ease.Linear);
+            print("¿Ãµø ¡ﬂ");
         }
 
         if (Input.GetKeyDown(KeyCode.A))
         {
             UIManager.instance.Shake(testObj, 3f);
+            print("shaking");
         }
 
         if (Input.GetKeyDown(KeyCode.D))
         {
             UIManager.instance.ReMove(testObj);
+            print("remove");
         }
     }
 }
