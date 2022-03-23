@@ -21,6 +21,11 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        MGSound.instance.playBgm("somewhere");
+    }
+
     public void Move(GameObject obj, Vector3 targetTransform, float time, Ease easetype)
     {
         obj.transform.DOMove(targetTransform, time).SetEase(easetype);
