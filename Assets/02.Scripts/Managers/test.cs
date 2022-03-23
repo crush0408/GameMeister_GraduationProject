@@ -22,7 +22,7 @@ public class test : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.D))
         {
-            UIManager.instance.ReMove(testObj);
+            UIManager.instance.Remove(testObj);
             print("remove");
         }
     }
