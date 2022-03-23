@@ -31,9 +31,6 @@ public class PlayerInput : MonoBehaviour
         skillOne = Input.GetButtonDown(skillOneName);
         skillTwo = Input.GetButtonDown(skillTwoName);
         ultimate = Input.GetButtonDown(ultimateName);
-        crouch = Input.GetButton(crouchName);
-        
-        
+        crouch = Input.GetButton(crouchName);   
     }
-    
 }
