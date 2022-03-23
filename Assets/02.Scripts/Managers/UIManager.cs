@@ -6,12 +6,11 @@ using DG.Tweening;
 public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
-    
+
     private void Awake()
     {
         if (instance == null)
         {
-
             instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
@@ -19,11 +18,6 @@ public class UIManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-    }
-
-    private void Start()
-    {
-        MGSound.instance.playBgm("somewhere");
     }
 
     public void Move(GameObject obj, Vector3 targetTransform, float time, Ease easetype)
@@ -36,8 +30,18 @@ public class UIManager : MonoBehaviour
         obj.transform.DOShakePosition(time);
     }
 
-    public void ReMove(GameObject obj)
+    public void Remove(GameObject obj)
     {
         obj.transform.DORewind();
+    }
+
+    public void PanelOnOff(GameObject obj, KeyCode key)
+    {
+        bool isOn = obj.activeSelf ? true : false;
+
+        if (Input.GetKeyDown(key))
+        {
+            obj.SetActive(!isOn);
+        }
     }
 }

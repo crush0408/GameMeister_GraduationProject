@@ -97,10 +97,9 @@ public class MGSound : MonoBehaviour
     {
         _bgmSource[_bgmIdx].Stop();
     }
-    public void AdjustVolume()
-    {
-        AudioListener.volume = DataManager.instance.BGMmasterSoundVolume;
-    }
+
+    
+
     public void BGMVol(){
         _bgmSource[_bgmIdx].volume = DataManager.instance.BGMmasterSoundVolume;
     }
