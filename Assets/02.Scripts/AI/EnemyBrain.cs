@@ -13,6 +13,8 @@ public class EnemyBrain : MonoBehaviour
     private Rigidbody2D _rigid;
 
     public Transform target;
+    public bool facingRight = true; //현재 오른쪽 보고 있는가?
+    private Vector2 destination;
 
     private void Awake()
     {
@@ -31,9 +33,33 @@ public class EnemyBrain : MonoBehaviour
     public void Move(Vector2 dir)
     {
         _rigid.velocity = dir * _speed;
+        destination = target.position;
+
+        Vector2 moveDir = destination - (Vector2)transform.position;
+        moveDir = moveDir.normalized;
+        if (facingRight)
+        {
+            if (moveDir.x > 0 && transform.localScale.x < 0 || moveDir.x < 0 && transform.localScale.x > 0)
+            {
+                Flip();
+            }
+        }
+        else
+        {
+            if (moveDir.x < 0 && transform.localScale.x < 0 || moveDir.x > 0 && transform.localScale.x > 0)
+            {
+                Flip();
+            }
+        }
     }
     public void Stop()
     {
         _rigid.velocity = Vector2.zero;
+    }
+    public void Flip()
+    {
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
     }
 }
