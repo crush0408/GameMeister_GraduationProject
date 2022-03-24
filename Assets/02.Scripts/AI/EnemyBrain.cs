@@ -16,9 +16,12 @@ public class EnemyBrain : MonoBehaviour
     public bool facingRight = true; //현재 오른쪽 보고 있는가?
     private Vector2 destination;
 
+    public Animator ani;
+
     private void Awake()
     {
         _rigid = GetComponent<Rigidbody2D>();
+        ani = GetComponent<Animator>();
     }
 
     private void Update()
@@ -33,6 +36,7 @@ public class EnemyBrain : MonoBehaviour
     public void Move(Vector2 dir)
     {
         _rigid.velocity = dir * _speed;
+
         destination = target.position;
 
         Vector2 moveDir = destination - (Vector2)transform.position;
