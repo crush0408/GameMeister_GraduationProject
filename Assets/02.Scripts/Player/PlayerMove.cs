@@ -25,8 +25,6 @@ public class PlayerMove : MonoBehaviour
     
     public bool isCrouch = false;
 
-    
-    
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -53,6 +51,14 @@ public class PlayerMove : MonoBehaviour
             _dash = true;
         }
         GroundCheck();
+
+        // 스페이스바를 홀수번 누르면 isCrouch가 true가 됨, isCrouch : true 시 Crouch 애니메이션 재생
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            isCrouch = !isCrouch;
+
+            anim.SetBool("isCrouch", isCrouch);
+        }
     }
     private void FixedUpdate()
     {
