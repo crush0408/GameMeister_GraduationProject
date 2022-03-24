@@ -506,6 +506,7 @@ GameObject:
   m_Component:
   - component: {fileID: 988287176}
   - component: {fileID: 988287177}
+  - component: {fileID: 988287178}
   m_Layer: 0
   m_Name: KnifeCol
   m_TagString: Untagged
@@ -553,6 +554,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.8477385, y: 1.6071148}
   m_EdgeRadius: 0
+--- !u!114 &988287178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988287175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 047caf76d42aba34394fec4217a8a894, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1015606511
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,7 +610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2014dd6f387548e4985c09efea71b589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 3.2
+  distance: 3.4
 --- !u!114 &1015606514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -818,7 +831,7 @@ MonoBehaviour:
   decisions:
   - {fileID: 1772232609}
   positiveResult: {fileID: 343719762}
-  negativeResult: {fileID: 2103010101}
+  negativeResult: {fileID: 1355746420}
 --- !u!1 &1811039214
 GameObject:
   m_ObjectHideFlags: 0
