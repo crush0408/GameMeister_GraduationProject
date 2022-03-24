@@ -8,6 +8,8 @@ public class DataManager : MonoBehaviour
 
     public float BGMmasterSoundVolume;
     public float EFFmasterSoundVolume;
+    public int isWindow;
+    public int isFirst;
 
     private void Awake()
     {
@@ -25,12 +27,13 @@ public class DataManager : MonoBehaviour
         }
 
         Init();
-
     }
+
     private void Start()
     {
         MGSound.instance.BGMVol();
     }
+
     private void Init()
     {
         if (!PlayerPrefs.HasKey("BGM"))
@@ -39,11 +42,27 @@ public class DataManager : MonoBehaviour
         }
         BGMmasterSoundVolume = PlayerPrefs.GetFloat("BGM");
 
-
         if (!PlayerPrefs.HasKey("EFF"))
         {
             PlayerPrefs.SetFloat("EFF", 0.5f);
         }
         EFFmasterSoundVolume = PlayerPrefs.GetFloat("EFF");
+
+        if (!PlayerPrefs.HasKey("Display"))
+        {
+            PlayerPrefs.SetInt("Display", 0);
+        }
+        isWindow = PlayerPrefs.GetInt("Display");
+
+        if (!PlayerPrefs.HasKey("IsFirst"))
+        {
+            PlayerPrefs.SetInt("IsFirst", 1);
+        }
+        isFirst = PlayerPrefs.GetInt("IsFirst");
+    }
+
+    public void Save()
+    {
+        PlayerPrefs.SetInt("Display", isWindow);
     }
 }
