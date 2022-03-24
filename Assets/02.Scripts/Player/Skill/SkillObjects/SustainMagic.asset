@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5ad21220f2ec1f40933d20711e7fb12, type: 3}
   m_Name: SustainMagic
   m_EditorClassIdentifier: 
-  skillName: 
-  skillAnim: {fileID: 0}
-  skillExp: 0
-  attackDamage: 0
-  effectName: 
+  skillName: SustainMagic
+  skillAnim: {fileID: 7400000, guid: 878f7c3bbfc7ea74592c63f98c3e5b0d, type: 2}
+  skillExp: 20
+  attackDamage: 30
+  effectSoundName: 

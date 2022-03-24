@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5ad21220f2ec1f40933d20711e7fb12, type: 3}
   m_Name: FastMagic
   m_EditorClassIdentifier: 
-  skillName: 
-  skillAnim: {fileID: 0}
-  skillExp: 0
-  attackDamage: 0
-  effectName: 
+  skillName: FastMagic
+  skillAnim: {fileID: 7400000, guid: 49c56fe5845d31240b7e7a403b15cf46, type: 2}
+  skillExp: 5
+  attackDamage: 10
+  effectSoundName: 
