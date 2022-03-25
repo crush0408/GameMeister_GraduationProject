@@ -8,6 +8,6 @@ public class ChaseAction : AIAction
     {
         Vector2 dir = _enemyBrain.target.position - transform.position;
         _enemyBrain.Move(dir.normalized);
-        //_enemyBrain.ani.SetBool("isWalk", true);
+        _enemyBrain.ani.SetBool("isWalk", true);
     }
 }
