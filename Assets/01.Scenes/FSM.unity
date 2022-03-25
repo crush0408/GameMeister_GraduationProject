@@ -1114,6 +1114,7 @@ GameObject:
   - component: {fileID: 2074203133}
   - component: {fileID: 2074203138}
   - component: {fileID: 2074203139}
+  - component: {fileID: 2074203140}
   m_Layer: 0
   m_Name: Demon
   m_TagString: Untagged
@@ -1285,6 +1286,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initHealth: 100
   damagedEffectTime: 0.1
+--- !u!114 &2074203140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2074203132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f3ff18a3328014459a5d03df2b98464, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2103010100
 GameObject:
   m_ObjectHideFlags: 0
