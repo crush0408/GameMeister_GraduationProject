@@ -17,11 +17,15 @@ public class PlayerMove : MonoBehaviour
     public bool isGround;
     public bool canSecondJump = false;
     public bool canDash = true;
+    public bool canMove = true;
 
+
+    private float _movement = 0f;
     private bool _jump;
     private bool _jumpKeyUp;
     private bool _dash;
-    private float dashDir = 0;
+    public Vector2 _dashTarget = Vector2.zero;
+    public float _dashDis = 3f;
     
     public bool isCrouch = false;
 
@@ -33,11 +37,25 @@ public class PlayerMove : MonoBehaviour
     }
     private void Update()
     {
-        if(playerInput.movement != 0)
+        ValueSetting();
+        GroundCheck();
+        _dashTarget = new Vector2(transform.position.x + _dashDis, transform.position.y);
+        
+    }
+    private void FixedUpdate()
+    {
+        Move();
+        Jump();
+        Dash();
+        Crouch();
+    }
+    private void ValueSetting() //Input 처리 변환
+    {
+        if (playerInput.movement != 0)
         {
-            dashDir = playerInput.movement;
+            _dashDis = 3 * playerInput.movement;
         }
-        if(playerInput.jump)
+        if (playerInput.jump)
         {
             _jump = true;
         }
@@ -50,38 +68,53 @@ public class PlayerMove : MonoBehaviour
         {
             _dash = true;
         }
-        GroundCheck();
 
-        // 스페이스바를 홀수번 누르면 isCrouch가 true가 됨, isCrouch : true 시 Crouch 애니메이션 재생
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (playerInput.crouch)
         {
-            isCrouch = !isCrouch;
-
-            anim.SetBool("isCrouch", isCrouch);
+            isCrouch = true;
         }
-    }
-    private void FixedUpdate()
-    {
-        Move();
-        Jump();
-        Dash();
-        //Crouch();
+        else
+        {
+            isCrouch = false;
+        }
+        
     }
     private void Dash()
     {
         if(_dash && canDash)
         {
-            rigid.velocity = new Vector2(rigid.velocity.x, 0f);
-            rigid.AddForce(new Vector2(dashDir * 2f, 0), ForceMode2D.Impulse);
+            StartCoroutine(DashCoroutine());
         }
+    }
+    IEnumerator DashCoroutine()
+    {
+        _dash = false;
+        canDash = false;
+        Debug.Log("Dash Start");
+        float a = 0;
+        while (a < 1f)
+        {
+            transform.position = Vector2.Lerp(transform.position, _dashTarget, a);
+            a += 0.001f;
+        }
+        Debug.Log("Dash End");
+        canDash = true;
+        yield return null;
     }
     private void Crouch()
     {
-        if (playerInput.crouch)
+        if (isCrouch)
         {
-            isCrouch = true;
+            anim.SetBool("isCrouch", true);   
         }
+        else
+        {
+            anim.SetBool("isCrouch", false);
+            isCrouch = false;
+        }
+        
     }
+    
     private void Jump()
     {
         if (_jump)
@@ -93,7 +126,7 @@ public class PlayerMove : MonoBehaviour
                 Debug.Log("1단 점프");
                 canSecondJump = true;
             }
-            else if (canSecondJump)
+            else if (!isGround && canSecondJump)
             {
                 if (_jump && canSecondJump)
                 {
@@ -104,34 +137,20 @@ public class PlayerMove : MonoBehaviour
                 }
             }
         }
+        /*
         if(_jumpKeyUp && rigid.velocity.y > 0)
         {
             _jumpKeyUp = false;
-            rigid.velocity = new Vector2(rigid.velocity.x, rigid.velocity.y * 0.5f);
-        }
-        /*
-        if(playerInput.jump && isGround)
-        {
-            rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
-            Debug.Log("1단 점프");
-            canSecondJump = true;
+            rigid.velocity = new Vector2(rigid.velocity.x, rigid.velocity.y * 0.7f);
         }
         */
-        /*
-        if(playerInput.jump && canSecondJump)
-        {
-            rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
-            Debug.Log("2단 점프");
-            canSecondJump = false; 
-        }
-        */
-
     }
     private void GroundCheck()
     {
         //if (rigid.velocity.y < 0)
         {
-            isGround = Physics2D.OverlapCircle(groundCheckTrm.position, 0.2f, whatIsGround); // 반지름이 0.2인 원에 ground가 닿으면 isGround를 true로 바꿔주는것
+            isGround = Physics2D.OverlapCircle(groundCheckTrm.position, 0.2f, whatIsGround); 
+            // 반지름이 0.2인 원에 ground가 닿으면 isGround를 true로 바꿔주는것
             if (isGround)
             {
                 canDash = true;
@@ -140,6 +159,19 @@ public class PlayerMove : MonoBehaviour
     }
     private void Move()
     {
-        rigid.velocity = new Vector2(playerInput.movement * moveSpeed, rigid.velocity.y);
+        if (!isCrouch)
+        {
+            rigid.velocity = new Vector2(playerInput.movement * moveSpeed, rigid.velocity.y);
+            anim.SetBool("movement", playerInput.movement != 0);
+        
+            if(playerInput.movement == 1)
+            {
+                gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            }
+            else if(playerInput.movement == -1)
+            {
+                gameObject.GetComponent<SpriteRenderer>().flipX = true; 
+            }
+        }
     }
 }
