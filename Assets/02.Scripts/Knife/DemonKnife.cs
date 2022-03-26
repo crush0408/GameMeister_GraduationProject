@@ -9,7 +9,7 @@ public class DemonKnife : MonoBehaviour
 
     public int damage;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -17,9 +17,9 @@ public class DemonKnife : MonoBehaviour
 
             if (DamageObj != null)
             {
-                ContactPoint2D contact = collision.contacts[0];
+                Vector3 contact = collision.transform.position;
 
-                DamageObj.OnDamage(damage,contact.point);
+                DamageObj.OnDamage(damage, contact);
             }
         }
     }

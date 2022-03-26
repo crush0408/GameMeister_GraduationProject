@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 20814467}
   - component: {fileID: 20814466}
   - component: {fileID: 20814468}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ChaseState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 146227128}
   - component: {fileID: 146227127}
   - component: {fileID: 146227129}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: IdleState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -511,7 +511,7 @@ GameObject:
   - component: {fileID: 340113665}
   - component: {fileID: 340113664}
   - component: {fileID: 340113666}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TransitionChase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1116,7 +1116,7 @@ GameObject:
   - component: {fileID: 1016902687}
   - component: {fileID: 1016902685}
   - component: {fileID: 1016902686}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TransitionIdle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1177,7 +1177,7 @@ GameObject:
   - component: {fileID: 1057360744}
   - component: {fileID: 1057360743}
   - component: {fileID: 1057360745}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AttackState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1891,7 +1891,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1811435911}
-  - component: {fileID: 1811435910}
   - component: {fileID: 1811435912}
   m_Layer: 0
   m_Name: TestManager
@@ -1900,18 +1899,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1811435910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1811435909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c74f7a491f4ea724cbc2baf57f1ac09f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1811435911
 Transform:
   m_ObjectHideFlags: 0
@@ -1947,7 +1934,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1825407486}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1993,7 +1980,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1877383659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2247,7 +2234,7 @@ GameObject:
   - component: {fileID: 1938690175}
   - component: {fileID: 1938690174}
   - component: {fileID: 1938690176}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TransitionIdle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2626,7 +2613,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 047caf76d42aba34394fec4217a8a894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 4
+  damage: 1
 --- !u!61 &2096534645
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2637,7 +2624,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.4487368, y: -4.078223}
@@ -2668,6 +2655,7 @@ GameObject:
   - component: {fileID: 2105400316}
   - component: {fileID: 2105400319}
   - component: {fileID: 2105400318}
+  - component: {fileID: 2105400320}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -2853,6 +2841,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &2105400320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105400312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d87de02113f93cd46a3d53002d9f8353, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initHealth: 100
+  damagedEffectTime: 0.1
 --- !u!1 &2124657130
 GameObject:
   m_ObjectHideFlags: 0
