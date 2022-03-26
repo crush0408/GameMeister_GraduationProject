@@ -24,8 +24,10 @@ public class PlayerMove : MonoBehaviour
     private bool _jump;
     private bool _jumpKeyUp;
     private bool _dash;
-    public Vector2 _dashTarget = Vector2.zero;
-    public float _dashDis = 3f;
+    private float _dashTime;
+    public float startDashTime = 0.1f;
+    public float dashSpeed = 50f;
+    public float _dashDis = 1f;
     
     public bool isCrouch = false;
 
@@ -35,11 +37,14 @@ public class PlayerMove : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         anim = GetComponent<Animator>();
     }
+    private void Start()
+    {
+        _dashTime = startDashTime;
+    }
     private void Update()
     {
         ValueSetting();
         GroundCheck();
-        _dashTarget = new Vector2(transform.position.x + _dashDis, transform.position.y);
         
     }
     private void FixedUpdate()
@@ -53,7 +58,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (playerInput.movement != 0)
         {
-            _dashDis = 3 * playerInput.movement;
+            _dashDis = dashSpeed * playerInput.movement;
         }
         if (playerInput.jump)
         {
@@ -83,24 +88,22 @@ public class PlayerMove : MonoBehaviour
     {
         if(_dash && canDash)
         {
-            StartCoroutine(DashCoroutine());
+            if(_dashTime <= 0)
+            {
+                _dash = false;
+                canDash = false;
+                _dashTime = startDashTime;
+                rigid.velocity = Vector2.zero;
+            }
+            else
+            {
+                _dashTime -= Time.deltaTime;
+                rigid.velocity = new Vector2(_dashDis, 0);
+            }
+
         }
     }
-    IEnumerator DashCoroutine()
-    {
-        _dash = false;
-        canDash = false;
-        Debug.Log("Dash Start");
-        float a = 0;
-        while (a < 1f)
-        {
-            transform.position = Vector2.Lerp(transform.position, _dashTarget, a);
-            a += 0.001f;
-        }
-        Debug.Log("Dash End");
-        canDash = true;
-        yield return null;
-    }
+    
     private void Crouch()
     {
         if (isCrouch)
