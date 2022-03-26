@@ -560,7 +560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2014dd6f387548e4985c09efea71b589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 11.9
+  distance: 7.8
 --- !u!1 &498626528
 GameObject:
   m_ObjectHideFlags: 0
@@ -1988,7 +1988,7 @@ GameObject:
   - component: {fileID: 1877383660}
   - component: {fileID: 1877383659}
   m_Layer: 0
-  m_Name: Demon (1)
+  m_Name: Demon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2162,7 +2162,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1877383658}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.79, y: 1.71, z: 0}
+  m_LocalPosition: {x: -4.79, y: 0.89, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1825407486}
@@ -2593,7 +2593,7 @@ GameObject:
   - component: {fileID: 2096534643}
   - component: {fileID: 2096534645}
   - component: {fileID: 2096534644}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: KnifeCol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2626,7 +2626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 047caf76d42aba34394fec4217a8a894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  damage: 4
 --- !u!61 &2096534645
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2734,7 +2734,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2105400312}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.38, z: 0}
+  m_LocalPosition: {x: 7.25, y: -1.38, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 775882679}
