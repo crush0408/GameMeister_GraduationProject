@@ -2782,8 +2782,9 @@ MonoBehaviour:
   canSecondJump: 0
   canDash: 1
   canMove: 1
-  _dashTarget: {x: 0, y: 0}
-  _dashDis: 3
+  startDashTime: 0.1
+  dashSpeed: 50
+  _dashDis: 1
   isCrouch: 0
 --- !u!114 &2105400317
 MonoBehaviour:
