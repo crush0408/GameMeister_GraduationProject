@@ -128,6 +128,7 @@ public class PlayerMove : MonoBehaviour
             {
                 _jump = false;
                 rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
+                anim.SetTrigger("isJump");
                 Debug.Log("1단 점프");
                 canSecondJump = true;
             }
@@ -137,11 +138,17 @@ public class PlayerMove : MonoBehaviour
                 {
                     _jump = false;
                     rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
+                    anim.SetTrigger("isJump");
                     Debug.Log("2단 점프");
                     canSecondJump = false;
                 }
             }
         }
+        else if(!isGround && rigid.velocity.y < 0)
+        {
+            anim.SetTrigger("isDown");
+        }
+        
         /*
         if(_jumpKeyUp && rigid.velocity.y > 0)
         {
@@ -154,8 +161,9 @@ public class PlayerMove : MonoBehaviour
     {
         //if (rigid.velocity.y < 0)
         {
-            isGround = Physics2D.OverlapCircle(groundCheckTrm.position, 0.2f, whatIsGround); 
+            isGround = Physics2D.OverlapCircle(groundCheckTrm.position, 0.1f, whatIsGround);
             // 반지름이 0.2인 원에 ground가 닿으면 isGround를 true로 바꿔주는것
+            anim.SetBool("isGround", isGround);
             if (isGround)
             {
                 canDash = true;
