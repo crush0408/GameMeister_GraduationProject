@@ -17,6 +17,7 @@ public class EnemyBrain : MonoBehaviour
     private Vector2 destination;
 
     public Animator ani;
+    public bool attackState = false;
 
     private void Awake()
     {
@@ -41,18 +42,21 @@ public class EnemyBrain : MonoBehaviour
 
         Vector2 moveDir = destination - (Vector2)transform.position;
         moveDir = moveDir.normalized;
-        if (facingRight)
+        if(!attackState)
         {
-            if (moveDir.x > 0 && transform.localScale.x < 0 || moveDir.x < 0 && transform.localScale.x > 0)
+            if (facingRight)
             {
-                Flip();
+                if (moveDir.x > 0 && transform.localScale.x < 0 || moveDir.x < 0 && transform.localScale.x > 0)
+                {
+                    Flip();
+                }
             }
-        }
-        else
-        {
-            if (moveDir.x < 0 && transform.localScale.x < 0 || moveDir.x > 0 && transform.localScale.x > 0)
+            else
             {
-                Flip();
+                if (moveDir.x < 0 && transform.localScale.x < 0 || moveDir.x > 0 && transform.localScale.x > 0)
+                {
+                    Flip();
+                }
             }
         }
     }
@@ -65,5 +69,18 @@ public class EnemyBrain : MonoBehaviour
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
+    }
+
+    public void TurnX()
+    {
+        attackState = true;
+        _rigid.constraints = RigidbodyConstraints2D.FreezePositionX;
+    }
+
+    public void TurnXX()
+    {
+        attackState = false;
+        _rigid.constraints = RigidbodyConstraints2D.None;
+        _rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 }
