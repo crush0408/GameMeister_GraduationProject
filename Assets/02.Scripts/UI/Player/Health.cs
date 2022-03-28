@@ -5,65 +5,52 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
+        Color healthColor;
     public Text healthText;
     public Image healthBar;
 
-    float health, maxHealth = 100f;
+    float health, maxHealth;
     float lerpSpeed;
+
+    IEnumerator _coroutine;
 
     private void Start()
     {
-        health = maxHealth;
+
     }
 
     private void Update()
     {
-        healthText.text = "Health : " + health + "%";
-        if (health > maxHealth)
-        {
-            health = maxHealth;
-        }
 
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            Damage(23f);
-        }
+        
 
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            Heal(44f);
-        }
-
-        lerpSpeed = 3f * Time.deltaTime;
-
-        HealthBarFiller();
-        ColorChanger();
+        
+    }
+    public void InitHealth(float hp, float maxHp)
+    {
+        health = hp;
+        maxHealth = maxHp;
+    }
+    public void SetHP(float hp)
+    {
+        health = hp;
+        _coroutine = HpBarLerpCoroutine();
+        StartCoroutine(_coroutine);
     }
 
-    void HealthBarFiller()
-    {
-        healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, health / maxHealth, lerpSpeed); 
-    }
+ 
 
-    private void Damage(float damagePoints)
+    IEnumerator HpBarLerpCoroutine()
     {
-        if(health > 0)
+        while (lerpSpeed <= 1)
         {
-            health -= damagePoints;
+            healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, health / maxHealth, lerpSpeed);
+             healthColor =  Color.Lerp(Color.red, Color.green, (health / maxHealth));
+            lerpSpeed += 0.3f;
         }
-    }
-
-    private void ColorChanger()
-    {
-        Color healthColor = Color.Lerp(Color.red, Color.green, (health / maxHealth));
         healthBar.color = healthColor;
-    }
-
-    private void Heal(float healingPoints)
-    {
-        if (health < maxHealth)
-        {
-            health += healingPoints;
-        }
+        healthText.text = "HP : " + health;
+        _coroutine = null;
+        yield return null;
     }
 }
