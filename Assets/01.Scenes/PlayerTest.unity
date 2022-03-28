@@ -2187,7 +2187,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1877383659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2977,8 +2977,8 @@ MonoBehaviour:
   canSecondJump: 0
   canDash: 1
   canMove: 1
-  startDashTime: 0.1
-  dashSpeed: 50
+  startDashTime: 0.3
+  dashSpeed: 30
   _dashDis: 1
   isCrouch: 0
 --- !u!114 &2105400317

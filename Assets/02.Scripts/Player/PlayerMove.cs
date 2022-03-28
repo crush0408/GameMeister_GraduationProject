@@ -94,11 +94,13 @@ public class PlayerMove : MonoBehaviour
                 canDash = false;
                 _dashTime = startDashTime;
                 rigid.velocity = Vector2.zero;
+                anim.SetBool("isDash", false);
             }
             else
             {
                 _dashTime -= Time.deltaTime;
                 rigid.velocity = new Vector2(_dashDis, 0);
+                anim.SetBool("isDash",true);
             }
 
         }
