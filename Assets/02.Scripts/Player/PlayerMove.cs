@@ -42,6 +42,7 @@ public class PlayerMove : MonoBehaviour
     private void Start()
     {
         _dashTime = startDashTime;
+        _dashDis = dashSpeed * 1;
     }
     private void Update()
     {
