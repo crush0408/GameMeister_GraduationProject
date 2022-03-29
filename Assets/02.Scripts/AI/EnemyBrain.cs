@@ -71,13 +71,14 @@ public class EnemyBrain : MonoBehaviour
         transform.localScale = scale;
     }
 
-    public void TurnX()
+    public void AttackConstraints()
     {
         attackState = true;
         _rigid.constraints = RigidbodyConstraints2D.FreezePositionX;
+        //_rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
-    public void TurnXX()
+    public void NormalConstraints()
     {
         attackState = false;
         _rigid.constraints = RigidbodyConstraints2D.None;
