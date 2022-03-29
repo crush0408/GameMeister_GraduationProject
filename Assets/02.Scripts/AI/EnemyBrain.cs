@@ -11,6 +11,7 @@ public class EnemyBrain : MonoBehaviour
     private float _speed = 5f;
 
     private Rigidbody2D _rigid;
+    private SpriteRenderer sr;
 
     public Transform target;
     public bool facingRight = true; //현재 오른쪽 보고 있는가?
@@ -23,6 +24,7 @@ public class EnemyBrain : MonoBehaviour
     {
         _rigid = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -42,8 +44,17 @@ public class EnemyBrain : MonoBehaviour
 
         Vector2 moveDir = destination - (Vector2)transform.position;
         moveDir = moveDir.normalized;
-        if(!attackState)
+        if (!attackState)
         {
+            if (moveDir.x > 0)
+            {
+                sr.flipX = true;
+            }
+            else
+            {
+                sr.flipX = false;
+            }
+            /*
             if (facingRight)
             {
                 if (moveDir.x > 0 && transform.localScale.x < 0 || moveDir.x < 0 && transform.localScale.x > 0)
@@ -58,6 +69,7 @@ public class EnemyBrain : MonoBehaviour
                     Flip();
                 }
             }
+            */
         }
     }
     public void Stop()
@@ -66,9 +78,7 @@ public class EnemyBrain : MonoBehaviour
     }
     public void Flip()
     {
-        Vector3 scale = transform.localScale;
-        scale.x *= -1;
-        transform.localScale = scale;
+        sr.flipX = !sr.flipX;
     }
 
     public void AttackConstraints()
