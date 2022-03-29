@@ -828,7 +828,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: 0
+  m_AmplitudeGain: 3.504832
   m_FrequencyGain: 1
   mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!114 &313828007
@@ -897,6 +897,7 @@ GameObject:
   - component: {fileID: 314803958}
   - component: {fileID: 314803960}
   - component: {fileID: 314803959}
+  - component: {fileID: 314803961}
   m_Layer: 5
   m_Name: FrontBar
   m_TagString: Untagged
@@ -944,10 +945,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 7e688790d1df05840a900e54f7af828e, type: 3}
-  m_Type: 1
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -961,6 +962,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 314803957}
   m_CullTransparentMesh: 1
+--- !u!114 &314803961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314803957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee439338c0e291544a859b8f081716f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthText: {fileID: 0}
+  healthBar: {fileID: 314803959}
 --- !u!1 &340113663
 GameObject:
   m_ObjectHideFlags: 0
@@ -2786,6 +2801,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initHealth: 12
   damagedEffectTime: 0.1
+  panel: {fileID: 0}
 --- !u!1 &1205663722
 GameObject:
   m_ObjectHideFlags: 0
@@ -4866,6 +4882,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initHealth: 100
   damagedEffectTime: 0.1
+  panel: {fileID: 314803957}
 --- !u!114 &1877383661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5941,10 +5958,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 7e688790d1df05840a900e54f7af828e, type: 3}
-  m_Type: 1
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0

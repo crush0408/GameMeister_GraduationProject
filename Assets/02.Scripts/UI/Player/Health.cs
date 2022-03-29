@@ -12,10 +12,7 @@ public class Health : MonoBehaviour
     float lerpSpeed;
 
 
-    private void Start()
-    {
-
-    }
+    
 
     private void Update()
     {

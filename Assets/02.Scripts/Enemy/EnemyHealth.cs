@@ -8,11 +8,20 @@ public class EnemyHealth : LivingEntity
     private SpriteRenderer sr;
     private Color temp;
     DemonAni demonAni;
+
+    public GameObject panel;
+
+    private Health healthScript;
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
         temp = sr.color;
         demonAni = GetComponent<DemonAni>();
+        healthScript = panel.GetComponent<Health>();
+    }
+    private void Start()
+    {
+        healthScript.InitHealth(health, initHealth);
     }
     private void Update()
     {
@@ -47,6 +56,7 @@ public class EnemyHealth : LivingEntity
     {
         if (isDead) return;
         base.OnDamage(damage, hitPosition);
+        healthScript.SetHP(health);
         StartCoroutine(ShowDamagedEffect());
         demonAni.setHit();
     }
