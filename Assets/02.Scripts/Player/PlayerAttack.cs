@@ -71,7 +71,7 @@ public class PlayerAttack : MonoBehaviour
                     {
                         if (sr.flipX)
                         {
-                            onePos.localPosition = new Vector3(-(onePos.localPosition.x), onePos.localPosition.y, onePos.localPosition.z);
+                            onePos.localPosition = new Vector3(-temp.x, temp.y, temp.z);
                         }
                         else
                         {

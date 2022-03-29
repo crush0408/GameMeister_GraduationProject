@@ -3030,6 +3030,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cbd7165196a8d14bbb7d04fab584871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  testBgmName: 
 --- !u!1 &1292981994
 GameObject:
   m_ObjectHideFlags: 0
@@ -5497,6 +5498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SettingPanel: {fileID: 205413713}
+  DeadPanel: {fileID: 0}
 --- !u!1 &2054452374
 GameObject:
   m_ObjectHideFlags: 0
