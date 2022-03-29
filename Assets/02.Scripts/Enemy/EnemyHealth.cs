@@ -9,7 +9,7 @@ public class EnemyHealth : LivingEntity
     private Color temp;
     DemonAni demonAni;
 
-    public GameObject panel;
+
 
     private Health healthScript;
     private void Awake()
@@ -17,7 +17,7 @@ public class EnemyHealth : LivingEntity
         sr = GetComponent<SpriteRenderer>();
         temp = sr.color;
         demonAni = GetComponent<DemonAni>();
-        healthScript = panel.GetComponent<Health>();
+        healthScript = GetComponentInChildren<Health>();
     }
     private void Start()
     {

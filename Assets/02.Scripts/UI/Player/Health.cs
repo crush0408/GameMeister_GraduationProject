@@ -34,9 +34,8 @@ public class Health : MonoBehaviour
 
     private void Lerp()
     {
-
-            healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, health / maxHealth, lerpSpeed);
-        Color healthColor = healthColor =  Color.Lerp(Color.red, Color.green, (health / maxHealth));
+        healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, health / maxHealth, lerpSpeed);
+        Color healthColor =  Color.Lerp(Color.red, Color.green, (health / maxHealth));
         
         healthBar.color = healthColor;
         healthText.text = "HP : " + health;
