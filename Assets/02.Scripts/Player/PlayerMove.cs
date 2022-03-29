@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     private PlayerInput playerInput;
+    private PlayerAttack playerAttack;
     private Rigidbody2D rigid;
     private Animator anim;
 
@@ -35,6 +36,7 @@ public class PlayerMove : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         playerInput = GetComponent<PlayerInput>();
+        playerAttack = GetComponent<PlayerAttack>();
         anim = GetComponent<Animator>();
     }
     private void Start()
@@ -49,10 +51,14 @@ public class PlayerMove : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        Move();
-        Jump();
-        Dash();
-        Crouch();
+        //if (!playerAttack.isAttacking)
+        {
+
+            Move();
+            Jump();
+            Dash();
+            Crouch();
+        }
     }
     private void ValueSetting() //Input 처리 변환
     {
