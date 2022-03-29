@@ -828,7 +828,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: 0.2776055
+  m_AmplitudeGain: 0
   m_FrequencyGain: 1
   mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!114 &313828007
@@ -4834,7 +4834,7 @@ GameObject:
   - component: {fileID: 1877383659}
   m_Layer: 7
   m_Name: Demon
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5879,6 +5879,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 834e9e6438c76d540984cff4f7235f9e, type: 2}
   boxSize: {x: 5, y: 3}
   onePos: {fileID: 1292981995}
+  temp: {x: -2.93, y: 0.7, z: 0}
   isAttacking: 0
 --- !u!1 &2124657130
 GameObject:

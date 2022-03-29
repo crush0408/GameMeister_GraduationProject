@@ -18,6 +18,7 @@ public class PlayerAttack : MonoBehaviour
     private Vector2 boxSize = Vector2.zero;
     [SerializeField]
     private Transform onePos;
+    public Vector3 temp;
 
     public bool isAttacking = false;
     private float combo = 0f;
@@ -26,11 +27,13 @@ public class PlayerAttack : MonoBehaviour
         anim = GetComponent<Animator>();
         playerInput = GetComponent<PlayerInput>();
         sr = GetComponent<SpriteRenderer>();
+        temp = onePos.localPosition;
     }
 
     // Update is called once per frame
     void Update()
     {
+        /*
         if (!isAttacking && playerInput.basicAtk)
         {
             anim.SetBool("basicAtk", true);
@@ -40,7 +43,8 @@ public class PlayerAttack : MonoBehaviour
         {
 
         }
-        else if (playerInput.skillOne)
+        */
+        if (playerInput.skillOne)
         {
             InputSkillFunc(playerInput.skillOneName);
         }
@@ -65,14 +69,24 @@ public class PlayerAttack : MonoBehaviour
                 {
                     if(inputSkill.skillName == "FastMagic")
                     {
+                        if (sr.flipX)
+                        {
+                            onePos.localPosition = new Vector3(-(onePos.localPosition.x), onePos.localPosition.y, onePos.localPosition.z);
+                        }
+                        else
+                        {
+                            onePos.localPosition = temp;
+                        }
+
                         Collider2D[] cols = Physics2D.OverlapBoxAll(onePos.position, boxSize ,0f);
                         foreach (Collider2D col in cols)
                         {
                             IDamageable target = col.GetComponent<IDamageable>();
 
-                            if(target != null)
+                            if (target != null && col.gameObject.CompareTag("Enemy"))
                             {
                                 Attack();
+                                target.OnDamage(inputSkill.attackDamage, col.transform.position);
                             }
                         }
                     }

@@ -31,6 +31,7 @@ public class EnemyHealth : LivingEntity
         Debug.Log(sr.color);
         yield return new WaitForSeconds(damagedEffectTime);
         sr.color = temp;
+        Debug.Log(health);
     }
     public override void HealHealth(float value)
     {

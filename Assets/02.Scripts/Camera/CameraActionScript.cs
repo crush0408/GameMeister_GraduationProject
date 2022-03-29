@@ -25,6 +25,7 @@ public class CameraActionScript : MonoBehaviour
             vCam = GetComponent<CinemachineVirtualCamera>();
             bPerlin = vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         }
+        bPerlin.m_AmplitudeGain = 0f;
     }
     public static void ShakeCam(float intensity, float time)
     {
