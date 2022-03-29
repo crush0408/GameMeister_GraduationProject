@@ -7,6 +7,8 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
 
+    public GameObject MGSound;
+
     private void Awake()
     {
         if (instance == null)
