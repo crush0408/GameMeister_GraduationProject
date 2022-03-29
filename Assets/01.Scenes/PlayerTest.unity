@@ -1381,6 +1381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca2418c1c7457ad4aa2b374f683a9e23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MGSound: {fileID: 0}
 --- !u!4 &903765538
 Transform:
   m_ObjectHideFlags: 0
@@ -3529,6 +3530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca2418c1c7457ad4aa2b374f683a9e23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MGSound: {fileID: 0}
 --- !u!1 &1825407485
 GameObject:
   m_ObjectHideFlags: 0
@@ -4260,6 +4262,7 @@ GameObject:
   - component: {fileID: 2105400316}
   - component: {fileID: 2105400319}
   - component: {fileID: 2105400318}
+  - component: {fileID: 2105400321}
   - component: {fileID: 2105400320}
   m_Layer: 8
   m_Name: Player
@@ -4396,9 +4399,9 @@ MonoBehaviour:
   jumpBtnName: Jump
   basicAtkName: BasicAttack
   dashName: Dash
-  skillOneName: SkillOne
-  skillTwoName: SkillTwo
-  ultimateName: Ultimate
+  skillOneName: FastMagic
+  skillTwoName: SpinAttack
+  ultimateName: SustainMagic
   crouchName: Crouch
 --- !u!61 &2105400318
 BoxCollider2D:
@@ -4461,6 +4464,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initHealth: 100
   damagedEffectTime: 0.1
+--- !u!114 &2105400321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105400312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68701df7679fb0246a3362a751544e96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillList:
+  - {fileID: 11400000, guid: 48d420d3c3760b94cba3f309bf397c8b, type: 2}
+  - {fileID: 11400000, guid: b5d59bc8a9d084d4a9f545a258820c62, type: 2}
+  - {fileID: 11400000, guid: 834e9e6438c76d540984cff4f7235f9e, type: 2}
 --- !u!1 &2124657130
 GameObject:
   m_ObjectHideFlags: 0

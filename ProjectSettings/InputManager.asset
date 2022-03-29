@@ -518,7 +518,7 @@ InputManager:
     axis: 5
     joyNum: 0
   - serializedVersion: 3
-    m_Name: SkillOne
+    m_Name: FastMagic
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -534,7 +534,7 @@ InputManager:
     axis: 5
     joyNum: 0
   - serializedVersion: 3
-    m_Name: SkillTwo
+    m_Name: SpinAttack
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -550,7 +550,7 @@ InputManager:
     axis: 5
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Ultimate
+    m_Name: SustainMagic
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
