@@ -5,6 +5,7 @@ using UnityEngine;
 public class PanelManager : MonoBehaviour
 {
     public GameObject SettingPanel;
+    public GameObject DeadPanel;
 
     void Update()
     {

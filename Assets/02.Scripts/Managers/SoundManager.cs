@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
+    public string testBgmName;
+
     private void Start()
     {
-        MGSound.instance.playBgm("somewhere");
+        MGSound.instance.playBgm(testBgmName);
     }
 }
