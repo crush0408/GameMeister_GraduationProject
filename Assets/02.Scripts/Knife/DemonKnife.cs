@@ -8,11 +8,9 @@ public class DemonKnife : MonoBehaviour
     //public LayerMask whatIsEnemy;
 
     public int damage;
-    private CinemachineVirtualCamera vCam;
 
     private void Awake()
     {
-        vCam = GameObject.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -26,14 +24,10 @@ public class DemonKnife : MonoBehaviour
                 Vector3 contact = collision.transform.position;
 
                 DamageObj.OnDamage(damage, contact);
-                vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 4;
-                Invoke("Return", 0.3f);
+                CameraActionScript.ShakeCam(4, 0.3f);
             }
         }
     }
 
-    void Return()
-    {
-        vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 0;
-    }
+    
 }
