@@ -24,16 +24,6 @@ public class PlayerHealth : LivingEntity
         healthScript.InitHealth(health, initHealth);
     }
 
-    
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            OnDamage(10, new Vector2(0f, 0f));
-        }
-    }
-
     private IEnumerator ShowDamagedEffect()
     {
         sr.color = Color.red; // 피격 예시
