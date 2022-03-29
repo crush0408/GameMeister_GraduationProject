@@ -5,20 +5,17 @@ using UnityEngine.UI;
 
 public class PanelSize : MonoBehaviour
 {
-    public Image testPanel;
-
-    private float panelWidth = 500f;
-    private float panelHeight = 300f;
-
-    private RectTransform rt;
+    private RectTransform rectTransform;
 
     private void Start()
     {
-        testPanel.rectTransform.sizeDelta = new Vector2(panelWidth, panelHeight);
+        rectTransform = GetComponent<RectTransform>();
 
-        rt = testPanel.GetComponent<RectTransform>();
-        rt.offsetMin = rt.offsetMax = Vector2.zero;
+        SetSizeDelta(200f, 200f);
+    }
 
-        rt.anchoredPosition = transform.position;
+    void SetSizeDelta(float width, float height)
+    {
+        rectTransform.sizeDelta = new Vector2(width, height);
     }
 }
