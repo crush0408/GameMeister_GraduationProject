@@ -74,14 +74,14 @@ public class EnemyBrain : MonoBehaviour
     public void AttackConstraints()
     {
         attackState = true;
-        _rigid.constraints = RigidbodyConstraints2D.FreezePositionX;
-        //_rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
+        _rigid.constraints = RigidbodyConstraints2D.FreezeAll;
+        //_rigid.constraints = RigidbodyConstraints2D.FreezePositionY;
     }
 
     public void NormalConstraints()
     {
         attackState = false;
         _rigid.constraints = RigidbodyConstraints2D.None;
-        _rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
+        _rigid.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY;
     }
 }
