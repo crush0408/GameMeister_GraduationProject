@@ -7,7 +7,7 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
 
-    public GameObject MGSound;
+
 
     private void Awake()
     {
@@ -20,6 +20,11 @@ public class UIManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+
+    private void Start()
+    {
+        MGSound.instance.playBgm("somewhere");
     }
 
     public void Move(GameObject obj, Vector3 targetTransform, float time, Ease easetype)
