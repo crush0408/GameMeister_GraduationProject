@@ -6,6 +6,7 @@ public class PlayerAttack : MonoBehaviour
 {
     private Animator anim;
     private PlayerInput playerInput;
+    private SpriteRenderer sr;
 
     [Header("전체 스킬 리스트")]
     public List<SkillObject> skillList;
@@ -13,18 +14,33 @@ public class PlayerAttack : MonoBehaviour
     [Header("입력 받은 스킬")]
     SkillObject inputSkill;
 
+    [SerializeField]
+    private Vector2 boxSize = Vector2.zero;
+    [SerializeField]
+    private Transform onePos;
+
     public bool isAttacking = false;
+    private float combo = 0f;
     void Start()
     {
         anim = GetComponent<Animator>();
         playerInput = GetComponent<PlayerInput>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!isAttacking && playerInput.basicAtk)
+        {
+            anim.SetBool("basicAtk", true);
+            combo++;
+        }
+        else if (isAttacking && playerInput.basicAtk)
+        {
 
-        if (playerInput.skillOne)
+        }
+        else if (playerInput.skillOne)
         {
             InputSkillFunc(playerInput.skillOneName);
         }
@@ -44,9 +60,26 @@ public class PlayerAttack : MonoBehaviour
             if(skillList[i].skillName == name)
             {
                 inputSkill = skillList[i];
+
                 if(inputSkill.coolTime <= 0f )//&& !isAttacking)
                 {
-                    Attack();
+                    if(inputSkill.skillName == "FastMagic")
+                    {
+                        Collider2D[] cols = Physics2D.OverlapBoxAll(onePos.position, boxSize ,0f);
+                        foreach (Collider2D col in cols)
+                        {
+                            IDamageable target = col.GetComponent<IDamageable>();
+
+                            if(target != null)
+                            {
+                                Attack();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Attack();   
+                    }
                 }
                 else
                 {
@@ -69,4 +102,21 @@ public class PlayerAttack : MonoBehaviour
     {
         isAttacking = false;
     }
+    public void BasicAttackEnd()
+    {
+        combo = 0;
+        isAttacking = false;
+    }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        if (UnityEditor.Selection.activeObject == gameObject)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireCube(onePos.position, boxSize);
+            
+        }
+    }
+#endif
 }
