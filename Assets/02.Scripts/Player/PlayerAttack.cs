@@ -87,6 +87,8 @@ public class PlayerAttack : MonoBehaviour
                             {
                                 Attack();
                                 target.OnDamage(inputSkill.attackDamage, col.transform.position);
+                                PoolableMono a = PoolManager.Instance.Pop("FastMagic");
+                                a.transform.position = col.transform.position;
                             }
                         }
                     }
@@ -97,7 +99,7 @@ public class PlayerAttack : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("쿨타임 남음 ㅋ");
+                    Debug.Log("쿨타임 남음");
                 }
                 break;
             }
