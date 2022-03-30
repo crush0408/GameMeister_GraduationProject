@@ -18,7 +18,7 @@ public class EnemyBrain : MonoBehaviour
     private Vector2 destination;
 
     public Animator ani;
-    public bool attackState = false;
+    private bool attackState = false;
 
     private void Awake()
     {

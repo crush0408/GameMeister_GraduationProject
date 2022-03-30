@@ -35,10 +35,10 @@ public class PlayerInput : MonoBehaviour
         ultimate = Input.GetButtonDown(ultimateName);
         crouch = Input.GetButton(crouchName);
 
-        Debug.Log(string.Format("movement : {0}\n jump : {1}\n jumpkeyup : {2}\n" +
-            " basicatk : {3}\n dash : {4}\n skillone : {5}\n skilltwo : {6}\n" +
-            "ultimate : {7}\n crouch : {8}",
-            movement,jump,jumpKeyup,basicAtk,dash,skillOne,skillTwo,ultimate,crouch));
+        //Debug.Log(string.Format("movement : {0}\n jump : {1}\n jumpkeyup : {2}\n" +
+        //    " basicatk : {3}\n dash : {4}\n skillone : {5}\n skilltwo : {6}\n" +
+        //    "ultimate : {7}\n crouch : {8}",
+        //    movement,jump,jumpKeyup,basicAtk,dash,skillOne,skillTwo,ultimate,crouch));
 
     }
 }
