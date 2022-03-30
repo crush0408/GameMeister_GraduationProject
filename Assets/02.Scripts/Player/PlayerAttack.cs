@@ -22,11 +22,15 @@ public class PlayerAttack : MonoBehaviour
 
     public bool isAttacking = false;
     private float combo = 0f;
+
+    private SkillSlotsUI skillSlotsScript;
+
     void Start()
     {
         anim = GetComponent<Animator>();
         playerInput = GetComponent<PlayerInput>();
         sr = GetComponent<SpriteRenderer>();
+        skillSlotsScript = GetComponentInChildren<SkillSlotsUI>();
         temp = onePos.localPosition;
         for (int i = 0; i < skillList.Count; i++)
         {
@@ -94,6 +98,7 @@ public class PlayerAttack : MonoBehaviour
                                 Attack();
                                 target.OnDamage(inputSkill.attackDamage, col.transform.position);
                                 PoolManager.Instance.Pop("FastMagic");
+                                skillList[i].remainCoolTime = skillList[i].initCoolTime;
                             }
                         }
                     }
