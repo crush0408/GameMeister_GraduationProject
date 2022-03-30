@@ -28,11 +28,17 @@ public class PlayerAttack : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         sr = GetComponent<SpriteRenderer>();
         temp = onePos.localPosition;
+        for (int i = 0; i < skillList.Count; i++)
+        {
+            StartCoroutine(skillList[i].coolTime());
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+        Debug.Log(skillList[0].remainCoolTime + " " + skillList[1].remainCoolTime + " " + skillList[2].remainCoolTime);
         /*
         if (!isAttacking && playerInput.basicAtk)
         {
@@ -65,7 +71,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 inputSkill = skillList[i];
 
-                if(inputSkill.coolTime <= 0f )//&& !isAttacking)
+                if(inputSkill.remainCoolTime <= 0f )//&& !isAttacking)
                 {
                     if(inputSkill.skillName == "FastMagic")
                     {
@@ -87,8 +93,7 @@ public class PlayerAttack : MonoBehaviour
                             {
                                 Attack();
                                 target.OnDamage(inputSkill.attackDamage, col.transform.position);
-                                PoolableMono a = PoolManager.Instance.Pop("FastMagic");
-                                a.transform.position = col.transform.position;
+                                PoolManager.Instance.Pop("FastMagic");
                             }
                         }
                     }
