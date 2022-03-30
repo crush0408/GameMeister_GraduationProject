@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: SpinAttack
   skillAnim: {fileID: 7400000, guid: ad355bdc774f05346b25e5e256620151, type: 2}
-  skillExp: 5
+  SkillImage: {fileID: 21300000, guid: f3a540b59c7f0bb408f7b672a38f29b0, type: 3}
   attackDamage: 15
+  coolTime: 0
   effectSoundName: 
