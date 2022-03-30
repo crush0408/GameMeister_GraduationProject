@@ -93,7 +93,9 @@ public class PlayerAttack : MonoBehaviour
                             {
                                 Attack();
                                 target.OnDamage(inputSkill.attackDamage, col.transform.position);
-                                PoolManager.Instance.Pop("FastMagic");
+                                
+                                PoolManager.Instance.Pop(skillList[i].skillName);
+                                
                             }
                         }
                     }
