@@ -8,6 +8,7 @@ public class SkillObject : ScriptableObject
     public string skillName;
 
     public AnimationClip skillAnim;
+    public Sprite SkillImage;
 
     // 추후 이펙트 애니메이션, 효과음 적용하게 되면 이곳에 추가하기
 
