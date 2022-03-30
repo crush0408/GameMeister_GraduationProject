@@ -7,7 +7,7 @@ public class EnemyHealth : LivingEntity
     public float damagedEffectTime = 0.1f;
     private SpriteRenderer sr;
     private Color temp;
-    DemonAni demonAni;
+
 
 
 
@@ -16,7 +16,6 @@ public class EnemyHealth : LivingEntity
     {
         sr = GetComponent<SpriteRenderer>();
         temp = sr.color;
-        demonAni = GetComponent<DemonAni>();
         healthScript = GetComponentInChildren<Health>();
     }
     private void Start()
@@ -49,7 +48,6 @@ public class EnemyHealth : LivingEntity
     public override void Die()
     {
         base.Die();
-        demonAni.setDead();
         //오브젝트 없애는 게 필요할듯 setactive나 destroy
     }
     public override void OnDamage(float damage, Vector2 hitPosition)
@@ -58,6 +56,6 @@ public class EnemyHealth : LivingEntity
         base.OnDamage(damage, hitPosition);
         healthScript.SetHP(health);
         StartCoroutine(ShowDamagedEffect());
-        demonAni.setHit();
+
     }
 }
