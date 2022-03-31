@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class PlayerBasicAttack : MonoBehaviour
 {
-    private Animator anim;
-    private void Awake()
+    private float damage = 5f;
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        anim = GetComponentInParent<Animator>();
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            IDamageable target = collision.GetComponent<IDamageable>();
+            if(target != null)
+            {
+                target.OnDamage(damage, transform.position);
+                Debug.Log("적 기본 공격 피격");
+            }
+        }
     }
-    
+
 }
