@@ -46,14 +46,29 @@ public class EnemyBrain : MonoBehaviour
         moveDir = moveDir.normalized;
         if (!attackState)
         {
-            if (moveDir.x > 0)
+            if (facingRight)
             {
-                sr.flipX = true;
+                if (moveDir.x > 0)
+                {
+                    sr.flipX = false;
+                }
+                else
+                {
+                    sr.flipX = true;
+                }
             }
             else
             {
-                sr.flipX = false;
+                if (moveDir.x > 0)
+                {
+                    sr.flipX = true;
+                }
+                else
+                {
+                    sr.flipX = false;
+                }
             }
+
             /*
             if (facingRight)
             {
