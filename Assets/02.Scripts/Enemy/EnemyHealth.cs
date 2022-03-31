@@ -8,10 +8,8 @@ public class EnemyHealth : LivingEntity
     private SpriteRenderer sr;
     private Color temp;
 
-
-
-
     private Health healthScript;
+
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
