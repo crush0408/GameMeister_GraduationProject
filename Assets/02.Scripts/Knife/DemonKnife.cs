@@ -48,8 +48,8 @@ public class DemonKnife : MonoBehaviour
             {
                 Vector3 contact = collision.transform.position;
 
-                DamageObj.OnDamage(damage, contact);
-                CameraActionScript.ShakeCam(4, 0.3f);
+                DamageObj.OnDamage(damage, this.gameObject.transform.position);
+                //CameraActionScript.ShakeCam(4, 0.3f);
             }
         }
     }
