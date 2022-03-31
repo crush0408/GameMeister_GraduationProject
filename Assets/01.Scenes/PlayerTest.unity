@@ -3921,7 +3921,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initHealth: 12
   damagedEffectTime: 0.1
-  healthBarPrefab: {fileID: 0}
 --- !u!1 &1178215115
 GameObject:
   m_ObjectHideFlags: 0
@@ -6668,7 +6667,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initHealth: 100
   damagedEffectTime: 0.1
-  healthBarPrefab: {fileID: 0}
 --- !u!114 &1877383661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6686,6 +6684,7 @@ MonoBehaviour:
   target: {fileID: 2105400314}
   facingRight: 0
   ani: {fileID: 1877383664}
+  attackState: 0
 --- !u!61 &1877383662
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6699,7 +6698,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.3511665, y: 0.30902004}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5162601, y: 0.25024384}
@@ -6710,7 +6709,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5, y: 6.5625}
+  m_Size: {x: 4.65548, y: 5.651703}
   m_EdgeRadius: 0
 --- !u!50 &1877383663
 Rigidbody2D:
@@ -6732,7 +6731,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 6
+  m_Constraints: 4
 --- !u!95 &1877383664
 Animator:
   serializedVersion: 3
