@@ -9,7 +9,7 @@ public class EnemyHealth : LivingEntity
     private Rigidbody2D rigid;
     private Color temp;
 
-    private Health healthScript;
+    private EnemyHPBar healthScript;
 
     private void Awake()
     {
