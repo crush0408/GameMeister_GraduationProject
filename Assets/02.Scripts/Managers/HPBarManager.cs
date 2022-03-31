@@ -9,20 +9,23 @@ public class HPBarManager : MonoBehaviour
 
     [SerializeField] List<Transform> enemyTransfroms = new List<Transform>();
     List<GameObject> hpBarList = new List<GameObject>();
+    [SerializeField] GameObject[] enemyObjs;
 
-    Camera mainCam;
+    // Camera mainCam;
 
     private void Start()
     {
-        mainCam = Camera.main;
+        // mainCam = Camera.main;
 
-        GameObject[] enemyObjs = GameObject.FindGameObjectsWithTag(enemyTagName);
+        enemyObjs = GameObject.FindGameObjectsWithTag(enemyTagName);
 
         for (int i = 0; i < enemyObjs.Length; i++)
         {
             enemyTransfroms.Add(enemyObjs[i].transform);
             GameObject hpBar = Instantiate(hpBarPrefab, enemyObjs[i].transform.position, Quaternion.identity);
             hpBarList.Add(hpBar);
+
+            enemyObjs[i].GetComponent<EnemyHealth>().healthScript = hpBar.GetComponentInChildren<EnemyHPBar>();
         }
     }
 
@@ -30,7 +33,8 @@ public class HPBarManager : MonoBehaviour
     {
         for (int i = 0; i < enemyTransfroms.Count; i++)
         {
-            hpBarList[i].transform.position = enemyTransfroms[i].position + new Vector3(0, 0.15f, 0);
+            SpriteRenderer enemySprite = enemyObjs[i].GetComponent<SpriteRenderer>();
+            hpBarList[i].transform.position = enemyTransfroms[i].position + new Vector3(0, enemySprite.bounds.size.y * 0.2f, 0);
         }
     }
 }

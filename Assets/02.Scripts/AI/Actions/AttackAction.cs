@@ -5,15 +5,37 @@ using UnityEngine;
 public class AttackAction : AIAction
 {
     Transform currentPosition;
+    public bool multipleAttack = false;
+    private EnemyHealth hp;
     private void Start()
     {
         currentPosition = _enemyBrain.target;
+        hp = GetComponentInParent<EnemyHealth>();
     }
     public override void TakeAction()
     {
         //공격 애니메이션 및 데미지 입히는 함수
         _enemyBrain.ani.SetBool("isWalk", false);
-        _enemyBrain.ani.SetTrigger("isAttack");
         _enemyBrain.target = currentPosition;
+
+        if(multipleAttack)
+        {
+            if(hp.health >= 80)
+            {
+                _enemyBrain.ani.SetTrigger("isAttack");
+            }
+            else if(hp.health < 80 && hp.health >=50)
+            {
+                _enemyBrain.ani.SetTrigger("isAttackTwo");
+            }
+            else
+            {
+                _enemyBrain.ani.SetTrigger("isAttackThree");
+            }
+        }
+        else
+        {
+            _enemyBrain.ani.SetTrigger("isAttack");
+        }
     }
 }
