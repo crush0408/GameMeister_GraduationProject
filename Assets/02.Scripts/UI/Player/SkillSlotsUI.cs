@@ -31,7 +31,7 @@ public class SkillSlotsUI : MonoBehaviour
         {
             skillSlotImage[i].fillAmount = playerAttack.skillList[i].remainCoolTime / playerAttack.skillList[i].initCoolTime;
 
-            remainCoolTime[i].text = playerAttack.skillList[i].remainCoolTime.ToString();
+            remainCoolTime[i].text = playerAttack.skillList[i].remainCoolTime > 0 ? playerAttack.skillList[i].remainCoolTime.ToString() : "";
         }
     }
 }
