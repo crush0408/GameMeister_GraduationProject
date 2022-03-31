@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
-public class DemonKnife : MonoBehaviour
+public class Knife : MonoBehaviour
 {
     //여기서 플레이어 피격 처리?
     //public LayerMask whatIsEnemy;
