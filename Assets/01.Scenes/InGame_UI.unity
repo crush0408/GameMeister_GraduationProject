@@ -616,56 +616,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 156399745}
   m_CullTransparentMesh: 1
---- !u!1 &176231118
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 176231119}
-  - component: {fileID: 176231120}
-  m_Layer: 5
-  m_Name: HPBarManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &176231119
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 176231118}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1934881286}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &176231120
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 176231118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd182fd1234607c49b5b6b9e896711aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hpBarPrefab: {fileID: 2732102618219869913, guid: 98883fb884c54254d89fb0d57b45d3db, type: 3}
-  enemyTagName: Enemy
 --- !u!1 &178001881
 GameObject:
   m_ObjectHideFlags: 0
@@ -1866,6 +1816,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 397202942}
   m_CullTransparentMesh: 1
+--- !u!1 &400504417
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 400504418}
+  - component: {fileID: 400504419}
+  m_Layer: 0
+  m_Name: HPPooling
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &400504418
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400504417}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &400504419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400504417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd182fd1234607c49b5b6b9e896711aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpBarPrefab: {fileID: 4080087671550952817, guid: 98883fb884c54254d89fb0d57b45d3db, type: 3}
+  enemyTagName: Enemy
+  enemyTransfroms: []
 --- !u!1 &416871652
 GameObject:
   m_ObjectHideFlags: 0
@@ -3303,7 +3299,6 @@ GameObject:
   - component: {fileID: 943693023}
   - component: {fileID: 943693022}
   - component: {fileID: 943693021}
-  - component: {fileID: 943693024}
   m_Layer: 5
   m_Name: PlayerPanel
   m_TagString: Untagged
@@ -3392,19 +3387,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &943693024
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 943693019}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee439338c0e291544a859b8f081716f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
 --- !u!1 &952421925
 GameObject:
   m_ObjectHideFlags: 0
@@ -4036,7 +4018,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initHealth: 12
   damagedEffectTime: 0.1
-  healthBarPrefab: {fileID: 0}
 --- !u!1 &1205663722
 GameObject:
   m_ObjectHideFlags: 0
@@ -4637,6 +4618,7 @@ GameObject:
   - component: {fileID: 1303707685}
   - component: {fileID: 1303707688}
   - component: {fileID: 1303707687}
+  - component: {fileID: 1303707686}
   m_Layer: 5
   m_Name: fill
   m_TagString: Untagged
@@ -4664,6 +4646,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 330, y: 30}
   m_Pivot: {x: 1, y: 0}
+--- !u!114 &1303707686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1303707684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee439338c0e291544a859b8f081716f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
 --- !u!114 &1303707687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6788,7 +6783,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initHealth: 100
   damagedEffectTime: 0.1
-  healthBarPrefab: {fileID: 0}
 --- !u!114 &1877383661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7098,7 +7092,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 205413714}
-  - {fileID: 176231119}
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7121,6 +7114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hpBarPrefab: {fileID: 0}
   enemyTagName: 
+  enemyTransfroms: []
 --- !u!1 &1938690173
 GameObject:
   m_ObjectHideFlags: 0
