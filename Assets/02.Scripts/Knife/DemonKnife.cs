@@ -22,18 +22,21 @@ public class DemonKnife : MonoBehaviour
         destination = _enemyBrain.target.position;
         Vector2 moveDir = destination - (Vector2)transform.position;
         moveDir = moveDir.normalized;
-        if (facingRight)
+        if(!_enemyBrain.attackState)
         {
-            if (moveDir.x > 0 && transform.localScale.x < 0 || moveDir.x < 0 && transform.localScale.x > 0)
+            if (facingRight)
             {
-                Flip();
+                if (moveDir.x > 0 && transform.localScale.x < 0 || moveDir.x < 0 && transform.localScale.x > 0)
+                {
+                    Flip();
+                }
             }
-        }
-        else
-        {
-            if (moveDir.x < 0 && transform.localScale.x < 0 || moveDir.x > 0 && transform.localScale.x > 0)
+            else
             {
-                Flip();
+                if (moveDir.x < 0 && transform.localScale.x < 0 || moveDir.x > 0 && transform.localScale.x > 0)
+                {
+                    Flip();
+                }
             }
         }
     }
