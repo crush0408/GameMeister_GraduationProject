@@ -26,6 +26,8 @@ public class EnemyHPBar : MonoBehaviour
     {
         _hp = hp;
         _maxHp = maxHp;
+
+        Debug.Log("hp : " + hp + " maxHp : " + maxHp + " | 여기 hp : " + _hp + " 여기 maxHp : " + _maxHp);
     }
 
     public void SetHP(float hp)
