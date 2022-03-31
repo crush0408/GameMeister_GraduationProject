@@ -99,6 +99,7 @@ public class PlayerAttack : MonoBehaviour
                                 target.OnDamage(inputSkill.attackDamage, col.transform.position);
                                 PoolManager.Instance.Pop("FastMagic");
                                 skillList[i].remainCoolTime = skillList[i].initCoolTime;
+                                StartCoroutine(skillList[i].coolTime());
                             }
                         }
                     }
