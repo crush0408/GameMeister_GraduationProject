@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FastMagicEffectScript : PoolableMono
+public class SkillEffectScript : PoolableMono
 {
     public override void Reset()
     {

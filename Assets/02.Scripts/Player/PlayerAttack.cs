@@ -21,7 +21,7 @@ public class PlayerAttack : MonoBehaviour
     public Vector3 temp;
 
     public bool isAttacking = false;
-    private float combo = 0f;
+    private int combo = 0;
 
     private SkillSlotsUI skillSlotsScript;
 
@@ -41,20 +41,43 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        //Debug.Log(skillList[0].remainCoolTime + " " + skillList[1].remainCoolTime + " " + skillList[2].remainCoolTime);
-        /*
-        if (!isAttacking && playerInput.basicAtk)
-        {
-            anim.SetBool("basicAtk", true);
-            combo++;
-        }
-        else if (isAttacking && playerInput.basicAtk)
-        {
 
+        //Debug.Log(skillList[0].remainCoolTime + " " + skillList[1].remainCoolTime + " " + skillList[2].remainCoolTime);
+        if (playerInput.basicAtk)
+        {
+            if (!isAttacking)
+            {
+                combo = 0;
+                anim.SetInteger("BasicAttack", combo);
+                anim.SetTrigger("isBagicAttack");
+                isAttacking = true;
+                combo++;
+            }
+            else if(isAttacking)
+            {
+                switch (combo)
+                {
+                    
+                    case 1:
+                        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_Attack1"))
+                        {
+
+                            anim.SetInteger("BasicAttack", combo);
+                            combo++;
+                            
+                        }
+                        break;
+                    case 2:
+                        if(anim.GetCurrentAnimatorStateInfo(0).IsName("Player_Attack2"))
+                            anim.SetInteger("BasicAttack", combo);
+                        
+                        break;
+                    
+                }
+            }
         }
-        */
-        if (playerInput.skillOne)
+        
+        else if (playerInput.skillOne)
         {
             InputSkillFunc(playerInput.skillOneName);
         }
@@ -129,11 +152,28 @@ public class PlayerAttack : MonoBehaviour
     }
     public void AttackEnd()
     {
+        
         isAttacking = false;
     }
+    
     public void BasicAttackEnd()
     {
+        switch (combo)
+        {
+            case 0:
+                isAttacking = false;
+                break;
+            case 1:
+                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Player_Attack1"))
+                {
+                    isAttacking = false;
+                }
+                break;
+
+            
+        }
         combo = 0;
+        anim.SetInteger("BasicAttack", combo);
         isAttacking = false;
     }
 
