@@ -29,12 +29,7 @@ public class SkillSlotsUI : MonoBehaviour
 
         for (int i = 0; i < skillSlotImage.Count; i++)
         {
-            // skillSlotImage[i].fillAmount = playerAttack.skillList[i].remainCoolTime / playerAttack.skillList[i].initCoolTime;
-            /*
-            skillSlotImage[i].fillAmount = Mathf.Lerp(skillSlotImage[i].fillAmount,
-                playerAttack.skillList[i].remainCoolTime / playerAttack.skillList[i].initCoolTime,
-                lerpSpeed);
-            */
+            skillSlotImage[i].fillAmount = playerAttack.skillList[i].remainCoolTime / playerAttack.skillList[i].initCoolTime;
 
             remainCoolTime[i].text = playerAttack.skillList[i].remainCoolTime.ToString();
         }
