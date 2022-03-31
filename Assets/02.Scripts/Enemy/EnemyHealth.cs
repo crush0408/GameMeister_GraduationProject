@@ -16,7 +16,6 @@ public class EnemyHealth : LivingEntity
     {
         sr = GetComponent<SpriteRenderer>();
         temp = sr.color;
-        healthScript = GetComponentInChildren<Health>();
     }
     private void Start()
     {
