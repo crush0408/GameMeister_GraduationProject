@@ -10,19 +10,18 @@ public class PlayerHealth : LivingEntity
     private SpriteRenderer sr;
     private Rigidbody2D rigid;
 
-    private Health healthScript;
+    private PlayerHPBar healthScript;
 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
-        healthScript = GetComponentInChildren<Health>();
+        healthScript = GetComponentInChildren<PlayerHPBar>();
         temp = sr.color;
     }
 
     private void Start()
     {
-
         healthScript.InitHealth(health, initHealth);
     }
 
