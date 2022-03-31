@@ -9,10 +9,10 @@ public class EnemyHealth : LivingEntity
     private Rigidbody2D rigid;
     private Color temp;
 
-
-
+    public GameObject healthBarPrefab;
 
     private Health healthScript;
+
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
