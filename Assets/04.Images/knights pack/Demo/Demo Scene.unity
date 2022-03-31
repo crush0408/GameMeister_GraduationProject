@@ -691,7 +691,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &235080459
 Animator:
   serializedVersion: 3
@@ -1092,7 +1092,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &260734368
 Animator:
   serializedVersion: 3
@@ -1502,7 +1502,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee439338c0e291544a859b8f081716f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 286834497}
 --- !u!114 &286834497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1591,7 +1590,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee439338c0e291544a859b8f081716f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 318600326}
 --- !u!114 &318600326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2858,7 +2856,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee439338c0e291544a859b8f081716f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 598420220}
 --- !u!114 &598420220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3071,7 +3068,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &638696182
 Animator:
   serializedVersion: 3
@@ -3666,7 +3663,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee439338c0e291544a859b8f081716f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 737071827}
 --- !u!114 &737071827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3835,7 +3831,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &799428104
 Animator:
   serializedVersion: 3
@@ -4258,7 +4254,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &853254025
 Animator:
   serializedVersion: 3
@@ -5806,7 +5802,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1180045334
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6195,7 +6191,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1234846148
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7884,7 +7880,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1540917517}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.672, y: -0.514, z: 0}
+  m_LocalPosition: {x: 1.282, y: -0.797, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 836351999}
@@ -8509,7 +8505,6 @@ GameObject:
   - component: {fileID: 1657691576}
   - component: {fileID: 1657691578}
   - component: {fileID: 1657691577}
-  - component: {fileID: 1657691579}
   m_Layer: 5
   m_Name: fill
   m_TagString: Untagged
@@ -8575,19 +8570,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1657691575}
   m_CullTransparentMesh: 1
---- !u!114 &1657691579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1657691575}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee439338c0e291544a859b8f081716f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
 --- !u!1 &1664072790
 GameObject:
   m_ObjectHideFlags: 0
@@ -9184,7 +9166,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee439338c0e291544a859b8f081716f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 1733495753}
 --- !u!114 &1733495753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9511,7 +9492,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee439338c0e291544a859b8f081716f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 1765153045}
 --- !u!114 &1765153045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10337,7 +10317,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee439338c0e291544a859b8f081716f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 1974314286}
 --- !u!114 &1974314286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10582,7 +10561,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee439338c0e291544a859b8f081716f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 2049835215}
 --- !u!114 &2049835215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10765,7 +10743,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &2091246387
 Animator:
   serializedVersion: 3
@@ -11044,7 +11022,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee439338c0e291544a859b8f081716f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 2140271788}
 --- !u!114 &2140271788
 MonoBehaviour:
   m_ObjectHideFlags: 0
