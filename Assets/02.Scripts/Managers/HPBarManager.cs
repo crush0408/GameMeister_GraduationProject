@@ -25,7 +25,7 @@ public class HPBarManager : MonoBehaviour
             GameObject hpBar = Instantiate(hpBarPrefab, enemyObjs[i].transform.position, Quaternion.identity);
             hpBarList.Add(hpBar);
 
-            enemyObjs[i].GetComponent<EnemyHealth>().healthScript = hpBar.GetComponentInChildren<EnemyHPBar>();
+            // enemyObjs[i].GetComponent<EnemyHealth>().healthScript = hpBar.GetComponentInChildren<EnemyHPBar>();
         }
     }
 
