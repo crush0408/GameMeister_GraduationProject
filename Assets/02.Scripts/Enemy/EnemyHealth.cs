@@ -6,6 +6,7 @@ public class EnemyHealth : LivingEntity
 {
     public float damagedEffectTime = 0.1f;
     private SpriteRenderer sr;
+    private Rigidbody2D rigid;
     private Color temp;
 
 
@@ -14,6 +15,7 @@ public class EnemyHealth : LivingEntity
     private Health healthScript;
     private void Awake()
     {
+        rigid = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         temp = sr.color;
         healthScript = GetComponentInChildren<Health>();
@@ -32,11 +34,13 @@ public class EnemyHealth : LivingEntity
         }
         */
     }
-    private IEnumerator ShowDamagedEffect()
+    private IEnumerator ShowDamagedEffect(Vector2 pos)
     {
         
         sr.color = Color.red; // 피격 예시
         Debug.Log(sr.color);
+        int reaction = transform.position.x - pos.x > 0 ? 1 : -1;
+        rigid.AddForce(new Vector2(reaction, 1) * 100, ForceMode2D.Impulse);
         yield return new WaitForSeconds(damagedEffectTime);
         sr.color = temp;
         Debug.Log(health);
@@ -53,9 +57,9 @@ public class EnemyHealth : LivingEntity
     public override void OnDamage(float damage, Vector2 hitPosition)
     {
         if (isDead) return;
+        StartCoroutine(ShowDamagedEffect(hitPosition));
         base.OnDamage(damage, hitPosition);
         healthScript.SetHP(health);
-        StartCoroutine(ShowDamagedEffect());
 
     }
 }

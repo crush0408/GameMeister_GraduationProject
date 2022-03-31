@@ -42,7 +42,7 @@ public class PlayerAttack : MonoBehaviour
     void Update()
     {
         
-        Debug.Log(skillList[0].remainCoolTime + " " + skillList[1].remainCoolTime + " " + skillList[2].remainCoolTime);
+        //Debug.Log(skillList[0].remainCoolTime + " " + skillList[1].remainCoolTime + " " + skillList[2].remainCoolTime);
         /*
         if (!isAttacking && playerInput.basicAtk)
         {
@@ -96,8 +96,10 @@ public class PlayerAttack : MonoBehaviour
                             if (target != null && col.gameObject.CompareTag("Enemy"))
                             {
                                 Attack();
-                                target.OnDamage(inputSkill.attackDamage, col.transform.position);
-                                PoolManager.Instance.Pop("FastMagic");
+                                target.OnDamage(inputSkill.attackDamage, this.transform.position);
+                                PoolableMono poolingObject = PoolManager.Instance.Pop("FastMagic");
+                                poolingObject.transform.position = col.transform.position;
+                                
                                 skillList[i].remainCoolTime = skillList[i].initCoolTime;
                                 StartCoroutine(skillList[i].coolTime());
                             }
