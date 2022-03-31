@@ -6646,10 +6646,10 @@ GameObject:
   - component: {fileID: 1877383665}
   - component: {fileID: 1877383664}
   - component: {fileID: 1877383663}
-  - component: {fileID: 1877383662}
   - component: {fileID: 1877383661}
   - component: {fileID: 1877383660}
   - component: {fileID: 1877383659}
+  - component: {fileID: 1877383662}
   m_Layer: 7
   m_Name: Demon
   m_TagString: Enemy
@@ -6713,10 +6713,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.10742998, y: -2.179819}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.51626015, y: 0.25024384}
     oldSize: {x: 18, y: 10}
     newSize: {x: 2.88, y: 1.6}
     adaptiveTilingThreshold: 0.5
@@ -6724,7 +6724,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.077773, y: 5.640362}
+  m_Size: {x: 5, y: 6.5625}
   m_EdgeRadius: 0
 --- !u!50 &1877383663
 Rigidbody2D:
@@ -6825,7 +6825,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1877383658}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.67, y: -0.05, z: 0}
+  m_LocalPosition: {x: 3.38, y: -2.43, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1825407486}
