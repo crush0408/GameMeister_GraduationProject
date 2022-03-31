@@ -622,7 +622,8 @@ GameObject:
   m_Component:
   - component: {fileID: 170627233}
   - component: {fileID: 170627234}
-  m_Layer: 8
+  - component: {fileID: 170627235}
+  m_Layer: 0
   m_Name: BasicAttackCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -653,7 +654,7 @@ BoxCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -669,6 +670,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &170627235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170627232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd253ebcb5951b143a28d7fc2b9fac07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &178001881
 GameObject:
   m_ObjectHideFlags: 0
@@ -1790,6 +1803,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 314803959}
+  health: 0
+  maxHealth: 0
+  lerpSpeed: 0
 --- !u!1 &322769792
 GameObject:
   m_ObjectHideFlags: 0
@@ -8103,6 +8119,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 0}
+  health: 0
+  maxHealth: 0
+  lerpSpeed: 0
 --- !u!1 &2124657130
 GameObject:
   m_ObjectHideFlags: 0

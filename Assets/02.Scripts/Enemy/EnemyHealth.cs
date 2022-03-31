@@ -54,8 +54,8 @@ public class EnemyHealth : LivingEntity
     public override void OnDamage(float damage, Vector2 hitPosition)
     {
         if (isDead) return;
-        StartCoroutine(ShowDamagedEffect(hitPosition));
         base.OnDamage(damage, hitPosition);
+        StartCoroutine(ShowDamagedEffect(hitPosition));
         healthScript.SetHP(health);
 
     }
