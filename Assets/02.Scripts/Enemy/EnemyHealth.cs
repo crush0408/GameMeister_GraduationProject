@@ -8,6 +8,8 @@ public class EnemyHealth : LivingEntity
     private SpriteRenderer sr;
     private Color temp;
 
+    public GameObject healthBarPrefab;
+
     private Health healthScript;
 
     private void Awake()
