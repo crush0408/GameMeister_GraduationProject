@@ -56,7 +56,7 @@ public class EnemyHealth : LivingEntity
         if (isDead) return;
         base.OnDamage(damage, hitPosition);
         StartCoroutine(ShowDamagedEffect(hitPosition));
-        healthScript.SetHP(health);
+        //healthScript.SetHP(health);
 
     }
 }
