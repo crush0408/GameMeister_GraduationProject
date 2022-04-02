@@ -5,7 +5,8 @@ using UnityEngine;
 public class AttackAction : AIAction
 {
     Transform currentPosition;
-    public bool multipleAttack = false;
+    public bool multipleHPAttack = false;
+    public bool multipleShootAttack = false;
     private EnemyHealth hp;
     private void Start()
     {
@@ -18,7 +19,7 @@ public class AttackAction : AIAction
         _enemyBrain.ani.SetBool("isWalk", false);
         _enemyBrain.target = currentPosition;
 
-        if(multipleAttack)
+        if(multipleHPAttack)
         {
             if(hp.health >= 80)
             {
@@ -36,6 +37,11 @@ public class AttackAction : AIAction
         else
         {
             _enemyBrain.ani.SetTrigger("isAttack");
+        }
+
+        if(multipleShootAttack)
+        {
+
         }
     }
 }
