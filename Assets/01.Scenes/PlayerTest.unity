@@ -1802,10 +1802,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee439338c0e291544a859b8f081716f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 314803959}
-  health: 0
-  maxHealth: 0
-  lerpSpeed: 0
 --- !u!1 &322769792
 GameObject:
   m_ObjectHideFlags: 0
@@ -3822,6 +3818,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyBrain: {fileID: 0}
+  multipleHPAttack: 0
+  multipleShootAttack: 0
 --- !u!1 &1136111872
 GameObject:
   m_ObjectHideFlags: 0
@@ -4535,7 +4533,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabs:
-  - {fileID: 0}
+  - {fileID: 8975194718449540143, guid: 94342df5513991849b1d344f4b2b19cb, type: 3}
 --- !u!4 &1322557084
 Transform:
   m_ObjectHideFlags: 0
@@ -8118,10 +8116,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee439338c0e291544a859b8f081716f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
-  health: 0
-  maxHealth: 0
-  lerpSpeed: 0
 --- !u!1 &2124657130
 GameObject:
   m_ObjectHideFlags: 0

@@ -68,14 +68,16 @@ public class PlayerAttack : MonoBehaviour
                         }
                         break;
                     case 2:
-                        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_Attack2"))
+                        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_Attack1"))
                         {
 
                             anim.SetInteger("BasicAttack", combo);
-                            combo++;
+                            
                             
                         }
                         break;
+                    
+
                     
                     
                 }
@@ -163,20 +165,7 @@ public class PlayerAttack : MonoBehaviour
     
     public void BasicAttackEnd()
     {
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_Attack1")&& combo == 1)
-        {
-            isAttacking = false;
-        }
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_Attack2") &&combo == 1)
-        {
-            isAttacking = false;
-        }
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_Attack3"))
-        {
-            isAttacking = false;
-        }
-
-
+        
     }
 
 #if UNITY_EDITOR
