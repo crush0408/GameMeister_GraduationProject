@@ -38,10 +38,8 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
-
         //Debug.Log(skillList[0].remainCoolTime + " " + skillList[1].remainCoolTime + " " + skillList[2].remainCoolTime);
         if (playerInput.basicAtk)
         {
@@ -57,7 +55,6 @@ public class PlayerAttack : MonoBehaviour
             {
                 switch (combo)
                 {
-                    
                     case 1:
                         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_Attack1"))
                         {
@@ -68,18 +65,11 @@ public class PlayerAttack : MonoBehaviour
                         }
                         break;
                     case 2:
-                        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_Attack1"))
+                        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_Attack2"))
                         {
-
                             anim.SetInteger("BasicAttack", combo);
-                            
-                            
                         }
                         break;
-                    
-
-                    
-                    
                 }
             }
         }
@@ -137,7 +127,8 @@ public class PlayerAttack : MonoBehaviour
                     }
                     else
                     {
-                        Attack();   
+                        Attack();
+                        StartCoroutine(skillList[i].coolTime());
                     }
                 }
                 else
@@ -159,13 +150,22 @@ public class PlayerAttack : MonoBehaviour
     }
     public void AttackEnd()
     {
-        
         isAttacking = false;
     }
     
-    public void BasicAttackEnd()
+    public void BasicAttackEnd1()
     {
-        
+        if(anim.GetInteger("BasicAttack") != 1)
+        {
+            isAttacking = false;
+        }
+    }
+    public void BasicAttackEnd2()
+    {
+        if (anim.GetInteger("BasicAttack") != 2)
+        {
+            isAttacking = false;
+        }
     }
 
 #if UNITY_EDITOR
