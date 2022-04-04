@@ -14,7 +14,7 @@ public class SkillSlotsUI : MonoBehaviour
     {
         playerAttack = GetComponentInParent<PlayerAttack>();
 
-        // UI Ȯ�ο�
+        // UI 확인용
         for (int i = 0; i < skillSlotImage.Count; i++)
         {
             playerAttack.skillList[i].remainCoolTime = playerAttack.skillList[i].initCoolTime;

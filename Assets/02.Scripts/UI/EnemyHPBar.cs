@@ -27,7 +27,7 @@ public class EnemyHPBar : MonoBehaviour
         _hp = hp;
         _maxHp = maxHp;
 
-        Debug.Log("hp : " + hp + " maxHp : " + maxHp + " | ¿©±â hp : " + _hp + " ¿©±â maxHp : " + _maxHp);
+        Debug.Log("hp : " + hp + " maxHp : " + maxHp + " | ì—¬ê¸° hp : " + _hp + " ì—¬ê¸° maxHp : " + _maxHp);
     }
 
     public void SetHP(float hp)

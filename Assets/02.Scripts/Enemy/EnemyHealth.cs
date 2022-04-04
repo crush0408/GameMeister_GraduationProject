@@ -34,7 +34,7 @@ public class EnemyHealth : LivingEntity
     private IEnumerator ShowDamagedEffect(Vector2 pos)
     {
         
-        sr.color = Color.red; // ÇÇ°İ ¿¹½Ã
+        sr.color = Color.red; // í”¼ê²© ì˜ˆì‹œ
         Debug.Log(sr.color);
         int reaction = transform.position.x - pos.x > 0 ? 1 : -1;
         rigid.AddForce(new Vector2(reaction, 1) * 100, ForceMode2D.Impulse);
@@ -49,7 +49,7 @@ public class EnemyHealth : LivingEntity
     public override void Die()
     {
         base.Die();
-        //¿ÀºêÁ§Æ® ¾ø¾Ö´Â °Ô ÇÊ¿äÇÒµí setactive³ª destroy
+        //ì˜¤ë¸Œì íŠ¸ ì—†ì• ëŠ” ê²Œ í•„ìš”í• ë“¯ setactiveë‚˜ destroy
     }
     public override void OnDamage(float damage, Vector2 hitPosition)
     {

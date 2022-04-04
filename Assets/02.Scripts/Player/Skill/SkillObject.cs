@@ -10,18 +10,18 @@ public class SkillObject : ScriptableObject
     public AnimationClip skillAnim;
     public Sprite SkillImage;
 
-    // ÃßÈÄ ÀÌÆåÆ® ¾Ö´Ï¸ŞÀÌ¼Ç, È¿°úÀ½ Àû¿ëÇÏ°Ô µÇ¸é ÀÌ°÷¿¡ Ãß°¡ÇÏ±â
+    // ì¶”í›„ ì´í™íŠ¸ ì• ë‹ˆë©”ì´ì…˜, íš¨ê³¼ìŒ ì ìš©í•˜ê²Œ ë˜ë©´ ì´ê³³ì— ì¶”ê°€í•˜ê¸°
 
-    public float attackDamage;      // ½ºÅ³ »ç¿ë ½Ã Àû¿¡°Ô °¡ÇÏ´Â µ¥¹ÌÁö
-    public float remainCoolTime;             // ½ºÅ³ ÄğÅ¸ÀÓ
+    public float attackDamage;      // ìŠ¤í‚¬ ì‚¬ìš© ì‹œ ì ì—ê²Œ ê°€í•˜ëŠ” ë°ë¯¸ì§€
+    public float remainCoolTime;             // ìŠ¤í‚¬ ì¿¨íƒ€ì„
     public float initCoolTime;
-    public string effectSoundName;       // È¿°úÀ½ Àç»ı À§ÇØ stringÇü ÀÌ¸§ ¹Ş±â
+    public string effectSoundName;       // íš¨ê³¼ìŒ ì¬ìƒ ìœ„í•´ stringí˜• ì´ë¦„ ë°›ê¸°
 
     
-    // È®ÀÎ¿ë
+    // í™•ì¸ìš©
     public void Print()
     {
-        Debug.Log("½ºÅ³ Á¤º¸\t|½ºÅ³ µ¥¹ÌÁö : " + attackDamage);
+        Debug.Log("ìŠ¤í‚¬ ì •ë³´\t|ìŠ¤í‚¬ ë°ë¯¸ì§€ : " + attackDamage);
     }
     public IEnumerator coolTime()
     {

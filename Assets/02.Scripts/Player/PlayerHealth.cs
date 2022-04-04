@@ -27,7 +27,7 @@ public class PlayerHealth : LivingEntity
 
     private IEnumerator ShowDamagedEffect(Vector2 pos)
     {
-        sr.color = Color.red; // ÇÇ°İ ¿¹½Ã
+        sr.color = Color.red; // í”¼ê²© ì˜ˆì‹œ
         yield return new WaitForSeconds(damagedEffectTime);
         sr.color = temp;
     }
@@ -40,7 +40,7 @@ public class PlayerHealth : LivingEntity
     public override void Die()
     {
         base.Die();
-        // °ÔÀÓ ¸Å´ÏÀú¿¡¼­ OnDeath() ¾×¼Ç¿¡ Ãß°¡
+        // ê²Œì„ ë§¤ë‹ˆì €ì—ì„œ OnDeath() ì•¡ì…˜ì— ì¶”ê°€
     }
 
     public override void OnDamage(float damage, Vector2 hitPosition)

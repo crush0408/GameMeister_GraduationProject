@@ -8,10 +8,10 @@ public class PlayerAttack : MonoBehaviour
     private PlayerInput playerInput;
     private SpriteRenderer sr;
 
-    [Header("ÀüÃ¼ ½ºÅ³ ¸®½ºÆ®")]
+    [Header("ì „ì²´ ìŠ¤í‚¬ ë¦¬ìŠ¤íŠ¸")]
     public List<SkillObject> skillList;
 
-    [Header("ÀÔ·Â ¹ŞÀº ½ºÅ³")]
+    [Header("ì…ë ¥ ë°›ì€ ìŠ¤í‚¬")]
     SkillObject inputSkill;
 
     [SerializeField]
@@ -133,13 +133,13 @@ public class PlayerAttack : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("ÄğÅ¸ÀÓ ³²À½");
+                    Debug.Log("ì¿¨íƒ€ì„ ë‚¨ìŒ");
                 }
                 break;
             }
             else
             {
-                Debug.LogError("ÇØ´ç ½ºÅ³À» Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+                Debug.LogError("í•´ë‹¹ ìŠ¤í‚¬ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
             }
         }
     }
