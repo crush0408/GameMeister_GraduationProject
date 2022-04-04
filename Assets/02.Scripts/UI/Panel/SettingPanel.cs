@@ -59,7 +59,7 @@ public class SettingPanel : MonoBehaviour
         DataManager.instance.BGMmasterSoundVolume = _bgmValue;
         
         PlayerPrefs.SetFloat("BGM", _bgmValue);
-        MGSound.instance.BGMVol();  // Áß°£ Á¶Àý
+        MGSound.instance.BGMVol();  // ì¤‘ê°„ ì¡°ì ˆ
 
     }
     public void EFFControl()

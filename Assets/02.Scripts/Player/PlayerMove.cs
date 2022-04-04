@@ -61,7 +61,7 @@ public class PlayerMove : MonoBehaviour
             Crouch();
         }
     }
-    private void ValueSetting() //Input √≥∏Æ ∫Ø»Ø
+    private void ValueSetting() //Input Ï≤òÎ¶¨ Î≥ÄÌôò
     {
         if (playerInput.movement != 0)
         {
@@ -136,7 +136,7 @@ public class PlayerMove : MonoBehaviour
                 _jump = false;
                 rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
                 anim.SetTrigger("isJump");
-                Debug.Log("1¥‹ ¡°«¡");
+                Debug.Log("1Îã® Ï†êÌîÑ");
                 canSecondJump = true;
             }
             else if (!isGround && canSecondJump)
@@ -146,7 +146,7 @@ public class PlayerMove : MonoBehaviour
                     _jump = false;
                     rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
                     anim.SetTrigger("isJump");
-                    Debug.Log("2¥‹ ¡°«¡");
+                    Debug.Log("2Îã® Ï†êÌîÑ");
                     canSecondJump = false;
                 }
             }
@@ -169,7 +169,7 @@ public class PlayerMove : MonoBehaviour
         //if (rigid.velocity.y < 0)
         {
             isGround = Physics2D.OverlapCircle(groundCheckTrm.position, 0.1f, whatIsGround);
-            // π›¡ˆ∏ß¿Ã 0.2¿Œ ø¯ø° ground∞° ¥Í¿∏∏È isGround∏¶ true∑Œ πŸ≤„¡÷¥¬∞Õ
+            // Î∞òÏßÄÎ¶ÑÏù¥ 0.2Ïù∏ ÏõêÏóê groundÍ∞Ä ÎãøÏúºÎ©¥ isGroundÎ•º trueÎ°ú Î∞îÍøîÏ£ºÎäîÍ≤É
             anim.SetBool("isGround", isGround);
             if (isGround)
             {
