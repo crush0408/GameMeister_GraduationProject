@@ -2787,6 +2787,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 572164308}
   m_CullTransparentMesh: 1
+--- !u!1 &574477732
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 574477733}
+  m_Layer: 8
+  m_Name: SpinAttackPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &574477733
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574477732}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: -0.928, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2105400314}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &607228271
 GameObject:
   m_ObjectHideFlags: 0
@@ -4534,6 +4564,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabs:
   - {fileID: 8975194718449540143, guid: 94342df5513991849b1d344f4b2b19cb, type: 3}
+  - {fileID: 7197019172655537476, guid: 62d6f48f6bd96fd439cdf5f579bd11fe, type: 3}
+  - {fileID: 8863905317842601494, guid: 03ea5007c6ab32e4f9b56fcdfbce06bb, type: 3}
 --- !u!4 &1322557084
 Transform:
   m_ObjectHideFlags: 0
@@ -7448,6 +7480,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SettingPanel: {fileID: 205413713}
   DeadPanel: {fileID: 0}
+--- !u!1 &1996338054
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1996338055}
+  m_Layer: 8
+  m_Name: SustainMagicPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1996338055
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1996338054}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.77, y: -0.59, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2105400314}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2023778005
 GameObject:
   m_ObjectHideFlags: 0
@@ -7878,6 +7940,8 @@ Transform:
   - {fileID: 1292981995}
   - {fileID: 1686919614}
   - {fileID: 170627233}
+  - {fileID: 574477733}
+  - {fileID: 1996338055}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8023,8 +8087,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 48d420d3c3760b94cba3f309bf397c8b, type: 2}
   - {fileID: 11400000, guid: b5d59bc8a9d084d4a9f545a258820c62, type: 2}
   - {fileID: 11400000, guid: 834e9e6438c76d540984cff4f7235f9e, type: 2}
+  inputSkill: {fileID: 0}
   boxSize: {x: 5, y: 3}
   onePos: {fileID: 1292981995}
+  spinAttackTrm: {fileID: 574477733}
+  sustainAttackTrm: {fileID: 1996338055}
   temp: {x: -2.93, y: 0.7, z: 0}
   isAttacking: 0
 --- !u!1 &2114837071

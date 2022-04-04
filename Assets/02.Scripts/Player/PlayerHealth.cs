@@ -22,7 +22,7 @@ public class PlayerHealth : LivingEntity
 
     private void Start()
     {
-        healthScript.InitHealth(health, initHealth);
+        //healthScript.InitHealth(health, initHealth);
     }
 
     private IEnumerator ShowDamagedEffect(Vector2 pos)

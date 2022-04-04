@@ -47,6 +47,7 @@ public class PoolManager : MonoBehaviour
     public void Push(PoolableMono obj)
     {
         _pools[obj.name].Push(obj);
+        FindObjectOfType<PlayerAttack>().isAttacking = false;
     }
 
 }

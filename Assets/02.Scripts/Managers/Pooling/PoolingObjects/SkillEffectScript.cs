@@ -13,4 +13,5 @@ public class SkillEffectScript : PoolableMono
     {
         PoolManager.Instance.Push(this);
     }
+    
 }

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,12 +12,16 @@ public class PlayerAttack : MonoBehaviour
     public List<SkillObject> skillList;
 
     [Header("입력 받은 스킬")]
-    SkillObject inputSkill;
+    public SkillObject inputSkill;
 
     [SerializeField]
     private Vector2 boxSize = Vector2.zero;
     [SerializeField]
     private Transform onePos;
+    [SerializeField]
+    private Transform spinAttackTrm;
+    [SerializeField]
+    private Transform sustainAttackTrm;
     public Vector3 temp;
 
     public bool isAttacking = false;
@@ -95,7 +99,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 inputSkill = skillList[i];
 
-                if(inputSkill.remainCoolTime <= 0f )//&& !isAttacking)
+                if(inputSkill.remainCoolTime <= 0f && !isAttacking)
                 {
                     if(inputSkill.skillName == "FastMagic")
                     {
@@ -125,10 +129,37 @@ public class PlayerAttack : MonoBehaviour
                             }
                         }
                     }
-                    else
+                    else if(inputSkill.skillName == "SpinAttack")
                     {
                         Attack();
+                        PoolableMono poolingObject = PoolManager.Instance.Pop("SpinAttack");
+                        if (sr.flipX)
+                        {
+                            poolingObject.GetComponent<SpriteRenderer>().flipX = true;
+                        }
+                        poolingObject.transform.position = spinAttackTrm.position;
+                        poolingObject.GetComponent<NonTargetSkill>().damage = inputSkill.attackDamage;
+                        skillList[i].remainCoolTime = skillList[i].initCoolTime;
                         StartCoroutine(skillList[i].coolTime());
+                    }
+                    else if(inputSkill.skillName == "SustainMagic")
+                    {
+                        Attack();
+                        Debug.Log("스킬 시작");
+                        PoolableMono poolingObject = PoolManager.Instance.Pop("SustainMagic");
+                        if (sr.flipX)
+                        {
+                            poolingObject.GetComponent<SpriteRenderer>().flipX = true;
+                        }
+                        poolingObject.transform.position = sustainAttackTrm.position;
+                        poolingObject.GetComponent<NonTargetSkill>().damage = inputSkill.attackDamage;
+                        skillList[i].remainCoolTime = skillList[i].initCoolTime;
+
+                        StartCoroutine(skillList[i].coolTime());
+                    }
+                    else
+                    {
+                        Debug.LogError("해당 스킬을 찾을 수 없습니다.");
                     }
                 }
                 else

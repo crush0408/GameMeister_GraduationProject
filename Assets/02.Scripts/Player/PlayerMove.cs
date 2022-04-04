@@ -179,7 +179,7 @@ public class PlayerMove : MonoBehaviour
     }
     private void Move()
     {
-        if (!isCrouch)
+        if (!isCrouch && !playerAttack.isAttacking)
         {
             rigid.velocity = new Vector2(playerInput.movement * moveSpeed, rigid.velocity.y);
             anim.SetBool("movement", playerInput.movement != 0);
