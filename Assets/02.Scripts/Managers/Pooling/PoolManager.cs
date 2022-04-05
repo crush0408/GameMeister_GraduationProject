@@ -9,6 +9,7 @@ public class PoolManager : MonoBehaviour
     
     private Dictionary<string, Pool<PoolableMono>> _pools = new Dictionary<string, Pool<PoolableMono>>();
 
+
     private void Awake()
     {
         if(Instance != null)

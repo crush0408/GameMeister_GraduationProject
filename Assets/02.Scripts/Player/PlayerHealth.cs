@@ -22,6 +22,9 @@ public class PlayerHealth : LivingEntity
 
     private void Start()
     {
+        Debug.Log(GetComponent<SpriteRenderer>().bounds.size);
+        Debug.Log(GetComponent<BoxCollider2D>().bounds.size);
+        
         //healthScript.InitHealth(health, initHealth);
     }
 
@@ -48,7 +51,7 @@ public class PlayerHealth : LivingEntity
         if (isDead) return;
         int reaction = transform.position.x - hitPosition.x > 0 ? 1 : -1;
         Debug.Log(reaction);
-        rigid.AddForce(new Vector2(reaction * 100, 1), ForceMode2D.Impulse);
+        rigid.AddForce(new Vector2(reaction * 5, 1), ForceMode2D.Impulse);
         StartCoroutine(ShowDamagedEffect(hitPosition));
         base.OnDamage(damage, hitPosition);
         healthScript.SetHP(health);

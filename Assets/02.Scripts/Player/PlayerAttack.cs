@@ -13,7 +13,6 @@ public class PlayerAttack : MonoBehaviour
 
     [Header("입력 받은 스킬")]
     public SkillObject inputSkill;
-
     [SerializeField]
     private Vector2 boxSize = Vector2.zero;
     [SerializeField]

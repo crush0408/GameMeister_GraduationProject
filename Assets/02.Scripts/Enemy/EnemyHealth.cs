@@ -37,7 +37,7 @@ public class EnemyHealth : LivingEntity
         sr.color = Color.red; // 피격 예시
         Debug.Log(sr.color);
         int reaction = transform.position.x - pos.x > 0 ? 1 : -1;
-        rigid.AddForce(new Vector2(reaction, 1) * 100, ForceMode2D.Impulse);
+        rigid.AddForce(new Vector2(reaction * 5, 1), ForceMode2D.Impulse);
         yield return new WaitForSeconds(damagedEffectTime);
         sr.color = temp;
         Debug.Log(health);
