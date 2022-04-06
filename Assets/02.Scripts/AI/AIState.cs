@@ -17,13 +17,13 @@ public class AIState : MonoBehaviour
 
     public void UpdateState()
     {
-        //ÇØ´ç ½ºÅ×ÀÌÆ®¿¡¼­ ¼öÇàÇØ¾ßÇÒ ¾×¼ÇÀ» ÀüºÎ ¼öÇàÇÏ°í
+        //í•´ë‹¹ ìŠ¤í…Œì´íŠ¸ì—ì„œ ìˆ˜í–‰í•´ì•¼í•  ì•¡ì…˜ì„ ì „ë¶€ ìˆ˜í–‰í•˜ê³ 
         foreach(AIAction action in _actions)
         {
             action.TakeAction();
         }
 
-        //ÀüÀÌ°¡ ÀÏ¾î³¯ °ÍÀÎÁö¸¦ Ã¼Å©ÇØ¾ßÇÑ´Ù.
+        //ì „ì´ê°€ ì¼ì–´ë‚  ê²ƒì¸ì§€ë¥¼ ì²´í¬í•´ì•¼í•œë‹¤.
         foreach(AITransition transition in _transitions)
         {
             bool result = false;
@@ -33,7 +33,7 @@ public class AIState : MonoBehaviour
                 if (result == false) break;
             }
 
-            //¸ğµç decision ÀÌ ¼º°øÇÑ°Å¾ß
+            //ëª¨ë“  decision ì´ ì„±ê³µí•œê±°ì•¼
             if(result)
             {
                 if(transition.positiveResult != null)

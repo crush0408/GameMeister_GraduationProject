@@ -114,6 +114,7 @@ public class PlayerAttack : MonoBehaviour
                         Collider2D[] cols = Physics2D.OverlapBoxAll(onePos.position, boxSize ,0f);
                         foreach (Collider2D col in cols)
                         {
+                            // TODO : 하나만 공격
                             IDamageable target = col.GetComponent<IDamageable>();
 
                             if (target != null && col.gameObject.CompareTag("Enemy"))
