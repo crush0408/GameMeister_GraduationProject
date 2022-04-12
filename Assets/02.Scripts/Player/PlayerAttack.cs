@@ -22,6 +22,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField]
     private Transform sustainAttackTrm;
     public Vector3 temp;
+    public Vector3 sustainTemp;
 
     public bool isAttacking = false;
     private int combo = 0;
@@ -35,6 +36,7 @@ public class PlayerAttack : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         skillSlotsScript = GetComponentInChildren<SkillSlotsUI>();
         temp = onePos.localPosition;
+        sustainTemp = sustainAttackTrm.localPosition;
         for (int i = 0; i < skillList.Count; i++)
         {
             StartCoroutine(skillList[i].coolTime());
@@ -137,6 +139,10 @@ public class PlayerAttack : MonoBehaviour
                         {
                             poolingObject.GetComponent<SpriteRenderer>().flipX = true;
                         }
+                        else
+                        {
+                            poolingObject.GetComponent<SpriteRenderer>().flipX = false;
+                        }
                         poolingObject.transform.position = spinAttackTrm.position;
                         poolingObject.GetComponent<NonTargetSkill>().damage = inputSkill.attackDamage;
                         skillList[i].remainCoolTime = skillList[i].initCoolTime;
@@ -150,6 +156,12 @@ public class PlayerAttack : MonoBehaviour
                         if (sr.flipX)
                         {
                             poolingObject.GetComponent<SpriteRenderer>().flipX = true;
+                            sustainAttackTrm.localPosition = new Vector3(-(sustainTemp.x), sustainTemp.y, sustainTemp.z);
+                        }
+                        else
+                        {
+                            poolingObject.GetComponent<SpriteRenderer>().flipX = false;
+                            sustainAttackTrm.localPosition = sustainTemp;
                         }
                         poolingObject.transform.position = sustainAttackTrm.position;
                         poolingObject.GetComponent<NonTargetSkill>().damage = inputSkill.attackDamage;

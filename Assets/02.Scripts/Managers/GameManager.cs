@@ -20,23 +20,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        playerObj = GameObject.FindGameObjectWithTag("Player");
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            CameraActionScript.ZoomIn(3f, 1f);
-        }
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            CameraActionScript.ZoomOut(3f);
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            CameraActionScript.ShakeCam(4, 0.2f);
-        }
-    }
+    
     public void GameOver()
     {
         Debug.LogError("PlayerDead");

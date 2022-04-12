@@ -22,6 +22,8 @@ public class AIState : MonoBehaviour
         {
             action.TakeAction();
         }
+        
+        // 액션이 모두 완료 되었는지 체크 및 전이 할때까지 반복
 
         //전이가 일어날 것인지를 체크해야한다.
         foreach(AITransition transition in _transitions)

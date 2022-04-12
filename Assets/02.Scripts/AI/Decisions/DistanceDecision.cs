@@ -9,7 +9,7 @@ public class DistanceDecision : AIDecision
 
     public override bool MakeADecision()
     {
-        float calc = Vector3.Distance(_enemyBrain.target.transform.position, transform.position);
+        float calc = Vector3.Distance(_enemyBrain.target.transform.position, transform.position); 
             
         return calc < distance;
     }
