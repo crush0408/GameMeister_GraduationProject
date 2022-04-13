@@ -10,6 +10,9 @@ public class EnemyBrain : MonoBehaviour
     [SerializeField]
     private float _speed = 3f;
 
+    [SerializeField]
+    private float judgeTime = 3f;
+
     private Rigidbody2D _rigid;
     private Animator anim;
     private SpriteRenderer sr;
@@ -77,11 +80,16 @@ public class EnemyBrain : MonoBehaviour
     }
     public void AttackEndAnimFunc()
     {
-        isAttacking = false;
+        StartCoroutine(JudgeCoroutine());
     }
     public bool AttackEnd()
     {
         
         return isAttacking;
+    }
+    private IEnumerator JudgeCoroutine()
+    {
+        yield return new WaitForSeconds(judgeTime);
+        isAttacking = false;
     }
 }

@@ -20,4 +20,6 @@ public abstract class AIAction : MonoBehaviour
     }
 
     public abstract void TakeAction();
+
+    
 }

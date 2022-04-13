@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackEndDecision : AIDecision
+public class AfterAttackDecision : AIDecision
 {
     public override bool MakeADecision()
     {
-        return true;
+        return !_enemyBrain.isAttacking;
     }
 
-    
 }
