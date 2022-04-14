@@ -34,4 +34,5 @@ public class LivingEntity : MonoBehaviour, IDamageable
         if (isDead) return;
         health += value;
     }
+    
 }

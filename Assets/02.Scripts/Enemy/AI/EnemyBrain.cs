@@ -24,6 +24,7 @@ public class EnemyBrain : MonoBehaviour
     public bool rightDirection;
     public bool isAttacking = false;
     public int attackCount = 1;
+    public bool getHit = false;
 
 
     private void Awake()
@@ -61,6 +62,7 @@ public class EnemyBrain : MonoBehaviour
     {
         _rigid.velocity = Vector2.zero;
         anim.SetBool("isChase", false);
+        
     }
     public void Attack()
     {
@@ -104,6 +106,15 @@ public class EnemyBrain : MonoBehaviour
     {
         StartCoroutine(JudgeCoroutine());
     }
+    public void GetHitEndAnimFunc()
+    {
+        getHit = false;
+    }
+    public void GetHit()
+    {
+        
+        anim.SetTrigger("getHit");
+    }
     public bool AttackEnd()
     {
         
@@ -113,5 +124,9 @@ public class EnemyBrain : MonoBehaviour
     {
         yield return new WaitForSeconds(judgeTime);
         isAttacking = false;
+    }
+    public void Dead()
+    {
+        anim.SetTrigger("isDead");
     }
 }

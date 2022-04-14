@@ -7,6 +7,7 @@ public class EnemyHealth : LivingEntity
     public float damagedEffectTime = 0.1f;
     private SpriteRenderer sr;
     private Rigidbody2D rigid;
+    private EnemyBrain _enemyBrain;
     private Color temp;
 
     // public EnemyHPBar healthScript;
@@ -15,6 +16,7 @@ public class EnemyHealth : LivingEntity
     {
         rigid = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        _enemyBrain = GetComponent<EnemyBrain>();
         temp = sr.color;
     }
     private void Start()
@@ -23,13 +25,9 @@ public class EnemyHealth : LivingEntity
     }
     private void Update()
     {
-        /*
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Log("Test1");
-            StartCoroutine(ShowDamagedEffect());
-        }
-        */
+        
+        
+        
     }
     private IEnumerator ShowDamagedEffect(Vector2 pos)
     {
@@ -50,13 +48,22 @@ public class EnemyHealth : LivingEntity
     {
         base.Die();
         //오브젝트 없애는 게 필요할듯 setactive나 destroy
+        //DeadCoroutine으로 효과까지
+        _enemyBrain.Dead();
     }
     public override void OnDamage(float damage, Vector2 hitPosition)
     {
         if (isDead) return;
         base.OnDamage(damage, hitPosition);
+        _enemyBrain.getHit = true;
+        _enemyBrain.isAttacking = false;
+        CameraActionScript.ShakeCam(2f, 0.2f,false);
         StartCoroutine(ShowDamagedEffect(hitPosition));
         //healthScript.SetHP(health);
 
+    }
+    public void DestroyObjectFunc()
+    {
+        Destroy(this.gameObject);
     }
 }

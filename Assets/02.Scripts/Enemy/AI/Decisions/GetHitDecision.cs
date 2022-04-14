@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AfterAttackDecision : AIDecision
+public class GetHitDecision : AIDecision
 {
     public override bool MakeADecision()
     {
-        return _enemyBrain.isAttacking;
+        return _enemyBrain.getHit;
     }
-
 }

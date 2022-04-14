@@ -45,14 +45,13 @@ public class CameraActionScript : MonoBehaviour
         cam.enabled = false;
         isMoving = false;
     }
-    public static void ShakeCam(float intensity, float time, CinemachineVirtualCamera vCam = null)
+    public static void ShakeCam(float intensity, float time, bool isPlayer, CinemachineVirtualCamera vCam = null)
     {
         if (instance.isShake) return;
-        bool isPlayer = false;
+        
         if (vCam == null)
         {
             vCam = instance.player_vCam;
-            isPlayer = true;
         }
 
         instance.isShake = true;

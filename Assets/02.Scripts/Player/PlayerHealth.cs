@@ -31,6 +31,8 @@ public class PlayerHealth : LivingEntity
     private IEnumerator ShowDamagedEffect(Vector2 pos)
     {
         sr.color = Color.red; // 피격 예시
+        int reaction = transform.position.x - pos.x > 0 ? 1 : -1;
+        rigid.AddForce(new Vector2(reaction * 5, 1), ForceMode2D.Impulse);
         yield return new WaitForSeconds(damagedEffectTime);
         sr.color = temp;
     }
@@ -49,11 +51,9 @@ public class PlayerHealth : LivingEntity
     public override void OnDamage(float damage, Vector2 hitPosition)
     {
         if (isDead) return;
-        int reaction = transform.position.x - hitPosition.x > 0 ? 1 : -1;
-        Debug.Log(reaction);
-        rigid.AddForce(new Vector2(reaction * 5, 1), ForceMode2D.Impulse);
         StartCoroutine(ShowDamagedEffect(hitPosition));
+        CameraActionScript.ShakeCam(4f, 0.3f, true);
         base.OnDamage(damage, hitPosition);
-        healthScript.SetHP(health);
+        //healthScript.SetHP(health);
     }
 }
