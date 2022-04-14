@@ -16,11 +16,14 @@ public class EnemyBrain : MonoBehaviour
     private Rigidbody2D _rigid;
     private Animator anim;
     private SpriteRenderer sr;
+    private EnemyHealth enemyHealth;
+    
 
     public Transform target;
 
     public bool rightDirection;
     public bool isAttacking = false;
+    public int attackCount = 1;
 
 
     private void Awake()
@@ -28,6 +31,7 @@ public class EnemyBrain : MonoBehaviour
         _rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
+        enemyHealth = GetComponent<EnemyHealth>();
     }
 
     private void Start()
@@ -60,7 +64,25 @@ public class EnemyBrain : MonoBehaviour
     }
     public void Attack()
     {
-        anim.SetTrigger("isAttack");
+        if(enemyHealth.health / enemyHealth.initHealth > 0.6f)
+        {
+            if(attackCount % 2 == 0)
+            {
+                // 짝수
+                anim.SetTrigger("isAttackTwo");
+            }
+            else
+            {
+                // 홀수
+                anim.SetTrigger("isAttack");
+
+            }
+        }
+        else
+        {
+            anim.SetTrigger("isAttackThree");
+        }
+        attackCount++;
     }
     public void FlipSprite()
     {

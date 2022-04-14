@@ -6,6 +6,7 @@ public class AttackAction : AIAction
 {
     public override void TakeAction()
     {
+        
         if (!_enemyBrain.isAttacking)
         {
             _enemyBrain.isAttacking = true;
@@ -16,4 +17,6 @@ public class AttackAction : AIAction
         
         Debug.Log("Attack");
     }
+
+    
 }
