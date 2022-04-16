@@ -15,7 +15,7 @@ public class EnemyHealth : LivingEntity
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>();
+        sr = GetComponentInChildren<SpriteRenderer>();
         _enemyBrain = GetComponent<EnemyBrain>();
         temp = sr.color;
     }
@@ -62,8 +62,5 @@ public class EnemyHealth : LivingEntity
         //healthScript.SetHP(health);
 
     }
-    public void DestroyObjectFunc()
-    {
-        Destroy(this.gameObject);
-    }
+    
 }

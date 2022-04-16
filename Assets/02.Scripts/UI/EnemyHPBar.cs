@@ -8,8 +8,8 @@ public class EnemyHPBar : MonoBehaviour
     private Transform healthBar;
     private SpriteRenderer fillSpriteRenderer;
 
-    private float _hp = 80f;
-    private float _maxHp = 100f;
+    private float _hp = 0f;
+    private float _maxHp = 0f;
 
     private void Start()
     {

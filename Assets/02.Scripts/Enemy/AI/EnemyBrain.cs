@@ -17,11 +17,13 @@ public class EnemyBrain : MonoBehaviour
     private Animator anim;
     private SpriteRenderer sr;
     private EnemyHealth enemyHealth;
+
+    public GameObject visualGroupObj;
     
 
     public Transform target;
 
-    public bool rightDirection;
+    public Vector3 rightDirection = Vector3.one;
     public bool isAttacking = false;
     public int attackCount = 1;
     public bool getHit = false;
@@ -30,8 +32,8 @@ public class EnemyBrain : MonoBehaviour
     private void Awake()
     {
         _rigid = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
-        sr = GetComponent<SpriteRenderer>();
+        anim = GetComponentInChildren<Animator>();
+        sr = GetComponentInChildren<SpriteRenderer>();
         enemyHealth = GetComponent<EnemyHealth>();
     }
 
@@ -94,33 +96,28 @@ public class EnemyBrain : MonoBehaviour
             dir.Normalize();
             if(dir.x > 0)
             {
-                sr.flipX = rightDirection;
+                visualGroupObj.transform.localScale = rightDirection;
             }
             else
             {
-                sr.flipX = !rightDirection;
+                visualGroupObj.transform.localScale = new Vector3(-rightDirection.x,rightDirection.y,rightDirection.z);
             }
         }
     }
-    public void AttackEndAnimFunc()
-    {
-        StartCoroutine(JudgeCoroutine());
-    }
-    public void GetHitEndAnimFunc()
-    {
-        getHit = false;
-    }
+    
     public void GetHit()
     {
         
+        getHit = true;
         anim.SetTrigger("getHit");
+        isAttacking = false;
     }
     public bool AttackEnd()
     {
         
         return isAttacking;
     }
-    private IEnumerator JudgeCoroutine()
+    public IEnumerator JudgeCoroutine()
     {
         yield return new WaitForSeconds(judgeTime);
         isAttacking = false;

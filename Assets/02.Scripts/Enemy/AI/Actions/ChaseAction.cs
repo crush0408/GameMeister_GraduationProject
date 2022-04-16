@@ -6,7 +6,7 @@ public class ChaseAction : AIAction
 {
     public override void TakeAction()
     {
-        Vector2 dir = _enemyBrain.target.position - transform.position;
+        Vector2 dir = _enemyBrain.target.position - _enemyBrain.transform.position;
         dir.y = 0;
         _enemyBrain.Move(dir.normalized);
     }
