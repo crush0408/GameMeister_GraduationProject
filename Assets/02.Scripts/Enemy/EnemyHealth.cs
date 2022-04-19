@@ -54,11 +54,13 @@ public class EnemyHealth : LivingEntity
     public override void OnDamage(float damage, Vector2 hitPosition)
     {
         if (isDead) return;
+        if (_enemyBrain.getHit) return;
+
         base.OnDamage(damage, hitPosition);
-        _enemyBrain.getHit = true;
-        _enemyBrain.isAttacking = false;
         CameraActionScript.ShakeCam(2f, 0.2f,false);
         StartCoroutine(ShowDamagedEffect(hitPosition));
+        _enemyBrain.getHit = true;
+        _enemyBrain.isAttacking = false;
         //healthScript.SetHP(health);
 
     }

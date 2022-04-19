@@ -109,15 +109,10 @@ public class EnemyBrain : MonoBehaviour
     
     public void GetHit()
     {
-        //if(!getHit)
-        {
-            getHit = true;
-            Debug.Log("Animation진입");
-            Debug.Log("Animation끝 및 getHit TRUE");
-            isAttacking = false;
+        
             FlipSprite();
             anim.SetTrigger("getHit");
-        }
+        
     }
     public bool AttackEnd()
     {
@@ -133,11 +128,10 @@ public class EnemyBrain : MonoBehaviour
     public IEnumerator HitEndCoroutine()
     {
         sr.color = new Color(sr.color.r,sr.color.g,sr.color.b,0.5f);
-        Debug.Log("Hit적용");
+        
         yield return new WaitForSeconds(1f);
         sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1f);
         getHit = false;
-        Debug.Log("Hit콜백");
     }
     public void Dead()
     {
