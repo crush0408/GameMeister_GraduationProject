@@ -31,8 +31,8 @@ public class EnemyHealth : LivingEntity
     }
     private IEnumerator ShowDamagedEffect(Vector2 pos)
     {
-        
-        sr.color = Color.red; // 피격 예시
+
+        sr.color = Color.blue; // 피격 예시
         Debug.Log(sr.color);
         int reaction = transform.position.x - pos.x > 0 ? 1 : -1;
         rigid.AddForce(new Vector2(reaction * 5, 1), ForceMode2D.Impulse);
@@ -54,7 +54,6 @@ public class EnemyHealth : LivingEntity
     public override void OnDamage(float damage, Vector2 hitPosition)
     {
         if (isDead) return;
-        if (_enemyBrain.getHit) return;
 
         base.OnDamage(damage, hitPosition);
         CameraActionScript.ShakeCam(2f, 0.2f,false);

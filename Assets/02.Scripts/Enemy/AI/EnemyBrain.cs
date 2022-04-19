@@ -127,10 +127,10 @@ public class EnemyBrain : MonoBehaviour
     }
     public IEnumerator HitEndCoroutine()
     {
-        sr.color = new Color(sr.color.r,sr.color.g,sr.color.b,0.5f);
+        //sr.color = new Color(sr.color.r,sr.color.g,sr.color.b,0.5f);
         
         yield return new WaitForSeconds(1f);
-        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1f);
+        //sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1f);
         getHit = false;
     }
     public void Dead()

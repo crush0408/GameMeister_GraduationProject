@@ -21,9 +21,7 @@ public class PlayerMove : MonoBehaviour
     public bool canMove = true;
 
 
-    private float _movement = 0f;
     private bool _jump;
-    private bool _jumpKeyUp;
     private bool _dash;
     private float _dashTime;
     public float startDashTime = 0.1f;
@@ -72,10 +70,6 @@ public class PlayerMove : MonoBehaviour
             _jump = true;
         }
 
-        if (playerInput.jumpKeyup)
-        {
-            _jumpKeyUp = true;
-        }
         if (playerInput.dash)
         {
             _dash = true;
