@@ -17,6 +17,7 @@ public class EnemyBrain : MonoBehaviour
     private Animator anim;
     private SpriteRenderer sr;
     private EnemyHealth enemyHealth;
+    
 
     public GameObject visualGroupObj;
     
@@ -68,6 +69,7 @@ public class EnemyBrain : MonoBehaviour
     }
     public void Attack()
     {
+        
         if(enemyHealth.health / enemyHealth.initHealth > 0.6f)
         {
             if(attackCount % 2 == 0)
@@ -107,10 +109,15 @@ public class EnemyBrain : MonoBehaviour
     
     public void GetHit()
     {
-        
-        getHit = true;
-        anim.SetTrigger("getHit");
-        isAttacking = false;
+        //if(!getHit)
+        {
+            getHit = true;
+            Debug.Log("Animation진입");
+            Debug.Log("Animation끝 및 getHit TRUE");
+            isAttacking = false;
+            FlipSprite();
+            anim.SetTrigger("getHit");
+        }
     }
     public bool AttackEnd()
     {
@@ -121,6 +128,16 @@ public class EnemyBrain : MonoBehaviour
     {
         yield return new WaitForSeconds(judgeTime);
         isAttacking = false;
+        
+    }
+    public IEnumerator HitEndCoroutine()
+    {
+        sr.color = new Color(sr.color.r,sr.color.g,sr.color.b,0.5f);
+        Debug.Log("Hit적용");
+        yield return new WaitForSeconds(1f);
+        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1f);
+        getHit = false;
+        Debug.Log("Hit콜백");
     }
     public void Dead()
     {

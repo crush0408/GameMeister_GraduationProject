@@ -19,6 +19,6 @@ public class EnemyAnimFunc : MonoBehaviour
     }
     public void GetHitEndAnimFunc()
     {
-        enemyBrain.getHit = false;
+        StartCoroutine(enemyBrain.HitEndCoroutine());
     }
 }
