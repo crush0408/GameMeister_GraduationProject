@@ -2,10 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class MapData
+public class MapManager : MonoBehaviour
 {
-    public GameObject mapPrefab;
-    
     public MapInsertData insertData;
 }

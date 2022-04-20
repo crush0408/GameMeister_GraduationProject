@@ -37,18 +37,16 @@ public class StageManager : MonoBehaviour
     {
         Reset();
 
-        Instantiate(mapDatas[index].mapPrefab, this.transform);
-        mapDatas[index].startTrm = mapDatas[index].mapPrefab.transform.GetChild(0).transform;
-        player.transform.position = mapDatas[index].startTrm.transform.position;
-        //mapDatas[index].col = mapDatas[index].mapPrefab.transform.GetChild(1).GetComponent<Collider2D>();
-        //confiner.m_BoundingShape2D = mapDatas[index].col;
+        GameObject a = Instantiate(mapDatas[index].mapPrefab, this.transform);
+        mapDatas[index].insertData = a.GetComponent<MapManager>().insertData;
+        player.transform.position = mapDatas[index].insertData.startPos.position;
+        confiner.m_BoundingShape2D = mapDatas[index].insertData.vCamCollider;
     }
     public void Reset()
     {
         if(transform.childCount > 0)
         {
             Destroy(this.transform.GetChild(0).gameObject);
-            
         }
     }
 
@@ -56,7 +54,6 @@ public class StageManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-
             index++;
             Init();
         }
