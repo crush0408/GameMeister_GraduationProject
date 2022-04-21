@@ -32,7 +32,7 @@ public class EnemyHealth : LivingEntity
     private IEnumerator ShowDamagedEffect(Vector2 pos)
     {
 
-        sr.color = Color.blue; // 피격 예시
+        sr.color = Color.red; // 피격 예시
         Debug.Log(sr.color);
         int reaction = transform.position.x - pos.x > 0 ? 1 : -1;
         rigid.AddForce(new Vector2(reaction * 5, 1), ForceMode2D.Impulse);
@@ -49,6 +49,7 @@ public class EnemyHealth : LivingEntity
         base.Die();
         //오브젝트 없애는 게 필요할듯 setactive나 destroy
         //DeadCoroutine으로 효과까지
+        Debug.Log("Dead");
         _enemyBrain.Dead();
     }
     public override void OnDamage(float damage, Vector2 hitPosition)
@@ -56,11 +57,10 @@ public class EnemyHealth : LivingEntity
         if (isDead) return;
 
         base.OnDamage(damage, hitPosition);
-        CameraActionScript.ShakeCam(2f, 0.2f,false);
         StartCoroutine(ShowDamagedEffect(hitPosition));
+        CameraActionScript.ShakeCam(2f, 0.2f,false);
         _enemyBrain.getHit = true;
         _enemyBrain.isAttacking = false;
-        //healthScript.SetHP(health);
 
     }
     

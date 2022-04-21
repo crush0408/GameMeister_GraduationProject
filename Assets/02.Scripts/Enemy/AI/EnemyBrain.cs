@@ -109,9 +109,8 @@ public class EnemyBrain : MonoBehaviour
     
     public void GetHit()
     {
-        
-            FlipSprite();
-            anim.SetTrigger("getHit");
+        FlipSprite();
+        anim.SetTrigger("getHit");
         
     }
     public bool AttackEnd()

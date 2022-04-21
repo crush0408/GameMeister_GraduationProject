@@ -122,7 +122,9 @@ public class PlayerAttack : MonoBehaviour
                             if (target != null && col.gameObject.CompareTag("Enemy"))
                             {
                                 Attack();
+                                Debug.Log(inputSkill.attackDamage);
                                 target.OnDamage(inputSkill.attackDamage, this.transform.position);
+                                
                                 PoolableMono poolingObject = PoolManager.Instance.Pop("FastMagic");
                                 poolingObject.transform.position = col.transform.position;
                                 
@@ -133,7 +135,6 @@ public class PlayerAttack : MonoBehaviour
                     }
                     else if(inputSkill.skillName == "SpinAttack")
                     {
-                        Attack();
                         PoolableMono poolingObject = PoolManager.Instance.Pop("SpinAttack");
                         if (sr.flipX)
                         {
@@ -145,12 +146,12 @@ public class PlayerAttack : MonoBehaviour
                         }
                         poolingObject.transform.position = spinAttackTrm.position;
                         poolingObject.GetComponent<NonTargetSkill>().damage = inputSkill.attackDamage;
+                        Attack();
                         skillList[i].remainCoolTime = skillList[i].initCoolTime;
                         StartCoroutine(skillList[i].coolTime());
                     }
                     else if(inputSkill.skillName == "SustainMagic")
                     {
-                        Attack();
                         Debug.Log("스킬 시작");
                         PoolableMono poolingObject = PoolManager.Instance.Pop("SustainMagic");
                         if (sr.flipX)
@@ -165,6 +166,7 @@ public class PlayerAttack : MonoBehaviour
                         }
                         poolingObject.transform.position = sustainAttackTrm.position;
                         poolingObject.GetComponent<NonTargetSkill>().damage = inputSkill.attackDamage;
+                        Attack();
                         skillList[i].remainCoolTime = skillList[i].initCoolTime;
 
                         StartCoroutine(skillList[i].coolTime());

@@ -10,6 +10,8 @@ public class StageManager : MonoBehaviour
     public GameObject player;
     public CinemachineConfiner confiner;
 
+    public NpcSpeechSystem speech;
+
     public MapData[] mapDatas = null;
     public int index = 0;
     
@@ -31,14 +33,16 @@ public class StageManager : MonoBehaviour
     {
         player = GameManager.instance.playerObj;
         confiner = CameraActionScript.instance.player_vCam.gameObject.GetComponent<CinemachineConfiner>();
-        Init();
+        Init(0);
     }
-    public void Init()
+    public void Init(int adjust)
     {
+        index += adjust;
         Reset();
 
-        GameObject a = Instantiate(mapDatas[index].mapPrefab, this.transform);
-        mapDatas[index].insertData = a.GetComponent<MapManager>().insertData;
+
+        GameObject map = Instantiate(mapDatas[index].mapPrefab, this.transform);
+        mapDatas[index].insertData = map.GetComponent<MapManager>().insertData;
         player.transform.position = mapDatas[index].insertData.startPos.position;
         confiner.m_BoundingShape2D = mapDatas[index].insertData.vCamCollider;
     }
@@ -54,13 +58,11 @@ public class StageManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            index++;
-            Init();
+            Init(1);
         }
         else if(Input.GetKeyDown(KeyCode.V))
         {
-            index--;
-            Init();
+            Init(-1);
         }
     }
 

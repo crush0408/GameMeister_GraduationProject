@@ -10,6 +10,5 @@ public class GetHitAction : AIAction
         _enemyBrain.GetHit();
 
 
-        Debug.Log("GetHitTakeAction");
     }
 }
