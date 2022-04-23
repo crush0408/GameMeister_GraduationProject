@@ -22,8 +22,8 @@ public class PlayerHealth : LivingEntity
 
     private void Start()
     {
-        Debug.Log(GetComponent<SpriteRenderer>().bounds.size);
-        Debug.Log(GetComponent<BoxCollider2D>().bounds.size);
+        //Debug.Log(GetComponent<SpriteRenderer>().bounds.size);
+        //Debug.Log(GetComponent<BoxCollider2D>().bounds.size);
         
         //healthScript.InitHealth(health, initHealth);
     }

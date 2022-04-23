@@ -13,7 +13,7 @@ public class PlayerBasicAttack : MonoBehaviour
             if(target != null)
             {
                 target.OnDamage(damage, transform.position);
-                Debug.Log("¿˚ ±‚∫ª ∞¯∞› ««∞›");
+                //Debug.Log("Ï†Å Í∏∞Î≥∏ Í≥µÍ≤© ÌîºÍ≤©");
             }
         }
     }

@@ -6,9 +6,7 @@ using UnityEngine;
 public class MapInsertData
 {
     public Transform startPos;
-    public Transform endPos;
 
     public Collider2D vCamCollider;
 
-    public int enemyCount;
 }

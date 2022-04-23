@@ -6,7 +6,6 @@ public class GetHitJudgeDecision : AIDecision
 {
     public override bool MakeADecision()
     {
-
         return !_enemyBrain.getHit;
     }
 }

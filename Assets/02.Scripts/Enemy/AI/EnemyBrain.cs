@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class EnemyBrain : MonoBehaviour
 {
@@ -15,32 +16,37 @@ public class EnemyBrain : MonoBehaviour
 
     private Rigidbody2D _rigid;
     private Animator anim;
-    private SpriteRenderer sr;
     private EnemyHealth enemyHealth;
     
 
     public GameObject visualGroupObj;
+
+    public CinemachineVirtualCamera vCam;
+    public CinemachineTargetGroup targetGroup;
     
 
     public Transform target;
 
     public Vector3 rightDirection = Vector3.one;
+    private Vector3 leftDirection = Vector3.zero;
     public bool isAttacking = false;
     public int attackCount = 1;
     public bool getHit = false;
+
+    public bool isRecognizePlayer = false;
 
 
     private void Awake()
     {
         _rigid = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
-        sr = GetComponentInChildren<SpriteRenderer>();
         enemyHealth = GetComponent<EnemyHealth>();
     }
 
     private void Start()
     {
         target = GameManager.instance.playerObj.transform;
+        leftDirection = new Vector3(-rightDirection.x, rightDirection.y, rightDirection.z);
     }
 
     private void Update()
@@ -54,6 +60,12 @@ public class EnemyBrain : MonoBehaviour
     }
     public void Move(Vector2 dir)
     {
+        if (!isRecognizePlayer)
+        {
+            CameraActionScript.BossSceneCamera(vCam, targetGroup);
+            isRecognizePlayer = true;
+        }
+
         FlipSprite();
 
         _rigid.velocity = dir * _speed;
@@ -102,7 +114,7 @@ public class EnemyBrain : MonoBehaviour
             }
             else
             {
-                visualGroupObj.transform.localScale = new Vector3(-rightDirection.x,rightDirection.y,rightDirection.z);
+                visualGroupObj.transform.localScale = leftDirection;
             }
         }
     }
@@ -110,7 +122,12 @@ public class EnemyBrain : MonoBehaviour
     public void GetHit()
     {
         FlipSprite();
-        anim.SetTrigger("getHit");
+        if(!enemyHealth.isDead)
+        {
+
+            //anim.SetTrigger("getHit");
+            anim.Play("Hit", -1, 0f);
+        }
         
     }
     public bool AttackEnd()
@@ -134,6 +151,10 @@ public class EnemyBrain : MonoBehaviour
     }
     public void Dead()
     {
-        anim.SetTrigger("isDead");
+        Destroy(vCam);
+        
+        anim.Play("Dead",-1,0f);
+        //anim.SetTrigger("isDead");
+        Debug.Log("DeadAnim");
     }
 }

@@ -15,7 +15,7 @@ public class AttackAction : AIAction
             _enemyBrain.Attack();
         }
         
-        Debug.Log("Attack");
+        //Debug.Log("Attack");
     }
 
     

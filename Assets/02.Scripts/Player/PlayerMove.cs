@@ -130,7 +130,7 @@ public class PlayerMove : MonoBehaviour
                 _jump = false;
                 rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
                 anim.SetTrigger("isJump");
-                Debug.Log("1단 점프");
+                //Debug.Log("1단 점프");
                 canSecondJump = true;
             }
             else if (!isGround && canSecondJump)
@@ -140,7 +140,7 @@ public class PlayerMove : MonoBehaviour
                     _jump = false;
                     rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
                     anim.SetTrigger("isJump");
-                    Debug.Log("2단 점프");
+                    //Debug.Log("2단 점프");
                     canSecondJump = false;
                 }
             }
