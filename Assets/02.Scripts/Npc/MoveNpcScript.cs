@@ -78,6 +78,4 @@ public class MoveNpcScript : MonoBehaviour, INpc
     public void Interaction(GameObject _sprite, bool _on){
         _sprite.SetActive(_on);
     }
-    
-    
 }

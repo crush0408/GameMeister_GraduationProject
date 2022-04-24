@@ -21,8 +21,7 @@ public class EnemyBrain : MonoBehaviour
 
     public GameObject visualGroupObj;
 
-    public CinemachineVirtualCamera vCam;
-    public CinemachineTargetGroup targetGroup;
+
     
 
     public Transform target;
@@ -34,6 +33,7 @@ public class EnemyBrain : MonoBehaviour
     public bool getHit = false;
 
     public bool isRecognizePlayer = false;
+    private bool isDead = false;
 
 
     private void Awake()
@@ -51,7 +51,10 @@ public class EnemyBrain : MonoBehaviour
 
     private void Update()
     {
-        _currentState?.UpdateState();
+        if (!isDead)
+        {
+            _currentState?.UpdateState();
+        }
     }
 
     public void ChangeToState(AIState state)
@@ -62,7 +65,6 @@ public class EnemyBrain : MonoBehaviour
     {
         if (!isRecognizePlayer)
         {
-            CameraActionScript.BossSceneCamera(vCam, targetGroup);
             isRecognizePlayer = true;
         }
 
@@ -151,8 +153,7 @@ public class EnemyBrain : MonoBehaviour
     }
     public void Dead()
     {
-        Destroy(vCam);
-        
+        isDead = true;
         anim.Play("Dead",-1,0f);
         //anim.SetTrigger("isDead");
         Debug.Log("DeadAnim");

@@ -6,6 +6,9 @@ using UnityEngine;
 public class MapInsertData
 {
     public Transform startPos;
+    public GameObject door;
+
+    public GameObject boss;
 
     public Collider2D vCamCollider;
 

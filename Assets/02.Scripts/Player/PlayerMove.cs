@@ -46,7 +46,19 @@ public class PlayerMove : MonoBehaviour
     {
         ValueSetting();
         GroundCheck();
-        
+        Col();
+    }
+    public void Col()
+    {
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, GetComponent<BoxCollider2D>().size, 0);
+        foreach (Collider2D collider2d in colliders)
+        {
+            IDoor door = collider2d.GetComponent<IDoor>();
+            if(door != null && Input.GetKeyDown(KeyCode.E))
+            {
+                door.Action();
+            }
+        }
     }
     private void FixedUpdate()
     {
