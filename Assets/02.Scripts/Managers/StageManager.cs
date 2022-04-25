@@ -11,7 +11,8 @@ public class StageManager : MonoBehaviour
     public CinemachineConfiner confiner;
 
 
-    public MapData[] mapDatas = null;
+    public GameObject[] mapDatas = null;
+    public MapInsertData insertData;
     public int index = 0;
     
 
@@ -40,13 +41,13 @@ public class StageManager : MonoBehaviour
         Reset();
 
 
-        GameObject map = Instantiate(mapDatas[index].mapPrefab, this.transform);
-        mapDatas[index].insertData = map.GetComponent<MapManager>().insertData;
+        GameObject map = Instantiate(mapDatas[index].gameObject, this.transform);
+        insertData = map.GetComponent<MapManager>().insertData;
         map.GetComponent<MapManager>().insertData.door.SetActive(false);
-        mapDatas[index].insertData.boss.GetComponent<EnemyHealth>().OnDead += () => 
+        insertData.boss.GetComponent<EnemyHealth>().OnDead += () => 
         { map.GetComponent<MapManager>().insertData.door.SetActive(true); };
-        player.transform.position = mapDatas[index].insertData.startPos.position;
-        confiner.m_BoundingShape2D = mapDatas[index].insertData.vCamCollider;
+        player.transform.position = insertData.startPos.position;
+        confiner.m_BoundingShape2D = insertData.vCamCollider;
     }
     public void Reset()
     {
@@ -56,9 +57,5 @@ public class StageManager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        
-    }
-
+    
 }

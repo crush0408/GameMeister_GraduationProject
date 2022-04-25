@@ -145,16 +145,15 @@ public class PlayerMove : MonoBehaviour
                 //Debug.Log("1단 점프");
                 canSecondJump = true;
             }
-            else if (!isGround && canSecondJump)
+            else if (!isGround && canSecondJump )
             {
-                if (_jump && canSecondJump)
-                {
+                
                     _jump = false;
                     rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
                     anim.SetTrigger("isJump");
                     //Debug.Log("2단 점프");
                     canSecondJump = false;
-                }
+                
             }
         }
         else if(!isGround && rigid.velocity.y < 0)
@@ -180,6 +179,7 @@ public class PlayerMove : MonoBehaviour
             if (isGround)
             {
                 canDash = true;
+                canSecondJump = false;
             }
         }
     }
