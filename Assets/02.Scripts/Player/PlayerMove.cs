@@ -22,6 +22,7 @@ public class PlayerMove : MonoBehaviour
 
 
     private bool _jump;
+    private bool _jumpKeyUp;
     private bool _dash;
     private float _dashTime;
     public float startDashTime = 0.1f;
@@ -80,6 +81,10 @@ public class PlayerMove : MonoBehaviour
         if (playerInput.jump)
         {
             _jump = true;
+        }
+        if(playerInput.jumpKeyUp)
+        {
+            _jumpKeyUp = true;
         }
 
         if (playerInput.dash)
@@ -161,13 +166,13 @@ public class PlayerMove : MonoBehaviour
             anim.SetTrigger("isDown");
         }
         
-        /*
-        if(_jumpKeyUp && rigid.velocity.y > 0)
+        
+        if(_jumpKeyUp && rigid.velocity.y < 0)
         {
             _jumpKeyUp = false;
-            rigid.velocity = new Vector2(rigid.velocity.x, rigid.velocity.y * 0.7f);
+            rigid.velocity = new Vector2(rigid.velocity.x, rigid.velocity.y * 2f);
         }
-        */
+        
     }
     private void GroundCheck()
     {

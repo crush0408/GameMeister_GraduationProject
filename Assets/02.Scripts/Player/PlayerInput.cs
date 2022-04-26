@@ -15,6 +15,7 @@ public class PlayerInput : MonoBehaviour
 
     public float movement { get; private set; }
     public bool jump { get; private set; }
+    public bool jumpKeyUp { get; private set; }
     public bool basicAtk { get; private set; }
     public bool dash { get; private set; }
     public bool skillOne { get; private set; }
@@ -26,6 +27,7 @@ public class PlayerInput : MonoBehaviour
     {
         movement = Input.GetAxisRaw(movementName);
         jump = Input.GetButtonDown(jumpBtnName);
+        jumpKeyUp = Input.GetButtonUp(jumpBtnName);
         basicAtk = Input.GetButtonDown(basicAtkName);
         dash = Input.GetButtonDown(dashName);
         skillOne = Input.GetButtonDown(skillOneName);
