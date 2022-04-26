@@ -6,18 +6,15 @@ public class DataManager : MonoBehaviour
 {
     public static DataManager instance;
 
-    public float BGMmasterSoundVolume;
-    public float EFFmasterSoundVolume;
-    public int isWindow;
-    public int isFirst;
+    public float BGMmasterSoundVolume;  // MGSound에서 참조
+    public float EFFmasterSoundVolume;  // MGSound에서 참조
+    public int isWindow;                // 0(false)이면 FullScreen, 1(true)이면 Window
+    public int isFirst; // 첫 플레이인지 (컷씬 재생에 필요)
 
     private void Awake()
     {
-        MGSound.instance.init();
-
         if (instance == null)
         {
-
             instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
@@ -34,34 +31,23 @@ public class DataManager : MonoBehaviour
         MGSound.instance.BGMVol();
     }
 
-    private void Init()
+    private void Init() // 초기화(초기 설정)
     {
-        if (!PlayerPrefs.HasKey("BGM"))
-        {
-            PlayerPrefs.SetFloat("BGM", 0.5f);
-        }
+        if (!PlayerPrefs.HasKey("BGM")) PlayerPrefs.SetFloat("BGM", 0.5f);
         BGMmasterSoundVolume = PlayerPrefs.GetFloat("BGM");
 
-        if (!PlayerPrefs.HasKey("EFF"))
-        {
-            PlayerPrefs.SetFloat("EFF", 0.5f);
-        }
+        if (!PlayerPrefs.HasKey("EFF")) PlayerPrefs.SetFloat("EFF", 0.5f);
         EFFmasterSoundVolume = PlayerPrefs.GetFloat("EFF");
 
-        if (!PlayerPrefs.HasKey("Display"))
-        {
-            PlayerPrefs.SetInt("Display", 0);
-        }
+        if (!PlayerPrefs.HasKey("Display")) PlayerPrefs.SetInt("Display", 0);
         isWindow = PlayerPrefs.GetInt("Display");
 
-        if (!PlayerPrefs.HasKey("IsFirst"))
-        {
-            PlayerPrefs.SetInt("IsFirst", 1);
-        }
+        // 컷씬용 초기화
+        if (!PlayerPrefs.HasKey("IsFirst")) PlayerPrefs.SetInt("IsFirst", 1);
         isFirst = PlayerPrefs.GetInt("IsFirst");
     }
 
-    public void Save()
+    public void ScreenSave()  // 저장
     {
         PlayerPrefs.SetInt("Display", isWindow);
     }

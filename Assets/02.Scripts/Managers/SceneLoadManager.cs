@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneLoadManager : MonoBehaviour
 {
     public static SceneLoadManager instance;
-    [SerializeField] int curSceneNum;   // 현재 씬
+    public int curSceneNum;   // 현재 씬
 
     private void Awake()
     {
