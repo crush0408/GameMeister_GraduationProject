@@ -189,7 +189,7 @@ public class PlayerMove : MonoBehaviour
         {
             rigid.velocity = new Vector2(playerInput.movement * moveSpeed, rigid.velocity.y);
             anim.SetBool("movement", playerInput.movement != 0);
-
+            anim.SetFloat("ySpeed", rigid.velocity.y);
             if(playerInput.movement == 1)
             {
                 gameObject.GetComponent<SpriteRenderer>().flipX = false;
