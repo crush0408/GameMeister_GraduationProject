@@ -21,44 +21,51 @@ public class CanvasScaleManager : MonoBehaviour
         }
     }
 
-    void Start()
+    private void Start()
     {
-        dropdown.value = DataManager.instance.isWindow; // 가져오기
-        SetScreen();
-
-        dropdown.onValueChanged.AddListener(delegate { SetScreenMode(); });
+        DropdownSet();
+        /*dropdown.onValueChanged.AddListener(delegate
+        {
+            myDropdownValueChangedHandler(dropdown);
+        });*/
     }
 
-    public void SetScreenMode()
+    void DropdownSet()
     {
-        DataManager.instance.isWindow = dropdown.value; // 드롭다운 값 넣기
-        Debug.Log(DataManager.instance.isWindow);
+        dropdown.value = DataManager.instance.isWindow;
+        SetScreen();
+        Debug.Log("드롭다운 값 : " + dropdown.value);
+    }
+
+    public void DropDownValueChange()
+    {
+        // 선택한 드롭다운 값 확인
+        
+
+        // 드롭다운 값 저장
+        DataManager.instance.isWindow = (dropdown.value == 0) ? 0 : 1;
         DataManager.instance.ScreenSave();
+        Debug.Log("saved : " + DataManager.instance.isWindow);
+
         SetScreen();
         
+        Debug.Log("사이즈 : " + Screen.width + " * " + Screen.height);
     }
 
-    public void SetScreen()
+    private void SetScreen()
     {
-        if(DataManager.instance.isWindow == 0)
-        {    
-            Screen.SetResolution(1920,1080, true);
+        if(dropdown.value == 0)
+        {
+            Screen.SetResolution(1920, 1080, true);
         }
         else
         {
-            Screen.SetResolution(1600,900,false);
+            Screen.SetResolution(1600, 900, false);
         }
     }
 
     public Vector2 ReturnResolution()
     {
-        if (DataManager.instance.isWindow == 0)
-        {
-            return new Vector2(1920, 1080);
-        }
-        else
-        {
-            return new Vector2(1600, 900);
-        }
+        return DataManager.instance.isWindow == 0 ? new Vector2(1920, 1080) : new Vector2(1600, 900);
     }
 }
