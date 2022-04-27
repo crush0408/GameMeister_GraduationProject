@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour
+public class TitleUI : MonoBehaviour
 {
     [Header("스타트 화면 버튼")]
     public Button startBtn;
@@ -12,6 +12,8 @@ public class UIManager : MonoBehaviour
 
     [Header("설정 패널 버튼")]
     public Button closeBtn;
+
+    public Dropdown dropdown;
 
     [Header("설정 패널")]
     public GameObject settingPanel;
@@ -40,6 +42,8 @@ public class UIManager : MonoBehaviour
         // 슬라이더에 OnValueChanged 리스너 추가
         bgmSlider.onValueChanged.AddListener(BGMControl);
         effSlider.onValueChanged.AddListener(EFFControl);
+
+        dropdown.onValueChanged.AddListener(delegate { SetScreen(); });
 
         bgmVol = DataManager.instance.BGMmasterSoundVolume;
         effVol = DataManager.instance.EFFmasterSoundVolume;
@@ -92,7 +96,9 @@ public class UIManager : MonoBehaviour
     // UI 크기 맞춤 // 참조 없음 ????????????
     public void SetScreen()
     {
-        canvasScaler.referenceResolution = CanvasScaleManager.instance.SetScreen();
+        canvasScaler.referenceResolution = CanvasScaleManager.instance.ReturnResolution();
     }
+
+    
 
 }

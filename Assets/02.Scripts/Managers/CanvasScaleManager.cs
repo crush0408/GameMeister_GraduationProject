@@ -8,9 +8,6 @@ public class CanvasScaleManager : MonoBehaviour
     public static CanvasScaleManager instance;
     public Dropdown dropdown;
 
-    [Header("캔버스 스케일러")]
-    public CanvasScaler canvasScaler;
-
     void Awake()
     {
         if (instance == null)
@@ -28,6 +25,8 @@ public class CanvasScaleManager : MonoBehaviour
     {
         dropdown.value = DataManager.instance.isWindow; // 가져오기
         SetScreen();
+
+        dropdown.onValueChanged.AddListener(delegate { SetScreenMode(); });
     }
 
     public void SetScreenMode()
@@ -36,23 +35,30 @@ public class CanvasScaleManager : MonoBehaviour
         Debug.Log(DataManager.instance.isWindow);
         DataManager.instance.ScreenSave();
         SetScreen();
+        
     }
 
-    public Vector2 SetScreen()
+    public void SetScreen()
     {
         if(DataManager.instance.isWindow == 0)
         {    
             Screen.SetResolution(1920,1080, true);
-
-            return new Vector2(1920, 1080);
-            // canvasScaler.referenceResolution = new Vector2(1920,1080);
         }
         else
         {
             Screen.SetResolution(1600,900,false);
+        }
+    }
 
+    public Vector2 ReturnResolution()
+    {
+        if (DataManager.instance.isWindow == 0)
+        {
+            return new Vector2(1920, 1080);
+        }
+        else
+        {
             return new Vector2(1600, 900);
-            // canvasScaler.referenceResolution =  new Vector2(1600,900);
         }
     }
 }
