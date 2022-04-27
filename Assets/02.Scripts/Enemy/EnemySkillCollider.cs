@@ -15,7 +15,7 @@ public class EnemySkillCollider : MonoBehaviour
             if(target != null)
             {
                 //Debug.Log("피격");
-                target.OnDamage(damage, this.gameObject.transform.position);
+                target.OnDamage(damage, transform.position);
             }
         }
     }
