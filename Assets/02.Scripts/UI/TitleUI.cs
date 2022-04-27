@@ -43,7 +43,7 @@ public class TitleUI : MonoBehaviour
         bgmSlider.onValueChanged.AddListener(BGMControl);
         effSlider.onValueChanged.AddListener(EFFControl);
 
-        dropdown.onValueChanged.AddListener(delegate { SetScreen(); });
+        SetScreen();
 
         bgmVol = DataManager.instance.BGMmasterSoundVolume;
         effVol = DataManager.instance.EFFmasterSoundVolume;
@@ -93,12 +93,11 @@ public class TitleUI : MonoBehaviour
         PlayerPrefs.SetFloat("EFF", effVol);
     }
 
+    
     // UI 크기 맞춤 // 참조 없음 ????????????
     public void SetScreen()
     {
         canvasScaler.referenceResolution = CanvasScaleManager.instance.ReturnResolution();
     }
-
     
-
 }
