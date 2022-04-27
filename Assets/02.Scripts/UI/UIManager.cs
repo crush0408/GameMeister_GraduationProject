@@ -10,6 +10,9 @@ public class UIManager : MonoBehaviour
     public Button settingsBtn;
     public Button quitBtn;
 
+    [Header("설정 패널 버튼")]
+    public Button closeBtn;
+
     [Header("설정 패널")]
     public GameObject settingPanel;
 
@@ -31,6 +34,7 @@ public class UIManager : MonoBehaviour
         // 버튼에 OnClick 리스너 추가
         startBtn.onClick.AddListener(StartBtn);
         settingsBtn.onClick.AddListener(SettingsPanel);
+        closeBtn.onClick.AddListener(SettingsPanel);
         quitBtn.onClick.AddListener(QuitBtn);
 
         // 슬라이더에 OnValueChanged 리스너 추가
