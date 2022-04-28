@@ -163,15 +163,15 @@ public class PlayerMove : MonoBehaviour
         }
         else if(!isGround && rigid.velocity.y < 0)
         {
-            anim.SetTrigger("isDown");
+            
         }
         
         
-        if(_jumpKeyUp && rigid.velocity.y < 0)
+        /*if(_jumpKeyUp && rigid.velocity.y < 0)
         {
             _jumpKeyUp = false;
             rigid.velocity = new Vector2(rigid.velocity.x, rigid.velocity.y * 2f);
-        }
+        }*/
         
     }
     private void GroundCheck()
