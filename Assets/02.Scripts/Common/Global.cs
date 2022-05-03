@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Global : MonoBehaviour
 {
-    
-    void Start()
+    public enum EnemyFsm
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        None = -1,
+        Idle,
+        Patrol,
+        Heal,
+        Chase,
+        Attack,
+        AttackAfter,
+        Delay
     }
 }

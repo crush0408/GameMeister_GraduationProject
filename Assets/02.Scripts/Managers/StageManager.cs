@@ -33,7 +33,7 @@ public class StageManager : MonoBehaviour
     {
         player = GameManager.instance.playerObj;
         confiner = CameraActionScript.instance.player_vCam.gameObject.GetComponent<CinemachineConfiner>();
-        Init(0);
+        //Init(0);
     }
     public void Init(int adjust)
     {

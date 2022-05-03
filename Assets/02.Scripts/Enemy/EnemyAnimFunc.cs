@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyAnimFunc : MonoBehaviour
 {
-    EnemyBrain enemyBrain;
+    /*EnemyBrain enemyBrain;
     private void Awake()
     {
         enemyBrain = GetComponentInParent<EnemyBrain>();
@@ -20,5 +20,5 @@ public class EnemyAnimFunc : MonoBehaviour
     public void GetHitEndAnimFunc()
     {
         StartCoroutine(enemyBrain.HitEndCoroutine());
-    }
+    }*/
 }

@@ -6,6 +6,7 @@ public class NpcScript : MonoBehaviour, INpc
 {
     public GameObject sprite;
     public bool isFirst = true;
+
     public NpcSpeechSystem speechSystem;
 
     public Data[] datas;
