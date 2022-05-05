@@ -13,6 +13,7 @@ public class Global : MonoBehaviour
         Chase,
         Attack,
         AttackAfter,
+        PatternMove,
         Delay
     }
 }

@@ -51,6 +51,7 @@ public class EnemyHealth : LivingEntity
         base.Die();
         //오브젝트 없애는 게 필요할듯 setactive나 destroy
         //DeadCoroutine으로 효과까지
+        
         Debug.Log("Dead");
     }
     public override void OnDamage(float damage, Vector2 hitPosition)

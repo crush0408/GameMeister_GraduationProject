@@ -20,8 +20,8 @@ public class BossBase : EnemyBase, INpc_Monster
     public override void Init()
     {
         base.Init();
-        speechSystem = GetComponent<NpcSpeechSystem>();
-        speechSystem.target = GetComponentInChildren<Text>();
+        //speechSystem = GetComponent<NpcSpeechSystem>();
+        //speechSystem.target = GetComponentInChildren<Text>();
         isTalkEnd = false;
         isTalkStart = false;
         healCoroutine = null;
@@ -53,8 +53,10 @@ public class BossBase : EnemyBase, INpc_Monster
 
     public virtual void Jump()
     {
-        //Jump
-        // 현재 위치 에서 플레이어 위치까지 포물선을 그리면서 뛰게 만들기
+        isAttacking = true; // 테스팅을 위한 임시 변수 세팅임
+        AttackAfter(); // 테스팅을 위한 임시 함수 세팅
+        myAnim.SetTrigger("Jump");
+        
     }
     protected IEnumerator HealCoroutine(float amount, float time)
     {

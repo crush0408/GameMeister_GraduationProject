@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GhostEnemyScript : EnemyBase
+public class GhostEnemyScript : FlyingEnemyBase
 {
     private float attackCount = 0f;
     private void Start()
@@ -39,7 +39,7 @@ public class GhostEnemyScript : EnemyBase
                     }
                     else
                     {
-                        Stop();
+                        base.Stop();
                         //ChangeState(Global.EnemyFsm.Patrol);
                     }
                     break;
@@ -66,7 +66,7 @@ public class GhostEnemyScript : EnemyBase
                     {
                         ChangeState(Global.EnemyFsm.Attack);
                     }
-                    Flying();
+                    base.Flying();
                     break;
                 case Global.EnemyFsm.Attack:
                     Attack();
@@ -89,17 +89,9 @@ public class GhostEnemyScript : EnemyBase
             }
         }
     }
-    public override void Stop()
-    {
-        base.Stop();
-        myAnim.SetBool("isChase", false);
-    }
+    
 
-    public override void Flying()
-    {
-        base.Flying();
-        myAnim.SetBool("isChase", true);
-    }
+    
     public override void Attack()
     {
         base.Attack();

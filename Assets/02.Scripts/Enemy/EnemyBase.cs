@@ -42,6 +42,7 @@ public class EnemyBase : MonoBehaviour
     {
         myVelocity = Vector2.zero;
         myRigid.velocity = myVelocity;
+        myAnim.SetBool("isChase", false);
     }
     public virtual IEnumerator Patrol(float random)
     {
@@ -72,27 +73,11 @@ public class EnemyBase : MonoBehaviour
     public virtual void Move()
     {
         FlipSprite();
-
-        Vector2 dir = myTarget.transform.position - this.transform.position;
-        dir.y = 0f;
-        dir.Normalize();
-        myVelocity = dir * speed;
-        myRigid.velocity = myVelocity;
+        myAnim.SetBool("isChase", true);
     }
 
 
-    public virtual void Flying()
-    {
-        FlipSprite();
-
-        Vector2 dir = myTarget.transform.position - this.transform.position;
-        dir.y = 0f;
-        dir.Normalize();
-
-        Debug.Log("Flying Normalize Dir : " + dir);
-        myVelocity = dir * speed;
-        myRigid.velocity = myVelocity;
-    }
+    
     public virtual void Attack()
     {
         Stop();
