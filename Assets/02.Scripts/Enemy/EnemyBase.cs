@@ -47,10 +47,8 @@ public class EnemyBase : MonoBehaviour
     public virtual IEnumerator Patrol(float random)
     {
         Vector2 dir = new Vector2(random, 0);
-        Debug.Log("Dir : " + dir);
         dir.Normalize();
-        Debug.Log("Normalize Dir : " + dir);
-        myVelocity = dir * (speed);
+        myVelocity = dir * speed;
         myRigid.velocity = myVelocity;
 
         if (dir.x > 0)

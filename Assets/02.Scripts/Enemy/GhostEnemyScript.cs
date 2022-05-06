@@ -44,7 +44,11 @@ public class GhostEnemyScript : FlyingEnemyBase
                     }
                     break;
                 case Global.EnemyFsm.Patrol:
-                    if(DistanceDecision(sightDistance))
+                    if(DistanceDecision(attackDistance))
+                    {
+                        ChangeState(Global.EnemyFsm.Attack);
+                    }
+                    else if(DistanceDecision(sightDistance))
                     {
                         ChangeState(Global.EnemyFsm.Chase);
                     }
@@ -54,6 +58,7 @@ public class GhostEnemyScript : FlyingEnemyBase
                         patrolCoroutine = Patrol(random);
                         StartCoroutine(patrolCoroutine);
                     }
+                    
                     break;
                 case Global.EnemyFsm.Heal:
                     break;
@@ -62,7 +67,7 @@ public class GhostEnemyScript : FlyingEnemyBase
                     {
                         ChangeState(Global.EnemyFsm.Idle);
                     }
-                    if (DistanceDecision(attackDistance))
+                    else if (DistanceDecision(attackDistance))
                     {
                         ChangeState(Global.EnemyFsm.Attack);
                     }
