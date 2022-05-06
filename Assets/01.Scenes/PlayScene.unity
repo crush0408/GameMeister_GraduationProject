@@ -2866,9 +2866,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1660793418}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 218ac44770e2d654e83b7c79be194418, type: 3}
+  m_Script: {fileID: 11500000, guid: 562ae1b498b56944b90efd8d33471d10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  events:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1563501123}
+        m_TargetAssemblyTypeName: GhostEnemyScript, Assembly-CSharp
+        m_MethodName: DeadAnimScript
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!95 &1660793420
 Animator:
   serializedVersion: 3

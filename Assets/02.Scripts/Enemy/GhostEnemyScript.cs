@@ -119,4 +119,8 @@ public class GhostEnemyScript : FlyingEnemyBase
     {
         base.AttackAfter();
     }
+    public override void DeadAnimScript()
+    {
+        base.DeadAnimScript();
+    }
 }

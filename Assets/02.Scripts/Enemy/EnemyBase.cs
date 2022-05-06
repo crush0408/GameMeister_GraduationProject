@@ -70,12 +70,15 @@ public class EnemyBase : MonoBehaviour
         myAnim.Play("Dead", -1, 0f);
         Debug.Log("Die");
     }
+    public virtual void DeadAnimScript()
+    {
+        Destroy(this.gameObject);
+    }
     public virtual void Move()
     {
         FlipSprite();
         myAnim.SetBool("isChase", true);
     }
-
 
     
     public virtual void Attack()
