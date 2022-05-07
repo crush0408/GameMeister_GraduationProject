@@ -15,7 +15,7 @@ public class PlayerHealth : LivingEntity
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>();
+        sr = GetComponentInChildren<SpriteRenderer>();
         healthScript = GetComponentInChildren<PlayerHPBar>();
         temp = sr.color;
     }

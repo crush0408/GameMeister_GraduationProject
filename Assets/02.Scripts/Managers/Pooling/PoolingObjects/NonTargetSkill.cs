@@ -24,8 +24,6 @@ public class NonTargetSkill : PoolableMono
             if (target != null)
             {
                 target.OnDamage(damage, transform.position);
-                Debug.Log("적 스킬 피격");
-                Debug.Log(damage);
             }
         }
     }

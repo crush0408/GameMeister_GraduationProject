@@ -24,10 +24,15 @@ public class PlayerMove : MonoBehaviour
     private bool _jump;
     private bool _jumpKeyUp;
     private bool _dash;
-    private float _dashTime;
-    public float startDashTime = 0.1f;
-    public float dashSpeed = 50f;
-    public float _dashDis = 1f;
+
+    [Header("Dash관련 변수들")]
+    [SerializeField] private float _dashDelayStartTime;
+     private float _dashDelayTime;
+     private float _dashTime;
+    [SerializeField] private float startDashTime = 0.1f;
+    [SerializeField] private float dashSpeed = 50f;
+    [SerializeField] private float _dashDis = 1f;
+    [Space]
     
     public bool isCrouch = false;
 
@@ -36,12 +41,14 @@ public class PlayerMove : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         playerInput = GetComponent<PlayerInput>();
         playerAttack = GetComponent<PlayerAttack>();
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
     }
     private void Start()
     {
         _dashTime = startDashTime;
+        _dashDelayTime = 0f;
         _dashDis = dashSpeed * 1;
+        _dashDelayTime = 1f;
     }
     private void Update()
     {
@@ -87,7 +94,7 @@ public class PlayerMove : MonoBehaviour
             _jumpKeyUp = true;
         }
 
-        if (playerInput.dash)
+        if (playerInput.dash && _dashDelayTime <= 0)
         {
             _dash = true;
         }
@@ -104,12 +111,14 @@ public class PlayerMove : MonoBehaviour
     }
     private void Dash()
     {
-        if(_dash && canDash)
+        
+        if(_dash && canDash && _dashDelayTime <= 0)
         {
             if(_dashTime <= 0)
             {
                 _dash = false;
                 canDash = false;
+                _dashDelayTime = _dashDelayStartTime;
                 _dashTime = startDashTime;
                 rigid.velocity = Vector2.zero;
                 anim.SetBool("isDash", false);
@@ -121,6 +130,22 @@ public class PlayerMove : MonoBehaviour
                 anim.SetBool("isDash",true);
             }
 
+        }
+        else if(_dashDelayTime > 0)
+        {
+            _dashDelayTime -= Time.deltaTime;
+            if(isGround)
+            {
+                canDash = true;
+
+            }
+        }
+        else if(!canDash)
+        {
+            if(isGround)
+            {
+                canDash = true;
+            }
         }
     }
     
@@ -183,7 +208,7 @@ public class PlayerMove : MonoBehaviour
             anim.SetBool("isGround", isGround);
             if (isGround)
             {
-                canDash = true;
+                //canDash = true;
                 canSecondJump = false;
             }
         }
@@ -197,11 +222,11 @@ public class PlayerMove : MonoBehaviour
             anim.SetFloat("ySpeed", rigid.velocity.y);
             if(playerInput.movement == 1)
             {
-                gameObject.GetComponent<SpriteRenderer>().flipX = false;
+                playerAttack.visualGroup.transform.localScale = Vector3.one;
             }
             else if(playerInput.movement == -1)
             {
-                gameObject.GetComponent<SpriteRenderer>().flipX = true; 
+                playerAttack.visualGroup.transform.localScale = new Vector3(-1,1,1);
             }
         }
     }
