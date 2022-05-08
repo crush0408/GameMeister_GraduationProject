@@ -87,7 +87,8 @@ public class EnemyBase : MonoBehaviour
     }
     public virtual void AttackAfter()
     {
-        StartCoroutine(AttackDelay());
+        isAttacking = false;
+        //StartCoroutine(AttackDelay());
     }
     private IEnumerator AttackDelay()
     {

@@ -85,28 +85,32 @@ public class PlayerMove : MonoBehaviour
         {
             _dashDis = dashSpeed * playerInput.movement;
         }
-        if (playerInput.jump)
+        if(!playerAttack.isAttacking)
         {
-            _jump = true;
-        }
-        if(playerInput.jumpKeyUp)
-        {
-            _jumpKeyUp = true;
-        }
 
-        if (playerInput.dash && _dashDelayTime <= 0)
-        {
-            _dash = true;
-        }
+            if (playerInput.jump)
+            {
+                _jump = true;
+            }
+            if(playerInput.jumpKeyUp)
+            {
+                _jumpKeyUp = true;
+            }
 
-        if (playerInput.crouch)
-        {
-            isCrouch = true;
+            if (playerInput.dash && _dashDelayTime <= 0)
+            {
+                _dash = true;
+            }
+
         }
-        else
-        {
-            isCrouch = false;
-        }
+            if (playerInput.crouch)
+            {
+                isCrouch = true;
+            }
+            else
+            {
+                isCrouch = false;
+            }
         
     }
     private void Dash()

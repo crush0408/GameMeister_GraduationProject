@@ -78,7 +78,6 @@ public class GhostEnemyScript : FlyingEnemyBase
                     ChangeState(Global.EnemyFsm.AttackAfter);
                     break;
                 case Global.EnemyFsm.AttackAfter:
-                    AttackAfter();
                     ChangeState(Global.EnemyFsm.Delay);
                     break;
                 case Global.EnemyFsm.Delay:

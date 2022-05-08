@@ -7,15 +7,13 @@ public class EnemySkillCollider : MonoBehaviour
     public float damage = 0f;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Debug.Log($"Trigger { collision.gameObject.tag}");
-        if (collision.gameObject.CompareTag("Player"))
+        BoxCollider2D boxCollider = collision.GetComponent<BoxCollider2D>();
+        if (collision.gameObject.CompareTag("Player") && collision == boxCollider)
         {
-            //Debug.Log("Player");
             IDamageable target = collision.GetComponent<IDamageable>();
             if(target != null)
             {
-                //Debug.Log("피격");
-                target.OnDamage(damage, transform.position);
+                target.OnDamage(damage, transform.position, true);
             }
         }
     }

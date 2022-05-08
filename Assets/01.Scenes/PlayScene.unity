@@ -504,6 +504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd253ebcb5951b143a28d7fc2b9fac07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  push: 0
 --- !u!1 &187691686
 GameObject:
   m_ObjectHideFlags: 0
@@ -1280,7 +1281,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!50 &509369550
 Rigidbody2D:
   serializedVersion: 4
@@ -3219,9 +3220,9 @@ GameObject:
   - component: {fileID: 1660793421}
   - component: {fileID: 1660793420}
   - component: {fileID: 1660793419}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: GhostWarriorViusalGroup
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3244,6 +3245,20 @@ MonoBehaviour:
       - m_Target: {fileID: 1563501123}
         m_TargetAssemblyTypeName: GhostEnemyScript, Assembly-CSharp
         m_MethodName: DeadAnimScript
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1563501123}
+        m_TargetAssemblyTypeName: GhostEnemyScript, Assembly-CSharp
+        m_MethodName: AttackAfter
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4125,9 +4140,9 @@ GameObject:
   - component: {fileID: 2105400316}
   - component: {fileID: 2105400319}
   - component: {fileID: 2105400318}
+  - component: {fileID: 2105400322}
   - component: {fileID: 2105400321}
   - component: {fileID: 2105400320}
-  - component: {fileID: 2105400322}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
