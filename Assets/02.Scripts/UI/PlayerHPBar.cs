@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class PlayerHPBar : HpBar
 {
-    public Text fillTxt;
+    [SerializeField]
+    private Text fillTxt;
     
-
-    private void Start()
+    public void SetHpText(float _hp, float _maxHp)
     {
-        fill = GetComponentInChildren<Image>();
-        fillTxt = GetComponentInChildren<Text>();
+        fillTxt.text = string.Format("{0} / {1}",_hp,_maxHp);
     }
+    
 }

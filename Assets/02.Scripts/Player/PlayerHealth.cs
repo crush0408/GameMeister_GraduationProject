@@ -16,16 +16,16 @@ public class PlayerHealth : LivingEntity
     {
         rigid = GetComponent<Rigidbody2D>();
         sr = GetComponentInChildren<SpriteRenderer>();
-        healthScript = GetComponentInChildren<PlayerHPBar>();
+        
         temp = sr.color;
     }
 
     private void Start()
     {
-        //Debug.Log(GetComponent<SpriteRenderer>().bounds.size);
-        //Debug.Log(GetComponent<BoxCollider2D>().bounds.size);
-        
-        //healthScript.InitHealth(health, initHealth);
+        healthScript = GetComponentInChildren<PlayerHPBar>();
+        healthScript.InitHealth(health, initHealth);
+        healthScript.SetHpText(health, initHealth);
+
     }
 
     private IEnumerator ShowDamagedEffect(Vector2 pos,bool push)
@@ -54,10 +54,11 @@ public class PlayerHealth : LivingEntity
     public override void OnDamage(float damage, Vector2 hitPosition, bool push = true)
     {
         if (isDead) return;
-        Debug.Log(push);
+        
         base.OnDamage(damage, hitPosition,push);
+        healthScript.SetHpBar(health);
+        healthScript.SetHpText(health, initHealth);
         StartCoroutine(ShowDamagedEffect(hitPosition,push));
         CameraActionScript.ShakeCam(4f, 0.3f, true);
-        //healthScript.SetHP(health);
     }
 }
