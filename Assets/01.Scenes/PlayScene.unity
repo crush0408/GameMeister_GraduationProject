@@ -4188,7 +4188,7 @@ MonoBehaviour:
   canSecondJump: 0
   canDash: 1
   canMove: 1
-  _dashDelayStartTime: 1
+  _dashDelayStartTime: 0.15
   startDashTime: 0.2
   dashSpeed: 40
   _dashDis: 1
