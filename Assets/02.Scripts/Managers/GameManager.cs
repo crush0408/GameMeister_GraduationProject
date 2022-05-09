@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,10 +22,14 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-    
+    public void Start()
+    {
+        playerObj.GetComponent<PlayerHealth>().OnDead += GameOver;
+    }
+
     public void GameOver()
     {
-        Debug.LogError("PlayerDead");
+        SceneManager.LoadScene("PlayScene");
     }
     
 }
