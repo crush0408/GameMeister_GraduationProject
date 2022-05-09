@@ -21,10 +21,10 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
         
+        playerObj = GameObject.FindGameObjectWithTag("Player");
     }
     public void Start()
     {
-        playerObj = GameObject.FindGameObjectWithTag("Player");
         playerObj.GetComponent<PlayerHealth>().OnDead += GameOver;
     }
 

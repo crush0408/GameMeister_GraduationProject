@@ -52,6 +52,7 @@ public class GroundBossScript : BossBase
             case Global.EnemyFsm.PatternMove:
                 Jump();
                 Debug.Log("Jump");
+                
                 ChangeState(Global.EnemyFsm.Delay);
                 break;
             case Global.EnemyFsm.Delay:
@@ -80,17 +81,17 @@ public class GroundBossScript : BossBase
         //Debug.Log(myRigid.velocity.y);
 
 
-        //Vector3 startPos = transform.position;
-        //Vector3 lastPos = myTarget.transform.position;
-        //Vector3 middlePos;
-        //if (transform.position.x < myTarget.transform.position.x)
-        //{
-        //    middlePos = startPos + new Vector3(Vector3.Distance(startPos, lastPos) / 2, jumpPower);
-        //}
-        //else
-        //{
-        //    middlePos = startPos + new Vector3(-(Vector3.Distance(startPos, lastPos)) / 2, jumpPower);
-        //}
-        //transform.DOPath(new[] { middlePos, startPos + Vector3.up, middlePos + Vector3.left * 0.8f, lastPos + Vector3.up, middlePos + Vector3.right * 1, lastPos + Vector3.up }, 1f, PathType.CubicBezier).SetEase(Ease.Unset);
+        Vector3 startPos = transform.position;
+        Vector3 lastPos = myTarget.transform.position;
+        Vector3 middlePos;
+        if (transform.position.x < myTarget.transform.position.x)
+        {
+            middlePos = startPos + new Vector3(Vector3.Distance(startPos, lastPos) / 2, jumpPower);
+        }
+        else
+        {
+            middlePos = startPos + new Vector3(-(Vector3.Distance(startPos, lastPos)) / 2, jumpPower);
+        }
+        transform.DOPath(new[] { middlePos, startPos + Vector3.up, middlePos + Vector3.left * 0.8f, lastPos + Vector3.up, middlePos + Vector3.right * 1, lastPos + Vector3.up }, 1f, PathType.CubicBezier).SetEase(Ease.Unset);
     }
 }
