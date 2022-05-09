@@ -3547,7 +3547,7 @@ MonoBehaviour:
   isDie: 0
   enemyHealth: {fileID: 0}
   patternOrder: 0
-  jumpPower: 0
+  jumpPower: 3
   speechSystem: {fileID: 0}
   datas: []
   isTalkEnd: 0
@@ -3572,7 +3572,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &1995887262
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3589,10 +3589,10 @@ BoxCollider2D:
   m_Offset: {x: -0.03323102, y: -0.09969342}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5000001, y: 0.2185512}
+    oldSize: {x: 36, y: 16}
+    newSize: {x: 36, y: 16}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
