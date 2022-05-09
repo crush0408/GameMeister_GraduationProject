@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerBasicAttack : MonoBehaviour
 {
     private float damage = 5f;
+    [SerializeField]
+    private bool push = false;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
@@ -12,7 +14,7 @@ public class PlayerBasicAttack : MonoBehaviour
             IDamageable target = collision.GetComponent<IDamageable>();
             if(target != null)
             {
-                target.OnDamage(damage, transform.position);
+                target.OnDamage(damage, transform.position,push);
                 //Debug.Log("적 기본 공격 피격");
             }
         }

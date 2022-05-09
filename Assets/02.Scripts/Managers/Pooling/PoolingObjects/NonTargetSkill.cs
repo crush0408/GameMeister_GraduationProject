@@ -5,16 +5,6 @@ using UnityEngine;
 public class NonTargetSkill : PoolableMono
 {
     public float damage = 0f;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
@@ -23,9 +13,7 @@ public class NonTargetSkill : PoolableMono
             IDamageable target = collision.GetComponent<IDamageable>();
             if (target != null)
             {
-                target.OnDamage(damage, transform.position);
-                Debug.Log("적 스킬 피격");
-                Debug.Log(damage);
+                target.OnDamage(damage, transform.position,true);
             }
         }
     }

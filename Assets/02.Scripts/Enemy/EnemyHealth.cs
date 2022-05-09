@@ -20,27 +20,24 @@ public class EnemyHealth : LivingEntity
     }
     private void Start()
     {
-        GameObject a = Instantiate(hpBarPrefab, this.transform);
-        hpBar = a.GetComponent<EnemyHPBar>();
+        GameObject hpbar = Instantiate(hpBarPrefab, this.transform);
+        hpBar = hpbar.GetComponent<EnemyHPBar>();
         hpBar.InitHealth(health, initHealth);
     }
-    private void Update()
-    {
-        
-        
-        
-    }
     
-    private IEnumerator ShowDamagedEffect(Vector2 pos)
+    
+    private IEnumerator ShowDamagedEffect(Vector2 pos, bool push)
     {
 
         sr.color = Color.red; // 피격 예시
         //Debug.Log(sr.color);
-        int reaction = transform.position.x - pos.x > 0 ? 1 : -1;
-        rigid.AddForce(new Vector2(reaction * 5, 1), ForceMode2D.Impulse);
+        if (push)
+        {
+            int reaction = transform.position.x - pos.x > 0 ? 1 : -1;
+            rigid.AddForce(new Vector2(reaction * 5, 1), ForceMode2D.Impulse);
+        }
         yield return new WaitForSeconds(damagedEffectTime);
         sr.color = temp;
-        Debug.Log(health);
     }
     public override void HealHealth(float value)
     {
@@ -54,13 +51,13 @@ public class EnemyHealth : LivingEntity
         
         Debug.Log("Dead");
     }
-    public override void OnDamage(float damage, Vector2 hitPosition)
+    public override void OnDamage(float damage, Vector2 hitPosition, bool push)
     {
         if (isDead) return;
 
-        base.OnDamage(damage, hitPosition);
+        base.OnDamage(damage, hitPosition,push);
         hpBar.SetHpBar(health);
-        StartCoroutine(ShowDamagedEffect(hitPosition));
+        StartCoroutine(ShowDamagedEffect(hitPosition, push));
         CameraActionScript.ShakeCam(2f, 0.2f,false);
 
     }

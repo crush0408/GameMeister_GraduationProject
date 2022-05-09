@@ -47,10 +47,8 @@ public class EnemyBase : MonoBehaviour
     public virtual IEnumerator Patrol(float random)
     {
         Vector2 dir = new Vector2(random, 0);
-        Debug.Log("Dir : " + dir);
         dir.Normalize();
-        Debug.Log("Normalize Dir : " + dir);
-        myVelocity = dir * (speed);
+        myVelocity = dir * speed;
         myRigid.velocity = myVelocity;
 
         if (dir.x > 0)
@@ -70,12 +68,15 @@ public class EnemyBase : MonoBehaviour
         myAnim.Play("Dead", -1, 0f);
         Debug.Log("Die");
     }
+    public virtual void DeadAnimScript()
+    {
+        Destroy(this.gameObject);
+    }
     public virtual void Move()
     {
         FlipSprite();
         myAnim.SetBool("isChase", true);
     }
-
 
     
     public virtual void Attack()
@@ -86,7 +87,8 @@ public class EnemyBase : MonoBehaviour
     }
     public virtual void AttackAfter()
     {
-        StartCoroutine(AttackDelay());
+        isAttacking = false;
+        //StartCoroutine(AttackDelay());
     }
     private IEnumerator AttackDelay()
     {

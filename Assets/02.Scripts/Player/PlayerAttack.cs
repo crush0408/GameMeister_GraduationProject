@@ -6,13 +6,16 @@ public class PlayerAttack : MonoBehaviour
 {
     private Animator anim;
     private PlayerInput playerInput;
-    private SpriteRenderer sr;
 
     [Header("전체 스킬 리스트")]
     public List<SkillObject> skillList;
 
     [Header("입력 받은 스킬")]
     public SkillObject inputSkill;
+    [SerializeField]
+
+    [Header("VisualTransform관련")]
+    public GameObject visualGroup;
     [SerializeField]
     private Vector2 boxSize = Vector2.zero;
     [SerializeField]
@@ -21,8 +24,6 @@ public class PlayerAttack : MonoBehaviour
     private Transform spinAttackTrm;
     [SerializeField]
     private Transform sustainAttackTrm;
-    public Vector3 temp;
-    public Vector3 sustainTemp;
 
     public bool isAttacking = false;
     private int combo = 0;
@@ -31,12 +32,10 @@ public class PlayerAttack : MonoBehaviour
 
     void Start()
     {
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
         playerInput = GetComponent<PlayerInput>();
-        sr = GetComponent<SpriteRenderer>();
         skillSlotsScript = GetComponentInChildren<SkillSlotsUI>();
-        temp = onePos.localPosition;
-        sustainTemp = sustainAttackTrm.localPosition;
+        
         for (int i = 0; i < skillList.Count; i++)
         {
             StartCoroutine(skillList[i].coolTime());
@@ -104,72 +103,27 @@ public class PlayerAttack : MonoBehaviour
                 {
                     if(inputSkill.skillName == "FastMagic")
                     {
-                        if (sr.flipX)
-                        {
-                            onePos.localPosition = new Vector3(-temp.x, temp.y, temp.z);
-                        }
-                        else
-                        {
-                            onePos.localPosition = temp;
-                        }
-
                         Collider2D[] cols = Physics2D.OverlapBoxAll(onePos.position, boxSize ,0f);
                         foreach (Collider2D col in cols)
                         {
-                            // TODO : 하나만 공격
                             IDamageable target = col.GetComponent<IDamageable>();
 
                             if (target != null && col.gameObject.CompareTag("Enemy"))
                             {
-                                Attack();
-                                Debug.Log(inputSkill.attackDamage);
-                                target.OnDamage(inputSkill.attackDamage, this.transform.position);
-                                
-                                PoolableMono poolingObject = PoolManager.Instance.Pop("FastMagic");
-                                poolingObject.transform.position = col.transform.position;
-                                
-                                skillList[i].remainCoolTime = skillList[i].initCoolTime;
-                                StartCoroutine(skillList[i].coolTime());
+                                //target.OnDamage(inputSkill.attackDamage, this.transform.position);
+                                Attack("FastMagic",col.transform,i);
+                                break; // 하나만 타겟팅
                             }
                         }
                     }
                     else if(inputSkill.skillName == "SpinAttack")
                     {
-                        PoolableMono poolingObject = PoolManager.Instance.Pop("SpinAttack");
-                        if (sr.flipX)
-                        {
-                            poolingObject.GetComponent<SpriteRenderer>().flipX = true;
-                        }
-                        else
-                        {
-                            poolingObject.GetComponent<SpriteRenderer>().flipX = false;
-                        }
-                        poolingObject.transform.position = spinAttackTrm.position;
-                        poolingObject.GetComponent<NonTargetSkill>().damage = inputSkill.attackDamage;
-                        Attack();
-                        skillList[i].remainCoolTime = skillList[i].initCoolTime;
-                        StartCoroutine(skillList[i].coolTime());
+                        Attack("SpinAttack",spinAttackTrm,i);
+                        
                     }
                     else if(inputSkill.skillName == "SustainMagic")
                     {
-                        Debug.Log("스킬 시작");
-                        PoolableMono poolingObject = PoolManager.Instance.Pop("SustainMagic");
-                        if (sr.flipX)
-                        {
-                            poolingObject.GetComponent<SpriteRenderer>().flipX = true;
-                            sustainAttackTrm.localPosition = new Vector3(-(sustainTemp.x), sustainTemp.y, sustainTemp.z);
-                        }
-                        else
-                        {
-                            poolingObject.GetComponent<SpriteRenderer>().flipX = false;
-                            sustainAttackTrm.localPosition = sustainTemp;
-                        }
-                        poolingObject.transform.position = sustainAttackTrm.position;
-                        poolingObject.GetComponent<NonTargetSkill>().damage = inputSkill.attackDamage;
-                        Attack();
-                        skillList[i].remainCoolTime = skillList[i].initCoolTime;
-
-                        StartCoroutine(skillList[i].coolTime());
+                        Attack("SustainMagic",sustainAttackTrm,i);
                     }
                     else
                     {
@@ -188,26 +142,24 @@ public class PlayerAttack : MonoBehaviour
             }
         }
     }
-    private void Attack()
+    private void Attack(string skillName, Transform skillTrm, int index)
     {
         isAttacking = true;
         anim.Play(inputSkill.skillName, -1, 0f);
+        PoolableMono poolingObject = PoolManager.Instance.Pop(skillName);
+        poolingObject.transform.localScale = visualGroup.transform.localScale;
+        poolingObject.transform.position = skillTrm.position;
+        poolingObject.GetComponent<NonTargetSkill>().damage = skillList[index].attackDamage;
+        skillList[index].remainCoolTime = skillList[index].initCoolTime;
+        StartCoroutine(skillList[index].coolTime());
     }
     public void AttackEnd()
     {
         isAttacking = false;
     }
-    
-    public void BasicAttackEnd1()
+    public void BasicAttackEnd(int value)
     {
-        if(anim.GetInteger("BasicAttack") != 1)
-        {
-            isAttacking = false;
-        }
-    }
-    public void BasicAttackEnd2()
-    {
-        if (anim.GetInteger("BasicAttack") != 2)
+        if(anim.GetInteger("BasicAttack") != value)
         {
             isAttacking = false;
         }

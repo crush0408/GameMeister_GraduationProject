@@ -15,7 +15,7 @@ public class PlayerHealth : LivingEntity
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>();
+        sr = GetComponentInChildren<SpriteRenderer>();
         healthScript = GetComponentInChildren<PlayerHPBar>();
         temp = sr.color;
     }
@@ -28,11 +28,14 @@ public class PlayerHealth : LivingEntity
         //healthScript.InitHealth(health, initHealth);
     }
 
-    private IEnumerator ShowDamagedEffect(Vector2 pos)
+    private IEnumerator ShowDamagedEffect(Vector2 pos,bool push)
     {
         sr.color = Color.red; // 피격 예시
-        int reaction = transform.position.x - pos.x > 0 ? 1 : -1;
-        rigid.AddForce(new Vector2(reaction * 5, 1), ForceMode2D.Impulse);
+        if (push)
+        {
+            int reaction = transform.position.x - pos.x > 0 ? 1 : -1;
+            rigid.AddForce(new Vector2(reaction * 5, 1), ForceMode2D.Impulse);
+        }
         yield return new WaitForSeconds(damagedEffectTime);
         sr.color = temp;
     }
@@ -48,12 +51,13 @@ public class PlayerHealth : LivingEntity
         // 게임 매니저에서 OnDeath() 액션에 추가
     }
 
-    public override void OnDamage(float damage, Vector2 hitPosition)
+    public override void OnDamage(float damage, Vector2 hitPosition, bool push = true)
     {
         if (isDead) return;
-        StartCoroutine(ShowDamagedEffect(hitPosition));
+        Debug.Log(push);
+        base.OnDamage(damage, hitPosition,push);
+        StartCoroutine(ShowDamagedEffect(hitPosition,push));
         CameraActionScript.ShakeCam(4f, 0.3f, true);
-        base.OnDamage(damage, hitPosition);
         //healthScript.SetHP(health);
     }
 }
