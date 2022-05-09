@@ -22,6 +22,7 @@ public class EnemyHealth : LivingEntity
     {
         GameObject hpbar = Instantiate(hpBarPrefab, this.transform);
         hpBar = hpbar.GetComponent<EnemyHPBar>();
+        hpBar.SetInitPosition();
         hpBar.InitHealth(health, initHealth);
     }
     

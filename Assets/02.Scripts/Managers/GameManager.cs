@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     }
     public void Start()
     {
+        playerObj = GameObject.FindGameObjectWithTag("Player");
         playerObj.GetComponent<PlayerHealth>().OnDead += GameOver;
     }
 

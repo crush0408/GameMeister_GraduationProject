@@ -8,7 +8,7 @@ public class EnemyHPBar : HpBar
     
     private void Start()
     {
-        SetInitPosition();
+        // SetInitPosition();
     }
 
     public void SetInitPosition()
@@ -16,7 +16,5 @@ public class EnemyHPBar : HpBar
         Collider2D col = GetComponentInParent<Collider2D>();
         float y = (col.bounds.size.y / 2) + 0.6f;
         transform.localPosition = new Vector3(0, y, 0);
-
-        fill = GetComponentInChildren<Image>();
     }
 }

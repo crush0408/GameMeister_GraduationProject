@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class HpBar : MonoBehaviour
 {
-    protected Image fill;
+    [SerializeField] protected Image fill;
 
     protected float _hp = 0f;
     protected float _maxHp = 0f;
