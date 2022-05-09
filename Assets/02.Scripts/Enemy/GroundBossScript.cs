@@ -78,19 +78,19 @@ public class GroundBossScript : BossBase
         //애니메이션이 안돼요
         //myAnim.SetFloat("tree", myRigid.velocity.y);
         //Debug.Log(myRigid.velocity.y);
-        
-        
-        Vector3 startPos = transform.position;
-        Vector3 lastPos = myTarget.transform.position;
-        Vector3 middlePos;
-        if (transform.position.x < myTarget.transform.position.x)
-        {
-            middlePos = startPos + new Vector3(Vector3.Distance(startPos, lastPos) / 2, jumpPower);
-        }
-        else
-        {
-            middlePos = startPos + new Vector3(-(Vector3.Distance(startPos, lastPos)) / 2, jumpPower);
-        }
-        transform.DOPath(new[] { middlePos, startPos + Vector3.up, middlePos + Vector3.left * 0.8f, lastPos + Vector3.up, middlePos + Vector3.right * 1, lastPos + Vector3.up }, 1f, PathType.CubicBezier).SetEase(Ease.Unset);
+
+
+        //Vector3 startPos = transform.position;
+        //Vector3 lastPos = myTarget.transform.position;
+        //Vector3 middlePos;
+        //if (transform.position.x < myTarget.transform.position.x)
+        //{
+        //    middlePos = startPos + new Vector3(Vector3.Distance(startPos, lastPos) / 2, jumpPower);
+        //}
+        //else
+        //{
+        //    middlePos = startPos + new Vector3(-(Vector3.Distance(startPos, lastPos)) / 2, jumpPower);
+        //}
+        //transform.DOPath(new[] { middlePos, startPos + Vector3.up, middlePos + Vector3.left * 0.8f, lastPos + Vector3.up, middlePos + Vector3.right * 1, lastPos + Vector3.up }, 1f, PathType.CubicBezier).SetEase(Ease.Unset);
     }
 }
