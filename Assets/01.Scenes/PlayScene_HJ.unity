@@ -1522,7 +1522,7 @@ GameObject:
   - component: {fileID: 419317962}
   - component: {fileID: 419317961}
   - component: {fileID: 419317960}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: GroundMonkVisualGroup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2080,7 +2080,7 @@ GameObject:
   - component: {fileID: 607142501}
   - component: {fileID: 607142503}
   - component: {fileID: 607142502}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: AttackCol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
