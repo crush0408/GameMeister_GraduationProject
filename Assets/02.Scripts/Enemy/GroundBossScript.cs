@@ -7,14 +7,18 @@ public class GroundBossScript : BossBase
 {
     Vector2 playerPos = Vector2.zero;
 
+    private bool isHealing = false;
     private int randomNum = 0;
     private IEnumerator attackDelay;
 
-    private float jumpAtkDist = 10f;
+    private float jumpAtkDist; // 점프 공격 사정거리
 
     private void Start()
     {
         Init();
+
+        enemyHealth.HealHealth(-30);
+        Debug.Log("적 초기 체력 : " + enemyHealth.health);
     }
 
     public override void Init()
@@ -26,6 +30,7 @@ public class GroundBossScript : BossBase
         delayTime = 2f; // 에너미 자동 공격 딜레이에 쓰겠음
         sightDistance = 15f;    // 시야 범위
         attackDistance = 4f;  // 공격 범위
+        jumpAtkDist = 8f;
         rightDirection = Vector3.one;   // 오른쪽 보고 시작
         leftDirection = new Vector3(-rightDirection.x, rightDirection.y, rightDirection.z);
         jumpPower = 7f;
@@ -84,6 +89,14 @@ public class GroundBossScript : BossBase
     {
         // Debug.Log("FSM : " + myFsm);
 
+        // 공격 중이 아닌 해당 상태에서 Chase 이전 HP 체크 후 힐 필요함
+        if ((enemyHealth.health < 60) && !isHealing)
+        {
+            isHealing = true;
+            healCoroutine = HealCoroutine(1f, 3f);
+            StartCoroutine(healCoroutine);
+        }
+
         if (XPosGap() < attackDistance) // 공격 사정거리 안일 때
         {
             Debug.Log("Attack 타입으로 바뀌어야 함");
@@ -93,11 +106,11 @@ public class GroundBossScript : BossBase
         }
         else if (XPosGap() < jumpAtkDist)   // 공격 사정거리 밖, 점프공격 사정거리 안
         {
-            Debug.Log("점프 어택");
+            // Debug.Log("점프 어택");
         }
         else // 플레이어에게 다가가야 함
         {
-            Debug.Log("플레이어와의 거리 : " + XPosGap());
+            // Debug.Log("플레이어와의 거리 : " + XPosGap());
             Move();
 
             myAnim.SetBool("isRun", true);
