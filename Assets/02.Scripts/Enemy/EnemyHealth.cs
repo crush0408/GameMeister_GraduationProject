@@ -58,6 +58,10 @@ public class EnemyHealth : LivingEntity
 
         base.OnDamage(damage, hitPosition,push);
         hpBar.SetHpBar(health);
+        PoolableMono a = PoolManager.Instance.Pop("DamageText");
+        a.transform.position = this.transform.position;
+        a.GetComponent<DamageText>().PlayFloating(damage.ToString());
+        
         StartCoroutine(ShowDamagedEffect(hitPosition, push));
         CameraActionScript.ShakeCam(2f, 0.2f,false);
 
