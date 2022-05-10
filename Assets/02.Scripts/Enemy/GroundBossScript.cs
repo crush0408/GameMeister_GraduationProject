@@ -7,7 +7,7 @@ public class GroundBossScript : BossBase
 {
     Vector2 playerPos = Vector2.zero;
 
-    int randomNum = 0;
+    private int randomNum;
 
     private void Start()
     {
@@ -18,10 +18,10 @@ public class GroundBossScript : BossBase
         base.Init();
 
         myFsm = Global.EnemyFsm.Chase;
-        speed = 3f;
+        speed = 8f;
         delayTime = 2f;
         sightDistance = 15f;    // 시야 범위
-        attackDistance = 3f;  // 공격 범위
+        attackDistance = 4f;  // 공격 범위
         rightDirection = Vector3.one;   // 오른쪽 보고 시작
         leftDirection = new Vector3(-rightDirection.x, rightDirection.y, rightDirection.z);
         jumpPower = 7f;
@@ -52,7 +52,6 @@ public class GroundBossScript : BossBase
                 break;
             case Global.EnemyFsm.Attack:
                 Attack();
-                ChangeState(Global.EnemyFsm.AttackAfter);
                 break;
             case Global.EnemyFsm.AttackAfter:
                 AttackAfter();
@@ -74,29 +73,38 @@ public class GroundBossScript : BossBase
         }
     }
 
+    // 타겟(플레이어)와 에너미(나)의 거리 반환
+    public float GapX()  // GapX(myTarget.transform.position, transform.position)
+    {
+        return Mathf.Abs(myTarget.transform.position.x - transform.position.x);
+    }
+
+    public override void Move()
+    {
+        base.Move();
+
+        Vector2 dir = myTarget.transform.position - this.transform.position;
+        dir.y = 0f;
+        dir.Normalize();
+
+        myVelocity = dir * speed;
+        myRigid.velocity = myVelocity;
+    }
+
     public void Chase()
     {
-        if (Mathf.Abs(myTarget.transform.position.x - transform.position.x) >= attackDistance)
+        if (GapX() >= attackDistance)
         {
-            Debug.Log("현재 거리 : " + Mathf.Abs(myTarget.transform.position.x - transform.position.x));
-            StartCoroutine(Patrol(myTarget.transform.position.x - transform.position.x)); // 이거 코루틴 어디에 언제 어떻게 쓰는지 물어보기
-            /*
-            randomNum = Random.Range(1, 100);
-            if (randomNum < 30)
-            {
-                myAnim.SetBool("isRoll", true);
-            }
-            else
-            {
-                myAnim.SetBool("isRun", true);
-            }
-            */
+            Debug.Log("플레이어와의 거리 : " + GapX());
+            Move();
+
             myAnim.SetBool("isRun", true);
         }
         else
         {
+            Debug.Log("change to attack type");
+            
             myAnim.SetBool("isRun", false);
-
             ChangeState(Global.EnemyFsm.Attack);
         }
     }
@@ -104,23 +112,58 @@ public class GroundBossScript : BossBase
     public override void Attack()
     {
         base.Attack();
-        myAnim.SetTrigger("isAtk1");
+        Debug.Log("State : " + myFsm);
 
-        if (Mathf.Abs(myTarget.transform.position.x - transform.position.x) >= attackDistance)
+        randomNum = Random.Range(0, 100);
+        Debug.Log("Random Number : " + randomNum);
+        if (randomNum < 30)
         {
-            ChangeState(Global.EnemyFsm.Chase);
+            myAnim.SetTrigger("isAtk1");
         }
+        else if (randomNum < 60)
+        {
+            myAnim.SetTrigger("isAtk2");
+        }
+        else if (randomNum < 90)
+        {
+            myAnim.SetTrigger("isAtk3");
+        }
+        else
+        {
+            Debug.Log("헤헤 아직 없음");
+        }
+
+        myAnim.SetTrigger("isAtk1");
     }
 
     public override void AttackAfter()
     {
         base.AttackAfter();
+        Debug.Log("State : " + myFsm);
+
+        if (GapX() >= attackDistance)
+        {
+            Debug.Log("멀어짐");
+            ChangeState(Global.EnemyFsm.Chase);
+        }
+        else
+        {
+            StartCoroutine(AttackDelay(3f));
+        }
+    }
+
+    public IEnumerator AttackDelay(float delay)
+    {
+        Debug.Log("코루틴 작동 확인용");
+
+        yield return new WaitForSeconds(delay);
+        ChangeState(Global.EnemyFsm.Attack);
     }
 
     public override void Jump()
     {
         base.Jump();
-        //Jump
+        // Jump
         // 현재 위치 에서 플레이어 위치까지 포물선을 그리면서 뛰게 만들기
         // 현재 Jump라는 트리거를 만들어둔 상태 (Animator에서는 연결 x)
         // Animation이 JumpUp과 JumpDown있는데, 올라갈때는 JumpUp이 실행되고 내려올때는 JumpDown이 실행되게
