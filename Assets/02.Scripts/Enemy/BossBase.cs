@@ -64,7 +64,7 @@ public class BossBase : EnemyBase, INpc_Monster
     }
     protected IEnumerator HealCoroutine(float amount, float time)
     {
-        while (enemyHealth.health > 80)
+        
         {
             Debug.Log("힐 이전 적 체력 : " + enemyHealth.health);
             enemyHealth.HealHealth(amount);

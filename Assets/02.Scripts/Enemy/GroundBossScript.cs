@@ -27,7 +27,7 @@ public class GroundBossScript : BossBase
 
         myFsm = Global.EnemyFsm.Chase;
         speed = 6f;
-        delayTime = 2f; // 에너미 자동 공격 딜레이에 쓰겠음
+        delayTime = 2f; // 에너미 자동 공격 딜레이에 쓰겠음 
         sightDistance = 15f;    // 시야 범위
         attackDistance = 4f;  // 공격 범위
         jumpAtkDist = 8f;
@@ -60,17 +60,18 @@ public class GroundBossScript : BossBase
                 AttackAfter();
                 break;
             case Global.EnemyFsm.Heal:
+                if(healCoroutine == null)
+                {
+                    healCoroutine = HealCoroutine(10, 1);
+                    StartCoroutine(healCoroutine);
+                }
                 break;
             default:
                 break;
         }
     }
 
-    // 타겟(플레이어)와 에너미(나)의 거리 반환
-    public float XPosGap()  // GapX(myTarget.transform.position, transform.position)
-    {
-        return Mathf.Abs(myTarget.transform.position.x - transform.position.x);
-    }
+    
 
     // 타겟(플레이어) 위치로 이동
     public override void Move()
@@ -85,6 +86,7 @@ public class GroundBossScript : BossBase
         myRigid.velocity = myVelocity;
     }
 
+    // werqreq
     public void Chase()
     {
         // Debug.Log("FSM : " + myFsm);
@@ -97,14 +99,14 @@ public class GroundBossScript : BossBase
             StartCoroutine(healCoroutine);
         }
 
-        if (XPosGap() < attackDistance) // 공격 사정거리 안일 때
+        if (DistanceDecision(attackDistance)) // 공격 사정거리 안일 때
         {
             Debug.Log("Attack 타입으로 바뀌어야 함");
 
             myAnim.SetBool("isRun", false);
             ChangeState(Global.EnemyFsm.Attack);
         }
-        else if (XPosGap() < jumpAtkDist)   // 공격 사정거리 밖, 점프공격 사정거리 안
+        else if (DistanceDecision(jumpAtkDist))   // 공격 사정거리 밖, 점프공격 사정거리 안
         {
             // Debug.Log("점프 어택");
         }
@@ -116,6 +118,7 @@ public class GroundBossScript : BossBase
             myAnim.SetBool("isRun", true);
         }
     }
+
 
     public override void Attack()
     {
@@ -154,7 +157,7 @@ public class GroundBossScript : BossBase
 
         if (attackDelay == null)
         {
-            attackDelay = AttackDelay(delayTime   );
+            attackDelay = AttackDelay(delayTime);
             StartCoroutine(attackDelay);
         }
     }
@@ -165,7 +168,7 @@ public class GroundBossScript : BossBase
 
         yield return new WaitForSeconds(delay);
 
-        if (XPosGap() <= attackDistance)
+        if (DistanceDecision(attackDistance))
         {
             attackDelay = null;
             ChangeState(Global.EnemyFsm.Attack);
