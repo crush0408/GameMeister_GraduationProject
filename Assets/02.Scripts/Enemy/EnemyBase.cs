@@ -16,6 +16,7 @@ public class EnemyBase : MonoBehaviour
     public float sightDistance;
     public float attackDistance;
     public float delayTime;
+    public bool getHit;
     public bool isAttacking;
     public bool isDie;
     public EnemyHealth enemyHealth;
@@ -78,7 +79,19 @@ public class EnemyBase : MonoBehaviour
         myAnim.SetBool("isChase", true);
     }
 
-    
+    protected void GetHit()
+    {
+        FlipSprite();
+        if(!enemyHealth.isDead)
+        {
+            myAnim.Play("Hit");
+            if(isAttacking) isAttacking = false;
+        }
+    }
+    public virtual void GetHitAfter()
+    {
+        getHit = false;
+    }
     public virtual void Attack()
     {
         Stop();

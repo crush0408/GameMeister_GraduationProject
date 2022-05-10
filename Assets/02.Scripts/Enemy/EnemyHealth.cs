@@ -31,7 +31,6 @@ public class EnemyHealth : LivingEntity
     {
 
         sr.color = Color.red; // 피격 예시
-        //Debug.Log(sr.color);
         if (push)
         {
             int reaction = transform.position.x - pos.x > 0 ? 1 : -1;
@@ -56,6 +55,7 @@ public class EnemyHealth : LivingEntity
     {
         if (isDead) return;
 
+        GetComponent<EnemyBase>().getHit = true;
         base.OnDamage(damage, hitPosition,push);
         hpBar.SetHpBar(health);
         PoolableMono a = PoolManager.Instance.Pop("DamageText");

@@ -30,10 +30,15 @@ public class GhostEnemyScript : FlyingEnemyBase
         {
             switch (myFsm)
             {
+                
                 case Global.EnemyFsm.None:
                     break;
                 case Global.EnemyFsm.Idle:
-                    if(DistanceDecision(sightDistance))
+                    if(getHit)
+                    {
+                        ChangeState(Global.EnemyFsm.GetHit);
+                    }
+                    else if(DistanceDecision(sightDistance))
                     {
                         ChangeState(Global.EnemyFsm.Chase);
                     }
@@ -44,7 +49,11 @@ public class GhostEnemyScript : FlyingEnemyBase
                     }
                     break;
                 case Global.EnemyFsm.Patrol:
-                    if(DistanceDecision(attackDistance))
+                    if (getHit)
+                    {
+                        ChangeState(Global.EnemyFsm.GetHit);
+                    }
+                    else if (DistanceDecision(attackDistance))
                     {
                         ChangeState(Global.EnemyFsm.Attack);
                     }
@@ -63,7 +72,11 @@ public class GhostEnemyScript : FlyingEnemyBase
                 case Global.EnemyFsm.Heal:
                     break;
                 case Global.EnemyFsm.Chase:
-                    if(!DistanceDecision(sightDistance))
+                    if (getHit)
+                    {
+                        ChangeState(Global.EnemyFsm.GetHit);
+                    }
+                    else if(!DistanceDecision(sightDistance))
                     {
                         ChangeState(Global.EnemyFsm.Idle);
                     }
@@ -74,15 +87,38 @@ public class GhostEnemyScript : FlyingEnemyBase
                     base.Flying();
                     break;
                 case Global.EnemyFsm.Attack:
+                    if (getHit)
+                    {
+                        ChangeState(Global.EnemyFsm.GetHit);
+                    }
                     Attack();
                     ChangeState(Global.EnemyFsm.AttackAfter);
                     break;
                 case Global.EnemyFsm.AttackAfter:
+                    if (getHit)
+                    {
+                        ChangeState(Global.EnemyFsm.GetHit);
+                    }
                     ChangeState(Global.EnemyFsm.Delay);
+                    break;
+                case Global.EnemyFsm.GetHit:
+                    base.GetHit();
+                    ChangeState(Global.EnemyFsm.GetHitAfter);
+                    break;
+                case Global.EnemyFsm.GetHitAfter:
+                    if(!getHit)
+                    {
+                        ChangeState(Global.EnemyFsm.Idle);
+                    }
                     break;
                 case Global.EnemyFsm.Delay:
                     // Do Not Any Action
                     // Only Transition
+                    if (getHit)
+                    {
+                        ChangeState(Global.EnemyFsm.GetHit);
+                    }
+
                     if (!isAttacking)
                     {
                         ChangeState(Global.EnemyFsm.Idle);
@@ -126,5 +162,9 @@ public class GhostEnemyScript : FlyingEnemyBase
     public override void DeadAnimScript()
     {
         base.DeadAnimScript();
+    }
+    public override void GetHitAfter()
+    {
+        base.GetHitAfter();
     }
 }
