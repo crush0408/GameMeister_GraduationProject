@@ -13,6 +13,7 @@ public class GroundBossScript : BossBase
     {
         Init();
     }
+
     public override void Init()
     {
         base.Init();
@@ -52,6 +53,7 @@ public class GroundBossScript : BossBase
                 break;
             case Global.EnemyFsm.Attack:
                 Attack();
+                ChangeState(Global.EnemyFsm.AttackAfter);
                 break;
             case Global.EnemyFsm.AttackAfter:
                 AttackAfter();
@@ -200,7 +202,6 @@ public class GroundBossScript : BossBase
 
     Vector3 BezierCurve(float t)
     {
-
         Debug.Log(middlePos);
         Vector2 p1 = Vector2.Lerp(startPos, middlePos, t);
         Vector2 p2 = Vector2.Lerp(middlePos, lastPos, t);
