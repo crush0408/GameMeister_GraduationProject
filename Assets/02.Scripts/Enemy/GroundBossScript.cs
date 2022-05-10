@@ -7,7 +7,8 @@ public class GroundBossScript : BossBase
 {
     Vector2 playerPos = Vector2.zero;
 
-    private int randomNum;
+    private int randomNum = 0;
+    private IEnumerator attackDelay;
 
     private void Start()
     {
@@ -19,8 +20,8 @@ public class GroundBossScript : BossBase
         base.Init();
 
         myFsm = Global.EnemyFsm.Chase;
-        speed = 8f;
-        delayTime = 2f;
+        speed = 6f;
+        delayTime = 2f; // 에너미 자동 공격 딜레이에 쓰겠음
         sightDistance = 15f;    // 시야 범위
         attackDistance = 4f;  // 공격 범위
         rightDirection = Vector3.one;   // 오른쪽 보고 시작
@@ -36,51 +37,34 @@ public class GroundBossScript : BossBase
         }
     }
 
-    public void FsmUpdate()
+    public void FsmUpdate() // 매 프레임마다 실행
     {
         switch (myFsm)
         {
             case Global.EnemyFsm.None:
-                break;
-            case Global.EnemyFsm.Idle:
-                break;
-            case Global.EnemyFsm.Patrol:
-                break;
-            case Global.EnemyFsm.Heal:
                 break;
             case Global.EnemyFsm.Chase:
                 Chase();
                 break;
             case Global.EnemyFsm.Attack:
                 Attack();
-                ChangeState(Global.EnemyFsm.AttackAfter);
                 break;
             case Global.EnemyFsm.AttackAfter:
                 AttackAfter();
                 break;
-            case Global.EnemyFsm.PatternMove:
-                //Jump();
-                //Debug.Log("Jump");
-                
-                //ChangeState(Global.EnemyFsm.Delay);
-                break;
-            case Global.EnemyFsm.Delay:
-                if(!isAttacking)
-                {
-                    ChangeState(Global.EnemyFsm.PatternMove);
-                }
-                break;
+
             default:
                 break;
         }
     }
 
     // 타겟(플레이어)와 에너미(나)의 거리 반환
-    public float GapX()  // GapX(myTarget.transform.position, transform.position)
+    public float XPosGap()  // GapX(myTarget.transform.position, transform.position)
     {
         return Mathf.Abs(myTarget.transform.position.x - transform.position.x);
     }
 
+    // 타겟(플레이어) 위치로 이동
     public override void Move()
     {
         base.Move();
@@ -95,16 +79,18 @@ public class GroundBossScript : BossBase
 
     public void Chase()
     {
-        if (GapX() >= attackDistance)
+        // Debug.Log("FSM : " + myFsm);
+
+        if (XPosGap() >= attackDistance)
         {
-            Debug.Log("플레이어와의 거리 : " + GapX());
+            Debug.Log("플레이어와의 거리 : " + XPosGap());
             Move();
 
             myAnim.SetBool("isRun", true);
         }
         else
         {
-            Debug.Log("change to attack type");
+            Debug.Log("Attack 타입으로 바뀌어야 함");
             
             myAnim.SetBool("isRun", false);
             ChangeState(Global.EnemyFsm.Attack);
@@ -113,53 +99,62 @@ public class GroundBossScript : BossBase
 
     public override void Attack()
     {
+        // Debug.Log("FSM : " + myFsm);
         base.Attack();
-        Debug.Log("State : " + myFsm);
 
-        randomNum = Random.Range(0, 100);
-        Debug.Log("Random Number : " + randomNum);
-        if (randomNum < 30)
+        // 랜덤 넘버 구하기
+        if(randomNum == 0)
         {
-            myAnim.SetTrigger("isAtk1");
-        }
-        else if (randomNum < 60)
-        {
-            myAnim.SetTrigger("isAtk2");
-        }
-        else if (randomNum < 90)
-        {
-            myAnim.SetTrigger("isAtk3");
-        }
-        else
-        {
-            Debug.Log("헤헤 아직 없음");
-        }
+            randomNum = Random.Range(1, 90);
+            Debug.Log("Random Number : " + randomNum);
 
-        myAnim.SetTrigger("isAtk1");
+            // 랜덤 공격 애니메이션
+            if (randomNum <= 30)
+            {
+                myAnim.SetTrigger("isAtk1");
+            }
+            else if (randomNum <= 60)
+            {
+                myAnim.SetTrigger("isAtk2");
+            }
+            else // else if (randomNum <= 90)
+            {
+                myAnim.SetTrigger("isAtk3");
+            }
+        }
     }
 
     public override void AttackAfter()
     {
-        base.AttackAfter();
-        Debug.Log("State : " + myFsm);
+        ChangeState(Global.EnemyFsm.AttackAfter);
+        randomNum = 0;
 
-        if (GapX() >= attackDistance)
+        // Debug.Log("FSM : " + myFsm);
+        base.AttackAfter();
+
+        if (attackDelay == null)
         {
-            Debug.Log("멀어짐");
-            ChangeState(Global.EnemyFsm.Chase);
-        }
-        else
-        {
-            StartCoroutine(AttackDelay(3f));
+            attackDelay = AttackDelay(delayTime);
+            StartCoroutine(attackDelay);
         }
     }
 
     public IEnumerator AttackDelay(float delay)
     {
-        Debug.Log("코루틴 작동 확인용");
+        Debug.Log("코루틴 진입");
 
         yield return new WaitForSeconds(delay);
-        ChangeState(Global.EnemyFsm.Attack);
+
+        if (XPosGap() <= attackDistance)
+        {
+            attackDelay = null;
+            ChangeState(Global.EnemyFsm.Attack);
+        }
+        else
+        {
+            attackDelay = null;
+            ChangeState(Global.EnemyFsm.Chase);
+        }
     }
 
     public override void Jump()

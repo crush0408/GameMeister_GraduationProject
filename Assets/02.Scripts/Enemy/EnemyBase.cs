@@ -43,7 +43,7 @@ public class EnemyBase : MonoBehaviour
     {
         myVelocity = Vector2.zero;
         myRigid.velocity = myVelocity;
-        myAnim.SetBool("isChase", false);
+        // myAnim.SetBool("isChase", false);
     }
     public virtual IEnumerator Patrol(float random)
     {
@@ -76,7 +76,7 @@ public class EnemyBase : MonoBehaviour
     public virtual void Move()
     {
         FlipSprite();
-        myAnim.SetBool("isChase", true);
+        // myAnim.SetBool("isChase", true);
     }
 
     protected void GetHit()
