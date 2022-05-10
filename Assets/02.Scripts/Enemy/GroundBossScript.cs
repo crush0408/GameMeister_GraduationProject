@@ -10,6 +10,8 @@ public class GroundBossScript : BossBase
     private int randomNum = 0;
     private IEnumerator attackDelay;
 
+    private float jumpAtkDist = 10f;
+
     private void Start()
     {
         Init();
@@ -52,7 +54,8 @@ public class GroundBossScript : BossBase
             case Global.EnemyFsm.AttackAfter:
                 AttackAfter();
                 break;
-
+            case Global.EnemyFsm.Heal:
+                break;
             default:
                 break;
         }
@@ -81,19 +84,23 @@ public class GroundBossScript : BossBase
     {
         // Debug.Log("FSM : " + myFsm);
 
-        if (XPosGap() >= attackDistance)
+        if (XPosGap() < attackDistance) // 공격 사정거리 안일 때
+        {
+            Debug.Log("Attack 타입으로 바뀌어야 함");
+
+            myAnim.SetBool("isRun", false);
+            ChangeState(Global.EnemyFsm.Attack);
+        }
+        else if (XPosGap() < jumpAtkDist)   // 공격 사정거리 밖, 점프공격 사정거리 안
+        {
+            Debug.Log("점프 어택");
+        }
+        else // 플레이어에게 다가가야 함
         {
             Debug.Log("플레이어와의 거리 : " + XPosGap());
             Move();
 
             myAnim.SetBool("isRun", true);
-        }
-        else
-        {
-            Debug.Log("Attack 타입으로 바뀌어야 함");
-            
-            myAnim.SetBool("isRun", false);
-            ChangeState(Global.EnemyFsm.Attack);
         }
     }
 
@@ -134,7 +141,7 @@ public class GroundBossScript : BossBase
 
         if (attackDelay == null)
         {
-            attackDelay = AttackDelay(delayTime);
+            attackDelay = AttackDelay(delayTime   );
             StartCoroutine(attackDelay);
         }
     }
