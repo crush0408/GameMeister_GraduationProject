@@ -25,7 +25,7 @@ public class GroundBossScript : BossBase
     {
         base.Init();
 
-        myFsm = Global.EnemyFsm.Chase;
+        myFsm = Global.EnemyFsm.None;
         speed = 6f;
         delayTime = 2f; // 에너미 자동 공격 딜레이에 쓰겠음 
         sightDistance = 15f;    // 시야 범위
@@ -49,6 +49,14 @@ public class GroundBossScript : BossBase
         switch (myFsm)
         {
             case Global.EnemyFsm.None:
+                if(enemyHealth.health <= 0)
+                {
+                    Die();  // isDie 역시 이 안에서 처리됨
+                }
+                else
+                {
+                    ChangeState(Global.EnemyFsm.Chase);
+                }
                 break;
             case Global.EnemyFsm.Chase:
                 Chase();
@@ -60,6 +68,7 @@ public class GroundBossScript : BossBase
                 AttackAfter();
                 break;
             case Global.EnemyFsm.Heal:
+                // if ()    // 빠져나가는 조건
                 if(healCoroutine == null)
                 {
                     healCoroutine = HealCoroutine(10, 1);
@@ -178,6 +187,13 @@ public class GroundBossScript : BossBase
             attackDelay = null;
             ChangeState(Global.EnemyFsm.Chase);
         }
+    }
+
+    // Dead 애니메이션 종료 시 이벤트 함수
+    public void DeadAfter() // Base로 빼야 하나?
+    {
+        Debug.Log(this.gameObject.name + " 죽었음");
+        gameObject.SetActive(false);
     }
 
     public override void Jump()

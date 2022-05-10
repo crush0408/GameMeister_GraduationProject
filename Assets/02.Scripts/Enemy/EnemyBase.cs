@@ -66,8 +66,9 @@ public class EnemyBase : MonoBehaviour
     protected void Die()
     {
         isDie = true;
-        myAnim.Play("Dead", -1, 0f);
-        Debug.Log("Die");
+        myAnim.Play("Dead", -1, 0f);    // 죽는 애니메이션 이름 Dead로 통일하기
+        Debug.Log("Die : " + this.gameObject.name);
+        
     }
     public virtual void DeadAnimScript()
     {
