@@ -163,7 +163,7 @@ public class GroundBossScript : BossBase
     public override void Jump()
     {
         base.Jump();
-        // Jump
+        //Jump
         // 현재 위치 에서 플레이어 위치까지 포물선을 그리면서 뛰게 만들기
         // 현재 Jump라는 트리거를 만들어둔 상태 (Animator에서는 연결 x)
         // Animation이 JumpUp과 JumpDown있는데, 올라갈때는 JumpUp이 실행되고 내려올때는 JumpDown이 실행되게
@@ -171,7 +171,16 @@ public class GroundBossScript : BossBase
         playerPos = myTarget.transform.position;
         startPos = transform.position;
         lastPos = playerPos;
-        middlePos = new Vector2(Vector2.Distance(startPos, lastPos) / 2, jumpPower);
+
+        if (startPos.x < lastPos.x)
+        {
+            middlePos = new Vector2(-(Vector2.Distance(startPos, lastPos) / 2), jumpPower);
+
+        }
+        else
+        {
+            middlePos = new Vector2(Vector2.Distance(startPos, lastPos) / 2, jumpPower);
+        }
 
         StartCoroutine(JumpCorutine());
     }

@@ -48,7 +48,7 @@ public class EnemyHealth : LivingEntity
         base.Die();
         //오브젝트 없애는 게 필요할듯 setactive나 destroy
         //DeadCoroutine으로 효과까지
-        
+        MGSound.instance.playEff("blooding");
         Debug.Log("Dead");
     }
     public override void OnDamage(float damage, Vector2 hitPosition, bool push)
@@ -64,7 +64,7 @@ public class EnemyHealth : LivingEntity
         
         StartCoroutine(ShowDamagedEffect(hitPosition, push));
         CameraActionScript.ShakeCam(2f, 0.2f,false);
-
+        MGSound.instance.playEff("hitFace");
     }
     
 }

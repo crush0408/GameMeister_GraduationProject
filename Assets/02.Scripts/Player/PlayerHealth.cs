@@ -60,5 +60,6 @@ public class PlayerHealth : LivingEntity
         healthScript.SetHpText(health, initHealth);
         StartCoroutine(ShowDamagedEffect(hitPosition,push));
         CameraActionScript.ShakeCam(4f, 0.3f, true);
+        MGSound.instance.playEff("hitFace");
     }
 }
