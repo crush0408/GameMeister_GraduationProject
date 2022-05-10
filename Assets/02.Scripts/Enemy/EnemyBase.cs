@@ -95,7 +95,7 @@ public class EnemyBase : MonoBehaviour
         yield return new WaitForSeconds(delayTime);
         isAttacking = false;
     }
-    protected bool DistanceDecision(float distance)
+    protected bool DistanceDecision(float distance) // 플레이어와 적의 거리가 distance보다 작은지 bool 리턴
     {
         float calc = Vector3.Distance(myTarget.transform.position, transform.position);
 

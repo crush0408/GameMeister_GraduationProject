@@ -17,6 +17,10 @@ public class BossBase : EnemyBase, INpc_Monster
     public bool isTalkEnd = false;
     public bool isTalkStart = false;
 
+    protected Vector2 startPos;
+    protected Vector2 lastPos;
+    protected Vector2 middlePos;
+
     public override void Init()
     {
         base.Init();
