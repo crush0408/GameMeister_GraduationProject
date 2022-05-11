@@ -131,6 +131,7 @@ public class GroundBossScript : BossBase
             // 정확히 맞을 수는 없으므로 계산에는 0.5f 더함
 
             // Debug.Log("점프 어택");
+            myAnim.SetBool("isRun", false);
             ChangeState(Global.EnemyFsm.JumpAttackBefore);
         }
         else // 플레이어에게 다가가야 함
@@ -185,6 +186,21 @@ public class GroundBossScript : BossBase
         }
     }
 
+    public void JumpAttackBefore()  // 애니메이션 필요
+    {
+        if (!isJumpAttackBefore)   // 중복 실행 방지
+        {
+            isJumpAttackBefore = true;
+            floatPos = transform.position + new Vector3(0f, 5f, 0f);  // 플로팅 할 만큼의 타겟 포스 지정
+            // floatPos = (floatPos == Vector3.zero) ? transform.position + new Vector3(0f, 3.5f, 0f) : floatPos;
+
+            Debug.Log("한 번만");
+            // StartCoroutine(Float(5f, 10f));  // 공중부양하는 함수 만들기
+
+            StartCoroutine(JumpAttackDelay());
+        }
+    }
+
     public IEnumerator JumpAttackDelay()
     {
         while (transform.position.y < floatPos.y - 1f)
@@ -209,29 +225,14 @@ public class GroundBossScript : BossBase
         ChangeState(Global.EnemyFsm.JumpAttack);
     }
 
-    public void JumpAttackBefore()  // 애니메이션 필요
-    {
-        if (!isJumpAttackBefore)   // 중복 실행 방지
-        {
-            isJumpAttackBefore = true;
-            floatPos = transform.position + new Vector3(0f, 5f, 0f);  // 플로팅 할 만큼의 타겟 포스 지정
-            // floatPos = (floatPos == Vector3.zero) ? transform.position + new Vector3(0f, 3.5f, 0f) : floatPos;
-
-            Debug.Log("한 번만");
-            // StartCoroutine(Float(5f, 10f));  // 공중부양하는 함수 만들기
-
-            StartCoroutine(JumpAttackDelay());
-        }
-    }
-
     public void JumpAttack()    // 애니메이션 필요
     {
         if (!isJumpAttack)
         {
             isJumpAttack = true;
 
-            myRigid.bodyType = RigidbodyType2D.Dynamic; // 리지드바디 타입 되돌리기(스태틱 풀기)
             myAnim.SetBool("isFloatDelay", false);
+            myRigid.bodyType = RigidbodyType2D.Dynamic; // 리지드바디 타입 되돌리기(스태틱 풀기)
 
             fallDownPos = myTarget.transform.position; // 플레이어를 계속 따라가면 이상하니 처음 한 번만 지정(2번 저장 방식)
             // 2번 쓸 거면 Delay 이후 상태 변환 전에 플립 한 번 해주기 || 어색하면 딜레이를 1초 1초로 나눠서 사이에 플립 한 번 해주기
@@ -242,9 +243,15 @@ public class GroundBossScript : BossBase
         {
             // 공격 코드
             Debug.Log("공격");
+            // myAnim.SetBool("isJumpAttacking", false);
             // myAnim.Play("JDown");   // 수정 바람
 
             // 공격을 언제 끝내야 하는 거지...
+
+            if (transform.position.y < myTarget.transform.position.y)
+            {
+                myAnim.SetBool("isJumpAttackingEnd", true);
+            }
         }
         else
         {
@@ -256,11 +263,6 @@ public class GroundBossScript : BossBase
 
         // transform.position = floatPos;
         Debug.Log("점프 어택 진입");
-    }
-
-    public void JumpAttackAfter()   // FallDown 애니메이션 이벤트 함수 (ArrayNum 2번)
-    {
-        isJumpAttack = false;
     }
 
     public IEnumerator AttackDelay(float delay)
