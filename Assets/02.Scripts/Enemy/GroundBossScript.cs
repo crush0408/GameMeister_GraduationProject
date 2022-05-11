@@ -12,6 +12,7 @@ public class GroundBossScript : BossBase
 
     private bool isJumpAttackBefore = false;
     private bool isJumpAttack = false; // 변수명 어떠카지...
+
     private bool isHealing = false;
     private int randomNum = 0;
     private IEnumerator attackDelay;
@@ -196,12 +197,15 @@ public class GroundBossScript : BossBase
 
         Debug.Log("상태 변경");
 
-        //fallDownPos = myTarget.transform.position; // 플레이어를 계속 따라가면 이상하니 처음 한 번만 지정 (1번 저장 방식, 2번보다 플레이 쉬움)
+        // fallDownPos = myTarget.transform.position; // 플레이어를 계속 따라가면 이상하니 처음 한 번만 지정 (1번 저장 방식, 2번보다 플레이 쉬움)
 
         myRigid.bodyType = RigidbodyType2D.Static;  // 잠깐 고정시키기 (Freeze Y Pos 하는 함수를 모르겠음...) 역시 임시방편
+        myAnim.SetBool("isFloatDelay", true);
         yield return new WaitForSeconds(2f);    // 공중에서 2초 딜레이
-        myRigid.bodyType = RigidbodyType2D.Dynamic; // 리지드바디 타입 되돌리기
 
+        // myRigid.bodyType = RigidbodyType2D.Dynamic; // 리지드바디 타입 되돌리기 -> 상태 변경 이후 코드에서 실행
+
+        isJumpAttackBefore = false; // 어디다 둬야 할 지 모르겠어서 상태 변경 직전으로
         ChangeState(Global.EnemyFsm.JumpAttack);
     }
 
@@ -225,20 +229,26 @@ public class GroundBossScript : BossBase
         if (!isJumpAttack)
         {
             isJumpAttack = true;
+
+            myRigid.bodyType = RigidbodyType2D.Dynamic; // 리지드바디 타입 되돌리기(스태틱 풀기)
+            myAnim.SetBool("isFloatDelay", false);
+
             fallDownPos = myTarget.transform.position; // 플레이어를 계속 따라가면 이상하니 처음 한 번만 지정(2번 저장 방식)
+            // 2번 쓸 거면 Delay 이후 상태 변환 전에 플립 한 번 해주기 || 어색하면 딜레이를 1초 1초로 나눠서 사이에 플립 한 번 해주기
             // fallDownPos = (fallDownPos == Vector3.zero) ? myTarget.transform.position : fallDownPos;
         }
 
-        if (transform.position == fallDownPos)  // Mathf.Lerp 사용하니까 미세하게 올라가서 목표치를 못 넘기길래 임시 방편으로 판정 줄여둠
+        if (Vector3.Distance(transform.position, fallDownPos) <= 1f)  // Mathf.Lerp 사용하니까 미세하게 올라가서 목표치를 못 넘기길래 임시 방편으로 판정 줄여둠
         {
             // 공격 코드
             Debug.Log("공격");
-            myAnim.Play("JDown");
+            // myAnim.Play("JDown");   // 수정 바람
 
             // 공격을 언제 끝내야 하는 거지...
         }
         else
         {
+            // 이동
             transform.position = Vector3.Lerp(transform.position, fallDownPos, 0.05f);
             Debug.Log("현재 거리 : " + Vector3.Distance(transform.position, fallDownPos));
         }
@@ -246,6 +256,11 @@ public class GroundBossScript : BossBase
 
         // transform.position = floatPos;
         Debug.Log("점프 어택 진입");
+    }
+
+    public void JumpAttackAfter()   // FallDown 애니메이션 이벤트 함수 (ArrayNum 2번)
+    {
+        isJumpAttack = false;
     }
 
     public IEnumerator AttackDelay(float delay)
