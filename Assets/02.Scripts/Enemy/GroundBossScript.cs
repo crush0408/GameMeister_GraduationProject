@@ -8,7 +8,10 @@ public class GroundBossScript : BossBase
     Vector2 playerPos = Vector2.zero;
 
     private Vector3 floatPos = Vector3.zero;
-    private bool isJumpAttacking = false;
+    private Vector3 fallDownPos = Vector3.zero;
+
+    private bool isJumpAttackBefore = false;
+    private bool isJumpAttack = false; // 변수명 어떠카지...
     private bool isHealing = false;
     private int randomNum = 0;
     private IEnumerator attackDelay;
@@ -183,33 +186,51 @@ public class GroundBossScript : BossBase
 
     public void JumpAttackBefore()
     {
-        if (!isJumpAttacking)   // 중복 실행 방지
+        if (!isJumpAttackBefore)   // 중복 실행 방지
         {
-            isJumpAttacking = true;
-            floatPos = (floatPos == Vector3.zero) ? transform.position + new Vector3(0f, 5f, 0f) : floatPos;  // 플로팅 할 만큼의 타겟 포스 지정
+            isJumpAttackBefore = true;
+            floatPos = transform.position + new Vector3(0f, 3.5f, 0f);  // 플로팅 할 만큼의 타겟 포스 지정
+            // floatPos = (floatPos == Vector3.zero) ? transform.position + new Vector3(0f, 3.5f, 0f) : floatPos;
 
             Debug.Log("한 번만");
             // StartCoroutine(Float(5f, 10f));  // 공중부양하는 함수 만들기
         }
 
-        if (transform.position.y >= floatPos.y - 0.1f)  // Mathf.Lerp 사용하니까 미세하게 올라가서 목표치를 못 넘기길래 임시 방편으로 판정 줄여둠
+        if (transform.position.y >= floatPos.y - 1f)  // Mathf.Lerp 사용하니까 미세하게 올라가서 목표치를 못 넘기길래 임시 방편으로 판정 줄여둠
         {
             Debug.Log("상태 변경");
             ChangeState(Global.EnemyFsm.JumpAttack);
         }
         else
         {
-            transform.position = Vector3.Lerp(transform.position, floatPos, 0.5f);
+            transform.position = Vector3.Lerp(transform.position, floatPos, 0.2f);
             Debug.Log("여러번 " + "현재 : " + transform.position.y + " < " + floatPos.y);
         }
     }
 
     public void JumpAttack()
     {
-        transform.position = floatPos;
+        if (!isJumpAttack)
+        {
+            isJumpAttack = true;
+            fallDownPos = myTarget.transform.position; // 플레이어를 계속 따라가면 이상하니 처음 한 번만 지정
+            // fallDownPos = (fallDownPos == Vector3.zero) ? myTarget.transform.position : fallDownPos;
+        }
+
+        if (Vector3.Distance(transform.position, fallDownPos) <= jumpAtkDist)  // Mathf.Lerp 사용하니까 미세하게 올라가서 목표치를 못 넘기길래 임시 방편으로 판정 줄여둠
+        {
+            // 공격 코드
+            Debug.Log("공격");
+        }
+        else
+        {
+            transform.position = Vector3.Lerp(transform.position, fallDownPos, 0.05f);
+            Debug.Log("현재 거리 : " + Vector3.Distance(transform.position, fallDownPos));
+        }
+
+
+        // transform.position = floatPos;
         Debug.Log("점프 어택 진입");
-
-
     }
 
     public IEnumerator AttackDelay(float delay)
