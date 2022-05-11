@@ -256,7 +256,7 @@ public class GroundBossScript : BossBase
         else
         {
             // 이동
-            transform.position = Vector3.Lerp(transform.position, fallDownPos, 0.05f);
+            transform.position = Vector3.Lerp(transform.position, fallDownPos, 0.02f);
             Debug.Log("현재 거리 : " + Vector3.Distance(transform.position, fallDownPos));
         }
 
