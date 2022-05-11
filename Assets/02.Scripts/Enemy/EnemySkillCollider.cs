@@ -9,13 +9,8 @@ public class EnemySkillCollider : MonoBehaviour
     {
         BoxCollider2D boxCollider = collision.GetComponent<BoxCollider2D>();
 
-        Debug.Log("EnemySkillCollider 작동 확인용"); // 작동 확인됨
-        Debug.Log(collision.gameObject.name);   // 계속 TestMap만 찍히는 상태
-
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("진입 확인용");    // if문 안으로 진입하지 못하고 있음
-
             IDamageable target = collision.GetComponent<IDamageable>();
             if(target != null)
             {
