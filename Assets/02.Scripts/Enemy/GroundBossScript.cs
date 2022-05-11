@@ -40,7 +40,7 @@ public class GroundBossScript : BossBase
 
     private void Update()
     {
-        if(!isDie)
+        if (!isDie)
         {
             FsmUpdate();
         }
@@ -79,7 +79,7 @@ public class GroundBossScript : BossBase
                 break;
             case Global.EnemyFsm.Heal:
                 // if ()    // 빠져나가는 조건
-                if(healCoroutine == null)
+                if (healCoroutine == null)
                 {
                     healCoroutine = HealCoroutine(10, 1);
                     StartCoroutine(healCoroutine);
@@ -124,7 +124,7 @@ public class GroundBossScript : BossBase
             ChangeState(Global.EnemyFsm.Attack);
         }
         else if (DistanceDecision(jumpAtkDist + 0.5f))   // 공격 사정거리 밖, 점프공격 사정거리 안
-            // 정확히 맞을 수는 없으므로 계산에는 0.5f 더함
+                                                         // 정확히 맞을 수는 없으므로 계산에는 0.5f 더함
         {
             // Debug.Log("점프 어택");
             ChangeState(Global.EnemyFsm.JumpAttack);
@@ -145,7 +145,7 @@ public class GroundBossScript : BossBase
         base.Attack();
 
         // 랜덤 넘버 구하기
-        if(randomNum == 0)
+        if (randomNum == 0)
         {
             randomNum = Random.Range(1, 90);
             Debug.Log("Random Number : " + randomNum);
@@ -188,17 +188,19 @@ public class GroundBossScript : BossBase
             isJumpAttacking = true;
             floatPos = (floatPos == Vector3.zero) ? transform.position + new Vector3(0f, 5f, 0f) : floatPos;  // 플로팅 할 만큼의 타겟 포스 지정
 
-
+            Debug.Log("한 번만");
             // StartCoroutine(Float(5f, 10f));  // 공중부양하는 함수 만들기
         }
 
-        if (transform.position != floatPos)
+        if (transform.position.y >= floatPos.y - 0.1f)  // Mathf.Lerp 사용하니까 미세하게 올라가서 목표치를 못 넘기길래 임시 방편으로 판정 줄여둠
         {
-            transform.position = Vector3.Lerp(transform.position, floatPos, 10f);
+            Debug.Log("상태 변경");
+            ChangeState(Global.EnemyFsm.JumpAttack);
         }
         else
         {
-            ChangeState(Global.EnemyFsm.JumpAttack);
+            transform.position = Vector3.Lerp(transform.position, floatPos, 0.5f);
+            Debug.Log("여러번 " + "현재 : " + transform.position.y + " < " + floatPos.y);
         }
     }
 
