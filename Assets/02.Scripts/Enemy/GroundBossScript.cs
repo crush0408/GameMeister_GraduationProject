@@ -7,8 +7,6 @@ public class GroundBossScript : BossBase
 {
     Vector2 playerPos = Vector2.zero;
 
-    private float enemyHpTemp;
-
     private Vector3 floatPos = Vector3.zero;
     private Vector3 fallDownPos = Vector3.zero;
 
@@ -39,8 +37,6 @@ public class GroundBossScript : BossBase
         rightDirection = Vector3.one;   // 오른쪽 보고 시작
         leftDirection = new Vector3(-rightDirection.x, rightDirection.y, rightDirection.z);
         jumpPower = 7f;
-
-        enemyHpTemp = enemyHealth.health;
     }
 
     private void Update()
@@ -68,8 +64,7 @@ public class GroundBossScript : BossBase
                 */
                 break;
             case Global.EnemyFsm.Chase:
-                Debug.Log("HP 차이 // " + enemyHpTemp + " : " + enemyHealth.health);
-                if(enemyHpTemp > enemyHealth.health)
+                if(getHit)
                 {
                     ChangeState(Global.EnemyFsm.GetHit);
                 }
@@ -78,8 +73,7 @@ public class GroundBossScript : BossBase
                 Chase();
                 break;
             case Global.EnemyFsm.Attack:
-                Debug.Log("HP 차이 // " + enemyHpTemp + " : " + enemyHealth.health);
-                if (enemyHpTemp > enemyHealth.health)
+                if (getHit)
                 {
                     ChangeState(Global.EnemyFsm.GetHit);
                 }
@@ -89,16 +83,14 @@ public class GroundBossScript : BossBase
                 AttackAfter();
                 break;
             case Global.EnemyFsm.JumpAttackBefore:
-                Debug.Log("HP 차이 // " + enemyHpTemp + " : " + enemyHealth.health);
-                if (enemyHpTemp > enemyHealth.health)
+                if (getHit)
                 {
                     ChangeState(Global.EnemyFsm.GetHit);
                 }
                 JumpAttackBefore();
                 break;
             case Global.EnemyFsm.JumpAttack:
-                Debug.Log("HP 차이 // " + enemyHpTemp + " : " + enemyHealth.health);
-                if (enemyHpTemp > enemyHealth.health)
+                if (getHit)
                 {
                     ChangeState(Global.EnemyFsm.GetHit);
                 }
@@ -114,6 +106,13 @@ public class GroundBossScript : BossBase
                 break;
             case Global.EnemyFsm.GetHit:
                 GetHit();
+                ChangeState(Global.EnemyFsm.GetHitAfter);
+                break;
+            case Global.EnemyFsm.GetHitAfter:
+                if (!getHit)
+                {
+                    ChangeState(Global.EnemyFsm.Chase);
+                }
                 break;
             default:
                 break;
@@ -315,9 +314,6 @@ public class GroundBossScript : BossBase
     {
         base.GetHitAfter();
         Debug.Log("맞은 후");
-        enemyHpTemp = enemyHealth.health;
-
-        ChangeState(Global.EnemyFsm.Chase);
     }
 
     // Dead 애니메이션 종료 시 이벤트 함수

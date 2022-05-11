@@ -85,7 +85,7 @@ public class EnemyBase : MonoBehaviour
         FlipSprite();
         if(!enemyHealth.isDead)
         {
-            myAnim.Play("hit");
+            myAnim.Play("Hit");
             if (isAttacking) isAttacking = false;
         }
     }
