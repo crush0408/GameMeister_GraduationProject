@@ -30,12 +30,12 @@ public class GroundBossScript : BossBase
     {
         base.Init();
 
-        myFsm = Global.EnemyFsm.JumpAttackBefore;
+        myFsm = Global.EnemyFsm.Chase;
         speed = 6f;
         delayTime = 2f; // 에너미 자동 공격 딜레이에 쓰겠음 
         sightDistance = 15f;    // 시야 범위
         attackDistance = 4f;  // 공격 범위
-        jumpAtkDist = 8f;
+        jumpAtkDist = 6f;
         rightDirection = Vector3.one;   // 오른쪽 보고 시작
         leftDirection = new Vector3(-rightDirection.x, rightDirection.y, rightDirection.z);
         jumpPower = 7f;
@@ -126,11 +126,11 @@ public class GroundBossScript : BossBase
             myAnim.SetBool("isRun", false);
             ChangeState(Global.EnemyFsm.Attack);
         }
-        else if (DistanceDecision(jumpAtkDist + 0.5f))   // 공격 사정거리 밖, 점프공격 사정거리 안
-                                                         // 정확히 맞을 수는 없으므로 계산에는 0.5f 더함
-        {
+        else if (DistanceDecision(jumpAtkDist + 0.5f)){   // 공격 사정거리 밖, 점프공격 사정거리 안
+            // 정확히 맞을 수는 없으므로 계산에는 0.5f 더함
+
             // Debug.Log("점프 어택");
-            ChangeState(Global.EnemyFsm.JumpAttack);
+            ChangeState(Global.EnemyFsm.JumpAttackBefore);
         }
         else // 플레이어에게 다가가야 함
         {
@@ -196,19 +196,21 @@ public class GroundBossScript : BossBase
 
         Debug.Log("상태 변경");
 
+        //fallDownPos = myTarget.transform.position; // 플레이어를 계속 따라가면 이상하니 처음 한 번만 지정 (1번 저장 방식, 2번보다 플레이 쉬움)
+
         myRigid.bodyType = RigidbodyType2D.Static;  // 잠깐 고정시키기 (Freeze Y Pos 하는 함수를 모르겠음...) 역시 임시방편
-        yield return new WaitForSeconds(3f);    // 공중에서 3초 딜레이
+        yield return new WaitForSeconds(2f);    // 공중에서 2초 딜레이
         myRigid.bodyType = RigidbodyType2D.Dynamic; // 리지드바디 타입 되돌리기
 
         ChangeState(Global.EnemyFsm.JumpAttack);
     }
 
-    public void JumpAttackBefore()
+    public void JumpAttackBefore()  // 애니메이션 필요
     {
         if (!isJumpAttackBefore)   // 중복 실행 방지
         {
             isJumpAttackBefore = true;
-            floatPos = transform.position + new Vector3(0f, 3.5f, 0f);  // 플로팅 할 만큼의 타겟 포스 지정
+            floatPos = transform.position + new Vector3(0f, 5f, 0f);  // 플로팅 할 만큼의 타겟 포스 지정
             // floatPos = (floatPos == Vector3.zero) ? transform.position + new Vector3(0f, 3.5f, 0f) : floatPos;
 
             Debug.Log("한 번만");
@@ -218,19 +220,22 @@ public class GroundBossScript : BossBase
         }
     }
 
-    public void JumpAttack()
+    public void JumpAttack()    // 애니메이션 필요
     {
         if (!isJumpAttack)
         {
             isJumpAttack = true;
-            fallDownPos = myTarget.transform.position; // 플레이어를 계속 따라가면 이상하니 처음 한 번만 지정
+            fallDownPos = myTarget.transform.position; // 플레이어를 계속 따라가면 이상하니 처음 한 번만 지정(2번 저장 방식)
             // fallDownPos = (fallDownPos == Vector3.zero) ? myTarget.transform.position : fallDownPos;
         }
 
-        if (Vector3.Distance(transform.position, fallDownPos) <= jumpAtkDist)  // Mathf.Lerp 사용하니까 미세하게 올라가서 목표치를 못 넘기길래 임시 방편으로 판정 줄여둠
+        if (transform.position == fallDownPos)  // Mathf.Lerp 사용하니까 미세하게 올라가서 목표치를 못 넘기길래 임시 방편으로 판정 줄여둠
         {
             // 공격 코드
             Debug.Log("공격");
+            myAnim.Play("JDown");
+
+            // 공격을 언제 끝내야 하는 거지...
         }
         else
         {
