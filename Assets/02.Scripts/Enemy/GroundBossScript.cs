@@ -184,6 +184,25 @@ public class GroundBossScript : BossBase
         }
     }
 
+    public IEnumerator JumpAttackDelay()
+    {
+        while (transform.position.y < floatPos.y - 1f)
+        {
+            transform.position = Vector3.Lerp(transform.position, floatPos, 0.2f);
+            Debug.Log("여러번 " + "현재 : " + transform.position.y + " < " + floatPos.y);
+
+            yield return null;
+        }
+
+        Debug.Log("상태 변경");
+
+        myRigid.bodyType = RigidbodyType2D.Static;  // 잠깐 고정시키기 (Freeze Y Pos 하는 함수를 모르겠음...) 역시 임시방편
+        yield return new WaitForSeconds(3f);    // 공중에서 3초 딜레이
+        myRigid.bodyType = RigidbodyType2D.Dynamic; // 리지드바디 타입 되돌리기
+
+        ChangeState(Global.EnemyFsm.JumpAttack);
+    }
+
     public void JumpAttackBefore()
     {
         if (!isJumpAttackBefore)   // 중복 실행 방지
@@ -194,8 +213,11 @@ public class GroundBossScript : BossBase
 
             Debug.Log("한 번만");
             // StartCoroutine(Float(5f, 10f));  // 공중부양하는 함수 만들기
+
+            StartCoroutine(JumpAttackDelay());
         }
 
+        /*
         if (transform.position.y >= floatPos.y - 1f)  // Mathf.Lerp 사용하니까 미세하게 올라가서 목표치를 못 넘기길래 임시 방편으로 판정 줄여둠
         {
             Debug.Log("상태 변경");
@@ -206,6 +228,7 @@ public class GroundBossScript : BossBase
             transform.position = Vector3.Lerp(transform.position, floatPos, 0.2f);
             Debug.Log("여러번 " + "현재 : " + transform.position.y + " < " + floatPos.y);
         }
+        */
     }
 
     public void JumpAttack()
