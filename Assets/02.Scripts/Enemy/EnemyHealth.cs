@@ -47,6 +47,7 @@ public class EnemyHealth : LivingEntity
     {
         base.Die();
         //오브젝트 없애는 게 필요할듯 setactive나 destroy
+        // * GroundBoss 에서 Dead 애니메이션에 붙어있는 이벤트 함수 DeadAfter()에서 SetActive 처리함
         //DeadCoroutine으로 효과까지
         MGSound.instance.playEff("blooding");
         Debug.Log("Dead");
