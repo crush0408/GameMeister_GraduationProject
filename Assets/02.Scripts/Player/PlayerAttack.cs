@@ -28,13 +28,12 @@ public class PlayerAttack : MonoBehaviour
     public bool isAttacking = false;
     private int combo = 0;
 
-    private SkillSlotsUI skillSlotsScript;
+    
 
     void Start()
     {
         anim = GetComponentInChildren<Animator>();
         playerInput = GetComponent<PlayerInput>();
-        skillSlotsScript = GetComponentInChildren<SkillSlotsUI>();
         
         for (int i = 0; i < skillList.Count; i++)
         {
@@ -111,19 +110,19 @@ public class PlayerAttack : MonoBehaviour
                             if (target != null && col.gameObject.CompareTag("Enemy"))
                             {
                                 //target.OnDamage(inputSkill.attackDamage, this.transform.position);
-                                Attack("FastMagic",col.transform,i);
+                                Attack("FastMagic",col.transform,i, "FastHit");
                                 break; // 하나만 타겟팅
                             }
                         }
                     }
                     else if(inputSkill.skillName == "SpinAttack")
                     {
-                        Attack("SpinAttack",spinAttackTrm,i);
+                        Attack("SpinAttack",spinAttackTrm,i,"SpinHit");
                         
                     }
                     else if(inputSkill.skillName == "SustainMagic")
                     {
-                        Attack("SustainMagic",sustainAttackTrm,i);
+                        Attack("SustainMagic",sustainAttackTrm,i,"SustainHit");
                     }
                     else
                     {
@@ -142,7 +141,7 @@ public class PlayerAttack : MonoBehaviour
             }
         }
     }
-    private void Attack(string skillName, Transform skillTrm, int index)
+    private void Attack(string skillName, Transform skillTrm, int index, string hitEffectName)
     {
         isAttacking = true;
         anim.Play(inputSkill.skillName, -1, 0f);
@@ -150,6 +149,7 @@ public class PlayerAttack : MonoBehaviour
         poolingObject.transform.localScale = visualGroup.transform.localScale;
         poolingObject.transform.position = skillTrm.position;
         poolingObject.GetComponent<NonTargetSkill>().damage = skillList[index].attackDamage;
+        poolingObject.GetComponent<NonTargetSkill>().hitName = hitEffectName;
         skillList[index].remainCoolTime = skillList[index].initCoolTime;
         StartCoroutine(skillList[index].coolTime());
     }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class NonTargetSkill : PoolableMono
 {
     public float damage = 0f;
+    public string hitName = "";
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
@@ -14,6 +15,14 @@ public class NonTargetSkill : PoolableMono
             if (target != null)
             {
                 target.OnDamage(damage, transform.position,true);
+                Debug.Log(hitName);
+                
+                PoolableMono poolingObject = PoolManager.Instance.Pop(hitName);
+                if(poolingObject != null)
+                {
+                    poolingObject.transform.position = collision.transform.position;
+                    
+                }
             }
         }
     }

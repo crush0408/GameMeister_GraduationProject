@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3729654793859313342
+--- !u!1 &2990606261290804378
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,25 +8,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3729654793859313337}
-  - component: {fileID: 3729654793859313336}
-  - component: {fileID: 3729654793859313343}
-  - component: {fileID: 3729654793859313339}
-  - component: {fileID: 3729654793859313338}
+  - component: {fileID: 4831826457143979796}
+  - component: {fileID: 2733032349227759267}
+  - component: {fileID: 5523237511910355919}
+  - component: {fileID: 4274441482971975174}
   m_Layer: 0
-  m_Name: FastMagic
+  m_Name: SpinHit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3729654793859313337
+--- !u!4 &4831826457143979796
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3729654793859313342}
+  m_GameObject: {fileID: 2990606261290804378}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -34,13 +33,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &3729654793859313336
+--- !u!212 &2733032349227759267
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3729654793859313342}
+  m_GameObject: {fileID: 2990606261290804378}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -74,28 +73,28 @@ SpriteRenderer:
   m_SortingLayerID: 378517267
   m_SortingLayer: 4
   m_SortingOrder: 5
-  m_Sprite: {fileID: 451583806320811785, guid: 4bf30c1ca4ac225428dd6d70434524dd, type: 3}
+  m_Sprite: {fileID: -3035332727044675229, guid: 4c61dbdeebb9079428098596dadaf823, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 6, y: 6}
+  m_Size: {x: 3, y: 3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &3729654793859313343
+--- !u!95 &5523237511910355919
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3729654793859313342}
+  m_GameObject: {fileID: 2990606261290804378}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7a3a07420d5551f458080c33e221de40, type: 2}
+  m_Controller: {fileID: 9100000, guid: bcbc4109277b8404a9ff8c3b8ee4e61c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -104,33 +103,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &3729654793859313339
+--- !u!114 &4274441482971975174
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3729654793859313342}
+  m_GameObject: {fileID: 2990606261290804378}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e79bff4eeffdb6d4796aece6561d6204, type: 3}
+  m_Script: {fileID: 11500000, guid: e6a25400736bc414694da66a4dd1ef72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  hitName: 
---- !u!58 &3729654793859313338
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3729654793859313342}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.009773016, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.4492767
