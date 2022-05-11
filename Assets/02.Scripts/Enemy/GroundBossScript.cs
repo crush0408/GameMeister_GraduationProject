@@ -216,19 +216,6 @@ public class GroundBossScript : BossBase
 
             StartCoroutine(JumpAttackDelay());
         }
-
-        /*
-        if (transform.position.y >= floatPos.y - 1f)  // Mathf.Lerp 사용하니까 미세하게 올라가서 목표치를 못 넘기길래 임시 방편으로 판정 줄여둠
-        {
-            Debug.Log("상태 변경");
-            ChangeState(Global.EnemyFsm.JumpAttack);
-        }
-        else
-        {
-            transform.position = Vector3.Lerp(transform.position, floatPos, 0.2f);
-            Debug.Log("여러번 " + "현재 : " + transform.position.y + " < " + floatPos.y);
-        }
-        */
     }
 
     public void JumpAttack()
