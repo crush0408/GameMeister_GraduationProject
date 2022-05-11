@@ -7,6 +7,8 @@ public class GroundBossScript : BossBase
 {
     Vector2 playerPos = Vector2.zero;
 
+    private float enemyHpTemp;
+
     private Vector3 floatPos = Vector3.zero;
     private Vector3 fallDownPos = Vector3.zero;
 
@@ -22,9 +24,6 @@ public class GroundBossScript : BossBase
     private void Start()
     {
         Init();
-
-        enemyHealth.HealHealth(-30);
-        Debug.Log("적 초기 체력 : " + enemyHealth.health);
     }
 
     public override void Init()
@@ -35,11 +34,13 @@ public class GroundBossScript : BossBase
         speed = 6f;
         delayTime = 2f; // 에너미 자동 공격 딜레이에 쓰겠음 
         sightDistance = 15f;    // 시야 범위
-        attackDistance = 4f;  // 공격 범위
+        attackDistance = 2.5f;  // 공격 범위
         jumpAtkDist = 6f;
         rightDirection = Vector3.one;   // 오른쪽 보고 시작
         leftDirection = new Vector3(-rightDirection.x, rightDirection.y, rightDirection.z);
         jumpPower = 7f;
+
+        enemyHpTemp = enemyHealth.health;
     }
 
     private void Update()
@@ -67,18 +68,40 @@ public class GroundBossScript : BossBase
                 */
                 break;
             case Global.EnemyFsm.Chase:
+                Debug.Log("HP 차이 // " + enemyHpTemp + " : " + enemyHealth.health);
+                if(enemyHpTemp > enemyHealth.health)
+                {
+                    ChangeState(Global.EnemyFsm.GetHit);
+                }
+
+                myAnim.SetBool("isJumpAttackingEnd", false);
                 Chase();
                 break;
             case Global.EnemyFsm.Attack:
+                Debug.Log("HP 차이 // " + enemyHpTemp + " : " + enemyHealth.health);
+                if (enemyHpTemp > enemyHealth.health)
+                {
+                    ChangeState(Global.EnemyFsm.GetHit);
+                }
                 Attack();
                 break;
             case Global.EnemyFsm.AttackAfter:
                 AttackAfter();
                 break;
             case Global.EnemyFsm.JumpAttackBefore:
+                Debug.Log("HP 차이 // " + enemyHpTemp + " : " + enemyHealth.health);
+                if (enemyHpTemp > enemyHealth.health)
+                {
+                    ChangeState(Global.EnemyFsm.GetHit);
+                }
                 JumpAttackBefore();
                 break;
             case Global.EnemyFsm.JumpAttack:
+                Debug.Log("HP 차이 // " + enemyHpTemp + " : " + enemyHealth.health);
+                if (enemyHpTemp > enemyHealth.health)
+                {
+                    ChangeState(Global.EnemyFsm.GetHit);
+                }
                 JumpAttack();
                 break;
             case Global.EnemyFsm.Heal:
@@ -88,6 +111,9 @@ public class GroundBossScript : BossBase
                     healCoroutine = HealCoroutine(10, 1);
                     StartCoroutine(healCoroutine);
                 }
+                break;
+            case Global.EnemyFsm.GetHit:
+                GetHit();
                 break;
             default:
                 break;
@@ -120,19 +146,20 @@ public class GroundBossScript : BossBase
             StartCoroutine(healCoroutine);
         }
 
-        if (DistanceDecision(attackDistance)) // 공격 사정거리 안일 때
-        {
-            Debug.Log("Attack 타입으로 바뀌어야 함");
-
-            myAnim.SetBool("isRun", false);
-            ChangeState(Global.EnemyFsm.Attack);
-        }
-        else if (DistanceDecision(jumpAtkDist + 0.5f)){   // 공격 사정거리 밖, 점프공격 사정거리 안
+        if (DistanceDecision(jumpAtkDist + 0.5f) && enemyHealth.health < 20)
+        {   // 공격 사정거리 밖, 점프공격 사정거리 안
             // 정확히 맞을 수는 없으므로 계산에는 0.5f 더함
 
             // Debug.Log("점프 어택");
             myAnim.SetBool("isRun", false);
             ChangeState(Global.EnemyFsm.JumpAttackBefore);
+        }
+        else if (DistanceDecision(attackDistance)) // 공격 사정거리 안일 때
+        {
+            Debug.Log("Attack 타입으로 바뀌어야 함");
+
+            myAnim.SetBool("isRun", false);
+            ChangeState(Global.EnemyFsm.Attack);
         }
         else // 플레이어에게 다가가야 함
         {
@@ -191,7 +218,7 @@ public class GroundBossScript : BossBase
         if (!isJumpAttackBefore)   // 중복 실행 방지
         {
             isJumpAttackBefore = true;
-            floatPos = transform.position + new Vector3(0f, 5f, 0f);  // 플로팅 할 만큼의 타겟 포스 지정
+            floatPos = transform.position + new Vector3(0f, 7f, 0f);  // 플로팅 할 만큼의 타겟 포스 지정
             // floatPos = (floatPos == Vector3.zero) ? transform.position + new Vector3(0f, 3.5f, 0f) : floatPos;
 
             Debug.Log("한 번만");
@@ -203,9 +230,9 @@ public class GroundBossScript : BossBase
 
     public IEnumerator JumpAttackDelay()
     {
-        while (transform.position.y < floatPos.y - 1f)
+        while (transform.position.y < floatPos.y - 3f)
         {
-            transform.position = Vector3.Lerp(transform.position, floatPos, 0.2f);
+            transform.position = Vector3.Lerp(transform.position, floatPos, 0.03f);
             Debug.Log("여러번 " + "현재 : " + transform.position.y + " < " + floatPos.y);
 
             yield return null;
@@ -213,7 +240,7 @@ public class GroundBossScript : BossBase
 
         Debug.Log("상태 변경");
 
-        // fallDownPos = myTarget.transform.position; // 플레이어를 계속 따라가면 이상하니 처음 한 번만 지정 (1번 저장 방식, 2번보다 플레이 쉬움)
+        fallDownPos = myTarget.transform.position; // 플레이어를 계속 따라가면 이상하니 처음 한 번만 지정 (1번 저장 방식, 2번보다 플레이 쉬움)
 
         myRigid.bodyType = RigidbodyType2D.Static;  // 잠깐 고정시키기 (Freeze Y Pos 하는 함수를 모르겠음...) 역시 임시방편
         myAnim.SetBool("isFloatDelay", true);
@@ -234,7 +261,7 @@ public class GroundBossScript : BossBase
             myAnim.SetBool("isFloatDelay", false);
             myRigid.bodyType = RigidbodyType2D.Dynamic; // 리지드바디 타입 되돌리기(스태틱 풀기)
 
-            fallDownPos = myTarget.transform.position; // 플레이어를 계속 따라가면 이상하니 처음 한 번만 지정(2번 저장 방식)
+            // fallDownPos = myTarget.transform.position; // 플레이어를 계속 따라가면 이상하니 처음 한 번만 지정(2번 저장 방식)
             // 2번 쓸 거면 Delay 이후 상태 변환 전에 플립 한 번 해주기 || 어색하면 딜레이를 1초 1초로 나눠서 사이에 플립 한 번 해주기
             // fallDownPos = (fallDownPos == Vector3.zero) ? myTarget.transform.position : fallDownPos;
         }
@@ -248,18 +275,19 @@ public class GroundBossScript : BossBase
 
             // 공격을 언제 끝내야 하는 거지...
 
-            if (transform.position.y < myTarget.transform.position.y)
+            if (transform.position.y <= myTarget.transform.position.y)
             {
+                Debug.Log(transform.position.y + " < " + myTarget.transform.position.y);
                 myAnim.SetBool("isJumpAttackingEnd", true);
+                ChangeState(Global.EnemyFsm.Chase);
             }
         }
         else
         {
             // 이동
-            transform.position = Vector3.Lerp(transform.position, fallDownPos, 0.02f);
+            transform.position = Vector3.Lerp(transform.position, fallDownPos, 0.03f);
             Debug.Log("현재 거리 : " + Vector3.Distance(transform.position, fallDownPos));
         }
-
 
         // transform.position = floatPos;
         Debug.Log("점프 어택 진입");
@@ -281,6 +309,15 @@ public class GroundBossScript : BossBase
             attackDelay = null;
             ChangeState(Global.EnemyFsm.Chase);
         }
+    }
+
+    public override void GetHitAfter()  // anim script num : 3
+    {
+        base.GetHitAfter();
+        Debug.Log("맞은 후");
+        enemyHpTemp = enemyHealth.health;
+
+        ChangeState(Global.EnemyFsm.Chase);
     }
 
     // Dead 애니메이션 종료 시 이벤트 함수
