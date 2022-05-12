@@ -30,7 +30,7 @@ public class GroundBossScript : BossBase
     {
         base.Init();
 
-        myFsm = Global.EnemyFsm.Chase;
+        myFsm = Global.EnemyFsm.Idle;
         speed = 6f;
         delayTime = 2f; // 에너미 자동 공격 딜레이에 쓰겠음 
         sightDistance = 15f;    // 시야 범위
@@ -64,6 +64,13 @@ public class GroundBossScript : BossBase
                     ChangeState(Global.EnemyFsm.Chase);
                 }
                 */
+                break;
+            case Global.EnemyFsm.Idle:
+                if (getHit)
+                {
+                    ChangeState(Global.EnemyFsm.GetHit);
+                }
+                StartCoroutine(IdleToChase(1f));
                 break;
             case Global.EnemyFsm.Chase:
                 if(getHit)
@@ -113,7 +120,7 @@ public class GroundBossScript : BossBase
             case Global.EnemyFsm.GetHitAfter:
                 if (!getHit)
                 {
-                    ChangeState(Global.EnemyFsm.Chase);
+                    ChangeState(Global.EnemyFsm.Idle);
                 }
                 break;
             default:
@@ -149,7 +156,7 @@ public class GroundBossScript : BossBase
         }
         */
 
-        if (DistanceDecision(jumpAtkDist + 0.5f) && enemyHealth.health < 20)
+        if (DistanceDecision(jumpAtkDist + 0.5f) && enemyHealth.health < 25)
         {   // 공격 사정거리 밖, 점프공격 사정거리 안
             // 정확히 맞을 수는 없으므로 계산에는 0.5f 더함
 
@@ -250,10 +257,14 @@ public class GroundBossScript : BossBase
         myAnim.SetBool("isFloatDelay", true);
         // yield return new WaitForSeconds(2f);    // 공중에서 2초 딜레이
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
+        FlipSprite();
+        yield return new WaitForSeconds(0.5f);
+        FlipSprite();
+        yield return new WaitForSeconds(0.5f);
         fallDownPos = myTarget.transform.position;
         FlipSprite();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         // myRigid.bodyType = RigidbodyType2D.Dynamic; // 리지드바디 타입 되돌리기 -> 상태 변경 이후 코드에서 실행
 
@@ -263,7 +274,7 @@ public class GroundBossScript : BossBase
 
     public void JumpAttack()    // 애니메이션 필요
     {
-        if (!isJumpAttack)
+        if (!isJumpAttack)  
         {
             isJumpAttack = true;
 
@@ -287,9 +298,17 @@ public class GroundBossScript : BossBase
             if (isGround)  // transform.position.y <= myTarget.transform.position.y
             {
                 // Debug.Log(transform.position.y + " < " + myTarget.transform.position.y);
+
+                /*
                 myAnim.SetBool("isJumpAttackingEnd", true);
                 isJumpAttack = false;
                 ChangeState(Global.EnemyFsm.Chase);
+                */
+
+                myAnim.SetBool("isJumpAttackingEnd", true);
+                isJumpAttack = false;
+
+                ChangeState(Global.EnemyFsm.Idle);
             }
         }
         else
@@ -302,6 +321,13 @@ public class GroundBossScript : BossBase
         // transform.position = floatPos;
         Debug.Log("점프 어택 진입");
     }
+
+    public IEnumerator IdleToChase(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        ChangeState(Global.EnemyFsm.Chase);
+    }
+
 
     public IEnumerator AttackDelay(float delay)
     {
