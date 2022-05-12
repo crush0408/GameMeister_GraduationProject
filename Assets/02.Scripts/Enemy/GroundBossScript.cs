@@ -70,7 +70,7 @@ public class GroundBossScript : BossBase
                 {
                     ChangeState(Global.EnemyFsm.GetHit);
                 }
-                StartCoroutine(IdleToChase(1f));
+                StartCoroutine(IdleToChase(0.5f));
                 break;
             case Global.EnemyFsm.Chase:
                 if(getHit)
@@ -210,11 +210,13 @@ public class GroundBossScript : BossBase
 
     public override void AttackAfter()
     {
-        ChangeState(Global.EnemyFsm.AttackAfter);
+        // ChangeState(Global.EnemyFsm.AttackAfter);
         randomNum = 0;
 
         // Debug.Log("FSM : " + myFsm);
         base.AttackAfter();
+
+        ChangeState(Global.EnemyFsm.AttackAfter);
 
         if (attackDelay == null)
         {
@@ -324,6 +326,7 @@ public class GroundBossScript : BossBase
 
     public IEnumerator IdleToChase(float delay)
     {
+        myAnim.SetBool("isRun", false);
         yield return new WaitForSeconds(delay);
         ChangeState(Global.EnemyFsm.Chase);
     }
