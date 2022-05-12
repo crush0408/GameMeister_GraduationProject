@@ -247,6 +247,7 @@ public class PlayerMove : MonoBehaviour
     public void GetHitFunc()
     {
         getHit = true;
+        GetComponent<PlayerAttack>().isAttacking = false;
         anim.SetTrigger("GetHit");
     }
     public void GetHitReturn()

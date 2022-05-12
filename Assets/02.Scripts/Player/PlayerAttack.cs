@@ -43,51 +43,56 @@ public class PlayerAttack : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(GetComponent<PlayerMove>().getHit);
         //Debug.Log(skillList[0].remainCoolTime + " " + skillList[1].remainCoolTime + " " + skillList[2].remainCoolTime);
-        if (playerInput.basicAtk)
+        if (GetComponent<PlayerMove>().getHit == false)
         {
-            if (!isAttacking)
+            
+            if (playerInput.basicAtk)
             {
-                combo = 0;
-                anim.SetInteger("BasicAttack", combo);
-                anim.SetTrigger("isBagicAttack");
-                isAttacking = true;
-                combo++;
-            }
-            else if(isAttacking)
-            {
-                switch (combo)
+                if (!isAttacking)
                 {
-                    case 1:
-                        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_Attack1"))
-                        {
+                    combo = 0;
+                    anim.SetInteger("BasicAttack", combo);
+                    anim.SetTrigger("isBagicAttack");
+                    isAttacking = true;
+                    combo++;
+                }
+                else if(isAttacking)
+                {
+                    switch (combo)
+                    {
+                        case 1:
+                            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_Attack1"))
+                            {
 
-                            anim.SetInteger("BasicAttack", combo);
-                            combo++;
+                                anim.SetInteger("BasicAttack", combo);
+                                combo++;
                             
-                        }
-                        break;
-                    case 2:
-                        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_Attack2"))
-                        {
-                            anim.SetInteger("BasicAttack", combo);
-                        }
-                        break;
+                            }
+                            break;
+                        case 2:
+                            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_Attack2"))
+                            {
+                                anim.SetInteger("BasicAttack", combo);
+                            }
+                            break;
+                    }
                 }
             }
-        }
         
-        else if (playerInput.skillOne)
-        {
-            InputSkillFunc(playerInput.skillOneName);
-        }
-        else if (playerInput.skillTwo)
-        {
-            InputSkillFunc(playerInput.skillTwoName);
-        }
-        else if (playerInput.ultimate)
-        {
-            InputSkillFunc(playerInput.ultimateName);
+            else if (playerInput.skillOne)
+            {
+                InputSkillFunc(playerInput.skillOneName);
+            }
+            else if (playerInput.skillTwo)
+            {
+                InputSkillFunc(playerInput.skillTwoName);
+            }
+            else if (playerInput.ultimate)
+            {
+                InputSkillFunc(playerInput.ultimateName);
+            }
         }
     }
     private void InputSkillFunc(string name)
@@ -147,6 +152,7 @@ public class PlayerAttack : MonoBehaviour
     }
     private void Attack(string skillName, Transform skillTrm, int index, string hitEffectName)
     {
+        
         isAttacking = true;
         anim.Play(inputSkill.skillName, -1, 0f);
         PoolableMono poolingObject = PoolManager.Instance.Pop(skillName);
