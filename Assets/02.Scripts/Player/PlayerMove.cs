@@ -132,6 +132,7 @@ public class PlayerMove : MonoBehaviour
                 _dashTime -= Time.deltaTime;
                 rigid.velocity = new Vector2(_dashDis, 0);
                 anim.SetBool("isDash",true);
+                MGSound.instance.playEff("PlayerDash");
             }
 
         }
@@ -189,6 +190,7 @@ public class PlayerMove : MonoBehaviour
                     canSecondJump = false;
                 
             }
+            MGSound.instance.playEff("PlayerJump");
         }
         else if(!isGround && rigid.velocity.y < 0)
         {
@@ -227,10 +229,12 @@ public class PlayerMove : MonoBehaviour
             if(playerInput.movement == 1)
             {
                 playerAttack.visualGroup.transform.localScale = Vector3.one;
+                //MGSound.instance.playEff("PlayerMove");
             }
             else if(playerInput.movement == -1)
             {
                 playerAttack.visualGroup.transform.localScale = new Vector3(-1,1,1);
+                //MGSound.instance.playEff("PlayerMove");
             }
         }
     }

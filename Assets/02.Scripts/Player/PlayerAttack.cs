@@ -103,6 +103,7 @@ public class PlayerAttack : MonoBehaviour
                     if(inputSkill.skillName == "FastMagic")
                     {
                         Collider2D[] cols = Physics2D.OverlapBoxAll(onePos.position, boxSize ,0f);
+                        MGSound.instance.playEff("FastTry");
                         foreach (Collider2D col in cols)
                         {
                             IDamageable target = col.GetComponent<IDamageable>();
@@ -111,6 +112,7 @@ public class PlayerAttack : MonoBehaviour
                             {
                                 //target.OnDamage(inputSkill.attackDamage, this.transform.position);
                                 Attack("FastMagic",col.transform,i, "FastHit");
+                                MGSound.instance.playEff("FastAttack");
                                 break; // 하나만 타겟팅
                             }
                         }
@@ -118,11 +120,13 @@ public class PlayerAttack : MonoBehaviour
                     else if(inputSkill.skillName == "SpinAttack")
                     {
                         Attack("SpinAttack",spinAttackTrm,i,"SpinHit");
-                        
+                        MGSound.instance.playEff("SpinTry");
+
                     }
                     else if(inputSkill.skillName == "SustainMagic")
                     {
                         Attack("SustainMagic",sustainAttackTrm,i,"SustainHit");
+                        MGSound.instance.playEff("SustainTry");
                     }
                     else
                     {
@@ -151,6 +155,14 @@ public class PlayerAttack : MonoBehaviour
         poolingObject.GetComponent<NonTargetSkill>().damage = skillList[index].attackDamage;
         poolingObject.GetComponent<NonTargetSkill>().hitName = hitEffectName;
         skillList[index].remainCoolTime = skillList[index].initCoolTime;
+        if (skillList[1])
+        {
+            MGSound.instance.playEff("SpinAttack");
+        }
+        else
+        {
+            MGSound.instance.playEff("SustainAttack");
+        }
         StartCoroutine(skillList[index].coolTime());
     }
     public void AttackEnd()
