@@ -56,6 +56,7 @@ public class PlayerHealth : LivingEntity
         if (isDead) return;
         
         base.OnDamage(damage, hitPosition,push);
+        GetComponent<PlayerMove>().GetHitFunc();
         healthScript.SetHpBar(health);
         healthScript.SetHpText(health, initHealth);
         StartCoroutine(ShowDamagedEffect(hitPosition,push));

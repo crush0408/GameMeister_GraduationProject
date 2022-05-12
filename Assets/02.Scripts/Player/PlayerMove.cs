@@ -20,10 +20,13 @@ public class PlayerMove : MonoBehaviour
     public bool canDash = true;
     public bool canMove = true;
 
+    public bool getHit = false;
+
 
     private bool _jump;
     private bool _jumpKeyUp;
     private bool _dash;
+    
 
     [Header("Dash관련 변수들")]
     [SerializeField] private float _dashDelayStartTime;
@@ -223,7 +226,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (!isCrouch && !playerAttack.isAttacking)
         {
-            if(playerInput.movement != 0)
+            if(!getHit)
             {
                 rigid.velocity = new Vector2(playerInput.movement * moveSpeed, rigid.velocity.y);
             }
@@ -240,5 +243,14 @@ public class PlayerMove : MonoBehaviour
                 //MGSound.instance.playEff("PlayerMove");
             }
         }
+    }
+    public void GetHitFunc()
+    {
+        getHit = true;
+        anim.SetTrigger("GetHit");
+    }
+    public void GetHitReturn()
+    {
+        getHit = false;
     }
 }

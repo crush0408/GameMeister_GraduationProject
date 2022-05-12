@@ -1149,6 +1149,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2105400316}
+        m_TargetAssemblyTypeName: PlayerMove, Assembly-CSharp
+        m_MethodName: GetHitReturn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &313828004
 GameObject:
   m_ObjectHideFlags: 3
@@ -5016,6 +5030,7 @@ MonoBehaviour:
   canSecondJump: 0
   canDash: 1
   canMove: 1
+  getHit: 0
   _dashDelayStartTime: 0.15
   startDashTime: 0.2
   dashSpeed: 40
