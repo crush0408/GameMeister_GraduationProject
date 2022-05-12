@@ -13,6 +13,8 @@ public class GroundBossScript : BossBase
     private bool isJumpAttackBefore = false;
     private bool isJumpAttack = false; // 변수명 어떠카지...
 
+    private bool isGround = false;
+
     private bool isHealing = false;
     private int randomNum = 0;
     private IEnumerator attackDelay;
@@ -137,6 +139,7 @@ public class GroundBossScript : BossBase
     {
         // Debug.Log("FSM : " + myFsm);
 
+        /*
         // 공격 중이 아닌 해당 상태에서 Chase 이전 HP 체크 후 힐 필요함
         if ((enemyHealth.health < 60) && !isHealing)
         {
@@ -144,6 +147,7 @@ public class GroundBossScript : BossBase
             healCoroutine = HealCoroutine(1f, 3f);
             StartCoroutine(healCoroutine);
         }
+        */
 
         if (DistanceDecision(jumpAtkDist + 0.5f) && enemyHealth.health < 20)
         {   // 공격 사정거리 밖, 점프공격 사정거리 안
@@ -217,6 +221,7 @@ public class GroundBossScript : BossBase
         if (!isJumpAttackBefore)   // 중복 실행 방지
         {
             isJumpAttackBefore = true;
+            isGround = false;
             floatPos = transform.position + new Vector3(0f, 7f, 0f);  // 플로팅 할 만큼의 타겟 포스 지정
             // floatPos = (floatPos == Vector3.zero) ? transform.position + new Vector3(0f, 3.5f, 0f) : floatPos;
 
@@ -232,18 +237,23 @@ public class GroundBossScript : BossBase
         while (transform.position.y < floatPos.y - 3f)
         {
             transform.position = Vector3.Lerp(transform.position, floatPos, 0.03f);
-            Debug.Log("여러번 " + "현재 : " + transform.position.y + " < " + floatPos.y);
+            // Debug.Log("여러번 " + "현재 : " + transform.position.y + " < " + floatPos.y);
 
             yield return null;
         }
 
         Debug.Log("상태 변경");
 
-        fallDownPos = myTarget.transform.position; // 플레이어를 계속 따라가면 이상하니 처음 한 번만 지정 (1번 저장 방식, 2번보다 플레이 쉬움)
+        // fallDownPos = myTarget.transform.position; // 플레이어를 계속 따라가면 이상하니 처음 한 번만 지정 (1번 저장 방식, 2번보다 플레이 쉬움)
 
         myRigid.bodyType = RigidbodyType2D.Static;  // 잠깐 고정시키기 (Freeze Y Pos 하는 함수를 모르겠음...) 역시 임시방편
         myAnim.SetBool("isFloatDelay", true);
-        yield return new WaitForSeconds(2f);    // 공중에서 2초 딜레이
+        // yield return new WaitForSeconds(2f);    // 공중에서 2초 딜레이
+
+        yield return new WaitForSeconds(1f);
+        fallDownPos = myTarget.transform.position;
+        FlipSprite();
+        yield return new WaitForSeconds(1f);
 
         // myRigid.bodyType = RigidbodyType2D.Dynamic; // 리지드바디 타입 되돌리기 -> 상태 변경 이후 코드에서 실행
 
@@ -265,7 +275,7 @@ public class GroundBossScript : BossBase
             // fallDownPos = (fallDownPos == Vector3.zero) ? myTarget.transform.position : fallDownPos;
         }
 
-        if (Vector3.Distance(transform.position, fallDownPos) <= 1f)  // Mathf.Lerp 사용하니까 미세하게 올라가서 목표치를 못 넘기길래 임시 방편으로 판정 줄여둠
+        if (Vector3.Distance(transform.position, fallDownPos) <= 0.5f)  // Mathf.Lerp 사용하니까 미세하게 올라가서 목표치를 못 넘기길래 임시 방편으로 판정 줄여둠
         {
             // 공격 코드
             Debug.Log("공격");
@@ -274,17 +284,18 @@ public class GroundBossScript : BossBase
 
             // 공격을 언제 끝내야 하는 거지...
 
-            if (transform.position.y <= myTarget.transform.position.y)
+            if (isGround)  // transform.position.y <= myTarget.transform.position.y
             {
-                Debug.Log(transform.position.y + " < " + myTarget.transform.position.y);
+                // Debug.Log(transform.position.y + " < " + myTarget.transform.position.y);
                 myAnim.SetBool("isJumpAttackingEnd", true);
+                isJumpAttack = false;
                 ChangeState(Global.EnemyFsm.Chase);
             }
         }
         else
         {
             // 이동
-            transform.position = Vector3.Lerp(transform.position, fallDownPos, 0.03f);
+            transform.position = Vector3.Lerp(transform.position, fallDownPos, 0.04f);
             Debug.Log("현재 거리 : " + Vector3.Distance(transform.position, fallDownPos));
         }
 
@@ -368,5 +379,14 @@ public class GroundBossScript : BossBase
         Vector2 p2 = Vector2.Lerp(middlePos, lastPos, t);
 
         return Vector2.Lerp(p1, p2, t);
+    }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Ground"))
+        {
+            isGround = true;
+            Debug.Log("isGround : " + isGround);
+        }
     }
 }
