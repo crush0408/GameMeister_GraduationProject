@@ -70,7 +70,7 @@ public class GroundBossScript : BossBase
                 {
                     ChangeState(Global.EnemyFsm.GetHit);
                 }
-                StartCoroutine(IdleToChase(0.5f));
+                StartCoroutine(IdleToChase(2f));
                 break;
             case Global.EnemyFsm.Chase:
                 if(getHit)
