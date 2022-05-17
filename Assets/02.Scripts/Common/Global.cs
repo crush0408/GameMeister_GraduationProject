@@ -9,7 +9,7 @@ public class Global : MonoBehaviour
         None = -1,
         Idle,
         Patrol,
-        Heal,
+        Meditate,
         Chase,
         Attack,
         AttackAfter,

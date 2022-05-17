@@ -73,7 +73,7 @@ public class GroundBossScript : BossBase
                 StartCoroutine(IdleToChase(2f));
                 break;
             case Global.EnemyFsm.Chase:
-                if(getHit)
+                if (getHit)
                 {
                     ChangeState(Global.EnemyFsm.GetHit);
                 }
@@ -105,7 +105,7 @@ public class GroundBossScript : BossBase
                 }
                 JumpAttack();
                 break;
-            case Global.EnemyFsm.Heal:
+            case Global.EnemyFsm.Meditate:
                 // if ()    // 빠져나가는 조건
                 if (healCoroutine == null)
                 {
@@ -276,7 +276,7 @@ public class GroundBossScript : BossBase
 
     public void JumpAttack()    // 애니메이션 필요
     {
-        if (!isJumpAttack)  
+        if (!isJumpAttack)
         {
             isJumpAttack = true;
 
