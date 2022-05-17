@@ -100,6 +100,25 @@ public class NewGroundBoss : BossBase
 
     private void Attack()
     {
+        // 프레임마다 Attack 함수로 들어오는 거 막아야 함
+        switch (attackNum)
+        {
+            case 0:
+                myAnim.SetTrigger("isAtk_3_1");
+                break;
+            case 1:
+                myAnim.SetTrigger("isAtk_3_2");
+                break;
+            case 2:
+                myAnim.SetTrigger("isAtk_3_3");
+                break;
+        }
+
+        attackNum++;
+    }
+
+    public void AttackAfter()   // 이벤트 함수
+    {
 
     }
 }
