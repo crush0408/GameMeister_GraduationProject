@@ -4527,7 +4527,7 @@ MonoBehaviour:
   myVelocity: {x: 0, y: 0, z: 0}
   rightDirection: {x: 0, y: 0, z: 0}
   leftDirection: {x: 0, y: 0, z: 0}
-  visualGroup: {fileID: 0}
+  visualGroup: {fileID: 419317959}
   speed: 0
   myTarget: {fileID: 0}
   sightDistance: 0

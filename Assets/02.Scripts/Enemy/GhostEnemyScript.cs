@@ -69,7 +69,7 @@ public class GhostEnemyScript : FlyingEnemyBase
                     }
                     
                     break;
-                case Global.EnemyFsm.Heal:
+                case Global.EnemyFsm.Meditate:
                     break;
                 case Global.EnemyFsm.Chase:
                     if (getHit)
