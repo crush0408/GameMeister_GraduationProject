@@ -47,10 +47,12 @@ public class NewGroundBoss : BossBase
                 StartCoroutine(delayCoroutine);
                 break;
             case Global.EnemyFsm.Chase:
-                Debug.Log("Chase 모드에 진입");
+                Debug.Log("Chase 모드 진입");
                 Chase();
                 break;
             case Global.EnemyFsm.Attack:
+                Debug.Log("Attack 모드 진입");
+                Attack();
                 break;
             case Global.EnemyFsm.AttackAfter:
                 break;
@@ -94,5 +96,10 @@ public class NewGroundBoss : BossBase
         {
             Move();                             // 공격 범위 밖
         }
+    }
+
+    private void Attack()
+    {
+
     }
 }
