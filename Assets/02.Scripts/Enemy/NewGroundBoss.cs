@@ -100,6 +100,7 @@ public class NewGroundBoss : BossBase
 
     public override void Attack()
     {
+        /*
         // 프레임마다 Attack 함수로 들어오는 거 막아야 함
         if (isAttacking) return;
 
@@ -116,13 +117,44 @@ public class NewGroundBoss : BossBase
             case 2:
                 myAnim.SetTrigger("isAtk_3_3");
                 break;
+            case 3:
+                myAnim.SetTrigger("isAtk_3_final");
+                break;
         }
+        */
 
-        attackNum++;
+        if (!isAttacking)
+        {
+            base.Attack();
+
+            if (attackNum == 0)
+            {
+                myAnim.SetTrigger("isAtk_3_1");
+            }
+            else if (attackNum == 1)
+            {
+                myAnim.SetTrigger("isAtk_3_2");
+            }
+            else if (attackNum == 2)
+            {
+                myAnim.SetTrigger("isAtk_3_3");
+            }
+            else if (attackNum == 3)
+            {
+                myAnim.SetTrigger("isAtk_3_final");
+            }
+        }
     }
 
     public override void AttackAfter()   // 이벤트 함수
     {
         base.AttackAfter(); // isAttacking = false;
+        attackNum++;
+
+        if (attackNum == 4)
+        {
+            attackNum = 0;
+            ChangeState(Global.EnemyFsm.Idle);
+        }
     }
 }
