@@ -39,10 +39,6 @@ public class NewGroundBoss : BossBase
         switch (myFsm)
         {
             case Global.EnemyFsm.Idle:
-                if (attackNum != 0)
-                {
-                    attackNum = 0;
-                }
                 delayCoroutine = Delay(2f, Global.EnemyFsm.Chase);
                 StartCoroutine(delayCoroutine);
                 break;
