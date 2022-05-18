@@ -19,9 +19,9 @@ public class NewGroundBoss : BossBase
 
         myFsm = Global.EnemyFsm.Idle;
         speed = 6f;
-        delayTime = 2f;
+        delayTime = 1.5f;
         sightDistance = 15f;    // 시야 범위
-        attackDistance = 2.5f;  // 공격 범위
+        attackDistance = 3.5f;  // 공격 범위
         rightDirection = Vector3.one;   // 오른쪽 보고 시작
         leftDirection = new Vector3(-rightDirection.x, rightDirection.y, rightDirection.z);
     }
@@ -98,9 +98,13 @@ public class NewGroundBoss : BossBase
         }
     }
 
-    private void Attack()
+    public override void Attack()
     {
         // 프레임마다 Attack 함수로 들어오는 거 막아야 함
+        if (isAttacking) return;
+
+        base.Attack(); // isAttacking = true;
+
         switch (attackNum)
         {
             case 0:
@@ -117,8 +121,8 @@ public class NewGroundBoss : BossBase
         attackNum++;
     }
 
-    public void AttackAfter()   // 이벤트 함수
+    public override void AttackAfter()   // 이벤트 함수
     {
-
+        base.AttackAfter(); // isAttacking = false;
     }
 }

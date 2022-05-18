@@ -43,7 +43,7 @@ public class PlayerAttack : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(GetComponent<PlayerMove>().getHit);
+        // Debug.Log(GetComponent<PlayerMove>().getHit);
         //Debug.Log(skillList[0].remainCoolTime + " " + skillList[1].remainCoolTime + " " + skillList[2].remainCoolTime);
         if (GetComponent<PlayerMove>().getHit == false)
         {
