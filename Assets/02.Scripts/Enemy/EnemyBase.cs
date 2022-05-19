@@ -43,7 +43,7 @@ public class EnemyBase : MonoBehaviour
     {
         myVelocity = Vector2.zero;
         myRigid.velocity = myVelocity;
-        // myAnim.SetBool("isChase", false);
+        myAnim.SetBool("isChase", false);
     }
     public virtual IEnumerator Patrol(float random)
     {
@@ -77,7 +77,7 @@ public class EnemyBase : MonoBehaviour
     public virtual void Move()
     {
         FlipSprite();
-        // myAnim.SetBool("isChase", true);
+        myAnim.SetBool("isChase", true);
     }
 
     protected void GetHit()
@@ -98,17 +98,13 @@ public class EnemyBase : MonoBehaviour
         Stop();
         FlipSprite();
         isAttacking = true;
+        
     }
     public virtual void AttackAfter()
     {
         isAttacking = false;
-        //StartCoroutine(AttackDelay());
     }
-    private IEnumerator AttackDelay()
-    {
-        yield return new WaitForSeconds(delayTime);
-        isAttacking = false;
-    }
+    
     protected bool DistanceDecision(float distance) // 플레이어와 적의 거리가 distance보다 작은지 bool 리턴
     {
         float calc = Vector3.Distance(myTarget.transform.position, transform.position);

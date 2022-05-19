@@ -24,7 +24,7 @@ public class PlayerHealth : LivingEntity
     {
         healthScript = GetComponentInChildren<PlayerHPBar>();
         healthScript.InitHealth(health, initHealth);
-        healthScript.SetHpText(health, initHealth);
+        healthScript.SetHpText(health);
 
     }
 
@@ -34,7 +34,7 @@ public class PlayerHealth : LivingEntity
         if (push)
         {
             int reaction = transform.position.x - pos.x > 0 ? 1 : -1;
-            rigid.AddForce(new Vector2(reaction * 5, 1), ForceMode2D.Impulse);
+            rigid.AddForce(new Vector2(reaction * 3, 1), ForceMode2D.Impulse);
         }
         yield return new WaitForSeconds(damagedEffectTime);
         sr.color = temp;
@@ -58,7 +58,7 @@ public class PlayerHealth : LivingEntity
         base.OnDamage(damage, hitPosition,push);
         GetComponent<PlayerMove>().GetHitFunc();
         healthScript.SetHpBar(health);
-        healthScript.SetHpText(health, initHealth);
+        healthScript.SetHpText(health);
         StartCoroutine(ShowDamagedEffect(hitPosition,push));
         CameraActionScript.ShakeCam(4f, 0.3f, true);
         MGSound.instance.playEff("hitFace");

@@ -7,12 +7,12 @@ public class SkillEffectScript : PoolableMono
     public override void Reset()
     {
 
-        
     }
     public void PushFunc()
     {
+        transform.parent = PoolManager.Instance.gameObject.transform;
+        transform.localPosition = Vector3.zero;
         PoolManager.Instance.Push(this);
-        Debug.Log("Effect");
     }
     public void Shake()
     {

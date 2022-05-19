@@ -31,7 +31,7 @@ public class DamageText : PoolableMono
     public void PlayFloating(string damageString)
     {
         text.text = damageString;
-        Debug.Log("DoMove");
+
         float random = Random.Range(1f, 2.5f);
         transform.DOMove(transform.position + new Vector3(Random.Range(-1f,1f),random,0) , 0.25f).OnComplete(() => {
             //transform.DOMove(transform.position + new Vector3(0,-random - 1,0), 0.5f).OnComplete(() =>

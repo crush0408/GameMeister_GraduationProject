@@ -18,6 +18,7 @@ public class LivingEntity : MonoBehaviour, IDamageable
     public virtual void OnDamage(float damage, Vector2 hitPosition, bool push)
     {
         health -= damage;
+        
         if(health <= 0 && !isDead)
         {
             Die();
@@ -34,6 +35,10 @@ public class LivingEntity : MonoBehaviour, IDamageable
     {
         if (isDead) return;
         health += value;
+        if(health > initHealth)
+        {
+            health = initHealth;
+        }
     }
     
 }

@@ -14,8 +14,8 @@ public class GroundBossScript : BossBase
     private bool isJumpAttack = false; // 변수명 어떠카지...
 
     private bool isGround = false;
-
     private bool isHealing = false;
+
     private int randomNum = 0;
     private IEnumerator attackDelay;
 

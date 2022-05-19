@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class NewGroundBoss : BossBase
 {
-    private IEnumerator delayCoroutine;
 
-    private int attackNum = 0;  // 연속 공격 횟수(1-2회 : atk2 / 3회 : atk3) -> Idle 상태로 돌아가며 초기화
+    public IEnumerator delayCoroutine;
+
+    public Transform[] healTrm;
+
+    public int hitCount;
+
+    public bool isSpecial;
 
     private void Start()
     {
@@ -20,14 +25,35 @@ public class NewGroundBoss : BossBase
         myFsm = Global.EnemyFsm.Idle;
         speed = 6f;
         delayTime = 1.5f;
-        sightDistance = 15f;    // 시야 범위
-        attackDistance = 3.5f;  // 공격 범위
-        rightDirection = Vector3.one;   // 오른쪽 보고 시작
+        sightDistance = 10f;    // 시야 범위
+        attackDistance = 2f;  // 공격 범위
+        rightDirection = Vector3.one;
         leftDirection = new Vector3(-rightDirection.x, rightDirection.y, rightDirection.z);
+        isSpecial = false;
     }
 
     private void Update()
     {
+        if(enemyHealth.health / enemyHealth.initHealth < 0.4f && !isSpecial)
+        {
+            isSpecial = true;
+            ChangeState(Global.EnemyFsm.PatternMove);
+        }
+        if(!isMeditating)
+        {
+            if (getHit)
+            {
+                hitCount++;
+                getHit = false;
+            }
+            if(hitCount >= 3)
+            {
+                myAnim.SetBool("isAttacking", false);
+                isAttacking = false;
+                ChangeState(Global.EnemyFsm.Meditate);
+                hitCount = 0;
+            }
+        }
         if (!isDie)
         {
             FsmUpdate();
@@ -36,33 +62,57 @@ public class NewGroundBoss : BossBase
 
     public void FsmUpdate() // 매 프레임마다 실행
     {
+        
+
         switch (myFsm)
         {
             case Global.EnemyFsm.Idle:
-                delayCoroutine = Delay(2f, Global.EnemyFsm.Chase);
-                StartCoroutine(delayCoroutine);
+                if(delayCoroutine == null)
+                {
+                    delayTime = Random.Range(0.9f, 1.5f);
+                    delayCoroutine = Delay(delayTime, Global.EnemyFsm.Chase);
+                    StartCoroutine(delayCoroutine);
+                }
                 break;
             case Global.EnemyFsm.Chase:
-                Debug.Log("Chase 모드 진입");
-                Chase();
+                if(DistanceDecision(attackDistance))
+                {
+                    ChangeState(Global.EnemyFsm.Attack);
+                }
+                Move();
                 break;
             case Global.EnemyFsm.Attack:
-                Debug.Log("Attack 모드 진입");
                 Attack();
+                ChangeState(Global.EnemyFsm.AttackAfter);
                 break;
             case Global.EnemyFsm.AttackAfter:
+                if(!isAttacking)
+                {
+                    ChangeState(Global.EnemyFsm.Idle);
+                }
                 break;
             case Global.EnemyFsm.Meditate:
+                if(!isMeditating && !isAttacking)
+                {
+                    myAnim.SetBool("isMeditate", true);
+                    
+                }
                 break;
-            case Global.EnemyFsm.GetHit:
+            case Global.EnemyFsm.Delay:
+                if(!isMeditating)
+                {
+                    ChangeState(Global.EnemyFsm.Idle);
+                }
                 break;
-            case Global.EnemyFsm.GetHitAfter:
-                break;
-            default:
+            case Global.EnemyFsm.PatternMove:
+                
                 break;
         }
     }
+    public void SpecialAtk()
+    {
 
+    }
     // 타겟(플레이어) 위치로 이동
     public override void Move()
     {
@@ -80,77 +130,34 @@ public class NewGroundBoss : BossBase
     {
         yield return new WaitForSeconds(delay);
         ChangeState(enemyFsm);
+        delayCoroutine = null;
     }
 
-    private void Chase()
-    {
-        if (DistanceDecision(attackDistance))   // 공격 범위 안
-        {
-            ChangeState(Global.EnemyFsm.Attack);
-        }
-        else
-        {
-            Move();                             // 공격 범위 밖
-        }
-    }
 
     public override void Attack()
     {
-        /*
-        // 프레임마다 Attack 함수로 들어오는 거 막아야 함
-        if (isAttacking) return;
+        base.Attack();
+        myAnim.SetTrigger("Attack");
+        myAnim.SetBool("isAttacking", true);
+    }
 
-        base.Attack(); // isAttacking = true;
-
-        switch (attackNum)
-        {
-            case 0:
-                myAnim.SetTrigger("isAtk_3_1");
-                break;
-            case 1:
-                myAnim.SetTrigger("isAtk_3_2");
-                break;
-            case 2:
-                myAnim.SetTrigger("isAtk_3_3");
-                break;
-            case 3:
-                myAnim.SetTrigger("isAtk_3_final");
-                break;
-        }
-        */
-
-        if (!isAttacking)
-        {
-            base.Attack();
-
-            if (attackNum == 0)
-            {
-                myAnim.SetTrigger("isAtk_3_1");
-            }
-            else if (attackNum == 1)
-            {
-                myAnim.SetTrigger("isAtk_3_2");
-            }
-            else if (attackNum == 2)
-            {
-                myAnim.SetTrigger("isAtk_3_3");
-            }
-            else if (attackNum == 3)
-            {
-                myAnim.SetTrigger("isAtk_3_final");
-            }
-        }
+    public void AttackEnd()
+    {
+        myAnim.SetBool("isAttacking", false);
+        isAttacking = false;
+    }
+    public void GoMeditate()
+    {
+        int random = Random.Range(0, 2);
+        transform.position = healTrm[random].position;
+        //myAnim.Play("Meditate");
+        healCoroutine = HealCoroutine(20f, 10f);
+        StartCoroutine(healCoroutine);
+        ChangeState(Global.EnemyFsm.Delay);
     }
 
     public override void AttackAfter()   // 이벤트 함수
     {
-        base.AttackAfter(); // isAttacking = false;
-        attackNum++;
-
-        if (attackNum == 4)
-        {
-            attackNum = 0;
-            ChangeState(Global.EnemyFsm.Idle);
-        }
+        base.AttackAfter();
     }
 }

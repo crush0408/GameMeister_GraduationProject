@@ -42,6 +42,7 @@ public class EnemyHealth : LivingEntity
     public override void HealHealth(float value)
     {
         base.HealHealth(value);
+        hpBar.SetHpBar(health);
     }
     public override void Die()
     {
@@ -57,8 +58,10 @@ public class EnemyHealth : LivingEntity
         if (isDead) return;
 
         GetComponent<EnemyBase>().getHit = true;
+        
         base.OnDamage(damage, hitPosition,push);
         hpBar.SetHpBar(health);
+
         PoolableMono a = PoolManager.Instance.Pop("DamageText");
         a.transform.position = this.transform.position;
         a.GetComponent<DamageText>().PlayFloating(damage.ToString());

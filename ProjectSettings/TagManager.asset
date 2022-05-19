@@ -55,3 +55,6 @@ TagManager:
   - name: HP
     uniqueID: 140315919
     locked: 0
+  - name: Effect
+    uniqueID: 3952724727
+    locked: 0

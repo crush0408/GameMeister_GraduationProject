@@ -6,16 +6,18 @@ using UnityEngine.UI;
 
 public class BossBase : EnemyBase, INpc_Monster
 {
-    public float patternOrder = 0f;
+    public int patternOrder = 0;
     public float jumpPower = 0f;
 
     public IEnumerator healCoroutine;
+    public bool isMeditating;
 
+    [Header("보스 대화 관련 세팅")]
     public NpcSpeechSystem speechSystem;
     public Data[] datas;
-
     public bool isTalkEnd = false;
     public bool isTalkStart = false;
+    [Space]
 
     protected Vector2 startPos;
     protected Vector2 lastPos;
@@ -29,6 +31,7 @@ public class BossBase : EnemyBase, INpc_Monster
         isTalkEnd = false;
         isTalkStart = false;
         healCoroutine = null;
+        isMeditating = false;
     }
     public void Action(CinemachineVirtualCamera vCam)
     {
@@ -57,19 +60,21 @@ public class BossBase : EnemyBase, INpc_Monster
 
     public virtual void Jump()
     {
-        isAttacking = true; // 테스팅을 위한 임시 변수 세팅임
-        AttackAfter(); // 테스팅을 위한 임시 함수 세팅
+        
         myAnim.SetTrigger("Jump");
         
     }
     protected IEnumerator HealCoroutine(float amount, float time)
     {
-        {
-            Debug.Log("힐 이전 적 체력 : " + enemyHealth.health);
-            enemyHealth.HealHealth(amount);
-            Debug.Log("힐 이후 적 체력 : " + enemyHealth.health);
-            yield return new WaitForSeconds(time);
-        }
+        isMeditating = true;
+        yield return new WaitForSeconds(time);
+        
+        enemyHealth.HealHealth(amount);
+        PoolableMono poolingObject = PoolManager.Instance.Pop("HealEffect");
+        poolingObject.transform.parent = this.transform;
+        poolingObject.transform.localPosition = new Vector3(0, 0, 0);
+        isMeditating = false;
+        myAnim.SetBool("isMeditate", isMeditating);
         healCoroutine = null;
     }
 }

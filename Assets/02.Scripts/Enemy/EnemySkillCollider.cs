@@ -5,17 +5,17 @@ using UnityEngine;
 public class EnemySkillCollider : MonoBehaviour
 {
     public float damage = 0f;
+    public bool push = false;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         BoxCollider2D boxCollider = collision.GetComponent<BoxCollider2D>();
 
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && boxCollider == collision)
         {
             IDamageable target = collision.GetComponent<IDamageable>();
             if(target != null)
             {
-                target.OnDamage(damage, transform.position, true);
-                Debug.Log(this.gameObject.name + "이 " + damage + "만큼 피해를 입힘");
+                target.OnDamage(damage, transform.position, push);
             }
         }
     }
