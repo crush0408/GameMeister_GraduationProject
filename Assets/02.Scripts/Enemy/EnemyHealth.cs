@@ -58,7 +58,11 @@ public class EnemyHealth : LivingEntity
         if (isDead) return;
 
         GetComponent<EnemyBase>().getHit = true;
-        
+        if(GetComponent<NewGroundBoss>().isSpecial)
+        {
+            damage = damage * 0.3f;
+        }
+        Debug.Log(damage + " " + GetComponent<NewGroundBoss>().isSpecial);
         base.OnDamage(damage, hitPosition,push);
         hpBar.SetHpBar(health);
 

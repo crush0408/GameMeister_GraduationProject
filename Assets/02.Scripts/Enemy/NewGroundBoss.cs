@@ -37,23 +37,30 @@ public class NewGroundBoss : BossBase
         if(enemyHealth.health / enemyHealth.initHealth < 0.4f && !isSpecial)
         {
             isSpecial = true;
+            myAnim.SetTrigger("Special");
+            myAnim.SetBool("isSpecial",isSpecial);
             ChangeState(Global.EnemyFsm.PatternMove);
         }
-        if(!isMeditating)
+        if(getHit)
         {
-            if (getHit)
+            if(!isMeditating && myFsm != Global.EnemyFsm.PatternMove)
             {
                 hitCount++;
+                if (hitCount >= 3)
+                {
+                    myAnim.SetBool("isAttacking", false);
+                    isAttacking = false;
+                    ChangeState(Global.EnemyFsm.Meditate);
+                    hitCount = 0;
+                }
                 getHit = false;
             }
-            if(hitCount >= 3)
+            else
             {
-                myAnim.SetBool("isAttacking", false);
-                isAttacking = false;
-                ChangeState(Global.EnemyFsm.Meditate);
-                hitCount = 0;
+                getHit = false;
             }
         }
+        
         if (!isDie)
         {
             FsmUpdate();
@@ -69,7 +76,7 @@ public class NewGroundBoss : BossBase
             case Global.EnemyFsm.Idle:
                 if(delayCoroutine == null)
                 {
-                    delayTime = Random.Range(0.9f, 1.5f);
+                    delayTime = Random.Range(1.4f, 2f);
                     delayCoroutine = Delay(delayTime, Global.EnemyFsm.Chase);
                     StartCoroutine(delayCoroutine);
                 }
@@ -86,7 +93,7 @@ public class NewGroundBoss : BossBase
                 ChangeState(Global.EnemyFsm.AttackAfter);
                 break;
             case Global.EnemyFsm.AttackAfter:
-                if(!isAttacking)
+                if(!isAttacking && healCoroutine == null)
                 {
                     ChangeState(Global.EnemyFsm.Idle);
                 }
@@ -95,10 +102,18 @@ public class NewGroundBoss : BossBase
                 if(!isMeditating && !isAttacking)
                 {
                     myAnim.SetBool("isMeditate", true);
-                    
                 }
                 break;
             case Global.EnemyFsm.Delay:
+                
+                if(isSpecial)
+                {
+                    if(delayCoroutine == null)
+                    {
+                        delayCoroutine = Delay(5, Global.EnemyFsm.Attack);
+                        StartCoroutine(delayCoroutine);
+                    }
+                }
                 if(!isMeditating)
                 {
                     ChangeState(Global.EnemyFsm.Idle);
@@ -106,12 +121,35 @@ public class NewGroundBoss : BossBase
                 break;
             case Global.EnemyFsm.PatternMove:
                 
+                myAnim.Play("Defend");
+                ChangeState(Global.EnemyFsm.Delay);
+
                 break;
         }
     }
-    public void SpecialAtk()
+    public void SpecialAtkMove()
     {
+        Vector2 dir = myTarget.transform.position - this.transform.position;
 
+        if(dir.x > 0)
+        {
+            transform.position =
+                new Vector3(myTarget.transform.position.x + 1.5f
+                , transform.position.y,
+                transform.position.z);
+
+            
+
+        }
+        else
+        {
+            transform.position =
+                new Vector3(myTarget.transform.position.x - 1.5f
+                , transform.position.y,
+                transform.position.z);
+
+        }
+        FlipSprite();
     }
     // 타겟(플레이어) 위치로 이동
     public override void Move()
@@ -137,8 +175,10 @@ public class NewGroundBoss : BossBase
     public override void Attack()
     {
         base.Attack();
-        myAnim.SetTrigger("Attack");
-        myAnim.SetBool("isAttacking", true);
+        
+
+            myAnim.SetTrigger("Attack");
+            myAnim.SetBool("isAttacking", true);
     }
 
     public void AttackEnd()
@@ -151,9 +191,9 @@ public class NewGroundBoss : BossBase
         int random = Random.Range(0, 2);
         transform.position = healTrm[random].position;
         //myAnim.Play("Meditate");
-        healCoroutine = HealCoroutine(20f, 10f);
+        healCoroutine = HealCoroutine(5f, 3f);
         StartCoroutine(healCoroutine);
-        ChangeState(Global.EnemyFsm.Delay);
+        
     }
 
     public override void AttackAfter()   // 이벤트 함수
