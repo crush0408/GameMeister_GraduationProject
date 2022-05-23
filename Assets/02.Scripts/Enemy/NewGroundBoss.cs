@@ -53,12 +53,9 @@ public class NewGroundBoss : BossBase
                     ChangeState(Global.EnemyFsm.Meditate);
                     hitCount = 0;
                 }
-                getHit = false;
+                
             }
-            else
-            {
-                getHit = false;
-            }
+            getHit = false;
         }
         
         if (!isDie)
@@ -90,16 +87,17 @@ public class NewGroundBoss : BossBase
                 break;
             case Global.EnemyFsm.Attack:
                 Attack();
+
                 ChangeState(Global.EnemyFsm.AttackAfter);
                 break;
             case Global.EnemyFsm.AttackAfter:
-                if(!isAttacking && healCoroutine == null)
+                if(!isAttacking && !isMeditating)
                 {
                     ChangeState(Global.EnemyFsm.Idle);
                 }
                 break;
             case Global.EnemyFsm.Meditate:
-                if(!isMeditating && !isAttacking)
+                if(!isAttacking)
                 {
                     myAnim.SetBool("isMeditate", true);
                 }
@@ -113,10 +111,14 @@ public class NewGroundBoss : BossBase
                         delayCoroutine = Delay(5, Global.EnemyFsm.Attack);
                         StartCoroutine(delayCoroutine);
                     }
+                    FlipSprite();
                 }
-                if(!isMeditating)
+                else
                 {
-                    ChangeState(Global.EnemyFsm.Idle);
+                    if(!isMeditating)
+                    {
+                        ChangeState(Global.EnemyFsm.Idle);
+                    }
                 }
                 break;
             case Global.EnemyFsm.PatternMove:
@@ -137,9 +139,6 @@ public class NewGroundBoss : BossBase
                 new Vector3(myTarget.transform.position.x + 1.5f
                 , transform.position.y,
                 transform.position.z);
-
-            
-
         }
         else
         {
@@ -147,7 +146,6 @@ public class NewGroundBoss : BossBase
                 new Vector3(myTarget.transform.position.x - 1.5f
                 , transform.position.y,
                 transform.position.z);
-
         }
         FlipSprite();
     }
@@ -190,14 +188,16 @@ public class NewGroundBoss : BossBase
     {
         int random = Random.Range(0, 2);
         transform.position = healTrm[random].position;
-        //myAnim.Play("Meditate");
         healCoroutine = HealCoroutine(5f, 3f);
         StartCoroutine(healCoroutine);
-        
     }
 
     public override void AttackAfter()   // 이벤트 함수
     {
         base.AttackAfter();
+    }
+    public override void DeadAnimScript()
+    {
+        base.DeadAnimScript();
     }
 }

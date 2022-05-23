@@ -58,7 +58,7 @@ public class EnemyHealth : LivingEntity
         if (isDead) return;
 
         GetComponent<EnemyBase>().getHit = true;
-        if(GetComponent<NewGroundBoss>().isSpecial)
+        if(GetComponent<NewGroundBoss>().myAnim.GetCurrentAnimatorStateInfo(0).IsName("Defend"))
         {
             damage = damage * 0.3f;
         }
