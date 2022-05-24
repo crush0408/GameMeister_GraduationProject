@@ -54,11 +54,14 @@ public class PlayerHealth : LivingEntity
     public override void OnDamage(float damage, Vector2 hitPosition, bool push = true)
     {
         if (isDead) return;
-        
+        Debug.Log(damage);
         base.OnDamage(damage, hitPosition,push);
         GetComponent<PlayerMove>().GetHitFunc();
         healthScript.SetHpBar(health);
         healthScript.SetHpText(health);
+        PoolableMono a = PoolManager.Instance.Pop("DamageText");
+        a.transform.position = this.transform.position;
+        a.GetComponent<DamageText>().PlayFloating(damage.ToString());
         StartCoroutine(ShowDamagedEffect(hitPosition,push));
         CameraActionScript.ShakeCam(4f, 0.3f, true);
         MGSound.instance.playEff("hitFace");

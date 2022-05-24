@@ -62,7 +62,7 @@ public class EnemyHealth : LivingEntity
         {
             damage = damage * 0.3f;
         }
-        Debug.Log(damage + " " + GetComponent<NewGroundBoss>().isSpecial);
+        
         base.OnDamage(damage, hitPosition,push);
         hpBar.SetHpBar(health);
 

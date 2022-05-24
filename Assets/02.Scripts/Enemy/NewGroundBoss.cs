@@ -6,6 +6,7 @@ public class NewGroundBoss : BossBase
 {
 
     public IEnumerator delayCoroutine;
+    public IEnumerator defendCoroutine;
 
     public Transform[] healTrm;
 
@@ -21,7 +22,9 @@ public class NewGroundBoss : BossBase
     public override void Init()
     {
         base.Init();
-
+        delayCoroutine = null;
+        defendCoroutine = null;
+        hitCount = 0;
         myFsm = Global.EnemyFsm.Idle;
         speed = 6f;
         delayTime = 1.5f;
@@ -34,22 +37,43 @@ public class NewGroundBoss : BossBase
 
     private void Update()
     {
-        if(enemyHealth.health / enemyHealth.initHealth < 0.4f && !isSpecial)
+        if (enemyHealth.health / enemyHealth.initHealth < 0.4f && !isSpecial)
         {
             isSpecial = true;
+            if (isMeditating)
+            {
+                enemyHealth.HealHealth(5);
+                PoolableMono poolingObject = PoolManager.Instance.Pop("HealEffect");
+                poolingObject.transform.parent = this.transform;
+                poolingObject.transform.localPosition = new Vector3(0, 0, 0);
+                isMeditating = false;
+                myAnim.SetBool("isMeditate", isMeditating);
+                healCoroutine = null;
+            }
             myAnim.SetTrigger("Special");
-            myAnim.SetBool("isSpecial",isSpecial);
+            myAnim.SetBool("isSpecial", isSpecial);
+            if (delayCoroutine != null)
+            {
+                StopCoroutine(delayCoroutine);
+                delayCoroutine = null;
+            }
             ChangeState(Global.EnemyFsm.PatternMove);
         }
+        
         if(getHit)
         {
-            if(!isMeditating && myFsm != Global.EnemyFsm.PatternMove && !isSpecial)
+            if(!isMeditating && !isSpecial)
             {
                 hitCount++;
                 if (hitCount >= 3)
                 {
                     myAnim.SetBool("isAttacking", false);
                     isAttacking = false;
+                    if(delayCoroutine != null)
+                    {
+                        StopCoroutine(delayCoroutine);
+                        delayCoroutine = null;
+                    }
                     ChangeState(Global.EnemyFsm.Meditate);
                     hitCount = 0;
                 }
@@ -57,7 +81,6 @@ public class NewGroundBoss : BossBase
             }
             getHit = false;
         }
-        
         if (!isDie)
         {
             FsmUpdate();
@@ -97,7 +120,8 @@ public class NewGroundBoss : BossBase
                 }
                 break;
             case Global.EnemyFsm.Meditate:
-                if(!isAttacking)
+                
+                if (!isAttacking)
                 {
                     myAnim.SetBool("isMeditate", true);
                 }
@@ -118,10 +142,10 @@ public class NewGroundBoss : BossBase
                 break;
             case Global.EnemyFsm.PatternDelay:
                 FlipSprite();
-                if (delayCoroutine == null)
+                if (defendCoroutine == null)
                 {
-                    delayCoroutine = Delay(5, Global.EnemyFsm.Attack);
-                    StartCoroutine(delayCoroutine);
+                    defendCoroutine = Defend();
+                    StartCoroutine(defendCoroutine);
                 }
                 break;
         }
@@ -165,7 +189,12 @@ public class NewGroundBoss : BossBase
         ChangeState(enemyFsm);
         delayCoroutine = null;
     }
-
+    public IEnumerator Defend()
+    {
+        yield return new WaitForSeconds(3f);
+        ChangeState(Global.EnemyFsm.Attack);
+        defendCoroutine = null;
+    }
 
     public override void Attack()
     {
