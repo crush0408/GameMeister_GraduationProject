@@ -43,7 +43,7 @@ public class NewGroundBoss : BossBase
         }
         if(getHit)
         {
-            if(!isMeditating && myFsm != Global.EnemyFsm.PatternMove)
+            if(!isMeditating && myFsm != Global.EnemyFsm.PatternMove && !isSpecial)
             {
                 hitCount++;
                 if (hitCount >= 3)
@@ -91,7 +91,7 @@ public class NewGroundBoss : BossBase
                 ChangeState(Global.EnemyFsm.AttackAfter);
                 break;
             case Global.EnemyFsm.AttackAfter:
-                if(!isAttacking && !isMeditating)
+                if(!isAttacking)
                 {
                     ChangeState(Global.EnemyFsm.Idle);
                 }
@@ -104,28 +104,25 @@ public class NewGroundBoss : BossBase
                 break;
             case Global.EnemyFsm.Delay:
                 
-                if(isSpecial)
-                {
-                    if(delayCoroutine == null)
-                    {
-                        delayCoroutine = Delay(5, Global.EnemyFsm.Attack);
-                        StartCoroutine(delayCoroutine);
-                    }
-                    FlipSprite();
-                }
-                else
-                {
                     if(!isMeditating)
                     {
                         ChangeState(Global.EnemyFsm.Idle);
                     }
-                }
+                
                 break;
             case Global.EnemyFsm.PatternMove:
                 
                 myAnim.Play("Defend");
-                ChangeState(Global.EnemyFsm.Delay);
+                ChangeState(Global.EnemyFsm.PatternDelay);
 
+                break;
+            case Global.EnemyFsm.PatternDelay:
+                FlipSprite();
+                if (delayCoroutine == null)
+                {
+                    delayCoroutine = Delay(5, Global.EnemyFsm.Attack);
+                    StartCoroutine(delayCoroutine);
+                }
                 break;
         }
     }

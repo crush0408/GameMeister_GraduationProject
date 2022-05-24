@@ -18,6 +18,7 @@ public class Global : MonoBehaviour
         PatternMove,
         GetHit,
         GetHitAfter,
-        Delay
+        Delay,
+        PatternDelay
     }
 }
