@@ -42,13 +42,14 @@ public class NewGroundBoss : BossBase
             isSpecial = true;
             if (isMeditating)
             {
+                StopCoroutine(healCoroutine);
+                healCoroutine = null;
                 enemyHealth.HealHealth(5);
                 PoolableMono poolingObject = PoolManager.Instance.Pop("HealEffect");
                 poolingObject.transform.parent = this.transform;
                 poolingObject.transform.localPosition = new Vector3(0, 0, 0);
                 isMeditating = false;
                 myAnim.SetBool("isMeditate", isMeditating);
-                healCoroutine = null;
             }
             myAnim.SetTrigger("Special");
             myAnim.SetBool("isSpecial", isSpecial);
