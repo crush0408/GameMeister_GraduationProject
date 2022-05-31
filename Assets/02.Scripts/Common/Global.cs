@@ -14,17 +14,9 @@ public class Global : MonoBehaviour
     {
         None = -1,
         Idle,
-        Patrol,
-        Meditate,
         Chase,
+        Patrol,
         Attack,
-        AttackAfter,
-        JumpAttackBefore,
-        JumpAttack,
-        PatternMove,
-        GetHit,
-        GetHitAfter,
-        Delay,
-        PatternDelay
+        GetHit
     }
 }

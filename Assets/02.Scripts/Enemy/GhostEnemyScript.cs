@@ -16,6 +16,7 @@ public class GhostEnemyScript : BasicEnemyBase
         myType = Global.EnemyType.Walking;
         speed = 3f;
         delayTime = 2f;
+        patrolCoolTime = 0.5f;
         sightDistance = 12f;
         attackDistance = 2.5f;
         rightDirection = Vector3.one;
@@ -23,111 +24,82 @@ public class GhostEnemyScript : BasicEnemyBase
     }
     private void Update()
     {
-        FsmUpdate();
+        CheckTransition();
     }
-    private void FsmUpdate()
+    private void CheckTransition()
     {
-        if(!isDie)
+        if(getHit) { StartState(Global.EnemyFsm.GetHit); return; }
+        switch (myFsm)
         {
-            switch (myFsm)
-            {
-                
-                case Global.EnemyFsm.None:
-                    break;
-                case Global.EnemyFsm.Idle:
-                    if(getHit)
+            case Global.EnemyFsm.Idle:
+                {
+                    if(DistanceDecision(sightDistance)) { StartState(Global.EnemyFsm.Chase); }
+                    else { StartState(Global.EnemyFsm.Patrol); }
+                }
+                break;
+            case Global.EnemyFsm.Chase:
+                {
+                    if(DistanceDecision(attackDistance)) { StartState(Global.EnemyFsm.Attack); }
+                    else if(!DistanceDecision(sightDistance)) { StartState(Global.EnemyFsm.Idle); }
+                    else { StartState(Global.EnemyFsm.Chase); }
+                }
+                break;
+            case Global.EnemyFsm.Patrol:
+                {
+                    if(DistanceDecision(attackDistance)) { StopCoroutine(patrolCoroutine); patrolCoroutine = null; isPatroling = false; StartState(Global.EnemyFsm.Attack); }
+                    else if(DistanceDecision(sightDistance)) { StopCoroutine(patrolCoroutine); patrolCoroutine = null; isPatroling = false; StartState(Global.EnemyFsm.Chase); }
+                    else { StartState(Global.EnemyFsm.Patrol); }
+                }
+                break;
+            case Global.EnemyFsm.Attack:
+                if(!isAttacking) { StartState(Global.EnemyFsm.Idle); }
+                break;
+            case Global.EnemyFsm.GetHit:
+                {
+                    if(!getHit) { StartState(Global.EnemyFsm.Idle); }
+                }
+                break;
+        }
+    }
+    private void StartState(Global.EnemyFsm state)
+    {
+        
+        
+        ChangeState(state);
+        switch (myFsm)
+        {
+            case Global.EnemyFsm.Idle:
+                {
+                    Stop();
+                    FlipSprite();
+                }
+                break;
+            case Global.EnemyFsm.Chase:
+                {
+                    speed = 5f;
+                    Chase();
+                }
+                break;
+            case Global.EnemyFsm.Patrol:
+                {
+                    if(patrolCoroutine == null)
                     {
-                        ChangeState(Global.EnemyFsm.GetHit);
-                    }
-                    else if(DistanceDecision(sightDistance))
-                    {
-                        ChangeState(Global.EnemyFsm.Chase);
+                        speed = 3f;
+                        patrolCoroutine = Patrol();
+                        StartCoroutine(patrolCoroutine);
                     }
                     else
                     {
-                        base.Stop();
-                        //ChangeState(Global.EnemyFsm.Patrol);
+                        
+                        myRigid.velocity = myVelocity;
                     }
-                    break;
-                case Global.EnemyFsm.Patrol:
-                    if (getHit)
-                    {
-                        ChangeState(Global.EnemyFsm.GetHit);
-                    }
-                    else if (DistanceDecision(attackDistance))
-                    {
-                        ChangeState(Global.EnemyFsm.Attack);
-                    }
-                    else if(DistanceDecision(sightDistance))
-                    {
-                        ChangeState(Global.EnemyFsm.Chase);
-                    }
-                    if(patrolCoroutine == null)
-                    {
-                        float random = Random.Range(-1, 2);
-                        patrolCoroutine = Patrol(random);
-                        StartCoroutine(patrolCoroutine);
-                    }
-                    
-                    break;
-                case Global.EnemyFsm.Meditate:
-                    break;
-                case Global.EnemyFsm.Chase:
-                    if (getHit)
-                    {
-                        ChangeState(Global.EnemyFsm.GetHit);
-                    }
-                    else if(!DistanceDecision(sightDistance))
-                    {
-                        ChangeState(Global.EnemyFsm.Idle);
-                    }
-                    else if (DistanceDecision(attackDistance))
-                    {
-                        ChangeState(Global.EnemyFsm.Attack);
-                    }
-                    Chase();
-                    break;
-                case Global.EnemyFsm.Attack:
-                    if (getHit)
-                    {
-                        ChangeState(Global.EnemyFsm.GetHit);
-                    }
+                }
+                break;
+            case Global.EnemyFsm.Attack:
+                {
                     Attack();
-                    ChangeState(Global.EnemyFsm.AttackAfter);
-                    break;
-                case Global.EnemyFsm.AttackAfter:
-                    if (getHit)
-                    {
-                        ChangeState(Global.EnemyFsm.GetHit);
-                    }
-                    ChangeState(Global.EnemyFsm.Delay);
-                    break;
-                case Global.EnemyFsm.GetHit:
-                    base.GetHit();
-                    ChangeState(Global.EnemyFsm.GetHitAfter);
-                    break;
-                case Global.EnemyFsm.GetHitAfter:
-                    if(!getHit)
-                    {
-                        ChangeState(Global.EnemyFsm.Idle);
-                    }
-                    break;
-                case Global.EnemyFsm.Delay:
-                    // Do Not Any Action
-                    // Only Transition
-                    if (getHit)
-                    {
-                        ChangeState(Global.EnemyFsm.GetHit);
-                    }
-
-                    if (!isAttacking)
-                    {
-                        ChangeState(Global.EnemyFsm.Idle);
-                    }
-                    break;
-                default:
-                    break;
-            }
+                }
+                break;
         }
     }
     public override void Attack()

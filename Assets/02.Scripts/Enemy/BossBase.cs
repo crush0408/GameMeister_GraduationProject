@@ -67,7 +67,7 @@ public class BossBase : EnemyBase, INpc_Monster
     protected IEnumerator HealCoroutine(float amount, float time)
     {
         isMeditating = true;
-        ChangeState(Global.EnemyFsm.Delay);
+        //ChangeState(Global.EnemyFsm.Delay);
         yield return new WaitForSeconds(time);
         
         enemyHealth.HealHealth(amount);

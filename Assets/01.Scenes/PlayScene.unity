@@ -244,6 +244,34 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 509369553}
+        m_TargetAssemblyTypeName: GhostEnemyScript, Assembly-CSharp
+        m_MethodName: AttackAfter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 509369553}
+        m_TargetAssemblyTypeName: GhostEnemyScript, Assembly-CSharp
+        m_MethodName: GetHitAfter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!95 &108385428
 Animator:
   serializedVersion: 3
@@ -684,14 +712,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myFsm: 0
+  myType: 0
   myRigid: {fileID: 0}
   myAnim: {fileID: 0}
   myVelocity: {x: 0, y: 0, z: 0}
   rightDirection: {x: 0, y: 0, z: 0}
   leftDirection: {x: 0, y: 0, z: 0}
   visualGroup: {fileID: 238021705}
-  speed: 0
   myTarget: {fileID: 0}
+  speed: 0
   sightDistance: 0
   attackDistance: 0
   delayTime: 0
@@ -1779,14 +1808,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myFsm: 0
+  myType: 0
   myRigid: {fileID: 0}
   myAnim: {fileID: 0}
   myVelocity: {x: 0, y: 0, z: 0}
   rightDirection: {x: 0, y: 0, z: 0}
   leftDirection: {x: 0, y: 0, z: 0}
   visualGroup: {fileID: 108385426}
-  speed: 0
   myTarget: {fileID: 0}
+  speed: 0
   sightDistance: 0
   attackDistance: 0
   delayTime: 0
@@ -1794,6 +1824,8 @@ MonoBehaviour:
   isAttacking: 0
   isDie: 0
   enemyHealth: {fileID: 0}
+  patrolCoolTime: 0
+  isPatroling: 0
 --- !u!4 &509369554
 Transform:
   m_ObjectHideFlags: 0
@@ -3872,14 +3904,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myFsm: 0
+  myType: 0
   myRigid: {fileID: 0}
   myAnim: {fileID: 0}
   myVelocity: {x: 0, y: 0, z: 0}
   rightDirection: {x: 0, y: 0, z: 0}
   leftDirection: {x: 0, y: 0, z: 0}
   visualGroup: {fileID: 1660793418}
-  speed: 0
   myTarget: {fileID: 0}
+  speed: 0
   sightDistance: 0
   attackDistance: 0
   delayTime: 0
@@ -3887,6 +3920,8 @@ MonoBehaviour:
   isAttacking: 0
   isDie: 0
   enemyHealth: {fileID: 0}
+  patrolCoolTime: 0
+  isPatroling: 0
 --- !u!4 &1563501124
 Transform:
   m_ObjectHideFlags: 0
@@ -4031,14 +4066,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myFsm: 0
+  myType: 0
   myRigid: {fileID: 0}
   myAnim: {fileID: 0}
   myVelocity: {x: 0, y: 0, z: 0}
   rightDirection: {x: 0, y: 0, z: 0}
   leftDirection: {x: 0, y: 0, z: 0}
   visualGroup: {fileID: 564409130}
-  speed: 0
   myTarget: {fileID: 0}
+  speed: 0
   sightDistance: 0
   attackDistance: 0
   delayTime: 0

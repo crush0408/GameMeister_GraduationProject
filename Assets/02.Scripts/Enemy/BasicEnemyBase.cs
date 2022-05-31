@@ -5,6 +5,9 @@ using UnityEngine;
 public class BasicEnemyBase : EnemyBase
 {
     public IEnumerator patrolCoroutine;
+    public float patrolCoolTime;
+    public bool isPatroling;
+    public float patDir;
 
     public override void Init()
     {
@@ -12,14 +15,28 @@ public class BasicEnemyBase : EnemyBase
         patrolCoroutine = null;
     }
 
-    protected IEnumerator Patrol(float random)
+    protected IEnumerator Patrol()
     {
-        Vector2 dir = new Vector2(random, 0);
-        dir.Normalize();
-        myVelocity = dir * speed;
+        Debug.Log("Patrol Start");
+        
+        isPatroling = true;
+        patDir = Random.Range(-1, 2);
+        
+        myVelocity = new Vector2(patDir * speed, myVelocity.y);
         myRigid.velocity = myVelocity;
+        if (patDir != 0)
+        {
+            myAnim.SetBool("isChase", true);
+            PatrolFlip(patDir);
+        }
+        yield return new WaitForSeconds(patrolCoolTime);
+        isPatroling = false;
+        patrolCoroutine = null;
+    }
 
-        if (dir.x > 0)
+    protected void PatrolFlip(float dir)
+    {
+        if(dir > 0)
         {
             visualGroup.transform.localScale = rightDirection;
         }
@@ -27,7 +44,5 @@ public class BasicEnemyBase : EnemyBase
         {
             visualGroup.transform.localScale = leftDirection;
         }
-        yield return new WaitForSeconds(3f);
-        patrolCoroutine = null;
     }
 }

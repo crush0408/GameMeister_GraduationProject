@@ -34,7 +34,7 @@ public class NewGroundBoss : BossBase
         leftDirection = new Vector3(-rightDirection.x, rightDirection.y, rightDirection.z);
         isSpecial = false;
     }
-
+    /*
     private void Update()
     {
         if (enemyHealth.health / enemyHealth.initHealth < 0.4f && !isSpecial)
@@ -217,4 +217,5 @@ public class NewGroundBoss : BossBase
     {
         base.DeadAnimScript();
     }
+    */
 }

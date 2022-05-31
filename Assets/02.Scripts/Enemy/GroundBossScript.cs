@@ -65,6 +65,8 @@ public class GroundBossScript : BossBase
                 }
                 */
                 break;
+        }
+                /*
             case Global.EnemyFsm.Idle:
                 if (getHit)
                 {
@@ -126,8 +128,9 @@ public class GroundBossScript : BossBase
             default:
                 break;
         }
+                */
     }
-
+                
     // 타겟(플레이어) 위치로 이동
     /*
     public override void Move()
@@ -164,7 +167,7 @@ public class GroundBossScript : BossBase
 
             // Debug.Log("점프 어택");
             myAnim.SetBool("isRun", false);
-            ChangeState(Global.EnemyFsm.JumpAttackBefore);
+            //ChangeState(Global.EnemyFsm.JumpAttackBefore);
         }
         else if (DistanceDecision(attackDistance)) // 공격 사정거리 안일 때
         {
@@ -176,7 +179,7 @@ public class GroundBossScript : BossBase
         else // 플레이어에게 다가가야 함
         {
             Debug.Log("플레이어와의 거리 : " + Mathf.Abs(myTarget.transform.position.x - transform.position.x));
-            Move();
+            Chase();
 
             myAnim.SetBool("isRun", true);
         }
@@ -218,7 +221,7 @@ public class GroundBossScript : BossBase
         // Debug.Log("FSM : " + myFsm);
         base.AttackAfter();
 
-        ChangeState(Global.EnemyFsm.AttackAfter);
+        //ChangeState(Global.EnemyFsm.AttackAfter);
 
         if (attackDelay == null)
         {
@@ -273,7 +276,7 @@ public class GroundBossScript : BossBase
         // myRigid.bodyType = RigidbodyType2D.Dynamic; // 리지드바디 타입 되돌리기 -> 상태 변경 이후 코드에서 실행
 
         isJumpAttackBefore = false; // 어디다 둬야 할 지 모르겠어서 상태 변경 직전으로
-        ChangeState(Global.EnemyFsm.JumpAttack);
+        //ChangeState(Global.EnemyFsm.JumpAttack);
     }
 
     public void JumpAttack()    // 애니메이션 필요
