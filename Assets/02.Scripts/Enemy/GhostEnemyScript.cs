@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GhostEnemyScript : FlyingEnemyBase
+public class GhostEnemyScript : BasicEnemyBase
 {
     private float attackCount = 0f;
     private void Start()
@@ -13,6 +13,7 @@ public class GhostEnemyScript : FlyingEnemyBase
     {
         base.Init();
         myFsm = Global.EnemyFsm.Idle;
+        myType = Global.EnemyType.Walking;
         speed = 3f;
         delayTime = 2f;
         sightDistance = 12f;
@@ -84,7 +85,7 @@ public class GhostEnemyScript : FlyingEnemyBase
                     {
                         ChangeState(Global.EnemyFsm.Attack);
                     }
-                    base.Flying();
+                    Chase();
                     break;
                 case Global.EnemyFsm.Attack:
                     if (getHit)
@@ -129,9 +130,6 @@ public class GhostEnemyScript : FlyingEnemyBase
             }
         }
     }
-    
-
-    
     public override void Attack()
     {
         base.Attack();

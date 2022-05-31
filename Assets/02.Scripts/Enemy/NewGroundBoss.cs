@@ -107,7 +107,7 @@ public class NewGroundBoss : BossBase
                 {
                     ChangeState(Global.EnemyFsm.Attack);
                 }
-                Move();
+                Chase();
                 break;
             case Global.EnemyFsm.Attack:
                 Attack();
@@ -172,17 +172,7 @@ public class NewGroundBoss : BossBase
         FlipSprite();
     }
     // 타겟(플레이어) 위치로 이동
-    public override void Move()
-    {
-        base.Move();
-
-        Vector2 dir = myTarget.transform.position - this.transform.position;
-        dir.y = 0f;
-        dir.Normalize();
-
-        myVelocity = dir * speed;
-        myRigid.velocity = myVelocity;
-    }
+    
 
     public IEnumerator Delay(float delay, Global.EnemyFsm enemyFsm)
     {

@@ -4,24 +4,28 @@ using UnityEngine;
 
 public class EnemyBase : MonoBehaviour
 {
-    public Global.EnemyFsm myFsm; 
+    public Global.EnemyFsm myFsm;
+    public Global.EnemyType myType;
     public Rigidbody2D myRigid; 
     public Animator myAnim; 
+
     public Vector3 myVelocity;
     public Vector3 rightDirection;
     public Vector3 leftDirection;
+
     public GameObject visualGroup;
-    public float speed;
     public GameObject myTarget;
+    
+    public float speed;
     public float sightDistance;
     public float attackDistance;
     public float delayTime;
+    
     public bool getHit;
     public bool isAttacking;
     public bool isDie;
-    public EnemyHealth enemyHealth;
 
-    public IEnumerator patrolCoroutine;
+    public EnemyHealth enemyHealth;
 
     public virtual void Init()
     {
@@ -32,7 +36,6 @@ public class EnemyBase : MonoBehaviour
         isAttacking = false;
         isDie = false;
         myAnim = GetComponentInChildren<Animator>();
-        patrolCoroutine = null;
         enemyHealth.OnDead += Die;
     }
     protected void ChangeState(Global.EnemyFsm state)
@@ -45,24 +48,7 @@ public class EnemyBase : MonoBehaviour
         myRigid.velocity = myVelocity;
         myAnim.SetBool("isChase", false);
     }
-    public virtual IEnumerator Patrol(float random)
-    {
-        Vector2 dir = new Vector2(random, 0);
-        dir.Normalize();
-        myVelocity = dir * speed;
-        myRigid.velocity = myVelocity;
-
-        if (dir.x > 0)
-        {
-            visualGroup.transform.localScale = rightDirection;
-        }
-        else
-        {
-            visualGroup.transform.localScale = leftDirection;
-        }
-        yield return new WaitForSeconds(3f);
-        patrolCoroutine = null;
-    }
+    
     protected void Die()
     {
         isDie = true;
@@ -74,10 +60,20 @@ public class EnemyBase : MonoBehaviour
     {
         Destroy(this.gameObject);
     }
-    public virtual void Move()
+    public virtual void Chase()
     {
         FlipSprite();
         myAnim.SetBool("isChase", true);
+
+        Vector2 dir = myTarget.transform.position - this.transform.position;
+        if(myType == Global.EnemyType.Walking)
+        {
+            dir.y = 0f;
+        }
+        dir.Normalize();
+
+        myVelocity = dir * speed;
+        myRigid.velocity = myVelocity;
     }
 
     protected void GetHit()

@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Global : MonoBehaviour
 {
+    public enum EnemyType
+    {
+        None = -1,
+        Walking,
+        Flying
+    }
     public enum EnemyFsm
     {
         None = -1,
