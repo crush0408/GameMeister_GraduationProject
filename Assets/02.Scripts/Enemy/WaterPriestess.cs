@@ -2,17 +2,53 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaterPriestess : MonoBehaviour
+public class WaterPriestess : BossBase
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void Init()
+    {
+        base.Init();
+    }
+
+    private void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         
+    }
+
+    public void FsmUpdate()
+    {
+        switch (myFsm)
+        {
+            case Global.EnemyFsm.Idle:
+                break;
+            case Global.EnemyFsm.Chase:
+                break;
+            case Global.EnemyFsm.Attack:
+                break;
+            case Global.EnemyFsm.AttackAfter:
+                break;
+        }
+    }
+
+    public override void Move()
+    {
+        base.Move();
+    }
+
+    public override void Attack()
+    {
+        base.Attack();  // isAttacking = true;
+        myAnim.SetTrigger("Attack");    // 상백 ??
+        myAnim.SetBool("isAttacking", isAttacking);
+    }
+
+    public override void AttackAfter()
+    {
+        base.AttackAfter(); // isAttacking = false;
+        myAnim.SetBool("isAttacking", isAttacking);
     }
 }
