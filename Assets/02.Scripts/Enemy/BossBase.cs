@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class BossBase : EnemyBase, INpc_Monster
 {
     public IEnumerator delayCoroutine;
-    private bool isDelay = false;
-    private float delayTime = 0f;
+    public bool isDelay = false;
+    public float delayTime = 0f;
 
     public int patternOrder = 0;
     public float jumpPower = 0f;
