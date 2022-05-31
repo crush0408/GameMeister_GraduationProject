@@ -4,14 +4,23 @@ using UnityEngine;
 
 public class WaterPriestess : BossBase
 {
+    public int hitCount;
+
     public override void Init()
     {
         base.Init();
+        myFsm = Global.EnemyFsm.Idle;
+        speed = 6f;
+
+        sightDistance = 10f;    // 시야 범위
+        attackDistance = 6f;    // 공격 범위
     }
 
     private void Start()
     {
         Init();
+
+
     }
 
     private void Update()
@@ -38,6 +47,10 @@ public class WaterPriestess : BossBase
             case Global.EnemyFsm.Attack:
                 break;
             case Global.EnemyFsm.AttackAfter:
+                if (!isAttacking)
+                {
+                    ChangeState(Global.EnemyFsm.Idle);
+                }
                 break;
         }
     }
@@ -52,5 +65,10 @@ public class WaterPriestess : BossBase
     {
         base.AttackAfter(); // isAttacking = false;
         myAnim.SetBool("isAttacking", isAttacking);
+    }
+
+    public override void DeadAnimScript()   // 이렇게 할 거면 override가 필요한가??
+    {
+        base.DeadAnimScript();  // Destroy(this.gameObject)
     }
 }
