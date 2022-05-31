@@ -129,6 +129,7 @@ public class GroundBossScript : BossBase
     }
 
     // 타겟(플레이어) 위치로 이동
+    /*
     public override void Move()
     {
         base.Move();
@@ -140,6 +141,7 @@ public class GroundBossScript : BossBase
         myVelocity = dir * speed;
         myRigid.velocity = myVelocity;
     }
+    */
 
     // werqreq
     public void Chase()
