@@ -11,12 +11,15 @@ public class WaterPriestess : BossBase
 
     private void Start()
     {
-        
+        Init();
     }
 
     private void Update()
     {
-        
+        if (!isDie)
+        {
+            FsmUpdate();
+        }
     }
 
     public void FsmUpdate()
@@ -26,6 +29,11 @@ public class WaterPriestess : BossBase
             case Global.EnemyFsm.Idle:
                 break;
             case Global.EnemyFsm.Chase:
+                if (DistanceDecision(attackDistance))   // 공격 범위 내로 진입하면 Attack으로 상태 변경
+                {
+                    ChangeState(Global.EnemyFsm.Attack);
+                }
+                Chase();
                 break;
             case Global.EnemyFsm.Attack:
                 break;
@@ -34,15 +42,9 @@ public class WaterPriestess : BossBase
         }
     }
 
-    public override void Move()
-    {
-        base.Move();
-    }
-
     public override void Attack()
     {
         base.Attack();  // isAttacking = true;
-        myAnim.SetTrigger("Attack");    // 상백 ??
         myAnim.SetBool("isAttacking", isAttacking);
     }
 
