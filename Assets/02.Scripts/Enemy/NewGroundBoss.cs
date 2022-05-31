@@ -84,7 +84,10 @@ public class NewGroundBoss : BossBase
             }
             getHit = false;
         }
-        CheckTransition();
+        if (!isDie)
+        {
+            CheckTransition();
+        }
     }
     private void CheckTransition()
     {
@@ -104,7 +107,7 @@ public class NewGroundBoss : BossBase
                 break;
             case Global.EnemyFsm.Attack:
                 {
-                    if(!isAttacking) { Debug.Log("??"); StartState(Global.EnemyFsm.Idle); }
+                    if(!isAttacking) { StartState(Global.EnemyFsm.Idle); }
                 }
                 break;
             case Global.EnemyFsm.Meditate:
