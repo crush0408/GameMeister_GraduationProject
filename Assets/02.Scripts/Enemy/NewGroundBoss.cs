@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class NewGroundBoss : BossBase
 {
-
-    public IEnumerator delayCoroutine;
-    private bool isDelay = false;
-    private float delayTime = 0f;
-
     public IEnumerator defendCoroutine;
 
     public Transform[] healTrm;
