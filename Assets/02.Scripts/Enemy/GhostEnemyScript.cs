@@ -100,6 +100,11 @@ public class GhostEnemyScript : BasicEnemyBase
                     Attack();
                 }
                 break;
+            case Global.EnemyFsm.GetHit:
+                {
+                    GetHit();
+                }
+                break;
         }
     }
     public override void Attack()
