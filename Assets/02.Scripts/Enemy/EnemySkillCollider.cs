@@ -15,7 +15,6 @@ public class EnemySkillCollider : MonoBehaviour
             IDamageable target = collision.GetComponent<IDamageable>();
             if(target != null)
             {
-                Debug.Log(damage);
                 target.OnDamage(damage, transform.position, push);
             }
         }

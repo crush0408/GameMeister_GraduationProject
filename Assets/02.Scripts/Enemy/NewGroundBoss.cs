@@ -37,14 +37,10 @@ public class NewGroundBoss : BossBase
     
     private void Update()
     {
-        CheckTransition();
-    }
-    private void CheckTransition()
-    {
-        if(enemyHealth.health / enemyHealth.initHealth < 0.4f && !isSpecial)
+        if (enemyHealth.health / enemyHealth.initHealth < 0.4f && !isSpecial)
         {
             isSpecial = true;
-            if(isMeditating)
+            if (isMeditating)
             {
                 CoroutineInitialization(healCoroutine);
                 enemyHealth.HealHealth(healAmount);
@@ -53,15 +49,16 @@ public class NewGroundBoss : BossBase
                 poolingObject.transform.parent = this.transform;
                 poolingObject.transform.localPosition = Vector3.zero;
                 isMeditating = false;
-                myAnim.SetBool("isMeditate",isMeditating);
+                myAnim.SetBool("isMeditate", isMeditating);
             }
 
             myAnim.SetTrigger("Special");
-            myAnim.SetBool("isSpecial",isSpecial);
+            myAnim.SetBool("isSpecial", isSpecial);
 
             if (delayCoroutine != null)
             {
                 CoroutineInitialization(delayCoroutine);
+                isDelay = false;
             }
             StartState(Global.EnemyFsm.Pattern);
             myAnim.Play("Defend");
@@ -71,15 +68,15 @@ public class NewGroundBoss : BossBase
             if (!isMeditating && !isSpecial)
             {
                 hitCount++;
-                if(hitCount >= 3)
+                if (hitCount >= 3)
                 {
-                    myAnim.SetBool("isAttacking",false);
+                    myAnim.SetBool("isAttacking", false);
                     isAttacking = false;
 
-                    if(delayCoroutine != null)
+                    if (delayCoroutine != null)
                     {
-                        StopCoroutine(delayCoroutine);
-                        delayCoroutine = null;
+                        CoroutineInitialization(delayCoroutine);
+                        isDelay = false;
                     }
                     StartState(Global.EnemyFsm.Meditate);
                     hitCount = 0;
@@ -87,29 +84,32 @@ public class NewGroundBoss : BossBase
             }
             getHit = false;
         }
+        CheckTransition();
+    }
+    private void CheckTransition()
+    {
+        
         switch (myFsm)
         {
             case Global.EnemyFsm.Idle:
                 {
-                    
                     if (!isDelay) { StartState(Global.EnemyFsm.Chase); }
                 }
                 break;
             case Global.EnemyFsm.Chase:
                 {
                     if(DistanceDecision(attackDistance)) { StartState(Global.EnemyFsm.Attack); }
-                    else if(!DistanceDecision(sightDistance)) { StartState(Global.EnemyFsm.Idle); }
                     else { StartState(Global.EnemyFsm.Chase); }
                 }
                 break;
             case Global.EnemyFsm.Attack:
                 {
-                    if(!isAttacking) { StartState(Global.EnemyFsm.Idle); }
+                    if(!isAttacking) { Debug.Log("??"); StartState(Global.EnemyFsm.Idle); }
                 }
                 break;
             case Global.EnemyFsm.Meditate:
                 {
-                    if(!isMeditating) { StartState(Global.EnemyFsm.Idle); }
+
                 }
                 break;
             case Global.EnemyFsm.Pattern:
@@ -141,8 +141,6 @@ public class NewGroundBoss : BossBase
                     Attack();
                 }
                 break;
-            case Global.EnemyFsm.GetHit:
-                break;
             case Global.EnemyFsm.Meditate:
                 {
                     myAnim.SetBool("isMeditate", true);
@@ -152,6 +150,7 @@ public class NewGroundBoss : BossBase
                 {
                     defendCoroutine = Defend();
                     StartCoroutine(defendCoroutine);
+                    enemyHealth.damagePercent = 0.3f;
                 }
                 break;
         }
@@ -191,6 +190,7 @@ public class NewGroundBoss : BossBase
         yield return new WaitForSeconds(3f);
         defendCoroutine = null;
         StartState(Global.EnemyFsm.Attack);
+        enemyHealth.damagePercent = 1f;
     }
 
     public override void Attack()
@@ -209,7 +209,7 @@ public class NewGroundBoss : BossBase
     {
         int random = Random.Range(0, 2);
         transform.position = healTrm[random].position;
-        healCoroutine = HealCoroutine(5f, 3f);
+        healCoroutine = HealCoroutine(healAmount, 3f);
         StartCoroutine(healCoroutine);
     }
 

@@ -73,13 +73,16 @@ public class BossBase : EnemyBase, INpc_Monster
     {
         isMeditating = true;
         yield return new WaitForSeconds(time);
-        
+
         enemyHealth.HealHealth(amount);
+
         PoolableMono poolingObject = PoolManager.Instance.Pop("HealEffect");
         poolingObject.transform.parent = this.transform;
-        poolingObject.transform.localPosition = new Vector3(0, 0, 0);
+        poolingObject.transform.localPosition = Vector3.zero;
+
         isMeditating = false;
         myAnim.SetBool("isMeditate", isMeditating);
+        ChangeState(Global.EnemyFsm.Idle);
         healCoroutine = null;
     }
     protected void CoroutineInitialization(IEnumerator coroutine)
