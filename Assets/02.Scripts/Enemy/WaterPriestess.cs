@@ -37,29 +37,37 @@ public class WaterPriestess : BossBase
         switch (myFsm)
         {
             case Global.EnemyFsm.Idle:
-                if(delayCoroutine == null)
                 {
-                    delayTime = Random.Range(1.4f, 2.0f);
-                    delayCoroutine = Delay(delayTime, Global.EnemyFsm.Chase);
-                    StartCoroutine(delayCoroutine);
+                    if (delayCoroutine == null)
+                    {
+                        delayTime = Random.Range(1.4f, 2.0f);
+                        delayCoroutine = Delay(delayTime, Global.EnemyFsm.Chase);
+                        StartCoroutine(delayCoroutine);
+                    }
                 }
                 break;
             case Global.EnemyFsm.Chase:
-                if (DistanceDecision(attackDistance))
                 {
-                    StartState(Global.EnemyFsm.Attack);
+                    if (DistanceDecision(attackDistance))
+                    {
+                        StartState(Global.EnemyFsm.Attack);
+                    }
                 }
                 break;
             case Global.EnemyFsm.Attack:
-                if (!isAttacking)
                 {
-                    StartState(Global.EnemyFsm.Chase);
+                    if (!isAttacking)
+                    {
+                        StartState(Global.EnemyFsm.Chase);
+                    }
                 }
                 break;
             case Global.EnemyFsm.GetHit:
-                if (!getHit)
                 {
-                    StartState(Global.EnemyFsm.Idle);
+                    if (!getHit)
+                    {
+                        StartState(Global.EnemyFsm.Idle);
+                    }
                 }
                 break;
         }
@@ -68,6 +76,29 @@ public class WaterPriestess : BossBase
     private void StartState(Global.EnemyFsm state)
     {
         ChangeState(state);
+        switch (myFsm)
+        {
+            case Global.EnemyFsm.Idle:
+                {
+
+                }
+                break;
+            case Global.EnemyFsm.Chase:
+                {
+
+                }
+                break;
+            case Global.EnemyFsm.Attack:
+                {
+                    Attack();       // 확인하기
+                }
+                break;
+            case Global.EnemyFsm.GetHit:
+                {
+                    GetHit();
+                }
+                break;
+        }
     }
 
     public override void Attack()
