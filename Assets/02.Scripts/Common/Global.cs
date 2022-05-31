@@ -17,6 +17,9 @@ public class Global : MonoBehaviour
         Chase,
         Patrol,
         Attack,
-        GetHit
+        GetHit,
+        // Boss
+        Meditate,
+        Pattern
     }
 }

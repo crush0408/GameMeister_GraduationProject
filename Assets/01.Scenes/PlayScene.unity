@@ -699,6 +699,7 @@ MonoBehaviour:
   damagedEffectTime: 0.1
   hpBarPrefab: {fileID: 8495596639698628516, guid: d3be829145e612d41806c4f9c169e138, type: 3}
   hpBar: {fileID: 0}
+  damagePercent: 0
 --- !u!114 &226340041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -723,7 +724,6 @@ MonoBehaviour:
   speed: 0
   sightDistance: 0
   attackDistance: 0
-  delayTime: 0
   getHit: 0
   isAttacking: 0
   isDie: 0
@@ -1731,7 +1731,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!50 &509369550
 Rigidbody2D:
   serializedVersion: 4
@@ -1795,6 +1795,7 @@ MonoBehaviour:
   damagedEffectTime: 0.2
   hpBarPrefab: {fileID: 8495596639698628516, guid: d3be829145e612d41806c4f9c169e138, type: 3}
   hpBar: {fileID: 0}
+  damagePercent: 0
 --- !u!114 &509369553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1819,13 +1820,13 @@ MonoBehaviour:
   speed: 0
   sightDistance: 0
   attackDistance: 0
-  delayTime: 0
   getHit: 0
   isAttacking: 0
   isDie: 0
   enemyHealth: {fileID: 0}
   patrolCoolTime: 0
   isPatroling: 0
+  patDir: 0
 --- !u!4 &509369554
 Transform:
   m_ObjectHideFlags: 0
@@ -3891,6 +3892,7 @@ MonoBehaviour:
   damagedEffectTime: 0.2
   hpBarPrefab: {fileID: 8495596639698628516, guid: d3be829145e612d41806c4f9c169e138, type: 3}
   hpBar: {fileID: 0}
+  damagePercent: 0
 --- !u!114 &1563501123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3915,13 +3917,13 @@ MonoBehaviour:
   speed: 0
   sightDistance: 0
   attackDistance: 0
-  delayTime: 0
   getHit: 0
   isAttacking: 0
   isDie: 0
   enemyHealth: {fileID: 0}
   patrolCoolTime: 0
   isPatroling: 0
+  patDir: 0
 --- !u!4 &1563501124
 Transform:
   m_ObjectHideFlags: 0
@@ -4036,7 +4038,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1581055319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4053,6 +4055,7 @@ MonoBehaviour:
   damagedEffectTime: 0.1
   hpBarPrefab: {fileID: 8495596639698628516, guid: d3be829145e612d41806c4f9c169e138, type: 3}
   hpBar: {fileID: 0}
+  damagePercent: 0
 --- !u!114 &1581055320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4077,7 +4080,6 @@ MonoBehaviour:
   speed: 0
   sightDistance: 0
   attackDistance: 0
-  delayTime: 0
   getHit: 0
   isAttacking: 0
   isDie: 0
@@ -4128,7 +4130,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.20795155, y: 0.2079513}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -4139,7 +4141,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.3, y: 3.8}
+  m_Size: {x: 2.9931698, y: 4.215903}
   m_EdgeRadius: 0
 --- !u!4 &1581055323
 Transform:

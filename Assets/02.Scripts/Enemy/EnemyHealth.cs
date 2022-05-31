@@ -12,11 +12,14 @@ public class EnemyHealth : LivingEntity
     public GameObject hpBarPrefab;
     public EnemyHPBar hpBar;
 
+    public float damagePercent;
+
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         sr = GetComponentInChildren<SpriteRenderer>();
         temp = sr.color;
+        damagePercent = 1f;
     }
     private void Start()
     {
@@ -58,7 +61,8 @@ public class EnemyHealth : LivingEntity
         if (isDead) return;
 
         GetComponent<EnemyBase>().getHit = true;
-        
+
+        damage *= damagePercent;
         
         base.OnDamage(damage, hitPosition,push);
         hpBar.SetHpBar(health);

@@ -10,6 +10,7 @@ public class BossBase : EnemyBase, INpc_Monster
     public float jumpPower = 0f;
 
     public IEnumerator healCoroutine;
+    public float healAmount = 0f;
     public bool isMeditating;
 
     [Header("보스 대화 관련 세팅")]
@@ -67,7 +68,6 @@ public class BossBase : EnemyBase, INpc_Monster
     protected IEnumerator HealCoroutine(float amount, float time)
     {
         isMeditating = true;
-        //ChangeState(Global.EnemyFsm.Delay);
         yield return new WaitForSeconds(time);
         
         enemyHealth.HealHealth(amount);
@@ -77,5 +77,10 @@ public class BossBase : EnemyBase, INpc_Monster
         isMeditating = false;
         myAnim.SetBool("isMeditate", isMeditating);
         healCoroutine = null;
+    }
+    protected void CoroutineInitialization(IEnumerator coroutine)
+    {
+        StopCoroutine(coroutine);
+        coroutine = null;
     }
 }

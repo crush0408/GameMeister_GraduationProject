@@ -19,7 +19,6 @@ public class EnemyBase : MonoBehaviour
     public float speed;
     public float sightDistance;
     public float attackDistance;
-    public float delayTime;
     
     public bool getHit;
     public bool isAttacking;
@@ -42,6 +41,7 @@ public class EnemyBase : MonoBehaviour
     {
         myFsm = state;
     }
+    
     public virtual void Stop()
     {
         myVelocity = Vector2.zero;

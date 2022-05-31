@@ -15,7 +15,6 @@ public class GhostEnemyScript : BasicEnemyBase
         myFsm = Global.EnemyFsm.Idle;
         myType = Global.EnemyType.Walking;
         speed = 3f;
-        delayTime = 2f;
         patrolCoolTime = 0.5f;
         sightDistance = 12f;
         attackDistance = 2.5f;

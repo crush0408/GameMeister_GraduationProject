@@ -6,6 +6,9 @@ public class NewGroundBoss : BossBase
 {
 
     public IEnumerator delayCoroutine;
+    private bool isDelay = false;
+    private float delayTime = 0f;
+
     public IEnumerator defendCoroutine;
 
     public Transform[] healTrm;
@@ -22,128 +25,135 @@ public class NewGroundBoss : BossBase
     public override void Init()
     {
         base.Init();
+        isDelay = false;
         delayCoroutine = null;
         defendCoroutine = null;
         hitCount = 0;
         myFsm = Global.EnemyFsm.Idle;
+        StartState(Global.EnemyFsm.Idle);
         speed = 6f;
-        delayTime = 1.5f;
         sightDistance = 10f;    // 시야 범위
         attackDistance = 2f;  // 공격 범위
         rightDirection = Vector3.one;
         leftDirection = new Vector3(-rightDirection.x, rightDirection.y, rightDirection.z);
         isSpecial = false;
+        healAmount = 5f;
     }
-    /*
+    
     private void Update()
     {
-        if (enemyHealth.health / enemyHealth.initHealth < 0.4f && !isSpecial)
+        CheckTransition();
+    }
+    private void CheckTransition()
+    {
+        if(enemyHealth.health / enemyHealth.initHealth < 0.4f && !isSpecial)
         {
             isSpecial = true;
-            if (isMeditating)
+            if(isMeditating)
             {
-                StopCoroutine(healCoroutine);
-                healCoroutine = null;
-                enemyHealth.HealHealth(5);
+                CoroutineInitialization(healCoroutine);
+                enemyHealth.HealHealth(healAmount);
+
                 PoolableMono poolingObject = PoolManager.Instance.Pop("HealEffect");
                 poolingObject.transform.parent = this.transform;
-                poolingObject.transform.localPosition = new Vector3(0, 0, 0);
+                poolingObject.transform.localPosition = Vector3.zero;
                 isMeditating = false;
-                myAnim.SetBool("isMeditate", isMeditating);
+                myAnim.SetBool("isMeditate",isMeditating);
             }
+
             myAnim.SetTrigger("Special");
-            myAnim.SetBool("isSpecial", isSpecial);
+            myAnim.SetBool("isSpecial",isSpecial);
+
             if (delayCoroutine != null)
             {
-                StopCoroutine(delayCoroutine);
-                delayCoroutine = null;
+                CoroutineInitialization(delayCoroutine);
             }
-            ChangeState(Global.EnemyFsm.PatternMove);
+            StartState(Global.EnemyFsm.Pattern);
+            myAnim.Play("Defend");
         }
-        
-        if(getHit)
+        if (getHit)
         {
-            if(!isMeditating && !isSpecial)
+            if (!isMeditating && !isSpecial)
             {
                 hitCount++;
-                if (hitCount >= 3)
+                if(hitCount >= 3)
                 {
-                    myAnim.SetBool("isAttacking", false);
+                    myAnim.SetBool("isAttacking",false);
                     isAttacking = false;
+
                     if(delayCoroutine != null)
                     {
                         StopCoroutine(delayCoroutine);
                         delayCoroutine = null;
                     }
-                    ChangeState(Global.EnemyFsm.Meditate);
+                    StartState(Global.EnemyFsm.Meditate);
                     hitCount = 0;
                 }
-                
             }
             getHit = false;
         }
-        if (!isDie)
-        {
-            FsmUpdate();
-        }
-    }
-
-    public void FsmUpdate() // 매 프레임마다 실행
-    {
-        
-
         switch (myFsm)
         {
             case Global.EnemyFsm.Idle:
-                if(delayCoroutine == null)
+                {
+                    
+                    if (!isDelay) { StartState(Global.EnemyFsm.Chase); }
+                }
+                break;
+            case Global.EnemyFsm.Chase:
+                {
+                    if(DistanceDecision(attackDistance)) { StartState(Global.EnemyFsm.Attack); }
+                    else if(!DistanceDecision(sightDistance)) { StartState(Global.EnemyFsm.Idle); }
+                    else { StartState(Global.EnemyFsm.Chase); }
+                }
+                break;
+            case Global.EnemyFsm.Attack:
+                {
+                    if(!isAttacking) { StartState(Global.EnemyFsm.Idle); }
+                }
+                break;
+            case Global.EnemyFsm.Meditate:
+                {
+                    if(!isMeditating) { StartState(Global.EnemyFsm.Idle); }
+                }
+                break;
+            case Global.EnemyFsm.Pattern:
+                {
+                    FlipSprite();
+                }
+                break;
+        }
+    }
+    private void StartState(Global.EnemyFsm state)
+    {
+        ChangeState(state);
+        switch (myFsm)
+        {
+            case Global.EnemyFsm.Idle:
                 {
                     delayTime = Random.Range(1.4f, 2f);
-                    delayCoroutine = Delay(delayTime, Global.EnemyFsm.Chase);
+                    delayCoroutine = Delay(delayTime);
                     StartCoroutine(delayCoroutine);
                 }
                 break;
             case Global.EnemyFsm.Chase:
-                if(DistanceDecision(attackDistance))
                 {
-                    ChangeState(Global.EnemyFsm.Attack);
+                    Chase();
                 }
-                Chase();
                 break;
             case Global.EnemyFsm.Attack:
-                Attack();
-
-                ChangeState(Global.EnemyFsm.AttackAfter);
-                break;
-            case Global.EnemyFsm.AttackAfter:
-                if(!isAttacking)
                 {
-                    ChangeState(Global.EnemyFsm.Idle);
+                    Attack();
                 }
                 break;
+            case Global.EnemyFsm.GetHit:
+                break;
             case Global.EnemyFsm.Meditate:
-                
-                if (!isAttacking)
                 {
                     myAnim.SetBool("isMeditate", true);
                 }
                 break;
-            case Global.EnemyFsm.Delay:
-                
-                    if(!isMeditating)
-                    {
-                        ChangeState(Global.EnemyFsm.Idle);
-                    }
-                
-                break;
-            case Global.EnemyFsm.PatternMove:
-                
-                myAnim.Play("Defend");
-                ChangeState(Global.EnemyFsm.PatternDelay);
-
-                break;
-            case Global.EnemyFsm.PatternDelay:
-                FlipSprite();
-                if (defendCoroutine == null)
+            case Global.EnemyFsm.Pattern:
                 {
                     defendCoroutine = Defend();
                     StartCoroutine(defendCoroutine);
@@ -151,7 +161,9 @@ public class NewGroundBoss : BossBase
                 break;
         }
     }
-    public void SpecialAtkMove()
+
+
+    public void SpecialAtkMove() // 타겟(플레이어) 위치로 이동
     {
         Vector2 dir = myTarget.transform.position - this.transform.position;
 
@@ -171,29 +183,26 @@ public class NewGroundBoss : BossBase
         }
         FlipSprite();
     }
-    // 타겟(플레이어) 위치로 이동
     
-
-    public IEnumerator Delay(float delay, Global.EnemyFsm enemyFsm)
+    public IEnumerator Delay(float delay)
     {
+        isDelay = true;
         yield return new WaitForSeconds(delay);
-        ChangeState(enemyFsm);
+        isDelay = false;
         delayCoroutine = null;
     }
     public IEnumerator Defend()
     {
         yield return new WaitForSeconds(3f);
-        ChangeState(Global.EnemyFsm.Attack);
         defendCoroutine = null;
+        StartState(Global.EnemyFsm.Attack);
     }
 
     public override void Attack()
     {
         base.Attack();
-        
-
-            myAnim.SetTrigger("Attack");
-            myAnim.SetBool("isAttacking", true);
+        myAnim.SetTrigger("Attack");
+        myAnim.SetBool("isAttacking", true);
     }
 
     public void AttackEnd()
@@ -217,5 +226,4 @@ public class NewGroundBoss : BossBase
     {
         base.DeadAnimScript();
     }
-    */
 }

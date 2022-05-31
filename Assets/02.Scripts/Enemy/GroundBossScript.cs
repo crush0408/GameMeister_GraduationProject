@@ -32,7 +32,6 @@ public class GroundBossScript : BossBase
 
         myFsm = Global.EnemyFsm.Idle;
         speed = 6f;
-        delayTime = 2f; // 에너미 자동 공격 딜레이에 쓰겠음 
         sightDistance = 15f;    // 시야 범위
         attackDistance = 2.5f;  // 공격 범위
         jumpAtkDist = 6f;
@@ -225,7 +224,7 @@ public class GroundBossScript : BossBase
 
         if (attackDelay == null)
         {
-            attackDelay = AttackDelay(delayTime);
+            //attackDelay = AttackDelay(delayTime);
             StartCoroutine(attackDelay);
         }
     }

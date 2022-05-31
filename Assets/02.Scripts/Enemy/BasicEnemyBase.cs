@@ -14,7 +14,7 @@ public class BasicEnemyBase : EnemyBase
         base.Init();
         patrolCoroutine = null;
     }
-
+    
     protected IEnumerator Patrol()
     {
         Debug.Log("Patrol Start");
