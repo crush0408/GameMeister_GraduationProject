@@ -11,16 +11,17 @@ public class WaterPriestess : BossBase
         base.Init();
         myFsm = Global.EnemyFsm.Idle;
         speed = 6f;
+        hitCount = 0;
 
         sightDistance = 10f;    // 시야 범위
         attackDistance = 6f;    // 공격 범위
+        rightDirection = Vector3.one;
+        leftDirection = new Vector3(rightDirection.x, rightDirection.y, rightDirection.z);
     }
 
     private void Start()
     {
         Init();
-
-
     }
 
     private void Update()
@@ -45,12 +46,6 @@ public class WaterPriestess : BossBase
                 Chase();
                 break;
             case Global.EnemyFsm.Attack:
-                break;
-            case Global.EnemyFsm.AttackAfter:
-                if (!isAttacking)
-                {
-                    ChangeState(Global.EnemyFsm.Idle);
-                }
                 break;
         }
     }
