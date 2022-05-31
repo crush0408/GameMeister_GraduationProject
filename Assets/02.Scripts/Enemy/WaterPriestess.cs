@@ -6,7 +6,6 @@ public class WaterPriestess : BossBase
 {
     // public int hitCount;
 
-    public IEnumerator delayCoroutine;
 
     public override void Init()
     {
@@ -14,7 +13,6 @@ public class WaterPriestess : BossBase
         myFsm = Global.EnemyFsm.Idle;
         myType = Global.EnemyType.Walking;
         speed = 6f;
-
         sightDistance = 10f;    // 시야 범위
         attackDistance = 6f;    // 공격 범위
         rightDirection = Vector3.one;
@@ -24,6 +22,11 @@ public class WaterPriestess : BossBase
     private void Start()
     {
         Init();
+    }
+
+    private void Update()
+    {
+        CheckTransition();
     }
 
     private void CheckTransition()
@@ -38,12 +41,16 @@ public class WaterPriestess : BossBase
         {
             case Global.EnemyFsm.Idle:
                 {
+                    /*
                     if (delayCoroutine == null)
                     {
                         delayTime = Random.Range(1.4f, 2.0f);
+                        Debug.Log("딜레이 타임 : " + delayTime);
                         delayCoroutine = Delay(delayTime, Global.EnemyFsm.Chase);
                         StartCoroutine(delayCoroutine);
                     }
+                    */
+                    StartState(Global.EnemyFsm.Chase);
                 }
                 break;
             case Global.EnemyFsm.Chase:
@@ -80,12 +87,13 @@ public class WaterPriestess : BossBase
         {
             case Global.EnemyFsm.Idle:
                 {
-
+                    Stop();
+                    FlipSprite();
                 }
                 break;
             case Global.EnemyFsm.Chase:
                 {
-
+                    Chase();
                 }
                 break;
             case Global.EnemyFsm.Attack:
