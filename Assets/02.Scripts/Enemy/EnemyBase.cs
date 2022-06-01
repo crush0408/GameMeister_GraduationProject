@@ -62,7 +62,6 @@ public class EnemyBase : MonoBehaviour
     }
     public virtual void Chase()
     {
-        
         FlipSprite();
         myAnim.SetBool("isChase", true);
 

@@ -6,15 +6,19 @@ public class WaterPriestess : BossBase
 {
     // public int hitCount;
 
+    public bool attackCombo = false;
+    public int attackCount = 0;
+
+
 
     public override void Init()
     {
         base.Init();
         myFsm = Global.EnemyFsm.Idle;
-        myType = Global.EnemyType.Walking;
-        speed = 6f;
+        myType = Global.EnemyType.Walking;      // 적 타입 : 지상 에너미
+        speed = 3f;             // Idle(Standby) : 3f, Chase : 6f
         sightDistance = 10f;    // 시야 범위
-        attackDistance = 6f;    // 공격 범위
+        attackDistance = 2f;    // 공격 범위
         rightDirection = Vector3.one;
         leftDirection = new Vector3(-rightDirection.x, rightDirection.y, rightDirection.z);
     }
@@ -41,23 +45,28 @@ public class WaterPriestess : BossBase
         {
             case Global.EnemyFsm.Idle:
                 {
-                    /*
                     if (delayCoroutine == null)
                     {
-                        delayTime = Random.Range(1.4f, 2.0f);
-                        Debug.Log("딜레이 타임 : " + delayTime);
+                        delayTime = 1.5f;
                         delayCoroutine = Delay(delayTime, Global.EnemyFsm.Chase);
                         StartCoroutine(delayCoroutine);
                     }
-                    */
-                    StartState(Global.EnemyFsm.Chase);
+                    else
+                    {
+                        StartState(Global.EnemyFsm.Idle);
+                    }
                 }
                 break;
-            case Global.EnemyFsm.Chase:
+            case Global.EnemyFsm.Chase: // Chase -> Idle은 불가능하도록 함
                 {
                     if (DistanceDecision(attackDistance))
                     {
+                        myAnim.SetBool("isChase", false);
                         StartState(Global.EnemyFsm.Attack);
+                    }
+                    else
+                    {
+                        StartState(Global.EnemyFsm.Chase);
                     }
                 }
                 break;
@@ -87,12 +96,13 @@ public class WaterPriestess : BossBase
         {
             case Global.EnemyFsm.Idle:
                 {
-                    Stop();
-                    FlipSprite();
+                    speed = 3f;
+                    Chase();
                 }
                 break;
             case Global.EnemyFsm.Chase:
                 {
+                    speed = 6f;
                     Chase();
                 }
                 break;
@@ -109,8 +119,22 @@ public class WaterPriestess : BossBase
         }
     }
 
+    /*
+    public override void Chase()
+    {
+        base.Chase();
+        // speed = 6f;
+    }
+    */
+
     public override void Attack()
     {
+        AttackDelay(1f);
+        if (attackCombo)
+        {
+            attackCount++;
+        }
+
         base.Attack();  // isAttacking = true;
         myAnim.SetBool("isAttacking", isAttacking);
     }
@@ -131,5 +155,12 @@ public class WaterPriestess : BossBase
         yield return new WaitForSeconds(delay);
         StartState(enemyFsm);
         delayCoroutine = null;
+    }
+
+    public IEnumerator AttackDelay(float delay)
+    {
+        attackCombo = true;
+        yield return new WaitForSeconds(delay);
+        attackCombo = false;
     }
 }
