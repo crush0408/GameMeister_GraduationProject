@@ -159,6 +159,11 @@ public class WaterPriestess : BossBase
         myAnim.SetBool("isAttackCombo", attackCombo);
     }
 
+    public override void GetHitAfter()
+    {
+        base.GetHitAfter();
+    }
+
     public override void AttackAfter()
     {
         base.AttackAfter(); // isAttacking = false;

@@ -37,6 +37,7 @@ public class EnemyBase : MonoBehaviour
         myAnim = GetComponentInChildren<Animator>();
         enemyHealth.OnDead += Die;
     }
+
     protected void ChangeState(Global.EnemyFsm state)
     {
         myFsm = state;
@@ -56,10 +57,12 @@ public class EnemyBase : MonoBehaviour
         Debug.Log("Die : " + this.gameObject.name);
         
     }
+
     public virtual void DeadAnimScript()
     {
         Destroy(this.gameObject);
     }
+
     public virtual void Chase()
     {
         FlipSprite();
@@ -76,7 +79,7 @@ public class EnemyBase : MonoBehaviour
         myRigid.velocity = myVelocity;
     }
 
-    protected void GetHit()
+    public virtual void GetHit()
     {
         FlipSprite();
         if(!enemyHealth.isDead)
@@ -85,10 +88,12 @@ public class EnemyBase : MonoBehaviour
             if (isAttacking) isAttacking = false;
         }
     }
+
     public virtual void GetHitAfter()
     {
         getHit = false;
     }
+
     public virtual void Attack()
     {
         Stop();
@@ -96,6 +101,7 @@ public class EnemyBase : MonoBehaviour
         isAttacking = true;
         
     }
+
     public virtual void AttackAfter()
     {
         isAttacking = false;
@@ -107,6 +113,7 @@ public class EnemyBase : MonoBehaviour
 
         return calc < distance;
     }
+
     protected void FlipSprite()
     {
         Vector2 dir = myTarget.transform.position - this.transform.position;
@@ -119,6 +126,7 @@ public class EnemyBase : MonoBehaviour
             visualGroup.transform.localScale = leftDirection;
         }
     }
+
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
