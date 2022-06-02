@@ -17,5 +17,5 @@ MonoBehaviour:
   SkillImage: {fileID: 0}
   attackDamage: 10
   remainCoolTime: 0
-  initCoolTime: 10
+  initCoolTime: 3
   effectSoundName: 
