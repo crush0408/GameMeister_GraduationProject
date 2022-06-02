@@ -7,7 +7,7 @@ public class WaterPriestess : BossBase
     [Header("피격 콤보")]
     public bool hitCombo = false;
     public int hitCount = 0;
-    public float hitComboTime = 1f;
+    public float hitComboTime = 2f;
 
     public bool isSuperArmor = false;   // 3번 연속 피격 당했을 시 슈퍼아머 상태
 
@@ -38,25 +38,34 @@ public class WaterPriestess : BossBase
 
     private void Update()
     {
-        if (getHit)
-        {
-            StartState(Global.EnemyFsm.GetHit); // 여기부터 작업하기
-        }
-
         if (!isDie)
         {
             CheckTransition();
+        }
+
+        if(getHit && hitDelay != null)
+        {
+            hitCount++;
+
+            StopCoroutine(hitDelay);
+            hitDelay = null;
+
+            hitDelay = HitDelay(hitComboTime);
+            StartCoroutine(hitDelay);
+        }
+        else if (getHit && hitDelay == null)    // hitDelay == null
+        {
+            hitDelay = HitDelay(hitComboTime);
+            StartCoroutine(hitDelay);
+        }
+        else
+        {
+            hitCount = 0;
         }
     }
 
     private void CheckTransition()
     {
-        if (getHit)
-        {
-            StartState(Global.EnemyFsm.GetHit);
-            return;
-        }
-
         switch (myFsm)
         {
             case Global.EnemyFsm.Idle:
@@ -94,6 +103,7 @@ public class WaterPriestess : BossBase
                     }
                 }
                 break;
+                /*
             case Global.EnemyFsm.GetHit:
                 {
                     if (!getHit)
@@ -102,6 +112,7 @@ public class WaterPriestess : BossBase
                     }
                 }
                 break;
+                */
         }
     }
 
@@ -127,13 +138,16 @@ public class WaterPriestess : BossBase
                     Attack();       // 확인하기
                 }
                 break;
+                /*
             case Global.EnemyFsm.GetHit:
                 {
                     GetHit();
                 }
                 break;
+                */
         }
     }
+
     public override void Attack()
     {
         if(attackDelay != null)
@@ -202,5 +216,6 @@ public class WaterPriestess : BossBase
     {
         yield return new WaitForSeconds(delay);
         hitDelay = null;
+        getHit = false;
     }
 }
