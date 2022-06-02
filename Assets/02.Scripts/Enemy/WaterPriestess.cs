@@ -43,24 +43,9 @@ public class WaterPriestess : BossBase
             CheckTransition();
         }
 
-        if(getHit && hitDelay != null)
+        if (getHit)
         {
-            hitCount++;
-
-            StopCoroutine(hitDelay);
-            hitDelay = null;
-
-            hitDelay = HitDelay(hitComboTime);
-            StartCoroutine(hitDelay);
-        }
-        else if (getHit && hitDelay == null)    // hitDelay == null
-        {
-            hitDelay = HitDelay(hitComboTime);
-            StartCoroutine(hitDelay);
-        }
-        else
-        {
-            hitCount = 0;
+            StartState(Global.EnemyFsm.GetHit);
         }
     }
 
@@ -103,16 +88,6 @@ public class WaterPriestess : BossBase
                     }
                 }
                 break;
-                /*
-            case Global.EnemyFsm.GetHit:
-                {
-                    if (!getHit)
-                    {
-                        StartState(Global.EnemyFsm.Idle);
-                    }
-                }
-                break;
-                */
         }
     }
 
@@ -138,13 +113,30 @@ public class WaterPriestess : BossBase
                     Attack();       // 확인하기
                 }
                 break;
-                /*
             case Global.EnemyFsm.GetHit:
                 {
-                    GetHit();
+                    if(hitDelay == null)
+                    {
+                        hitCount = 0;
+
+                        hitDelay = HitDelay(hitComboTime);
+                        StartCoroutine(hitDelay);
+                    }
+                    else
+                    {
+                        hitCount++;
+
+                        getHit = false;
+
+                        StopCoroutine(hitDelay);
+                        hitDelay = null;
+
+                        hitDelay = HitDelay(hitComboTime);
+                        StartCoroutine(hitDelay);
+                    }
+
+                    break;
                 }
-                break;
-                */
         }
     }
 
