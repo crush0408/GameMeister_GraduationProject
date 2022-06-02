@@ -45,7 +45,25 @@ public class WaterPriestess : BossBase
 
         if (getHit)
         {
-            StartState(Global.EnemyFsm.GetHit);
+            if (hitDelay == null)
+            {
+                hitCount = 0;
+
+                hitDelay = HitDelay(hitComboTime);
+                StartCoroutine(hitDelay);
+            }
+            else
+            {
+                hitCount++;
+
+                getHit = false;
+
+                StopCoroutine(hitDelay);
+                hitDelay = null;
+
+                hitDelay = HitDelay(hitComboTime);
+                StartCoroutine(hitDelay);
+            }
         }
     }
 
@@ -113,30 +131,6 @@ public class WaterPriestess : BossBase
                     Attack();       // 확인하기
                 }
                 break;
-            case Global.EnemyFsm.GetHit:
-                {
-                    if(hitDelay == null)
-                    {
-                        hitCount = 0;
-
-                        hitDelay = HitDelay(hitComboTime);
-                        StartCoroutine(hitDelay);
-                    }
-                    else
-                    {
-                        hitCount++;
-
-                        getHit = false;
-
-                        StopCoroutine(hitDelay);
-                        hitDelay = null;
-
-                        hitDelay = HitDelay(hitComboTime);
-                        StartCoroutine(hitDelay);
-                    }
-
-                    break;
-                }
         }
     }
 
