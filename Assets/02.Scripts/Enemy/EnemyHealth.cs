@@ -11,6 +11,7 @@ public class EnemyHealth : LivingEntity
 
     public GameObject hpBarPrefab;
     public EnemyHPBar hpBar;
+    public MYEnemyBase myBase;
 
     public float damagePercent;
 
@@ -18,6 +19,7 @@ public class EnemyHealth : LivingEntity
     {
         rigid = GetComponent<Rigidbody2D>();
         sr = GetComponentInChildren<SpriteRenderer>();
+        myBase = GetComponent<MYEnemyBase>();
         temp = sr.color;
         damagePercent = 1f;
     }
@@ -61,6 +63,7 @@ public class EnemyHealth : LivingEntity
         if (isDead) return;
 
         GetComponent<EnemyBase>().getHit = true;
+        myBase.getHit = true;
 
         damage *= damagePercent;
         

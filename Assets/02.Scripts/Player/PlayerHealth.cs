@@ -54,7 +54,6 @@ public class PlayerHealth : LivingEntity
     public override void OnDamage(float damage, Vector2 hitPosition, bool push = true)
     {
         if (isDead) return;
-        Debug.Log(damage);
         base.OnDamage(damage, hitPosition,push);
         GetComponent<PlayerMove>().GetHitFunc();
         healthScript.SetHpBar(health);
