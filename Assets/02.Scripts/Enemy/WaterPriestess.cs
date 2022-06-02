@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class WaterPriestess : BossBase
 {
-    // public int hitCount;
+    [Header("피격 콤보")]
+    public bool hitCombo = false;
+    public int hitCount = 0;
+    public float hitComboTime = 1f;
 
-    public bool attackCombo = false;
-    public int attackCount = 0;
-    public float comboDelay = 2f;
+    [Header("공격 콤보")]
+    public bool attackCombo = false;    // 콤보 여부(애니메이션)
+    public int attackCount = 0;         // 콤보 계산용 카운트
+    public float atkComboTime = 1f;       // 콤보 인정 시간
 
     public IEnumerator attackDelay = null;
+    public IEnumerator hitDelay = null;
 
     public override void Init()
     {
@@ -119,26 +124,8 @@ public class WaterPriestess : BossBase
                 break;
         }
     }
-
-    /*
-    public override void Chase()
-    {
-        base.Chase();
-        // speed = 6f;
-    }
-    */
-
     public override void Attack()
     {
-        /*
-        if (attackCombo)
-        {
-            attackCount++;
-            Debug.Log("맞은 수 : " + attackCount);
-        }
-        StartCoroutine(AttackDelay(2f));
-        */
-
         if(attackDelay != null)
         {
             attackCount++;
@@ -147,14 +134,14 @@ public class WaterPriestess : BossBase
             StopCoroutine(attackDelay);
             attackDelay = null;
 
-            attackDelay = AttackDelay(comboDelay);
+            attackDelay = AttackDelay(atkComboTime);
             StartCoroutine(attackDelay);
         }
         else
         {
             attackCount = 0;
 
-            attackDelay = AttackDelay(comboDelay);
+            attackDelay = AttackDelay(atkComboTime);
             StartCoroutine(attackDelay);
         }
 
@@ -194,5 +181,11 @@ public class WaterPriestess : BossBase
     {
         yield return new WaitForSeconds(delay);
         attackDelay = null;
+    }
+
+    public IEnumerator HitDelay(float delay)    // hit 역시 같은 방식으로 구현하기
+    {
+        yield return new WaitForSeconds(delay);
+        hitDelay = null;
     }
 }
