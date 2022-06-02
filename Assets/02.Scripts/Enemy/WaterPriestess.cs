@@ -25,8 +25,8 @@ public class WaterPriestess : BossBase
         myFsm = Global.EnemyFsm.Idle;
         myType = Global.EnemyType.Walking;      // 적 타입 : 지상 에너미
         speed = 3f;             // Idle(Standby) : 3f, Chase : 6f
-        sightDistance = 10f;    // 시야 범위
-        attackDistance = 2f;    // 공격 범위
+        sightDistance = 12f;    // 시야 범위
+        attackDistance = 5f;    // 공격 범위
         rightDirection = Vector3.one;
         leftDirection = new Vector3(-rightDirection.x, rightDirection.y, rightDirection.z);
     }
@@ -43,28 +43,24 @@ public class WaterPriestess : BossBase
             CheckTransition();
         }
 
+        /*
         if (getHit)
         {
-            if (hitDelay == null)
-            {
-                hitCount = 0;
+            hitCount++;
 
-                hitDelay = HitDelay(hitComboTime);
+            if (hitCount <= 1)  // 처음 진입 시
+            {
+                delayTime = 5f;
+                hitDelay = HitDelay(delayTime);
                 StartCoroutine(hitDelay);
             }
-            else
+
+            if (hitCount >= 3 && hitCombo)  // 5초 안에 hitCount >= 3이 되면
             {
-                hitCount++;
-
-                getHit = false;
-
-                StopCoroutine(hitDelay);
-                hitDelay = null;
-
-                hitDelay = HitDelay(hitComboTime);
-                StartCoroutine(hitDelay);
+                isSuperArmor = true;
             }
         }
+        */
     }
 
     private void CheckTransition()
@@ -73,9 +69,9 @@ public class WaterPriestess : BossBase
         {
             case Global.EnemyFsm.Idle:
                 {
-                    if (delayCoroutine == null)
+                    if (DistanceDecision(sightDistance) && delayCoroutine == null)
                     {
-                        delayTime = 1.5f;
+                        delayTime = 1f;
                         delayCoroutine = Delay(delayTime, Global.EnemyFsm.Chase);
                         StartCoroutine(delayCoroutine);
                     }
@@ -85,27 +81,33 @@ public class WaterPriestess : BossBase
                     }
                 }
                 break;
-            case Global.EnemyFsm.Chase: // Chase -> Idle은 불가능하도록 함
+            case Global.EnemyFsm.Chase:
                 {
-                    if (DistanceDecision(attackDistance))
+                    if (DistanceDecision(attackDistance))   // 공격 사거리 내
                     {
                         myAnim.SetBool("isChase", false);
                         StartState(Global.EnemyFsm.Attack);
                     }
-                    else
+                    else if (DistanceDecision(sightDistance))   // 시야 범위 내
                     {
                         StartState(Global.EnemyFsm.Chase);
+                    }
+                    else
+                    {
+                        myAnim.SetBool("isChase", false);
+                        StartState(Global.EnemyFsm.Idle);
                     }
                 }
                 break;
             case Global.EnemyFsm.Attack:
                 {
-                    if (!isAttacking)
+                    if (!isAttacking)   // 애니메이션에서 isAttacking = false로 변경해줌
                     {
                         StartState(Global.EnemyFsm.Chase);
                     }
                 }
                 break;
+
         }
     }
 
@@ -128,7 +130,7 @@ public class WaterPriestess : BossBase
                 break;
             case Global.EnemyFsm.Attack:
                 {
-                    Attack();       // 확인하기
+                    Attack();
                 }
                 break;
         }
@@ -136,53 +138,55 @@ public class WaterPriestess : BossBase
 
     public override void Attack()
     {
-        if(attackDelay != null)
-        {
-            attackCount++;
-            Debug.Log("맞은 수 : " + attackCount);
-
-            StopCoroutine(attackDelay);
-            attackDelay = null;
-
-            attackDelay = AttackDelay(atkComboTime);
-            StartCoroutine(attackDelay);
-        }
-        else
-        {
-            attackCount = 0;
-
-            attackDelay = AttackDelay(atkComboTime);
-            StartCoroutine(attackDelay);
-        }
-
-        base.Attack();  // isAttacking = true;
+        base.Attack();  // isAttacking = true
         myAnim.SetBool("isAttacking", isAttacking);
 
-        if(attackCount >= 2)
-        {
-            attackCombo = true;
-        }
-        else
-        {
-            attackCombo = false;
-        }
-        myAnim.SetBool("isAttackCombo", attackCombo);
-    }
+        attackCount++;
 
-    public override void GetHitAfter()
-    {
-        base.GetHitAfter();
+        if (attackCount <= 1)        // attackCount : 1일 때
+        {
+            delayTime = 4f; // 4초 동안 3번 공격해야 콤보가 됨( 2 2 3 )
+            attackDelay = AttackDelay(delayTime);
+            StartCoroutine(attackDelay);
+        }
+        else if (attackCount >= 3 && attackCombo)    // 3번째 공격 attackCount : 3
+        {
+            // attackCombo = true;
+            myAnim.SetBool("isAttackCombo", attackCombo);
+        }
+        else if (attackCount >= 3 && !attackCombo)
+        {
+            myAnim.SetBool("isAttackCombo", attackCombo);
+
+            attackCount = 1;
+
+            delayTime = 4f; // 4초 동안 3번 공격해야 콤보가 됨( 2 2 3 )
+            attackDelay = AttackDelay(delayTime);
+            StartCoroutine(attackDelay);
+        }
     }
 
     public override void AttackAfter()
     {
         base.AttackAfter(); // isAttacking = false;
         myAnim.SetBool("isAttacking", isAttacking);
+
+        if (attackCount >= 3 && attackCombo)    // 3번째 공격 After 때
+        {
+            attackCombo = false;
+            myAnim.SetBool("isAttackCombo", attackCombo);
+
+            StopCoroutine(attackDelay);
+
+            attackCount = 0;    // 콤보 카운트 초기화
+
+            StartState(Global.EnemyFsm.Chase);
+        }
     }
 
-    public override void DeadAnimScript()   // 이렇게 할 거면 override가 필요한가??
+    public override void GetHitAfter()
     {
-        base.DeadAnimScript();  // Destroy(this.gameObject)
+        base.GetHitAfter();
     }
 
     public IEnumerator Delay(float delay, Global.EnemyFsm enemyFsm)
@@ -194,14 +198,19 @@ public class WaterPriestess : BossBase
 
     public IEnumerator AttackDelay(float delay)
     {
+        attackCombo = true;
         yield return new WaitForSeconds(delay);
+        attackCombo = false;
+
         attackDelay = null;
     }
 
-    public IEnumerator HitDelay(float delay)    // hit 역시 같은 방식으로 구현하기
+    public IEnumerator HitDelay(float delay)
     {
+        hitCombo = true;
         yield return new WaitForSeconds(delay);
+        hitCombo = false;
+
         hitDelay = null;
-        getHit = false;
     }
 }

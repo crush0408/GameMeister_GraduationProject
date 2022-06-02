@@ -16,6 +16,6 @@ MonoBehaviour:
   skillAnim: {fileID: 7400000, guid: ad355bdc774f05346b25e5e256620151, type: 2}
   SkillImage: {fileID: 0}
   attackDamage: 15
-  remainCoolTime: 0
-  initCoolTime: 20
+  remainCoolTime: 15
+  initCoolTime: 5
   effectSoundName: 
