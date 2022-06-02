@@ -79,7 +79,7 @@ public class EnemyBase : MonoBehaviour
         myRigid.velocity = myVelocity;
     }
 
-    public virtual void GetHit()
+    protected void GetHit()
     {
         FlipSprite();
         if(!enemyHealth.isDead)

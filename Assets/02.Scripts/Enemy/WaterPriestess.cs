@@ -9,6 +9,8 @@ public class WaterPriestess : BossBase
     public int hitCount = 0;
     public float hitComboTime = 1f;
 
+    public bool isSuperArmor = false;   // 3번 연속 피격 당했을 시 슈퍼아머 상태
+
     [Header("공격 콤보")]
     public bool attackCombo = false;    // 콤보 여부(애니메이션)
     public int attackCount = 0;         // 콤보 계산용 카운트
@@ -36,7 +38,15 @@ public class WaterPriestess : BossBase
 
     private void Update()
     {
-        CheckTransition();
+        if (getHit)
+        {
+            StartState(Global.EnemyFsm.GetHit); // 여기부터 작업하기
+        }
+
+        if (!isDie)
+        {
+            CheckTransition();
+        }
     }
 
     private void CheckTransition()
