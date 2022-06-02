@@ -8,8 +8,9 @@ public class WaterPriestess : BossBase
 
     public bool attackCombo = false;
     public int attackCount = 0;
+    public float comboDelay = 2f;
 
-
+    public IEnumerator attackDelay = null;
 
     public override void Init()
     {
@@ -129,14 +130,46 @@ public class WaterPriestess : BossBase
 
     public override void Attack()
     {
-        AttackDelay(1f);
+        /*
         if (attackCombo)
         {
             attackCount++;
+            Debug.Log("맞은 수 : " + attackCount);
+        }
+        StartCoroutine(AttackDelay(2f));
+        */
+
+        if(attackDelay != null)
+        {
+            attackCount++;
+            Debug.Log("맞은 수 : " + attackCount);
+
+            StopCoroutine(attackDelay);
+            attackDelay = null;
+
+            attackDelay = AttackDelay(comboDelay);
+            StartCoroutine(attackDelay);
+        }
+        else
+        {
+            attackCount = 0;
+
+            attackDelay = AttackDelay(comboDelay);
+            StartCoroutine(attackDelay);
         }
 
         base.Attack();  // isAttacking = true;
         myAnim.SetBool("isAttacking", isAttacking);
+
+        if(attackCount >= 2)
+        {
+            attackCombo = true;
+        }
+        else
+        {
+            attackCombo = false;
+        }
+        myAnim.SetBool("isAttackCombo", attackCombo);
     }
 
     public override void AttackAfter()
@@ -159,8 +192,7 @@ public class WaterPriestess : BossBase
 
     public IEnumerator AttackDelay(float delay)
     {
-        attackCombo = true;
         yield return new WaitForSeconds(delay);
-        attackCombo = false;
+        attackDelay = null;
     }
 }
