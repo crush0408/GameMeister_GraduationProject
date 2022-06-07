@@ -108,6 +108,11 @@ public class WaterPriestess : BossBase
             myAnim.SetBool("isAirAttack", isAirAtk);
             isAirAttacking = true;
         }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("damagePercent : " + enemyHealth.damagePercent);
+        }
     }
 
     private void CheckTransition()
@@ -185,7 +190,7 @@ public class WaterPriestess : BossBase
                     StartCoroutine(healDelay);
                     myAnim.SetBool("isMeditate", isMeditating);
 
-                    if (!isMeditating)  // isMeditating = false가 된 이후 state가 Idle로 변경됨
+                    if (isMeditating)  // isMeditating = false가 된 이후 state가 Idle로 변경됨
                     {
                         enemyHealth.damagePercent = 0f;
                     }
