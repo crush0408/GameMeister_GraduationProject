@@ -47,6 +47,11 @@ public class WaterPriestess : BossBase
 
     private void Update()
     {
+        if(getHit)
+        {
+            hitCount++;
+            getHit = false;
+        }
         if (!isDie)
         {
             CheckTransition();
