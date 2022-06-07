@@ -181,6 +181,7 @@ public class WaterPriestess : BossBase
 
                     healDelay = HealCoroutine(enemyHealth.initHealth, 3f);
                     StartCoroutine(healDelay);
+                    enemyHealth.damagePercent = 0f;
 
                     myAnim.SetBool("isMeditate", isMeditating);   // 바로 들어와서 true 되나?
                     Debug.Log("isMeditate : " + isMeditating);
@@ -273,6 +274,11 @@ public class WaterPriestess : BossBase
 
             Debug.Log(randomNum);
         }
+    }
+
+    public void HealAfter()
+    {
+        enemyHealth.damagePercent = 1f;
     }
 
     public override void GetHitAfter()
