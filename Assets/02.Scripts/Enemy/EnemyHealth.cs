@@ -69,7 +69,14 @@ public class EnemyHealth : LivingEntity
 
         PoolableMono a = PoolManager.Instance.Pop("DamageText");
         a.transform.position = this.transform.position;
-        a.GetComponent<DamageText>().PlayFloating(damage.ToString());
+        if(damagePercent != 0)
+        {
+            a.GetComponent<DamageText>().PlayFloating(damage.ToString());
+        }
+        else
+        {
+            a.GetComponent<DamageText>().PlayFloating("Miss");
+        }
         
         StartCoroutine(ShowDamagedEffect(hitPosition, push));
         CameraActionScript.ShakeCam(2f, 0.2f,false);

@@ -13,7 +13,7 @@ public class KnightScript : BasicEnemyBase
         base.Init();
         myFsm = Global.EnemyFsm.Idle;
         myType = Global.EnemyType.Walking;
-        speed = 5f;
+        speed = 4f;
         patrolCoolTime = 0.5f;
         sightDistance = 10f;
         attackDistance = 2.5f;
@@ -85,7 +85,7 @@ public class KnightScript : BasicEnemyBase
                 break;
             case Global.EnemyFsm.Chase:
                 {
-                    speed = 5f;
+                    speed = 4f;
                     Chase();
                 }
                 break;
