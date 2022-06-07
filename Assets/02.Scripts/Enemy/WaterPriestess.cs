@@ -65,7 +65,7 @@ public class WaterPriestess : BossBase
                 StartCoroutine(hitDelay);
             }
 
-            if (hitCount >= 3 && hitCombo)  // 10초 안에 hitCount >= 3이 되면
+            if (hitCount >= 3 && hitCombo && !isSpecialAttacking)  // 10초 안에 hitCount >= 3이 되면
             {
                 isSuperArmor = true;
                 myAnim.SetBool("isSpecialAttack", isSuperArmor);
