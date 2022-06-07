@@ -52,6 +52,7 @@ public class WaterPriestess : BossBase
             hitCount++;
             getHit = false;
         }
+
         if (!isDie)
         {
             CheckTransition();
@@ -67,15 +68,18 @@ public class WaterPriestess : BossBase
 
             if (hitCount >= 3 && hitCombo && !isSpecialAttacking)  // 10초 안에 hitCount >= 3이 되면
             {
+                isSpecialAttacking = true;
+
                 isSuperArmor = true;
                 myAnim.SetBool("isSpecialAttack", isSuperArmor);
-                isSpecialAttacking = true;
                 Debug.Log("SuperArmor Mode On");
             }
         }
 
         if(!isSecondPhase && enemyHealth.health <= 30)  // 1페이즈
         {
+            isSecondPhase = true;   // *중복 체크하기
+                                    // 힐 할 때 순간이동(hp가 절반 이하이고, 2페이즈라서)이 되는 버그 때문에 위로 올림
             StartState(Global.EnemyFsm.Meditate);
         }
 
@@ -83,9 +87,10 @@ public class WaterPriestess : BossBase
         {
             if(randomNum < spAtkVariable)
             {
+                isSpecialAttacking = true;
+
                 isSuperArmor = true;
                 myAnim.SetBool("isSpecialAttack", isSuperArmor);
-                isSpecialAttacking = true;
                 Debug.Log("SuperArmor Mode On");
             }
         }
@@ -176,14 +181,16 @@ public class WaterPriestess : BossBase
                 break;
             case Global.EnemyFsm.Meditate:
                 {
-                    isSecondPhase = true;   // *중복 체크하기
-                    // 힐 할 때 순간이동(hp가 절반 이하이고, 2페이즈라서)이 되는 버그 때문에 위로 올림
-
                     healDelay = HealCoroutine(enemyHealth.initHealth, 3f);
                     StartCoroutine(healDelay);
-                    enemyHealth.damagePercent = 0f;
+                    myAnim.SetBool("isMeditate", isMeditating);
 
-                    myAnim.SetBool("isMeditate", isMeditating);   // 바로 들어와서 true 되나?
+                    if (!isMeditating)  // isMeditating = false가 된 이후 state가 Idle로 변경됨
+                    {
+                        enemyHealth.damagePercent = 0f;
+                    }
+
+                    // myAnim.SetBool("isMeditate", isMeditating);   // 바로 들어와서 true 되나?
                     Debug.Log("isMeditate : " + isMeditating);
                 }
                 break;
@@ -252,6 +259,7 @@ public class WaterPriestess : BossBase
         hitCount = 0;
         isSuperArmor = false;
         myAnim.SetBool("isSpecialAttack", isSuperArmor);
+
         isSpecialAttacking = false;
 
         if (isSecondPhase)
@@ -276,10 +284,12 @@ public class WaterPriestess : BossBase
         }
     }
 
+    /*
     public void HealAfter()
     {
         enemyHealth.damagePercent = 1f;
     }
+    */
 
     public override void GetHitAfter()
     {
