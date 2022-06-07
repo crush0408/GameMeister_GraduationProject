@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GhostEnemyScript : BasicEnemyBase
+public class KnightScript : BasicEnemyBase
 {
-    private float attackCount = 0f;
     private void Start()
     {
         Init();
@@ -14,12 +13,13 @@ public class GhostEnemyScript : BasicEnemyBase
         base.Init();
         myFsm = Global.EnemyFsm.Idle;
         myType = Global.EnemyType.Walking;
-        speed = 3f;
+        speed = 5f;
         patrolCoolTime = 0.5f;
-        sightDistance = 12f;
+        sightDistance = 10f;
         attackDistance = 2.5f;
         rightDirection = Vector3.one;
         leftDirection = new Vector3(-rightDirection.x, rightDirection.y, rightDirection.z);
+
     }
     private void Update()
     {
@@ -45,15 +45,25 @@ public class GhostEnemyScript : BasicEnemyBase
                 break;
             case Global.EnemyFsm.Patrol:
                 {
-                    if(DistanceDecision(attackDistance)) { StopCoroutine(patrolCoroutine); patrolCoroutine = null; 
-                        isPatroling = false; StartState(Global.EnemyFsm.Attack); }
-                    else if(DistanceDecision(sightDistance)) { StopCoroutine(patrolCoroutine); patrolCoroutine = null;
-                        isPatroling = false; StartState(Global.EnemyFsm.Chase); }
+                    if(DistanceDecision(attackDistance)) 
+                    {
+                        CoroutineInitialization(patrolCoroutine);
+                        isPatroling = false;
+                        StartState(Global.EnemyFsm.Attack);
+                    }
+                    else if(DistanceDecision(sightDistance)) 
+                    { 
+                        CoroutineInitialization(patrolCoroutine);
+                        isPatroling = false;
+                        StartState(Global.EnemyFsm.Chase);
+                    }
                     else { StartState(Global.EnemyFsm.Patrol); }
                 }
                 break;
             case Global.EnemyFsm.Attack:
-                if(!isAttacking) { StartState(Global.EnemyFsm.Idle); }
+                {
+                    if(!isAttacking) { StartState(Global.EnemyFsm.Idle); }
+                }
                 break;
             case Global.EnemyFsm.GetHit:
                 {
@@ -64,8 +74,6 @@ public class GhostEnemyScript : BasicEnemyBase
     }
     private void StartState(Global.EnemyFsm state)
     {
-        
-        
         ChangeState(state);
         switch (myFsm)
         {
@@ -91,7 +99,6 @@ public class GhostEnemyScript : BasicEnemyBase
                     }
                     else
                     {
-                        
                         myRigid.velocity = myVelocity;
                     }
                 }
@@ -111,25 +118,7 @@ public class GhostEnemyScript : BasicEnemyBase
     public override void Attack()
     {
         base.Attack();
-        if (enemyHealth.health / enemyHealth.initHealth > 0.6f)
-        {
-            if (attackCount % 2 == 0)
-            {
-                // 짝수
-                myAnim.SetTrigger("isAttackTwo");
-            }
-            else
-            {
-                // 홀수
-                myAnim.SetTrigger("isAttack");
-
-            }
-        }
-        else
-        {
-            myAnim.SetTrigger("isAttackThree");
-        }
-        attackCount++;
+        myAnim.SetTrigger("Attack");
     }
     public override void AttackAfter()
     {

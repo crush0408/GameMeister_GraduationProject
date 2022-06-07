@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TwoHandedSworddle
+  m_Name: Hit
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,13 +20,13 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 4723107735738678597, guid: 85c3a2b42ce17f941bd341f8a695e83d, type: 3}
+      value: {fileID: -7500690451134026123, guid: e6ab49ece9f55724ab96e0dc6545a030, type: 3}
     - time: 0.125
-      value: {fileID: -7385789195546760866, guid: 85c3a2b42ce17f941bd341f8a695e83d, type: 3}
+      value: {fileID: -889859373511162655, guid: e6ab49ece9f55724ab96e0dc6545a030, type: 3}
     - time: 0.25
-      value: {fileID: 3234629978573100161, guid: 85c3a2b42ce17f941bd341f8a695e83d, type: 3}
+      value: {fileID: -3088938797480143695, guid: e6ab49ece9f55724ab96e0dc6545a030, type: 3}
     - time: 0.375
-      value: {fileID: 6373048116405451881, guid: 85c3a2b42ce17f941bd341f8a695e83d, type: 3}
+      value: {fileID: -9206091644520726168, guid: e6ab49ece9f55724ab96e0dc6545a030, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -46,10 +46,10 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 4723107735738678597, guid: 85c3a2b42ce17f941bd341f8a695e83d, type: 3}
-    - {fileID: -7385789195546760866, guid: 85c3a2b42ce17f941bd341f8a695e83d, type: 3}
-    - {fileID: 3234629978573100161, guid: 85c3a2b42ce17f941bd341f8a695e83d, type: 3}
-    - {fileID: 6373048116405451881, guid: 85c3a2b42ce17f941bd341f8a695e83d, type: 3}
+    - {fileID: -7500690451134026123, guid: e6ab49ece9f55724ab96e0dc6545a030, type: 3}
+    - {fileID: -889859373511162655, guid: e6ab49ece9f55724ab96e0dc6545a030, type: 3}
+    - {fileID: -3088938797480143695, guid: e6ab49ece9f55724ab96e0dc6545a030, type: 3}
+    - {fileID: -9206091644520726168, guid: e6ab49ece9f55724ab96e0dc6545a030, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -74,4 +74,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.5
+    functionName: EventCall
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 1
+    messageOptions: 0

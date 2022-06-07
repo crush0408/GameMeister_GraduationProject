@@ -85,9 +85,5 @@ public class BossBase : EnemyBase, INpc_Monster
         ChangeState(Global.EnemyFsm.Idle);
         healCoroutine = null;
     }
-    protected void CoroutineInitialization(IEnumerator coroutine)
-    {
-        StopCoroutine(coroutine);
-        coroutine = null;
-    }
+    
 }

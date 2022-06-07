@@ -126,6 +126,11 @@ public class EnemyBase : MonoBehaviour
             visualGroup.transform.localScale = leftDirection;
         }
     }
+    protected void CoroutineInitialization(IEnumerator coroutine)
+    {
+        StopCoroutine(coroutine);
+        coroutine = null;
+    }
 
 #if UNITY_EDITOR
     private void OnDrawGizmos()
