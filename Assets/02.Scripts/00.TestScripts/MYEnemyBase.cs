@@ -106,16 +106,16 @@ public abstract class MYEnemyBase : MonoBehaviour
     {
         isAttacking = false;
     }
-    private void Die()
+    private void Die() // Health OnDead액션 함수에 넣음
     {
         isDie = true;
         myAnim.Play("Dead", -1, 0f);    // 죽는 애니메이션 이름 Dead로 통일하기
     }
-    public virtual void DestroyFunc()
+    public virtual void DestroyFunc() // 죽었을 때 삭제 함수, 죽었을 때 특정 처리를 위해 virtual로 선언
     {
         Destroy(this.gameObject);
     }
-    protected void FlipSprite()
+    protected void FlipSprite() // target 방향으로 Flip해주는 함수
     {
         Vector2 dir = myTarget.transform.position - this.transform.position;
         visualGroup.transform.localScale = dir.x > 0 ? rightDirection : lefttDirection;
