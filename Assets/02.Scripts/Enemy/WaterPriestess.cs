@@ -10,14 +10,23 @@ public class WaterPriestess : BossBase
     public float hitComboTime = 2f;
 
     public bool isSuperArmor = false;   // 3번 연속 피격 당했을 시 슈퍼아머 상태
+    public bool isSpecialAttacking = false; // isSuperArmor, 역시 수시로 이동하는 걸 막기 위한 변수
+    public bool isSecondPhase = false;  // false일 때만 heal 가능(1회)
+    public bool isAirAtk = false;       // 트리거에서 다시 변경함
+    public bool isAirAttacking = false; // 수시로 이동하는 걸 막기 위한 변수
 
     [Header("공격 콤보")]
     public bool attackCombo = false;    // 콤보 여부(애니메이션)
     public int attackCount = 0;         // 콤보 계산용 카운트
     public float atkComboTime = 1f;       // 콤보 인정 시간
 
+    [Header("확률")]
+    public int randomNum = 0;   // spAtk용
+    public int spAtkVariable = 35;
+
     public IEnumerator attackDelay = null;
     public IEnumerator hitDelay = null;
+    public IEnumerator healDelay = null;
 
     public override void Init()
     {
@@ -43,14 +52,10 @@ public class WaterPriestess : BossBase
             CheckTransition();
         }
 
-        /*
-        if (getHit)
         {
-            hitCount++;
-
             if (hitCount <= 1)  // 처음 진입 시
             {
-                delayTime = 5f;
+                delayTime = 10f;
                 hitDelay = HitDelay(delayTime);
                 StartCoroutine(hitDelay);
             }
@@ -58,9 +63,41 @@ public class WaterPriestess : BossBase
             if (hitCount >= 3 && hitCombo)  // 5초 안에 hitCount >= 3이 되면
             {
                 isSuperArmor = true;
+                myAnim.SetBool("isSpecialAttack", isSuperArmor);
+                isSpecialAttacking = true;
+                Debug.Log("SuperArmor Mode On");
             }
         }
-        */
+
+        if(!isSecondPhase && enemyHealth.health <= 20)  // 1페이즈
+        {
+            StartState(Global.EnemyFsm.Meditate);
+        }
+
+        if(isSecondPhase && enemyHealth.health < enemyHealth.initHealth / 2 && !isSpecialAttacking)   // 2페이즈
+        {
+            if(randomNum < spAtkVariable)
+            {
+                isSuperArmor = true;
+                myAnim.SetBool("isSpecialAttack", isSuperArmor);
+                isSpecialAttacking = true;
+                Debug.Log("SuperArmor Mode On");
+            }
+        }
+
+        // 원래 시야거리로 했다가 사각지대가 생겨서 바꿈
+        if (isSecondPhase && enemyHealth.health < enemyHealth.initHealth / 2 && !DistanceDecision(attackDistance) && !isAirAttacking)   // 2페이즈
+        {
+            Vector2 dir = myTarget.transform.position - this.transform.position;
+
+            transform.position = dir.x > 0 ? new Vector3(myTarget.transform.position.x - 1.5f, transform.position.y, transform.position.z)
+                                            : new Vector3(myTarget.transform.position.x + 1.5f, transform.position.y, transform.position.z);
+
+            FlipSprite();
+            isAirAtk = true;
+            myAnim.SetBool("isAirAttack", isAirAtk);
+            isAirAttacking = true;
+        }
     }
 
     private void CheckTransition()
@@ -107,7 +144,6 @@ public class WaterPriestess : BossBase
                     }
                 }
                 break;
-
         }
     }
 
@@ -131,6 +167,18 @@ public class WaterPriestess : BossBase
             case Global.EnemyFsm.Attack:
                 {
                     Attack();
+                }
+                break;
+            case Global.EnemyFsm.Meditate:
+                {
+                    isSecondPhase = true;   // *중복 체크하기
+                    // 힐 할 때 순간이동(hp가 절반 이하이고, 2페이즈라서)이 되는 버그 때문에 위로 올림
+
+                    healDelay = HealCoroutine(enemyHealth.initHealth, 3f);
+                    StartCoroutine(healDelay);
+
+                    myAnim.SetBool("isMeditate", isMeditating);   // 바로 들어와서 true 되나?
+                    Debug.Log("isMeditate : " + isMeditating);
                 }
                 break;
         }
@@ -182,6 +230,44 @@ public class WaterPriestess : BossBase
 
             StartState(Global.EnemyFsm.Chase);
         }
+
+        if (isSecondPhase)
+        {
+            randomNum = Random.Range(0, 100);
+
+            Debug.Log(randomNum);
+        }
+    }
+
+    public void SpAtkAfter()
+    {
+        Debug.Log("SuperArmor Mode Off");
+
+        hitCount = 0;
+        isSuperArmor = false;
+        myAnim.SetBool("isSpecialAttack", isSuperArmor);
+        isSpecialAttacking = false;
+
+        if (isSecondPhase)
+        {
+            randomNum = Random.Range(0, 100);
+
+            Debug.Log(randomNum);
+        }
+    }
+
+    public void AirAtkAfter()
+    {
+        isAirAtk = false;
+        myAnim.SetBool("isAirAttack", isAirAtk);
+        isAirAttacking = false;
+
+        if (isSecondPhase)
+        {
+            randomNum = Random.Range(0, 100);
+
+            Debug.Log(randomNum);
+        }
     }
 
     public override void GetHitAfter()
@@ -212,5 +298,6 @@ public class WaterPriestess : BossBase
         hitCombo = false;
 
         hitDelay = null;
+        hitCount = 0;
     }
 }

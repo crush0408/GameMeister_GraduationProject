@@ -64,6 +64,7 @@ public class EnemyHealth : LivingEntity
 
         GetComponent<EnemyBase>().getHit = true;
         myBase.getHit = true;
+        GetComponent<WaterPriestess>().hitCount++;
 
         damage *= damagePercent;
         
