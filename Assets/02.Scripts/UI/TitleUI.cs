@@ -59,7 +59,7 @@ public class TitleUI : MonoBehaviour
     // 시작화면 버튼
     public void StartBtn()
     {
-        // SceneLoadManager.instance.NextScene();  // 다음 씬으로 연결
+        SceneLoadManager.instance.NextScene();  // 다음 씬으로 연결
         Debug.Log("현재 씬 넘버 : " + SceneLoadManager.instance.curSceneNum);
     }
 
