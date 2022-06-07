@@ -5,7 +5,7 @@ using UnityEngine;
 public class WaterPriestess : BossBase
 {
     [Header("피격 콤보")]
-    public bool hitCombo = false;
+    public bool hitCombo = false;   // 타임 체크용
     public int hitCount = 0;
     public float hitComboTime = 2f;
 
@@ -59,9 +59,9 @@ public class WaterPriestess : BossBase
         }
 
         {
-            if (hitCount <= 1 && hitDelay == null)  // 처음 진입 시 코루틴 실행
+            if (hitCount >= 1 && hitDelay == null)  // 처음 진입 시 코루틴 실행
             {
-                delayTime = 10f;
+                delayTime = 5f;
                 hitDelay = HitDelay(delayTime);
                 StartCoroutine(hitDelay);
             }
@@ -109,10 +109,14 @@ public class WaterPriestess : BossBase
             isAirAttacking = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        /*
+        if (!isMeditating)
         {
-            Debug.Log("damagePercent : " + enemyHealth.damagePercent);
+            enemyHealth.damagePercent = 1f; // 애니메이션 단위가 아닌 초 단위로 힐을 작동해서 어디에 둬야 할 지 모르겠어서 여기에 둠
         }
+        */
+
+        Debug.Log("현재 상태 " + myFsm);
     }
 
     private void CheckTransition()
@@ -169,6 +173,8 @@ public class WaterPriestess : BossBase
         {
             case Global.EnemyFsm.Idle:
                 {
+                    enemyHealth.damagePercent = 1f; // Heal 코루틴 이후 Idle로 전환되므로
+
                     speed = 3f;
                     Chase();
                 }
@@ -186,7 +192,7 @@ public class WaterPriestess : BossBase
                 break;
             case Global.EnemyFsm.Meditate:
                 {
-                    healDelay = HealCoroutine(enemyHealth.initHealth, 3f);
+                    healDelay = HealCoroutine(enemyHealth.initHealth, 4f);
                     StartCoroutine(healDelay);
                     myAnim.SetBool("isMeditate", isMeditating);
 
@@ -194,9 +200,6 @@ public class WaterPriestess : BossBase
                     {
                         enemyHealth.damagePercent = 0f;
                     }
-
-                    // myAnim.SetBool("isMeditate", isMeditating);   // 바로 들어와서 true 되나?
-                    Debug.Log("isMeditate : " + isMeditating);
                 }
                 break;
         }
@@ -288,13 +291,6 @@ public class WaterPriestess : BossBase
             Debug.Log(randomNum);
         }
     }
-
-    /*
-    public void HealAfter()
-    {
-        enemyHealth.damagePercent = 1f;
-    }
-    */
 
     public override void GetHitAfter()
     {
