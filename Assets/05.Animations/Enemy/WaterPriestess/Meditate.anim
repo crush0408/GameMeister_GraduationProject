@@ -21,33 +21,33 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: 21300000, guid: 78d1f429a6fd9104ba6d26449680cc77, type: 3}
-    - time: 0.125
+    - time: 0.1
       value: {fileID: 21300000, guid: 374b02c2d897308488999d88012a4701, type: 3}
-    - time: 0.25
+    - time: 0.2
       value: {fileID: 21300000, guid: bc599cb343d711543bbf9e3252d5fdcc, type: 3}
-    - time: 0.375
+    - time: 0.3
       value: {fileID: 21300000, guid: 4777177c63dd55442a2360aba527520a, type: 3}
-    - time: 0.5
+    - time: 0.4
       value: {fileID: 21300000, guid: 2b10b63034dfd2a47973b9c69503180b, type: 3}
-    - time: 0.625
+    - time: 0.5
       value: {fileID: 21300000, guid: 41a7a8137f472f749863d12c9ac2cdf8, type: 3}
-    - time: 0.75
+    - time: 0.6
       value: {fileID: 21300000, guid: c3f234589a31fe34eaf80a42c17b3f94, type: 3}
-    - time: 0.875
+    - time: 0.7
       value: {fileID: 21300000, guid: c0f9a9fa747307f40ae0996b12607f06, type: 3}
-    - time: 1
+    - time: 0.8
       value: {fileID: 21300000, guid: 37a59f19206bf664eb498b267a149031, type: 3}
-    - time: 1.125
+    - time: 0.9
       value: {fileID: 21300000, guid: b914be255e2ee5c48b3eb498943708a0, type: 3}
-    - time: 1.25
+    - time: 1
       value: {fileID: 21300000, guid: a7aac2c32a22e214aba21582b171a8da, type: 3}
-    - time: 1.375
+    - time: 1.1
       value: {fileID: 21300000, guid: 71e7a9de456fc4c498ce853eb2e2b715, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 8
+  m_SampleRate: 10
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -79,7 +79,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.5
+    m_StopTime: 1.2
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -99,7 +99,7 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 1.5
+  - time: 1.2
     functionName: EventCall
     data: 
     objectReferenceParameter: {fileID: 0}
