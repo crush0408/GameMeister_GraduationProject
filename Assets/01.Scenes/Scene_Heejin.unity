@@ -743,6 +743,7 @@ MonoBehaviour:
   damagedEffectTime: 0.1
   hpBarPrefab: {fileID: 8495596639698628516, guid: d3be829145e612d41806c4f9c169e138, type: 3}
   hpBar: {fileID: 0}
+  myBase: {fileID: 0}
   damagePercent: 0
 --- !u!114 &226340041
 MonoBehaviour:
@@ -1842,6 +1843,7 @@ MonoBehaviour:
   damagedEffectTime: 0.2
   hpBarPrefab: {fileID: 8495596639698628516, guid: d3be829145e612d41806c4f9c169e138, type: 3}
   hpBar: {fileID: 0}
+  myBase: {fileID: 0}
   damagePercent: 0
 --- !u!114 &509369553
 MonoBehaviour:
@@ -2372,10 +2374,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 704e1bcb1efb4c949a50ff337bcc0bac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initHealth: 50
+  initHealth: 100
   damagedEffectTime: 0.1
   hpBarPrefab: {fileID: 8495596639698628516, guid: d3be829145e612d41806c4f9c169e138, type: 3}
   hpBar: {fileID: 0}
+  myBase: {fileID: 0}
   damagePercent: 0
 --- !u!50 &652089365
 Rigidbody2D:
@@ -2481,11 +2484,14 @@ MonoBehaviour:
   hitCount: 0
   hitComboTime: 1
   isSuperArmor: 0
+  isSpecialAttacking: 0
   isSecondPhase: 0
+  isAirAtk: 0
   isAirAttacking: 0
   attackCombo: 0
   attackCount: 0
   atkComboTime: 1
+  randomNum: 0
   spAtkVariable: 35
 --- !u!1 &660217781
 GameObject:
@@ -3735,7 +3741,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1365834206}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.79652, y: -0.45999146, z: -10}
+  m_LocalPosition: {x: -15.112424, y: -0.45999956, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1297646838}
@@ -4259,6 +4265,7 @@ MonoBehaviour:
   damagedEffectTime: 0.2
   hpBarPrefab: {fileID: 8495596639698628516, guid: d3be829145e612d41806c4f9c169e138, type: 3}
   hpBar: {fileID: 0}
+  myBase: {fileID: 0}
   damagePercent: 0
 --- !u!114 &1563501123
 MonoBehaviour:
@@ -4422,6 +4429,7 @@ MonoBehaviour:
   damagedEffectTime: 0.1
   hpBarPrefab: {fileID: 8495596639698628516, guid: d3be829145e612d41806c4f9c169e138, type: 3}
   hpBar: {fileID: 0}
+  myBase: {fileID: 0}
   damagePercent: 0
 --- !u!114 &1581055320
 MonoBehaviour:
@@ -5784,7 +5792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d87de02113f93cd46a3d53002d9f8353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initHealth: 100
+  initHealth: 10000
   damagedEffectTime: 0.1
 --- !u!114 &2105400321
 MonoBehaviour:

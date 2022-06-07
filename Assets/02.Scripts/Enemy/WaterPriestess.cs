@@ -53,14 +53,14 @@ public class WaterPriestess : BossBase
         }
 
         {
-            if (hitCount <= 1)  // 처음 진입 시
+            if (hitCount <= 1 && hitDelay == null)  // 처음 진입 시 코루틴 실행
             {
                 delayTime = 10f;
                 hitDelay = HitDelay(delayTime);
                 StartCoroutine(hitDelay);
             }
 
-            if (hitCount >= 3 && hitCombo)  // 5초 안에 hitCount >= 3이 되면
+            if (hitCount >= 3 && hitCombo)  // 10초 안에 hitCount >= 3이 되면
             {
                 isSuperArmor = true;
                 myAnim.SetBool("isSpecialAttack", isSuperArmor);
@@ -69,7 +69,7 @@ public class WaterPriestess : BossBase
             }
         }
 
-        if(!isSecondPhase && enemyHealth.health <= 20)  // 1페이즈
+        if(!isSecondPhase && enemyHealth.health <= 30)  // 1페이즈
         {
             StartState(Global.EnemyFsm.Meditate);
         }
