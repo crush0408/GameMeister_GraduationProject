@@ -63,7 +63,7 @@ public class EnemyHealth : LivingEntity
         if (isDead) return;
 
         GetComponent<EnemyBase>().getHit = true;
-        myBase.getHit = true;
+        //myBase.getHit = true;
         GetComponent<WaterPriestess>().hitCount++;
 
         damage *= damagePercent;
