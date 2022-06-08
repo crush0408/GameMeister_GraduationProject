@@ -142,7 +142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &24500969
 Transform:
   m_ObjectHideFlags: 0
@@ -587,7 +587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5e4847118efb66489f800faf9147dde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 3
+  damage: 5
   push: 0
 --- !u!1 &158382190
 GameObject:
@@ -1996,6 +1996,7 @@ GameObject:
   - component: {fileID: 626708095}
   - component: {fileID: 626708096}
   - component: {fileID: 626708097}
+  - component: {fileID: 626708098}
   m_Layer: 0
   m_Name: VisualGroup
   m_TagString: Untagged
@@ -2088,6 +2089,61 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &626708098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 626708094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 562ae1b498b56944b90efd8d33471d10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  events:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1056971905}
+        m_TargetAssemblyTypeName: DeathAngelScript, Assembly-CSharp
+        m_MethodName: AttackAfter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1056971905}
+        m_TargetAssemblyTypeName: DeathAngelScript, Assembly-CSharp
+        m_MethodName: DeadAnimScript
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1056971905}
+        m_TargetAssemblyTypeName: DeathAngelScript, Assembly-CSharp
+        m_MethodName: GetHitAfter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &660217781
 GameObject:
   m_ObjectHideFlags: 0
@@ -2553,6 +2609,7 @@ GameObject:
   - component: {fileID: 1056971903}
   - component: {fileID: 1056971902}
   - component: {fileID: 1056971904}
+  - component: {fileID: 1056971905}
   m_Layer: 7
   m_Name: DeathAngel_red_light
   m_TagString: Enemy
@@ -2634,11 +2691,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 704e1bcb1efb4c949a50ff337bcc0bac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initHealth: 0
+  initHealth: 25
   damagedEffectTime: 0.1
   hpBarPrefab: {fileID: 8495596639698628516, guid: d3be829145e612d41806c4f9c169e138, type: 3}
   hpBar: {fileID: 0}
   damagePercent: 0
+--- !u!114 &1056971905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056971900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 278dc063d390f684a97cae643c1e05f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myFsm: 0
+  myType: 0
+  myRigid: {fileID: 0}
+  myAnim: {fileID: 0}
+  myVelocity: {x: 0, y: 0, z: 0}
+  rightDirection: {x: 0, y: 0, z: 0}
+  leftDirection: {x: 0, y: 0, z: 0}
+  visualGroup: {fileID: 626708094}
+  myTarget: {fileID: 0}
+  speed: 0
+  sightDistance: 0
+  attackDistance: 0
+  getHit: 0
+  isAttacking: 0
+  isDie: 0
+  enemyHealth: {fileID: 0}
+  patrolCoolTime: 0
+  isPatroling: 0
+  patDir: 0
 --- !u!1 &1078745531
 GameObject:
   m_ObjectHideFlags: 0
