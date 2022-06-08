@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class WaterPriestess : BossBase
 {
-    // 테스트용
-    public Global.EnemyFsm beforeFsm;
-
     [Header("피격 콤보")]
     public bool hitCombo = false;   // 타임 체크용
     public int hitCount = 0;
@@ -67,7 +64,6 @@ public class WaterPriestess : BossBase
 
         if (hitCount >= 3 && hitCombo && !isSpecialAttacking)  // 10초 안에 hitCount >= 3이 되면
         {
-            beforeFsm = myFsm;
             StartState(Global.EnemyFsm.SpecialAttack);
         }
 
@@ -82,7 +78,6 @@ public class WaterPriestess : BossBase
         {
             if(randomNum < spAtkVariable)
             {
-                beforeFsm = myFsm;
                 StartState(Global.EnemyFsm.SpecialAttack);
             }
         }
@@ -160,9 +155,11 @@ public class WaterPriestess : BossBase
                 break;
             case Global.EnemyFsm.SpecialAttack:
                 {
-                    if (!isSpecialAttacking)
+                    Debug.Log("true : " + isSpecialAttacking);
+
+                    if (!isSpecialAttacking)    // 이렇게 하면 가끔 진입할 때 isSpecialAttacking이 false라 안 먹힐 수 있음
                     {
-                        StartState(beforeFsm);
+                        StartState(Global.EnemyFsm.Idle);
                     }
                 }
                 break;
@@ -274,10 +271,10 @@ public class WaterPriestess : BossBase
     {
         Debug.Log("SuperArmor Mode Off");
 
-        hitCount = 0;
-        SetAnim("isSpecialAttack", isSpecialAttacking);
+        hitCount = 0;   // 콤보의 결과인 스페셜 어택 끝났으므로 hitCount 초기화
 
         isSpecialAttacking = false;
+        SetAnim("isSpecialAttack", isSpecialAttacking);
 
         if (isSecondPhase)
         {
@@ -299,6 +296,12 @@ public class WaterPriestess : BossBase
 
             Debug.Log(randomNum);
         }
+    }
+
+    public void SetRandomNum()  // 공격마다 넣을 public 함수?
+    {
+        randomNum = isSecondPhase ? Random.Range(0, 100) : randomNum;
+        Debug.Log(randomNum);
     }
 
     public IEnumerator StateChangeDelay(float delay, Global.EnemyFsm enemyFsm)
