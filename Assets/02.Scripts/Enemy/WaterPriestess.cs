@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class WaterPriestess : BossBase
 {
+    // 테스트용
+    public Global.EnemyFsm beforeFsm;
+
     [Header("피격 콤보")]
     public bool hitCombo = false;   // 타임 체크용
     public int hitCount = 0;
@@ -64,6 +67,7 @@ public class WaterPriestess : BossBase
 
         if (hitCount >= 3 && hitCombo && !isSpecialAttacking)  // 10초 안에 hitCount >= 3이 되면
         {
+            beforeFsm = myFsm;
             StartState(Global.EnemyFsm.SpecialAttack);
         }
 
@@ -78,6 +82,7 @@ public class WaterPriestess : BossBase
         {
             if(randomNum < spAtkVariable)
             {
+                beforeFsm = myFsm;
                 StartState(Global.EnemyFsm.SpecialAttack);
             }
         }
@@ -155,7 +160,10 @@ public class WaterPriestess : BossBase
                 break;
             case Global.EnemyFsm.SpecialAttack:
                 {
-                    
+                    if (!isSpecialAttacking)
+                    {
+                        StartState(beforeFsm);
+                    }
                 }
                 break;
         }
