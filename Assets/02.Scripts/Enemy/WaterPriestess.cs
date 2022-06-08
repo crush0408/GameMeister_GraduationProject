@@ -24,10 +24,9 @@ public class WaterPriestess : BossBase
     public int randomNum = 0;   // spAtk용
     public int spAtkVariable = 35;
 
-    public IEnumerator attackDelay = null;
+    [Header("콤보 체크용 딜레이 코루틴")]
     public IEnumerator hitDelay = null;
-    public IEnumerator healDelay = null;
-
+    public IEnumerator attackDelay = null;
     public override void Init()
     {
         base.Init();
@@ -109,6 +108,11 @@ public class WaterPriestess : BossBase
         }
 
         Debug.Log("현재 상태 " + myFsm);
+
+        if (healCoroutine == null)
+        {
+            enemyHealth.damagePercent = 1f;
+        }
     }
 
     private void CheckTransition()
@@ -156,7 +160,14 @@ public class WaterPriestess : BossBase
                 }
                 break;
             case Global.EnemyFsm.Meditate:
+                {
 
+                }
+                break;
+            case Global.EnemyFsm.SpecialAttack:
+                {
+                    
+                }
                 break;
         }
     }
@@ -168,8 +179,6 @@ public class WaterPriestess : BossBase
         {
             case Global.EnemyFsm.Idle:
                 {
-                    enemyHealth.damagePercent = 1f; // Heal 코루틴 이후 Idle로 전환되므로
-
                     speed = 3f;
                     Chase();
                 }
@@ -187,14 +196,13 @@ public class WaterPriestess : BossBase
                 break;
             case Global.EnemyFsm.Meditate:
                 {
-                    healDelay = HealCoroutine(enemyHealth.initHealth, 4f);
-                    StartCoroutine(healDelay);
-                    SetAnim("isMeditate", isMeditating);
+                    enemyHealth.damagePercent = 0f;
+                    Meditate(); // Heal 코루틴 작동
+                }
+                break;
+            case Global.EnemyFsm.SpecialAttack:
+                {
 
-                    if (isMeditating)  // isMeditating = false가 된 이후 state가 Idle로 변경됨
-                    {
-                        enemyHealth.damagePercent = 0f;
-                    }
                 }
                 break;
         }
@@ -202,8 +210,8 @@ public class WaterPriestess : BossBase
 
     public void Meditate()
     {
-        healDelay = HealCoroutine(enemyHealth.initHealth, 4f);
-        StartCoroutine(healDelay);
+        healCoroutine = HealCoroutine(enemyHealth.initHealth, 4f);
+        StartCoroutine(healCoroutine);
 
         SetAnim("isMeditate", isMeditating);
     }

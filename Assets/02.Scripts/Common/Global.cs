@@ -20,6 +20,7 @@ public class Global : MonoBehaviour
         GetHit,
         // Boss
         Meditate,
-        Pattern
+        Pattern,
+        SpecialAttack
     }
 }
