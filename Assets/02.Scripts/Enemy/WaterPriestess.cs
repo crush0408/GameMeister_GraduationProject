@@ -9,7 +9,6 @@ public class WaterPriestess : BossBase
     public int hitCount = 0;
     public float hitComboTime = 2f;
 
-    public bool isSuperArmor = false;   // 3번 연속 피격 당했을 시 슈퍼아머 상태
     public bool isSpecialAttacking = false; // isSuperArmor, 역시 수시로 이동하는 걸 막기 위한 변수
     public bool isSecondPhase = false;  // false일 때만 heal 가능(1회)
     public bool isAirAtk = false;       // 트리거에서 다시 변경함
@@ -56,25 +55,19 @@ public class WaterPriestess : BossBase
             getHit = false;
         }
 
+        if (hitCount > 0 && hitDelay == null)  // hitCount가 이제 쌓이기 시작하고 hitDelay 코루틴이 없다면(중복 실행 방지) 코루틴 실행
         {
-            if (hitCount > 0 && hitDelay == null)  // hitCount가 이제 쌓이기 시작하고 hitDelay 코루틴이 없다면 코루틴 실행
-            {
-                delayTime = 5f;
-                hitDelay = ComboChecking(delayTime, false, true);
-                StartCoroutine(hitDelay);
-            }
-
-            if (hitCount >= 3 && hitCombo && !isSpecialAttacking)  // 10초 안에 hitCount >= 3이 되면
-            {
-                isSpecialAttacking = true;
-
-                isSuperArmor = true;
-                SetAnim("isSpecialAttack", isSuperArmor);
-                Debug.Log("SuperArmor Mode On");
-            }
+            delayTime = 5f;
+            hitDelay = ComboChecking(delayTime, false, true);
+            StartCoroutine(hitDelay);
         }
 
-        if(!isSecondPhase && enemyHealth.health <= 30)  // 1페이즈
+        if (hitCount >= 3 && hitCombo && !isSpecialAttacking)  // 10초 안에 hitCount >= 3이 되면
+        {
+            StartState(Global.EnemyFsm.SpecialAttack);
+        }
+
+        if (!isSecondPhase && enemyHealth.health <= 30)  // 1페이즈
         {
             isSecondPhase = true;   // *중복 체크하기
                                     // 힐 할 때 순간이동(hp가 절반 이하이고, 2페이즈라서)이 되는 버그 때문에 위로 올림
@@ -85,11 +78,7 @@ public class WaterPriestess : BossBase
         {
             if(randomNum < spAtkVariable)
             {
-                isSpecialAttacking = true;
-
-                isSuperArmor = true;
-                SetAnim("isSpecialAttack", isSuperArmor);
-                Debug.Log("SuperArmor Mode On");
+                StartState(Global.EnemyFsm.SpecialAttack);
             }
         }
 
@@ -202,7 +191,10 @@ public class WaterPriestess : BossBase
                 break;
             case Global.EnemyFsm.SpecialAttack:
                 {
+                    isSpecialAttacking = true;
 
+                    SetAnim("isSpecialAttack", isSpecialAttacking);
+                    Debug.Log("SuperArmor Mode On");
                 }
                 break;
         }
@@ -275,8 +267,7 @@ public class WaterPriestess : BossBase
         Debug.Log("SuperArmor Mode Off");
 
         hitCount = 0;
-        isSuperArmor = false;
-        SetAnim("isSpecialAttack", isSuperArmor);
+        SetAnim("isSpecialAttack", isSpecialAttacking);
 
         isSpecialAttacking = false;
 
