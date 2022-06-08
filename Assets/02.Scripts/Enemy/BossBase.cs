@@ -82,7 +82,7 @@ public class BossBase : EnemyBase, INpc_Monster
 
         isMeditating = false;
         myAnim.SetBool("isMeditate", isMeditating);
-        ChangeState(Global.EnemyFsm.Idle);
+        ChangeState(Global.EnemyFsm.Idle);  // 으어어어어어
         healCoroutine = null;
     }
     

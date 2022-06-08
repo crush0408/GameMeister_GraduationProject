@@ -9,9 +9,10 @@ public class WaterPriestess : BossBase
     public int hitCount = 0;
     public float hitComboTime = 2f;
 
+    public bool isSecondPhase = false;  // 2페이즈 체크, false일 때만 heal 가능(1회)
+
+    [Header("공격 상태 확인용 변수")]
     public bool isSpecialAttacking = false; // isSuperArmor, 역시 수시로 이동하는 걸 막기 위한 변수
-    public bool isSecondPhase = false;  // false일 때만 heal 가능(1회)
-    public bool isAirAtk = false;       // 트리거에서 다시 변경함
     public bool isAirAttacking = false; // 수시로 이동하는 걸 막기 위한 변수
 
     [Header("공격 콤보")]
@@ -21,7 +22,7 @@ public class WaterPriestess : BossBase
 
     [Header("확률")]
     public int randomNum = 0;   // spAtk용
-    public int spAtkVariable = 35;
+    public int spAtkVariable = 10;
 
     [Header("콤보 체크용 딜레이 코루틴")]
     public IEnumerator hitDelay = null;
@@ -67,14 +68,14 @@ public class WaterPriestess : BossBase
             StartState(Global.EnemyFsm.SpecialAttack);
         }
 
-        if (!isSecondPhase && enemyHealth.health <= 30)  // 1페이즈
+        // 1페이즈에서 hp가 30 이하일 때 힐 후 2페이즈 진입하는 함수
+        if (!isSecondPhase && enemyHealth.health <= 30)
         {
-            isSecondPhase = true;   // *중복 체크하기
-                                    // 힐 할 때 순간이동(hp가 절반 이하이고, 2페이즈라서)이 되는 버그 때문에 위로 올림
+            isSecondPhase = true;
             StartState(Global.EnemyFsm.Meditate);
         }
 
-        if(isSecondPhase && enemyHealth.health < enemyHealth.initHealth / 2 && !isSpecialAttacking)   // 2페이즈
+        if(isSecondPhase && (enemyHealth.health < enemyHealth.initHealth / 2) && !isSpecialAttacking)   // 2페이즈
         {
             if(randomNum < spAtkVariable)
             {
@@ -82,18 +83,17 @@ public class WaterPriestess : BossBase
             }
         }
 
-        // 원래 시야거리로 했다가 사각지대가 생겨서 바꿈
-        if (isSecondPhase && enemyHealth.health < enemyHealth.initHealth / 2 && !DistanceDecision(attackDistance) && !isAirAttacking)   // 2페이즈
+        // 공격 거리 밖이고 update이므로 airAttack이 실행 중이 아니면 airAttack 실행
+        if (isSecondPhase && (enemyHealth.health < enemyHealth.initHealth / 2) && !DistanceDecision(attackDistance) && !isAirAttacking)   // 2페이즈
         {
             Vector2 dir = myTarget.transform.position - this.transform.position;
 
             transform.position = dir.x > 0 ? new Vector3(myTarget.transform.position.x - 1.5f, transform.position.y, transform.position.z)
                                             : new Vector3(myTarget.transform.position.x + 1.5f, transform.position.y, transform.position.z);
 
-            FlipSprite();
-            isAirAtk = true;
-            SetAnim("isAirAttack", isAirAtk);
+            FlipSprite();   // 조준했으므로 플레이어 방향 바라보기
             isAirAttacking = true;
+            SetAnim("isAirAttack", isAirAttacking);
         }
 
         Debug.Log("현재 상태 " + myFsm);
@@ -118,7 +118,7 @@ public class WaterPriestess : BossBase
                     }
                     else
                     {
-                        StartState(Global.EnemyFsm.Idle);
+                        StartState(Global.EnemyFsm.Chase);
                     }
                 }
                 break;
@@ -190,7 +190,6 @@ public class WaterPriestess : BossBase
                 break;
             case Global.EnemyFsm.Meditate:
                 {
-                    enemyHealth.damagePercent = 0f;
                     Meditate(); // Heal 코루틴 작동
                 }
                 break;
@@ -207,10 +206,10 @@ public class WaterPriestess : BossBase
 
     public void Meditate()
     {
+        enemyHealth.damagePercent = 0f;
+
         healCoroutine = HealCoroutine(enemyHealth.initHealth, 4f);
         StartCoroutine(healCoroutine);
-
-        SetAnim("isMeditate", isMeditating);
     }
 
     public override void Attack()
@@ -259,12 +258,7 @@ public class WaterPriestess : BossBase
             StartState(Global.EnemyFsm.Chase);
         }
 
-        if (isSecondPhase)
-        {
-            randomNum = Random.Range(0, 100);
-
-            Debug.Log(randomNum);
-        }
+        randomNum = isSecondPhase ? Random.Range(0, 100) : randomNum;
     }
 
     public void SpAtkAfter()
@@ -276,26 +270,15 @@ public class WaterPriestess : BossBase
         isSpecialAttacking = false;
         SetAnim("isSpecialAttack", isSpecialAttacking);
 
-        if (isSecondPhase)
-        {
-            randomNum = Random.Range(0, 100);
-
-            Debug.Log(randomNum);
-        }
+        randomNum = isSecondPhase ? Random.Range(0, 100) : randomNum;
     }
 
     public void AirAtkAfter()
     {
-        isAirAtk = false;
-        SetAnim("isAirAttack", isAirAtk);
         isAirAttacking = false;
+        SetAnim("isAirAttack", isAirAttacking);
 
-        if (isSecondPhase)
-        {
-            randomNum = Random.Range(0, 100);
-
-            Debug.Log(randomNum);
-        }
+        randomNum = isSecondPhase ? Random.Range(0, 100) : randomNum;
     }
 
     public void SetRandomNum()  // 공격마다 넣을 public 함수?

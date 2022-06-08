@@ -2480,10 +2480,8 @@ MonoBehaviour:
   hitCombo: 0
   hitCount: 0
   hitComboTime: 1
-  isSuperArmor: 0
-  isSpecialAttacking: 0
   isSecondPhase: 0
-  isAirAtk: 0
+  isSpecialAttacking: 0
   isAirAttacking: 0
   attackCombo: 0
   attackCount: 0
