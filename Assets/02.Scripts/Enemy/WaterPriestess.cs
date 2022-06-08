@@ -31,11 +31,13 @@ public class WaterPriestess : BossBase
     public override void Init()
     {
         base.Init();
-        myFsm = Global.EnemyFsm.Idle;
         myType = Global.EnemyType.Walking;      // 적 타입 : 지상 에너미
+        myFsm = Global.EnemyFsm.Idle;
+
         speed = 3f;             // Idle(Standby) : 3f, Chase : 6f
         sightDistance = 12f;    // 시야 범위
         attackDistance = 5f;    // 공격 범위
+
         rightDirection = Vector3.one;
         leftDirection = new Vector3(-rightDirection.x, rightDirection.y, rightDirection.z);
     }
@@ -47,22 +49,19 @@ public class WaterPriestess : BossBase
 
     private void Update()
     {
-        if(getHit)
+        if (!isDie) CheckTransition();
+
+        if (getHit)
         {
             hitCount++;
             getHit = false;
         }
 
-        if (!isDie)
         {
-            CheckTransition();
-        }
-
-        {
-            if (hitCount >= 1 && hitDelay == null)  // 처음 진입 시 코루틴 실행
+            if (hitCount > 0 && hitDelay == null)  // hitCount가 이제 쌓이기 시작하고 hitDelay 코루틴이 없다면 코루틴 실행
             {
                 delayTime = 5f;
-                hitDelay = HitDelay(delayTime);
+                hitDelay = ComboChecking(delayTime, false, true);
                 StartCoroutine(hitDelay);
             }
 
@@ -71,7 +70,7 @@ public class WaterPriestess : BossBase
                 isSpecialAttacking = true;
 
                 isSuperArmor = true;
-                myAnim.SetBool("isSpecialAttack", isSuperArmor);
+                SetAnim("isSpecialAttack", isSuperArmor);
                 Debug.Log("SuperArmor Mode On");
             }
         }
@@ -90,7 +89,7 @@ public class WaterPriestess : BossBase
                 isSpecialAttacking = true;
 
                 isSuperArmor = true;
-                myAnim.SetBool("isSpecialAttack", isSuperArmor);
+                SetAnim("isSpecialAttack", isSuperArmor);
                 Debug.Log("SuperArmor Mode On");
             }
         }
@@ -105,16 +104,9 @@ public class WaterPriestess : BossBase
 
             FlipSprite();
             isAirAtk = true;
-            myAnim.SetBool("isAirAttack", isAirAtk);
+            SetAnim("isAirAttack", isAirAtk);
             isAirAttacking = true;
         }
-
-        /*
-        if (!isMeditating)
-        {
-            enemyHealth.damagePercent = 1f; // 애니메이션 단위가 아닌 초 단위로 힐을 작동해서 어디에 둬야 할 지 모르겠어서 여기에 둠
-        }
-        */
 
         Debug.Log("현재 상태 " + myFsm);
     }
@@ -128,7 +120,7 @@ public class WaterPriestess : BossBase
                     if (DistanceDecision(sightDistance) && delayCoroutine == null)
                     {
                         delayTime = 1f;
-                        delayCoroutine = Delay(delayTime, Global.EnemyFsm.Chase);
+                        delayCoroutine = StateChangeDelay(delayTime, Global.EnemyFsm.Chase);
                         StartCoroutine(delayCoroutine);
                     }
                     else
@@ -139,9 +131,9 @@ public class WaterPriestess : BossBase
                 break;
             case Global.EnemyFsm.Chase:
                 {
-                    if (DistanceDecision(attackDistance))   // 공격 사거리 내
+                    if (DistanceDecision(attackDistance))       // 공격 사거리 내
                     {
-                        myAnim.SetBool("isChase", false);
+                        SetAnim("isChase", false);
                         StartState(Global.EnemyFsm.Attack);
                     }
                     else if (DistanceDecision(sightDistance))   // 시야 범위 내
@@ -150,18 +142,21 @@ public class WaterPriestess : BossBase
                     }
                     else
                     {
-                        myAnim.SetBool("isChase", false);
+                        SetAnim("isChase", false);
                         StartState(Global.EnemyFsm.Idle);
                     }
                 }
                 break;
             case Global.EnemyFsm.Attack:
                 {
-                    if (!isAttacking)   // 애니메이션에서 isAttacking = false로 변경해줌
+                    if (!isAttacking)   // 공격이 끝나면 애니메이션 이벤트 함수에서 isAttacking = false로 변경해줌
                     {
-                        StartState(Global.EnemyFsm.Chase);
+                        StartState(Global.EnemyFsm.Idle);   // Chase였는데 Idle로 바꿈
                     }
                 }
+                break;
+            case Global.EnemyFsm.Meditate:
+
                 break;
         }
     }
@@ -194,7 +189,7 @@ public class WaterPriestess : BossBase
                 {
                     healDelay = HealCoroutine(enemyHealth.initHealth, 4f);
                     StartCoroutine(healDelay);
-                    myAnim.SetBool("isMeditate", isMeditating);
+                    SetAnim("isMeditate", isMeditating);
 
                     if (isMeditating)  // isMeditating = false가 된 이후 state가 Idle로 변경됨
                     {
@@ -205,32 +200,39 @@ public class WaterPriestess : BossBase
         }
     }
 
+    public void Meditate()
+    {
+        healDelay = HealCoroutine(enemyHealth.initHealth, 4f);
+        StartCoroutine(healDelay);
+
+        SetAnim("isMeditate", isMeditating);
+    }
+
     public override void Attack()
     {
         base.Attack();  // isAttacking = true
-        myAnim.SetBool("isAttacking", isAttacking);
+        SetAnim("isAttacking", isAttacking);
 
         attackCount++;
 
         if (attackCount <= 1)        // attackCount : 1일 때
         {
             delayTime = 4f; // 4초 동안 3번 공격해야 콤보가 됨( 2 2 3 )
-            attackDelay = AttackDelay(delayTime);
+            attackDelay = ComboChecking(delayTime, true, false);
             StartCoroutine(attackDelay);
         }
         else if (attackCount >= 3 && attackCombo)    // 3번째 공격 attackCount : 3
         {
-            // attackCombo = true;
-            myAnim.SetBool("isAttackCombo", attackCombo);
+            SetAnim("isAttackCombo", attackCombo);
         }
         else if (attackCount >= 3 && !attackCombo)
         {
-            myAnim.SetBool("isAttackCombo", attackCombo);
+            SetAnim("isAttackCombo", attackCombo);
 
             attackCount = 1;
 
             delayTime = 4f; // 4초 동안 3번 공격해야 콤보가 됨( 2 2 3 )
-            attackDelay = AttackDelay(delayTime);
+            attackDelay = ComboChecking(delayTime, true, false);
             StartCoroutine(attackDelay);
         }
     }
@@ -238,12 +240,12 @@ public class WaterPriestess : BossBase
     public override void AttackAfter()
     {
         base.AttackAfter(); // isAttacking = false;
-        myAnim.SetBool("isAttacking", isAttacking);
+        SetAnim("isAttacking", isAttacking);
 
         if (attackCount >= 3 && attackCombo)    // 3번째 공격 After 때
         {
             attackCombo = false;
-            myAnim.SetBool("isAttackCombo", attackCombo);
+            SetAnim("isAttackCombo", attackCombo);
 
             StopCoroutine(attackDelay);
 
@@ -266,7 +268,7 @@ public class WaterPriestess : BossBase
 
         hitCount = 0;
         isSuperArmor = false;
-        myAnim.SetBool("isSpecialAttack", isSuperArmor);
+        SetAnim("isSpecialAttack", isSuperArmor);
 
         isSpecialAttacking = false;
 
@@ -281,7 +283,7 @@ public class WaterPriestess : BossBase
     public void AirAtkAfter()
     {
         isAirAtk = false;
-        myAnim.SetBool("isAirAttack", isAirAtk);
+        SetAnim("isAirAttack", isAirAtk);
         isAirAttacking = false;
 
         if (isSecondPhase)
@@ -292,34 +294,29 @@ public class WaterPriestess : BossBase
         }
     }
 
-    public override void GetHitAfter()
-    {
-        base.GetHitAfter();
-    }
-
-    public IEnumerator Delay(float delay, Global.EnemyFsm enemyFsm)
+    public IEnumerator StateChangeDelay(float delay, Global.EnemyFsm enemyFsm)
     {
         yield return new WaitForSeconds(delay);
         StartState(enemyFsm);
         delayCoroutine = null;
     }
 
-    public IEnumerator AttackDelay(float delay)
+    public IEnumerator ComboChecking(float delay, bool isAttackCombo, bool isHitCombo)
     {
-        attackCombo = true;
-        yield return new WaitForSeconds(delay);
-        attackCombo = false;
+        // 상태 진입 체크
+        attackCombo = isAttackCombo ? true : attackCombo;
+        hitCombo = isHitCombo ? true : hitCombo;
 
-        attackDelay = null;
+        yield return new WaitForSeconds(delay);
+
+        // 상태 종료 체크
+        attackDelay = isAttackCombo ? null : attackDelay;
+        hitDelay = isHitCombo ? null : attackDelay;
+        hitCount = isHitCombo ? 0 : hitCount; // delay 시간 동안 때린 횟수 초기화
     }
 
-    public IEnumerator HitDelay(float delay)
+    public void SetAnim(string animName, bool setBool)
     {
-        hitCombo = true;
-        yield return new WaitForSeconds(delay);
-        hitCombo = false;
-
-        hitDelay = null;
-        hitCount = 0;
+        myAnim.SetBool(animName, setBool);
     }
 }
