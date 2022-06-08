@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeathAngelScript : BasicEnemyBase
+public class BasicDeathAngelScript : BasicEnemyBase
 {
     private void Start()
     {
