@@ -96,7 +96,8 @@ public class WaterPriestess : BossBase
             SetAnim("isAirAttack", isAirAttacking);
         }
 
-        Debug.Log("현재 상태 " + myFsm);
+        // if(myFsm != Global.EnemyFsm.Attack)
+        // Debug.Log("현재 상태 " + myFsm);
 
         if (healCoroutine == null)
         {
@@ -185,6 +186,7 @@ public class WaterPriestess : BossBase
                 break;
             case Global.EnemyFsm.Attack:
                 {
+                    Debug.Log("어택!");
                     Attack();
                 }
                 break;
@@ -208,7 +210,7 @@ public class WaterPriestess : BossBase
     {
         enemyHealth.damagePercent = 0f;
 
-        healCoroutine = HealCoroutine(enemyHealth.initHealth, 4f);
+        healCoroutine = HealCoroutine(enemyHealth.initHealth, 3f);
         StartCoroutine(healCoroutine);
 
         SetAnim("isMeditate", isMeditating);
@@ -216,7 +218,7 @@ public class WaterPriestess : BossBase
 
     public override void Attack()
     {
-        base.Attack();  // isAttacking = true
+        base.Attack();  // isAttacking = true, FlipSprite
         SetAnim("isAttacking", isAttacking);
 
         attackCount++;
