@@ -130,7 +130,14 @@ public class WaterPriestess : BossBase
                     if (DistanceDecision(attackDistance))       // 공격 사거리 내
                     {
                         myAnim.SetBool("isChase", false);
-                        StartState(Global.EnemyFsm.Attack);
+                        // StartState(Global.EnemyFsm.Attack);
+                        
+                        // 공격 전 0.3f 딜레이 넣어봄 
+                        if(delayCoroutine == null)
+                        {
+                            delayCoroutine = StateChangeDelay(0.3f, Global.EnemyFsm.Attack);
+                            StartCoroutine(delayCoroutine);
+                        }
                     }
                     else if (DistanceDecision(sightDistance))   // 시야 범위 내
                     {
@@ -158,7 +165,7 @@ public class WaterPriestess : BossBase
                 break;
             case Global.EnemyFsm.SpecialAttack:
                 {
-                    Debug.Log("true : " + isSpecialAttacking);
+                    // Debug.Log("true : " + isSpecialAttacking);
 
                     if (!isSpecialAttacking)    // 이렇게 하면 가끔 진입할 때 isSpecialAttacking이 false라 안 먹힐 수 있음
                     {
@@ -239,7 +246,7 @@ public class WaterPriestess : BossBase
             {
                 attackCount = 1;
 
-                delayTime = 4f; // 4초 동안 3번 공격해야 콤보가 됨( 2 2 3 )
+                delayTime = 4f;     // 4초 동안 3번 공격해야 콤보가 됨( 2 2 3 )
                 attackDelay = ComboChecking(delayTime, true, false);
                 StartCoroutine(attackDelay);
             }
