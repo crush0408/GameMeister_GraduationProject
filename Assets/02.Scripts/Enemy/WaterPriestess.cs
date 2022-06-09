@@ -104,7 +104,7 @@ public class WaterPriestess : BossBase
         }
 
         enemyHealth.damagePercent = (healCoroutine == null) ? 1f : enemyHealth.damagePercent;
-        // 
+        // HealCoroutine()을 virtual로 만들고 오버라이드해서 damagePercent를 대입하는 방법 ?
     }
 
     private void CheckTransition()
@@ -234,16 +234,15 @@ public class WaterPriestess : BossBase
         else if (attackCount >= 3 && attackCombo)    // 3번째 공격 attackCount : 3
         {
             SetAnim("isAttackCombo", attackCombo);
-        }
-        else if (attackCount >= 3 && !attackCombo)
-        {
-            SetAnim("isAttackCombo", attackCombo);
 
-            attackCount = 1;
+            if (!attackCombo)
+            {
+                attackCount = 1;
 
-            delayTime = 4f; // 4초 동안 3번 공격해야 콤보가 됨( 2 2 3 )
-            attackDelay = ComboChecking(delayTime, true, false);
-            StartCoroutine(attackDelay);
+                delayTime = 4f; // 4초 동안 3번 공격해야 콤보가 됨( 2 2 3 )
+                attackDelay = ComboChecking(delayTime, true, false);
+                StartCoroutine(attackDelay);
+            }
         }
     }
 
