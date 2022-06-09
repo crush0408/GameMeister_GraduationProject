@@ -156,10 +156,11 @@ public class WaterPriestess : BossBase
                 break;
             case Global.EnemyFsm.SpecialAttack:
                 {
+                    /*
                     if (!isSpecialAttacking)    // 이렇게 하면 가끔 진입할 때 isSpecialAttacking이 false라 안 먹힐 수 있음 -> 어떻게 하지
                     {
                         StartState(Global.EnemyFsm.Idle);
-                    }
+                    */
                 }
                 break;
         }
@@ -193,7 +194,7 @@ public class WaterPriestess : BossBase
                     Meditate(); // Heal 코루틴 작동
                 }
                 break;
-            case Global.EnemyFsm.SpecialAttack:
+            case Global.EnemyFsm.SpecialAttack: // ** 여기도 역시 봐야 할 듯ㅠ               
                 {
                     isSpecialAttacking = true;
 
@@ -272,6 +273,8 @@ public class WaterPriestess : BossBase
         myAnim.SetBool("isSpecialAttack", isSpecialAttacking);
 
         randomNum = isSecondPhase ? Random.Range(0, 100) : randomNum;
+
+        StartState(Global.EnemyFsm.Idle);   // 160 ~ 163 여기로 옮겨둠
     }
 
     public void AirAtkAfter()
