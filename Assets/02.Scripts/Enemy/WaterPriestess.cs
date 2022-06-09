@@ -156,9 +156,7 @@ public class WaterPriestess : BossBase
                 break;
             case Global.EnemyFsm.SpecialAttack:
                 {
-                    // Debug.Log("true : " + isSpecialAttacking);
-
-                    if (!isSpecialAttacking)    // 이렇게 하면 가끔 진입할 때 isSpecialAttacking이 false라 안 먹힐 수 있음
+                    if (!isSpecialAttacking)    // 이렇게 하면 가끔 진입할 때 isSpecialAttacking이 false라 안 먹힐 수 있음 -> 어떻게 하지
                     {
                         StartState(Global.EnemyFsm.Idle);
                     }
