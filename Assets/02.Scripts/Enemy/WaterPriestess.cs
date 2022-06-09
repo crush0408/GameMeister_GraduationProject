@@ -45,6 +45,8 @@ public class WaterPriestess : BossBase
         leftDirection = new Vector3(-rightDirection.x, rightDirection.y, rightDirection.z);
 
         phaseText.text = "Phase 1";
+
+        StartState(Global.EnemyFsm.Idle);
     }
 
     private void Start()
@@ -54,21 +56,17 @@ public class WaterPriestess : BossBase
 
     private void Update()
     {
-        if (!isDie) CheckTransition();
-
         if (getHit)
         {
             hitCount++;
             getHit = false;
         }
-
         if (hitCount > 0 && hitDelay == null)  // hitCount가 이제 쌓이기 시작하고 hitDelay 코루틴이 없다면(중복 실행 방지) 코루틴 실행
         {
             delayTime = 5f;
             hitDelay = ComboChecking(delayTime, false, true);
             StartCoroutine(hitDelay);
         }
-
         if (hitCount >= 3 && hitCombo && !isSpecialAttacking)  // 10초 안에 hitCount >= 3이 되면
         {
             StartState(Global.EnemyFsm.SpecialAttack);
@@ -82,9 +80,9 @@ public class WaterPriestess : BossBase
             StartState(Global.EnemyFsm.Meditate);
         }
 
-        if(isSecondPhase && (enemyHealth.health < enemyHealth.initHealth / 2) && !isSpecialAttacking)   // 2페이즈
+        if (isSecondPhase && (enemyHealth.health < enemyHealth.initHealth / 2) && !isSpecialAttacking)   // 2페이즈
         {
-            if(randomNum < spAtkVariable)
+            if (randomNum < spAtkVariable)
             {
                 StartState(Global.EnemyFsm.SpecialAttack);
             }
@@ -105,6 +103,7 @@ public class WaterPriestess : BossBase
 
         enemyHealth.damagePercent = (healCoroutine == null) ? 1f : enemyHealth.damagePercent;
         // HealCoroutine()을 virtual로 만들고 오버라이드해서 damagePercent를 대입하는 방법 ?
+        if (!isDie) CheckTransition();
     }
 
     private void CheckTransition()
@@ -113,8 +112,9 @@ public class WaterPriestess : BossBase
         {
             case Global.EnemyFsm.Idle:
                 {
-                    if (DistanceDecision(sightDistance) && delayCoroutine == null)
+                    if (DistanceDecision(sightDistance))
                     {
+                        speed = 6f;
                         StartState(Global.EnemyFsm.Chase);
                     }
                     else
@@ -127,7 +127,10 @@ public class WaterPriestess : BossBase
                 {
                     if (DistanceDecision(attackDistance))
                     {
-                        myAnim.SetBool("isChase", false);
+                        StartState(Global.EnemyFsm.Attack);
+                    }
+                    else if (!DistanceDecision(attackDistance) && isSecondPhase)
+                    {
                         StartState(Global.EnemyFsm.Attack);
                     }
                     else if (DistanceDecision(sightDistance))
@@ -136,7 +139,6 @@ public class WaterPriestess : BossBase
                     }
                     else
                     {
-                        myAnim.SetBool("isChase", true);
                         StartState(Global.EnemyFsm.Idle);
                     }
                 }
@@ -145,7 +147,7 @@ public class WaterPriestess : BossBase
                 {
                     if (!isAttacking)   // 공격이 끝나면 애니메이션 이벤트 함수에서 isAttacking = false로 변경해줌
                     {
-                        StartState(Global.EnemyFsm.Idle);   // Chase였는데 Idle로 바꿈
+                        StartState(Global.EnemyFsm.Chase);
                     }
                 }
                 break;
@@ -156,11 +158,11 @@ public class WaterPriestess : BossBase
                 break;
             case Global.EnemyFsm.SpecialAttack:
                 {
-                    /*
-                    if (!isSpecialAttacking)    // 이렇게 하면 가끔 진입할 때 isSpecialAttacking이 false라 안 먹힐 수 있음 -> 어떻게 하지
+                    if (!isSpecialAttacking)
+                    // 이렇게 하면 가끔 진입할 때 isSpecialAttacking이 false라 안 먹힐 수 있음 -> 어떻게 하지
                     {
-                        StartState(Global.EnemyFsm.Idle);
-                    */
+                        StartState(Global.EnemyFsm.Chase);
+                    }
                 }
                 break;
         }
@@ -173,19 +175,16 @@ public class WaterPriestess : BossBase
         {
             case Global.EnemyFsm.Idle:
                 {
-                    speed = 3f;
                     Chase();
                 }
                 break;
             case Global.EnemyFsm.Chase:
                 {
-                    speed = 6f;
                     Chase();
                 }
                 break;
             case Global.EnemyFsm.Attack:
                 {
-                    Debug.Log("어택!");
                     Attack();
                 }
                 break;
@@ -274,7 +273,7 @@ public class WaterPriestess : BossBase
 
         randomNum = isSecondPhase ? Random.Range(0, 100) : randomNum;
 
-        StartState(Global.EnemyFsm.Idle);   // 160 ~ 163 여기로 옮겨둠
+        //StartState(Global.EnemyFsm.Idle);   // 160 ~ 163 여기로 옮겨둠
     }
 
     public void AirAtkAfter()   // 애니메이션 이벤트 함수
