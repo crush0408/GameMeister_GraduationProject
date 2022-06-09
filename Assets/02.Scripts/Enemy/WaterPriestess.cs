@@ -21,7 +21,7 @@ public class WaterPriestess : BossBase
     public int attackCount = 0;         // 콤보 계산용 카운트
     public float atkComboTime = 1f;       // 콤보 인정 시간
 
-    [Header("확률")]
+    [Header("확률 계산용")]
     public int randomNum = 0;   // spAtk용
     public int spAtkVariable = 20;
 
@@ -29,7 +29,7 @@ public class WaterPriestess : BossBase
     public IEnumerator hitDelay = null;
     public IEnumerator attackDelay = null;
 
-    public Text phaseText;
+    public Text phaseText;  // 시연 시 페이즈 확인용
 
     public override void Init()
     {
@@ -103,13 +103,8 @@ public class WaterPriestess : BossBase
             SetAnim("isAirAttack", isAirAttacking);
         }
 
-        // if(myFsm != Global.EnemyFsm.Attack)
-        // Debug.Log("현재 상태 " + myFsm);
-
-        if (healCoroutine == null)
-        {
-            enemyHealth.damagePercent = 1f;
-        }
+        enemyHealth.damagePercent = (healCoroutine == null) ? 1f : enemyHealth.damagePercent;
+        // 
     }
 
     private void CheckTransition()
