@@ -115,13 +115,11 @@ public class WaterPriestess : BossBase
                 {
                     if (DistanceDecision(sightDistance) && delayCoroutine == null)
                     {
-                        delayTime = 1f;
-                        delayCoroutine = StateChangeDelay(delayTime, Global.EnemyFsm.Chase);
-                        StartCoroutine(delayCoroutine);
+                        StartState(Global.EnemyFsm.Chase);
                     }
                     else
                     {
-                        StartState(Global.EnemyFsm.Chase);
+                        StartState(Global.EnemyFsm.Idle);
                     }
                 }
                 break;
