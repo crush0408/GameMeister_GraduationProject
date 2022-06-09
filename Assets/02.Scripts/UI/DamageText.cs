@@ -9,7 +9,6 @@ public class DamageText : PoolableMono
     [SerializeField]
     private TextMesh text;
 
-    private string _damageString = "";
     public override void Reset()
     {
         int random = Random.Range(0, 10);
