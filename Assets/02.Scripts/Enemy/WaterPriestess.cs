@@ -243,7 +243,7 @@ public class WaterPriestess : BossBase
         }
     }
 
-    public override void AttackAfter()
+    public override void AttackAfter()  // 애니메이션 이벤트 함수
     {
         base.AttackAfter(); // isAttacking = false;
         myAnim.SetBool("isAttacking", isAttacking);
@@ -263,7 +263,7 @@ public class WaterPriestess : BossBase
         randomNum = isSecondPhase ? Random.Range(0, 100) : randomNum;
     }
 
-    public void SpAtkAfter()
+    public void SpAtkAfter()    // 애니메이션 이벤트 함수
     {
         Debug.Log("SuperArmor Mode Off");
 
@@ -277,7 +277,7 @@ public class WaterPriestess : BossBase
         StartState(Global.EnemyFsm.Idle);   // 160 ~ 163 여기로 옮겨둠
     }
 
-    public void AirAtkAfter()
+    public void AirAtkAfter()   // 애니메이션 이벤트 함수
     {
         isAirAttacking = false;
         myAnim.SetBool("isAirAttack", isAirAttacking);
@@ -285,13 +285,13 @@ public class WaterPriestess : BossBase
         randomNum = isSecondPhase ? Random.Range(0, 100) : randomNum;
     }
 
-    public void SetRandomNum()  // 공격마다 넣을 public 함수?
+    public void SetRandomNum()  // 참조 0개
     {
         randomNum = isSecondPhase ? Random.Range(0, 100) : randomNum;
         Debug.Log(randomNum);
     }
 
-    public IEnumerator StateChangeDelay(float delay, Global.EnemyFsm enemyFsm)
+    public IEnumerator StateChangeDelay(float delay, Global.EnemyFsm enemyFsm)  // 역시 참조 없음
     {
         yield return new WaitForSeconds(delay);
         StartState(enemyFsm);
