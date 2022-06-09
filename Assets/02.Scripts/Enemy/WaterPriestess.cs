@@ -100,7 +100,7 @@ public class WaterPriestess : BossBase
 
             FlipSprite();   // 조준했으므로 플레이어 방향 바라보기
             isAirAttacking = true;
-            SetAnim("isAirAttack", isAirAttacking);
+            myAnim.SetBool("isAirAttack", isAirAttacking);
         }
 
         enemyHealth.damagePercent = (healCoroutine == null) ? 1f : enemyHealth.damagePercent;
@@ -129,7 +129,7 @@ public class WaterPriestess : BossBase
                 {
                     if (DistanceDecision(attackDistance))       // 공격 사거리 내
                     {
-                        SetAnim("isChase", false);
+                        myAnim.SetBool("isChase", false);
                         StartState(Global.EnemyFsm.Attack);
                     }
                     else if (DistanceDecision(sightDistance))   // 시야 범위 내
@@ -138,7 +138,7 @@ public class WaterPriestess : BossBase
                     }
                     else
                     {
-                        SetAnim("isChase", false);
+                        myAnim.SetBool("isChase", false);
                         StartState(Global.EnemyFsm.Idle);
                     }
                 }
@@ -201,7 +201,7 @@ public class WaterPriestess : BossBase
                 {
                     isSpecialAttacking = true;
 
-                    SetAnim("isSpecialAttack", isSpecialAttacking);
+                    myAnim.SetBool("isSpecialAttack", isSpecialAttacking);
                     Debug.Log("SuperArmor Mode On");
                 }
                 break;
@@ -215,13 +215,13 @@ public class WaterPriestess : BossBase
         healCoroutine = HealCoroutine(enemyHealth.initHealth, 3f);
         StartCoroutine(healCoroutine);
 
-        SetAnim("isMeditate", isMeditating);
+        myAnim.SetBool("isMeditate", isMeditating);
     }
 
     public override void Attack()
     {
         base.Attack();  // isAttacking = true, FlipSprite
-        SetAnim("isAttacking", isAttacking);
+        myAnim.SetBool("isAttacking", isAttacking);
 
         attackCount++;
 
@@ -233,7 +233,7 @@ public class WaterPriestess : BossBase
         }
         else if (attackCount >= 3 && attackCombo)    // 3번째 공격 attackCount : 3
         {
-            SetAnim("isAttackCombo", attackCombo);
+            myAnim.SetBool("isAttackCombo", attackCombo);
 
             if (!attackCombo)
             {
@@ -249,12 +249,12 @@ public class WaterPriestess : BossBase
     public override void AttackAfter()
     {
         base.AttackAfter(); // isAttacking = false;
-        SetAnim("isAttacking", isAttacking);
+        myAnim.SetBool("isAttacking", isAttacking);
 
         if (attackCount >= 3 && attackCombo)    // 3번째 공격 After 때
         {
             attackCombo = false;
-            SetAnim("isAttackCombo", attackCombo);
+            myAnim.SetBool("isAttackCombo", attackCombo);
 
             StopCoroutine(attackDelay);
 
@@ -273,7 +273,7 @@ public class WaterPriestess : BossBase
         hitCount = 0;   // 콤보의 결과인 스페셜 어택 끝났으므로 hitCount 초기화
 
         isSpecialAttacking = false;
-        SetAnim("isSpecialAttack", isSpecialAttacking);
+        myAnim.SetBool("isSpecialAttack", isSpecialAttacking);
 
         randomNum = isSecondPhase ? Random.Range(0, 100) : randomNum;
     }
@@ -281,7 +281,7 @@ public class WaterPriestess : BossBase
     public void AirAtkAfter()
     {
         isAirAttacking = false;
-        SetAnim("isAirAttack", isAirAttacking);
+        myAnim.SetBool("isAirAttack", isAirAttacking);
 
         randomNum = isSecondPhase ? Random.Range(0, 100) : randomNum;
     }
@@ -311,10 +311,5 @@ public class WaterPriestess : BossBase
         attackDelay = isAttackCombo ? null : attackDelay;
         hitDelay = isHitCombo ? null : attackDelay;
         hitCount = isHitCombo ? 0 : hitCount; // delay 시간 동안 때린 횟수 초기화
-    }
-
-    public void SetAnim(string animName, bool setBool)
-    {
-        myAnim.SetBool(animName, setBool);
     }
 }
