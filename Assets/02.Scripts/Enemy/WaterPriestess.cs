@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WaterPriestess : BossBase
 {
@@ -22,11 +23,14 @@ public class WaterPriestess : BossBase
 
     [Header("확률")]
     public int randomNum = 0;   // spAtk용
-    public int spAtkVariable = 10;
+    public int spAtkVariable = 20;
 
     [Header("콤보 체크용 딜레이 코루틴")]
     public IEnumerator hitDelay = null;
     public IEnumerator attackDelay = null;
+
+    public Text phaseText;
+
     public override void Init()
     {
         base.Init();
@@ -39,6 +43,8 @@ public class WaterPriestess : BossBase
 
         rightDirection = Vector3.one;
         leftDirection = new Vector3(-rightDirection.x, rightDirection.y, rightDirection.z);
+
+        phaseText.text = "Phase 1";
     }
 
     private void Start()
@@ -72,6 +78,7 @@ public class WaterPriestess : BossBase
         if (!isSecondPhase && enemyHealth.health <= 30)
         {
             isSecondPhase = true;
+            phaseText.text = "Phase 2";
             StartState(Global.EnemyFsm.Meditate);
         }
 
