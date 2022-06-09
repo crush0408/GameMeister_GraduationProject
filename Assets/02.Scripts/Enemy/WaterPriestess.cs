@@ -125,27 +125,18 @@ public class WaterPriestess : BossBase
                 break;
             case Global.EnemyFsm.Chase:
                 {
-                    if (DistanceDecision(attackDistance))       // 공격 사거리 내
+                    if (DistanceDecision(attackDistance))
                     {
                         myAnim.SetBool("isChase", false);
                         StartState(Global.EnemyFsm.Attack);
-                        
-                        /*
-                        // 공격 전 0.3f 딜레이 테스트 
-                        if(delayCoroutine == null)
-                        {
-                            delayCoroutine = StateChangeDelay(0.3f, Global.EnemyFsm.Attack);
-                            StartCoroutine(delayCoroutine);
-                        }
-                        */
                     }
-                    else if (DistanceDecision(sightDistance))   // 시야 범위 내
+                    else if (DistanceDecision(sightDistance))
                     {
                         StartState(Global.EnemyFsm.Chase);
                     }
                     else
                     {
-                        myAnim.SetBool("isChase", false);
+                        myAnim.SetBool("isChase", true);
                         StartState(Global.EnemyFsm.Idle);
                     }
                 }
