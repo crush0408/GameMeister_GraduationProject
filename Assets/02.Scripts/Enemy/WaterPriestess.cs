@@ -210,6 +210,8 @@ public class WaterPriestess : BossBase
 
         healCoroutine = HealCoroutine(enemyHealth.initHealth, 4f);
         StartCoroutine(healCoroutine);
+
+        SetAnim("isMeditate", isMeditating);
     }
 
     public override void Attack()
