@@ -87,22 +87,6 @@ public class WaterPriestess : BossBase
                 StartState(Global.EnemyFsm.SpecialAttack);
             }
         }
-
-        // 공격 거리 밖이고 update이므로 airAttack이 실행 중이 아니면 airAttack 실행
-        if (isSecondPhase && (enemyHealth.health < enemyHealth.initHealth / 2) && !DistanceDecision(attackDistance) && !isAirAttacking)   // 2페이즈
-        {
-            Vector2 dir = myTarget.transform.position - this.transform.position;
-
-            transform.position = dir.x > 0 ? new Vector3(myTarget.transform.position.x - 1.5f, transform.position.y, transform.position.z)
-                                            : new Vector3(myTarget.transform.position.x + 1.5f, transform.position.y, transform.position.z);
-
-            FlipSprite();   // 조준했으므로 플레이어 방향 바라보기
-            isAirAttacking = true;
-            myAnim.SetBool("isAirAttack", isAirAttacking);
-        }
-
-        enemyHealth.damagePercent = (healCoroutine == null) ? 1f : enemyHealth.damagePercent;
-        // HealCoroutine()을 virtual로 만들고 오버라이드해서 damagePercent를 대입하는 방법 ?
         if (!isDie) CheckTransition();
     }
 
@@ -131,6 +115,7 @@ public class WaterPriestess : BossBase
                     }
                     else if (!DistanceDecision(attackDistance) && isSecondPhase)
                     {
+                        isAirAttacking = true;
                         StartState(Global.EnemyFsm.Attack);
                     }
                     else if (DistanceDecision(sightDistance))
@@ -153,7 +138,11 @@ public class WaterPriestess : BossBase
                 break;
             case Global.EnemyFsm.Meditate:
                 {
-
+                    if(!isMeditating)
+                    {
+                        enemyHealth.damagePercent = 1f;
+                        StartState(Global.EnemyFsm.Chase);
+                    }
                 }
                 break;
             case Global.EnemyFsm.SpecialAttack:
@@ -193,12 +182,11 @@ public class WaterPriestess : BossBase
                     Meditate(); // Heal 코루틴 작동
                 }
                 break;
-            case Global.EnemyFsm.SpecialAttack: // ** 여기도 역시 봐야 할 듯ㅠ               
+            case Global.EnemyFsm.SpecialAttack:            
                 {
                     isSpecialAttacking = true;
 
                     myAnim.SetBool("isSpecialAttack", isSpecialAttacking);
-                    Debug.Log("SuperArmor Mode On");
                 }
                 break;
         }
@@ -221,23 +209,42 @@ public class WaterPriestess : BossBase
 
         attackCount++;
 
-        if (attackCount <= 1)        // attackCount : 1일 때
+        if(isSecondPhase)
         {
-            delayTime = 4f; // 4초 동안 3번 공격해야 콤보가 됨( 2 2 3 )
-            attackDelay = ComboChecking(delayTime, true, false);
-            StartCoroutine(attackDelay);
-        }
-        else if (attackCount >= 3 && attackCombo)    // 3번째 공격 attackCount : 3
-        {
-            myAnim.SetBool("isAttackCombo", attackCombo);
-
-            if (!attackCombo)
+            if(isAirAttacking && (enemyHealth.health < enemyHealth.initHealth / 2))
             {
-                attackCount = 1;
+                Vector2 dir = myTarget.transform.position - this.transform.position;
 
-                delayTime = 4f;     // 4초 동안 3번 공격해야 콤보가 됨( 2 2 3 )
+                transform.position = dir.x > 0 ? new Vector3(myTarget.transform.position.x + 1.5f, transform.position.y, transform.position.z)
+                                                : new Vector3(myTarget.transform.position.x - 1.5f, transform.position.y, transform.position.z);
+
+                FlipSprite();   // 조준했으므로 플레이어 방향 바라보기
+                isAirAttacking = true;
+                myAnim.SetBool("isAirAttack", isAirAttacking);
+            }
+        }
+        
+
+        else
+        {
+            if (attackCount <= 1)        // attackCount : 1일 때
+            {
+                delayTime = 4f; // 4초 동안 3번 공격해야 콤보가 됨( 2 2 3 )
                 attackDelay = ComboChecking(delayTime, true, false);
                 StartCoroutine(attackDelay);
+            }
+            else if (attackCount >= 3 && attackCombo)    // 3번째 공격 attackCount : 3
+            {
+                myAnim.SetBool("isAttackCombo", attackCombo);
+
+                if (!attackCombo)
+                {
+                    attackCount = 1;
+
+                    delayTime = 4f;     // 4초 동안 3번 공격해야 콤보가 됨( 2 2 3 )
+                    attackDelay = ComboChecking(delayTime, true, false);
+                    StartCoroutine(attackDelay);
+                }
             }
         }
     }

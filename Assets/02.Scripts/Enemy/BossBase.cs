@@ -69,7 +69,7 @@ public class BossBase : EnemyBase, INpc_Monster
         myAnim.SetTrigger("Jump");
         
     }
-    protected IEnumerator HealCoroutine(float amount, float time)
+    protected virtual IEnumerator HealCoroutine(float amount, float time)
     {
         isMeditating = true;
         yield return new WaitForSeconds(time);
@@ -82,7 +82,6 @@ public class BossBase : EnemyBase, INpc_Monster
 
         isMeditating = false;
         myAnim.SetBool("isMeditate", isMeditating);
-        ChangeState(Global.EnemyFsm.Idle);  // 으어어어어어
         healCoroutine = null;
     }
     

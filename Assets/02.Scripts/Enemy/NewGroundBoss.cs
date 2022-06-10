@@ -112,7 +112,10 @@ public class NewGroundBoss : BossBase
                 break;
             case Global.EnemyFsm.Meditate:
                 {
-
+                    if(!isMeditating) 
+                    {
+                        StartState(Global.EnemyFsm.Chase);
+                    }
                 }
                 break;
             case Global.EnemyFsm.Pattern:
@@ -146,6 +149,7 @@ public class NewGroundBoss : BossBase
                 break;
             case Global.EnemyFsm.Meditate:
                 {
+                    isMeditating = true;
                     myAnim.SetBool("isMeditate", true);
                 }
                 break;
