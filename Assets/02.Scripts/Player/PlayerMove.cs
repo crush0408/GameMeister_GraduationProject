@@ -22,6 +22,8 @@ public class PlayerMove : MonoBehaviour
 
     public bool getHit = false;
 
+    public Transform leftLimit;
+    public Transform rightLimit;
 
     private bool _jump;
     private bool _jumpKeyUp;
@@ -229,6 +231,24 @@ public class PlayerMove : MonoBehaviour
             if(!getHit)
             {
                 rigid.velocity = new Vector2(playerInput.movement * moveSpeed, rigid.velocity.y);
+
+                //if(transform.position.x < leftLimit.position.x)
+                //{
+                //    transform.position = new Vector3(rightLimit.position.x, transform.position.y, transform.position.z);
+                //}
+                //else if (transform.position.x > rightLimit.position.x)
+                //{
+                //    transform.position = new Vector3(leftLimit.position.x, transform.position.y, transform.position.z);
+                //}
+
+                transform.position = transform.position.x < leftLimit.position.x ?
+                    new Vector3(rightLimit.position.x, transform.position.y, transform.position.z)
+                    : new Vector3(transform.position.x, transform.position.y, transform.position.z);
+
+                transform.position = transform.position.x > rightLimit.position.x ?
+                    new Vector3(leftLimit.position.x, transform.position.y, transform.position.z)
+                    : new Vector3(transform.position.x, transform.position.y, transform.position.z);
+
             }
             anim.SetBool("movement", playerInput.movement != 0);
             anim.SetFloat("ySpeed", rigid.velocity.y);
