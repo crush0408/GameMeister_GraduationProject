@@ -42,7 +42,8 @@ public class NewGroundBoss : BossBase
             isSpecial = true;
             if (isMeditating)
             {
-                CoroutineInitialization(healCoroutine);
+                if(healCoroutine != null)
+                    CoroutineInitialization(healCoroutine);
                 enemyHealth.HealHealth(healAmount);
 
                 PoolableMono poolingObject = PoolManager.Instance.Pop("HealEffect");

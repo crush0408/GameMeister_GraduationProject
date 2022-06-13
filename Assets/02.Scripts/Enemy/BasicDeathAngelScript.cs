@@ -17,7 +17,7 @@ public class BasicDeathAngelScript : BasicEnemyBase
         speed = 5f;
         patrolCoolTime = 0.5f;
         
-        sightDistance = 10f;
+        sightDistance = 100f;
         attackDistance = 2.5f;
 
         rightDirection = Vector3.one;

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.SceneManagement;
 
 public class StageManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class StageManager : MonoBehaviour
     public GameObject[] mapDatas = null;
     public MapInsertData insertData;
     public int index = 0;
+    public int maxIndex = 0;
     
 
     private void Awake()
@@ -26,18 +28,30 @@ public class StageManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        
+        maxIndex = mapDatas.Length;
     }
 
     private void Start()
     {
         player = GameManager.instance.playerObj;
         confiner = CameraActionScript.instance.player_vCam.gameObject.GetComponent<CinemachineConfiner>();
-        //Init(0);
+        Init(0);
+    }
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Init(1);
+        }
     }
     public void Init(int adjust)
     {
         index += adjust;
+        if(index >= maxIndex)
+        {
+            SceneLoadManager.instance.LoadScene("EndScene");
+            return;
+        }
         Reset();
 
 
