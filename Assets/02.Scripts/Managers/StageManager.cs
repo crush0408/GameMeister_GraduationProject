@@ -39,10 +39,10 @@ public class StageManager : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        /*if (Input.GetKeyDown(KeyCode.Space))
         {
             Init(1);
-        }
+        }*/
     }
     public void Init(int adjust)
     {
