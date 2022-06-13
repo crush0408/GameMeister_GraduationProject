@@ -223,6 +223,7 @@ public class NewGroundBoss : BossBase
     public override void AttackAfter()   // 이벤트 함수
     {
         base.AttackAfter();
+        myAnim.SetBool("isAttacking", false);
     }
     public override void DeadAnimScript()
     {
