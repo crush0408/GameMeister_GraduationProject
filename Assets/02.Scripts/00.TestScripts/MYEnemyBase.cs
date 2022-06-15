@@ -30,36 +30,41 @@ public abstract class MYEnemyBase : MonoBehaviour
         NonFlightable,
         Flightable
     }
-    [Header("Enemy Type, State")]
-    [SerializeField] protected EnemyState myState = EnemyState.None;
-    [SerializeField] protected EnemyType myType = EnemyType.None;
+    
+    protected EnemyState myState = EnemyState.None;
+    protected EnemyType myType = EnemyType.None;
 
     protected void ChangeState(EnemyState state)
     {
         myState = state;
     }
+    protected abstract void CheckTransition();
+    protected virtual void StartState(EnemyState state)
+    {
+        ChangeState(state);
+        
+    }
     //
 
     // 변수 선언
-    [Header("변수")]
-    [SerializeField] protected EnemyHealth myHealth;
-    [SerializeField] protected Rigidbody2D myRigid;
-    [SerializeField] protected Animator myAnim;
-    [Space]
-    [SerializeField] protected Vector3 myVelocity = Vector3.zero;
-    [SerializeField] protected Vector3 lefttDirection = Vector3.zero;
-    [SerializeField] protected Vector3 rightDirection = Vector3.zero;
-    [Space]
+    protected EnemyHealth myHealth;
+    protected Rigidbody2D myRigid;
+    protected Animator myAnim;
+
+    protected Vector3 myVelocity = Vector3.zero;
+    protected Vector3 lefttDirection = Vector3.zero;
+    protected Vector3 rightDirection = Vector3.zero;
+
     [SerializeField] protected GameObject visualGroup;
-    [SerializeField] protected GameObject myTarget;
-    [Space]
-    [SerializeField] protected float speed = 0f;
-    [SerializeField] protected float sightDistance = 0f;
-    [SerializeField] protected float attackDistance = 0f;
-    [Space]
-    public bool getHit;
-    [SerializeField] protected bool isAttacking;
-    [SerializeField] protected bool isDie;
+    protected GameObject myTarget;
+
+    protected float speed = 0f;
+    protected float sightDistance = 0f;
+    protected float attackDistance = 0f;
+
+    [HideInInspector] public bool getHit;
+    protected bool isAttacking;
+    protected bool isDie;
     //
 
     // 함수
@@ -72,19 +77,19 @@ public abstract class MYEnemyBase : MonoBehaviour
 
         myVelocity = Vector3.zero;
 
-        myTarget = GameManager.instance.playerObj;
+        myTarget = GameManager.instance.playerObj;  // 타겟이 Player가 아닐 수도 있지 않을까?
 
         isAttacking = false;
         isDie = false;
         getHit = false;
     }
-    public virtual void Stop()
+    public virtual void Stop() // 움직임을 멈춤
     {
         myVelocity = Vector3.zero;
         myRigid.velocity = myVelocity;
         myAnim.SetBool("isChase",false);
     }
-    public virtual void Move()
+    public virtual void Move()  // 타겟 방향을 향해 이동
     {
         FlipSprite();
         myAnim.SetBool("isChase", true);
@@ -97,14 +102,21 @@ public abstract class MYEnemyBase : MonoBehaviour
         myRigid.velocity = myVelocity;
     }
     public virtual void Attack()
+        // 공격 트리거나 조건 등 처리해야하는것들이 적마다 다르기 때문에, 공격을 할 때 필요한 것만 virtual로 선언
     {
         Stop();
         FlipSprite();
         isAttacking = true;
     }
-    public virtual void AttackAfter()
+    public virtual void AttackAfter() // Attack 애니메이션 이후에 isAttacking을 false로 만들어주기 위한 함수
+        // 공격 이후 처리가 적마다 필요할 수 있기 때문에 virtual로 선언
     {
         isAttacking = false;
+    }
+    public virtual void GetHitAfter()
+        // 타격 받고 난 후 getHit 처리를 해준다.
+    {
+        getHit = false;
     }
     private void Die() // Health OnDead액션 함수에 넣음
     {

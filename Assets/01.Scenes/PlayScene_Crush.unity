@@ -2300,13 +2300,28 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1253574114}
+  - component: {fileID: 1253574113}
   m_Layer: 0
   m_Name: MyEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
+--- !u!114 &1253574113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253574112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df564ddd99c3a744b6049e4cfbcb9d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visualGroup: {fileID: 0}
+  getHit: 0
 --- !u!4 &1253574114
 Transform:
   m_ObjectHideFlags: 0
@@ -4576,6 +4591,8 @@ MonoBehaviour:
   canDash: 1
   canMove: 1
   getHit: 0
+  leftLimit: {fileID: 0}
+  rightLimit: {fileID: 0}
   _dashDelayStartTime: 0.15
   startDashTime: 0.2
   dashSpeed: 40
