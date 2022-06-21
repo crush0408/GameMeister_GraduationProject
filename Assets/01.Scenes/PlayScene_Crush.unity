@@ -533,6 +533,7 @@ GameObject:
   - component: {fileID: 279140173}
   - component: {fileID: 279140172}
   - component: {fileID: 279140174}
+  - component: {fileID: 279140175}
   m_Layer: 8
   m_Name: VisualGroup
   m_TagString: Untagged
@@ -712,6 +713,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &279140175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279140170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0de9b84ac3c5b8242a9ddd1c9e1ad767, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  motion:
+  - BasicAtkSpeed
+  - FastMagicSpeed
+  - SpinAtkSpeed
+  - SustainMagicSpeed
+  - JumpAtkSpeed
+  speed:
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
 --- !u!1 &313828004
 GameObject:
   m_ObjectHideFlags: 3
