@@ -20,7 +20,7 @@ public class Thronbush : MonoBehaviour
     {
         BoxCollider2D boxCollider = collision.GetComponent<BoxCollider2D>();
 
-        if (boxCollider.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && boxCollider == collision)
         {
             isTouched = true;
 
