@@ -4,22 +4,17 @@ using UnityEngine;
 
 public class BreakWall : MonoBehaviour
 {
-    public float damage = 0f;
-    public bool push = false;
+    public float hp = 20f;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        BoxCollider2D boxCollider = collision.GetComponent<BoxCollider2D>();
 
-        if (collision.gameObject.CompareTag("Player") && boxCollider == collision)
+        if (!collision.gameObject.CompareTag("Enemy"))
         {
-            IDamageable target = collision.GetComponent<IDamageable>();
-            if (target != null)
-            {
-                if(gameObject.activeSelf)
-                {
-                    gameObject.SetActive(false);
-                }
-            }
+            hp -= 5f;
+            if(hp <= 0)
+                Destroy(gameObject);
         }
     }
+
+    
 }
