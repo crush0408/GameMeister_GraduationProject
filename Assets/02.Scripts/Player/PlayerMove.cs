@@ -30,7 +30,7 @@ public class PlayerMove : MonoBehaviour
     private bool _dash;
     
 
-    [Header("Dash관련 변수들")]
+    [Header("Dash 관련 변수들")]
     [SerializeField] private float _dashDelayStartTime;
      private float _dashDelayTime;
      private float _dashTime;
@@ -101,12 +101,10 @@ public class PlayerMove : MonoBehaviour
             {
                 _dash = true;
             }
-
         }
     }
     private void Dash()
     {
-        
         if(_dash && canDash && _dashDelayTime <= 0)
         {
             if(_dashTime <= 0)
@@ -125,7 +123,6 @@ public class PlayerMove : MonoBehaviour
                 anim.SetBool("isDash",true);
                 MGSound.instance.playEff("PlayerDash");
             }
-
         }
         else if(_dashDelayTime > 0)
         {
@@ -133,7 +130,6 @@ public class PlayerMove : MonoBehaviour
             if(isGround)
             {
                 canDash = true;
-
             }
         }
         else if(!canDash)
@@ -159,13 +155,11 @@ public class PlayerMove : MonoBehaviour
             }
             else if (!isGround && canSecondJump )
             {
-                
-                    _jump = false;
-                    rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
-                    anim.SetTrigger("isJump");
-                    //Debug.Log("2단 점프");
-                    canSecondJump = false;
-                
+                _jump = false;
+                rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
+                anim.SetTrigger("isJump");
+                //Debug.Log("2단 점프");
+                canSecondJump = false;
             }
             MGSound.instance.playEff("PlayerJump");
         }

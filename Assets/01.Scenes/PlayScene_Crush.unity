@@ -4414,7 +4414,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1973142429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4859,8 +4859,8 @@ MonoBehaviour:
   getHit: 0
   leftLimit: {fileID: 0}
   rightLimit: {fileID: 0}
-  _dashDelayStartTime: 0.15
-  startDashTime: 0.2
+  _dashDelayStartTime: 0.05
+  startDashTime: 0.15
   dashSpeed: 40
   _dashDis: 1
 --- !u!114 &2105400317
