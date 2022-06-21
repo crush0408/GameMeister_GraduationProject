@@ -11,11 +11,6 @@ public class Thronbush : MonoBehaviour
     private bool isTouched = false;
     private IEnumerator delayCoroutine = null;
 
-    private void Update()
-    {
-        Debug.Log(isTouched);
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         BoxCollider2D boxCollider = collision.GetComponent<BoxCollider2D>();
