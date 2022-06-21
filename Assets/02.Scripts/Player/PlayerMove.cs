@@ -28,7 +28,6 @@ public class PlayerMove : MonoBehaviour
     private bool _jump;
     private bool _jumpKeyUp;
     private bool _dash;
-    
 
     [Header("Dash 관련 변수들")]
     [SerializeField] private float _dashDelayStartTime;
@@ -187,6 +186,12 @@ public class PlayerMove : MonoBehaviour
             {
                 //canDash = true;
                 canSecondJump = false;
+
+                playerAttack.canJumpAttack = false;
+            }
+            else
+            {
+                playerAttack.canJumpAttack = true;
             }
         }
     }

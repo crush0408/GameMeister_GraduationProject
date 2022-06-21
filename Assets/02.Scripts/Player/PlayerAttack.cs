@@ -7,6 +7,8 @@ public class PlayerAttack : MonoBehaviour
     private Animator anim;
     private PlayerInput playerInput;
 
+    private PlayerMove playerMove;
+
     [Header("전체 스킬 리스트")]
     public List<SkillObject> skillList;
 
@@ -28,12 +30,14 @@ public class PlayerAttack : MonoBehaviour
     public bool isAttacking = false;
     private int combo = 0;
 
-    
+    public bool canJumpAttack = false;
 
     void Start()
     {
         anim = GetComponentInChildren<Animator>();
         playerInput = GetComponent<PlayerInput>();
+
+        playerMove = GetComponent<PlayerMove>();
         
         for (int i = 0; i < skillList.Count; i++)
         {
@@ -65,10 +69,8 @@ public class PlayerAttack : MonoBehaviour
                         case 1:
                             if (anim.GetCurrentAnimatorStateInfo(0).IsName("Player_Attack1"))
                             {
-
                                 anim.SetInteger("BasicAttack", combo);
                                 combo++;
-                            
                             }
                             break;
                         case 2:
@@ -78,6 +80,12 @@ public class PlayerAttack : MonoBehaviour
                             }
                             break;
                     }
+                }
+
+                if (canJumpAttack)
+                {
+                    canJumpAttack = false;
+                    anim.SetBool("JumpAttack", !canJumpAttack);
                 }
             }
         
@@ -171,16 +179,25 @@ public class PlayerAttack : MonoBehaviour
         }
         StartCoroutine(skillList[index].coolTime());
     }
+
     public void AttackEnd()
     {
         isAttacking = false;
     }
+
     public void BasicAttackEnd(int value)
     {
         if(anim.GetInteger("BasicAttack") != value)
         {
             isAttacking = false;
         }
+    }
+
+    public void JumpAttackEnd()
+    {
+        Debug.Log("점프 어택 끝남");
+        canJumpAttack = true;
+        anim.SetBool("JumpAttack", !canJumpAttack);
     }
 
 #if UNITY_EDITOR
