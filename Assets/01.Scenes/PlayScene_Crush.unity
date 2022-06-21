@@ -4863,7 +4863,6 @@ MonoBehaviour:
   startDashTime: 0.2
   dashSpeed: 40
   _dashDis: 1
-  isCrouch: 0
 --- !u!114 &2105400317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4883,7 +4882,6 @@ MonoBehaviour:
   skillOneName: FastMagic
   skillTwoName: SpinAttack
   ultimateName: SustainMagic
-  crouchName: Crouch
 --- !u!61 &2105400318
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5514,6 +5512,10 @@ PrefabInstance:
     - target: {fileID: 6572785703418899201, guid: fd836145633401c4b9a9424eb82bdf03, type: 3}
       propertyPath: m_Name
       value: Knight
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572785703418899201, guid: fd836145633401c4b9a9424eb82bdf03, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd836145633401c4b9a9424eb82bdf03, type: 3}
