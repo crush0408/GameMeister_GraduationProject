@@ -37,9 +37,6 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float startDashTime = 0.1f;
     [SerializeField] private float dashSpeed = 50f;
     [SerializeField] private float _dashDis = 1f;
-    [Space]
-    
-    public bool isCrouch = false;
 
     private void Awake()
     {
@@ -77,11 +74,9 @@ public class PlayerMove : MonoBehaviour
     {
         //if (!playerAttack.isAttacking)
         {
-
             Move();
             Jump();
             Dash();
-            Crouch();
         }
     }
     private void ValueSetting() //Input 처리 변환
@@ -108,15 +103,6 @@ public class PlayerMove : MonoBehaviour
             }
 
         }
-            if (playerInput.crouch)
-            {
-                isCrouch = true;
-            }
-            else
-            {
-                isCrouch = false;
-            }
-        
     }
     private void Dash()
     {
@@ -157,20 +143,6 @@ public class PlayerMove : MonoBehaviour
                 canDash = true;
             }
         }
-    }
-    
-    private void Crouch()
-    {
-        if (isCrouch)
-        {
-            anim.SetBool("isCrouch", true);   
-        }
-        else
-        {
-            anim.SetBool("isCrouch", false);
-            isCrouch = false;
-        }
-        
     }
     
     private void Jump()
@@ -226,7 +198,7 @@ public class PlayerMove : MonoBehaviour
     }
     private void Move()
     {
-        if (!isCrouch && !playerAttack.isAttacking)
+        if (!playerAttack.isAttacking)
         {
             if(!getHit)
             {
