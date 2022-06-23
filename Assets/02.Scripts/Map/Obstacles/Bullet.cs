@@ -9,7 +9,6 @@ public class Bullet : MonoBehaviour
     public float damage = 5f;
 
     private Transform parentTransform;
-    // private Vector3 direction;
 
     private void OnEnable()
     {
