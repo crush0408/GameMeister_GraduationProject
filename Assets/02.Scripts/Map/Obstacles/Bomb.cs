@@ -8,7 +8,7 @@ public class Bomb : MonoBehaviour
     private PlayerAttack playerAttack;
 
     [Header("폭발 반경 및 데미지")]
-    public float bombRadius = 2f;
+    public float range = 2f;
     public float damage = 10f;
 
     private void Start()
@@ -19,7 +19,7 @@ public class Bomb : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, bombRadius);
+        Gizmos.DrawWireSphere(transform.position, range);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -32,7 +32,7 @@ public class Bomb : MonoBehaviour
         {
             spriteRenderer.color = Color.green; // 확인용(현재 애니메이션이 없어서ㅠㅠ)
 
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, bombRadius);
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, range);
             foreach (Collider2D col in colliders)
             {
                 if (col.gameObject.CompareTag("Enemy"))
