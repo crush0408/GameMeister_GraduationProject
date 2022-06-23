@@ -24,7 +24,7 @@ public class Bomb : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.gameObject.CompareTag("Player")) return;
+        if (!collision.gameObject.CompareTag("PlayerAttackCol")) return;
 
         playerAttack = collision.gameObject.GetComponentInParent<PlayerAttack>();
 
@@ -46,6 +46,6 @@ public class Bomb : MonoBehaviour
 
     public void AfterExplode()  // 폭발 애니메이션 이후 이벤트 함수
     {
-
+        // 없애거나 끄는 코드 넣기(일회성 폭탄)
     }
 }

@@ -14,11 +14,17 @@ public class InvisibleWall : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        tilemap.color = Color.clear;
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            tilemap.color = Color.clear;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        tilemap.color = Color.white;
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            tilemap.color = Color.white;
+        }
     }
 }
