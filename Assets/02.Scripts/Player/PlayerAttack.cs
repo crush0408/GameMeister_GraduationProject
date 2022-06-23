@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     private Animator anim;
-    private RePlayerInput playerInput;
+    private PlayerInput playerInput;
 
     private PlayerMove playerMove;
 
@@ -35,7 +35,7 @@ public class PlayerAttack : MonoBehaviour
     void Start()
     {
         anim = GetComponentInChildren<Animator>();
-        playerInput = GetComponent<RePlayerInput>();
+        playerInput = GetComponent<PlayerInput>();
 
         playerMove = GetComponent<PlayerMove>();
         
@@ -91,15 +91,15 @@ public class PlayerAttack : MonoBehaviour
         
             else if (playerInput.skillOne)
             {
-                InputSkillFunc(playerInput.skillOne.ToString());
+                InputSkillFunc(playerInput.skillOneName);
             }
             else if (playerInput.skillTwo)
             {
-                InputSkillFunc(playerInput.skillTwo.ToString());
+                InputSkillFunc(playerInput.skillTwoName);
             }
             else if (playerInput.ultimate)
             {
-                InputSkillFunc(playerInput.ultimate.ToString());
+                InputSkillFunc(playerInput.ultimateName);
             }
         }
     }

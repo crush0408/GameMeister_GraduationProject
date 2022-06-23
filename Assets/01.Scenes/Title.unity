@@ -1831,7 +1831,6 @@ MonoBehaviour:
   - {fileID: 697037657}
   - {fileID: 322075130}
   - {fileID: 1456099580}
-  playerInput: {fileID: 0}
 --- !u!1 &497334749
 GameObject:
   m_ObjectHideFlags: 0
@@ -1990,7 +1989,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1153507845}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.6
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

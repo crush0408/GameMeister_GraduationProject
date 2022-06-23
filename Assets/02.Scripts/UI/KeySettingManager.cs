@@ -28,7 +28,6 @@ public class KeySettingManager : MonoBehaviour
     KeyCode[] defaultKeys = new KeyCode[] { KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.Z, KeyCode.C, KeyCode.X, KeyCode.A, KeyCode.S, KeyCode.Q, KeyCode.E, KeyCode.Escape };
 
     public Text[] text;
-    public PlayerInput playerInput;
     private void Start()
     {
         for (int i = 0; i < (int)KeyAction.KEYCOUNT; i++)
@@ -40,22 +39,14 @@ public class KeySettingManager : MonoBehaviour
         {
             text[j].text = KeySetting.keys[(KeyAction)j].ToString();
         }
-
-        playerInput = GetComponent<PlayerInput>();
     }
 
     private void Update()
     {
         for (int j = 0; j < text.Length; j++)
         {
-           text[j].text = KeySetting.keys[(KeyAction)j].ToString();
+            text[j].text = KeySetting.keys[(KeyAction)j].ToString();
         }
-
-        for (int i = 0; i < (int)KeyAction.KEYCOUNT; i++)
-        {
-            
-        }
-
     }
 
     private void OnGUI()
@@ -67,6 +58,7 @@ public class KeySettingManager : MonoBehaviour
             KeySetting.keys[(KeyAction)key] = keyEvent.keyCode;
             key = -1;
         }
+
     }
 
     int key = -1;
