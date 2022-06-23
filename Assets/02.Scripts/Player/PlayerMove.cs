@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    private PlayerInput playerInput;
+    private RePlayerInput playerInput;
     private PlayerAttack playerAttack;
     private Rigidbody2D rigid;
     private Animator anim;
@@ -40,7 +40,7 @@ public class PlayerMove : MonoBehaviour
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
-        playerInput = GetComponent<PlayerInput>();
+        playerInput = GetComponent<RePlayerInput>();
         playerAttack = GetComponent<PlayerAttack>();
         anim = GetComponentInChildren<Animator>();
     }
@@ -80,11 +80,9 @@ public class PlayerMove : MonoBehaviour
     }
     private void ValueSetting() //Input 처리 변환
     {
-        if (playerInput.movement != 0)
-        {
-            _dashDis = dashSpeed * playerInput.movement;
-        }
-        if(!playerAttack.isAttacking)
+        if (playerInput.movementLeft) _dashDis = dashSpeed * -1;
+        else if (playerInput.movementRight) _dashDis = dashSpeed;
+        if (!playerAttack.isAttacking)
         {
 
             if (playerInput.jump)
@@ -201,16 +199,23 @@ public class PlayerMove : MonoBehaviour
         {
             if(!getHit)
             {
-                rigid.velocity = new Vector2(playerInput.movement * moveSpeed, rigid.velocity.y);
+                if(playerInput.movementLeft)
+                {
+                    rigid.velocity = new Vector2(-1 * moveSpeed, rigid.velocity.y);
+                }
+                else
+                {
+                    rigid.velocity = new Vector2(1 * moveSpeed, rigid.velocity.y);
+                }
             }
-            anim.SetBool("movement", playerInput.movement != 0);
+            anim.SetBool("movement", !(playerInput.movementRight || playerInput.movementLeft));
             anim.SetFloat("ySpeed", rigid.velocity.y);
-            if(playerInput.movement == 1)
+            if(playerInput.movementRight)
             {
                 playerAttack.visualGroup.transform.localScale = Vector3.one;
                 //MGSound.instance.playEff("PlayerMove");
             }
-            else if(playerInput.movement == -1)
+            else if(playerInput.movementLeft)
             {
                 playerAttack.visualGroup.transform.localScale = new Vector3(-1,1,1);
                 //MGSound.instance.playEff("PlayerMove");
