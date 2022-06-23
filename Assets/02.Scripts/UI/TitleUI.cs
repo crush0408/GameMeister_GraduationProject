@@ -17,6 +17,7 @@ public class TitleUI : MonoBehaviour
 
     [Header("설정 패널")]
     public GameObject settingPanel;
+    public GameObject keySettingPanel;
 
     [Header("캔버스 스케일러")]
     public CanvasScaler canvasScaler;
@@ -100,4 +101,8 @@ public class TitleUI : MonoBehaviour
         canvasScaler.referenceResolution = CanvasScaleManager.instance.ReturnResolution();
     }
     
+    public void KeySettingBtn()
+    {
+        keySettingPanel.SetActive(true);
+    }
 }
