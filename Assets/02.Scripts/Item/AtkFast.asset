@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86fa784b7828a9c4a83e52f431638439, type: 3}
+  m_Name: AtkFast
+  m_EditorClassIdentifier: 
+  itemName: "\uC288\uC289! \uC288\uC289!"
+  itemImage: {fileID: 21300000, guid: e0e2c6d2ee6bab442ae564d3715c20bb, type: 3}
+  itemUse: "\uACF5\uACA9 \uC18D\uB3C4 \uC99D\uAC00"
+  itemType: 0
