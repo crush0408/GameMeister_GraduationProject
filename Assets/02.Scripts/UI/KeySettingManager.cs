@@ -28,7 +28,7 @@ public class KeySettingManager : MonoBehaviour
     KeyCode[] defaultKeys = new KeyCode[] { KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.Z, KeyCode.C, KeyCode.X, KeyCode.A, KeyCode.S, KeyCode.Q, KeyCode.E, KeyCode.Escape };
 
     public Text[] text;
-    private void Start()
+    private void Awake()
     {
         for (int i = 0; i < (int)KeyAction.KEYCOUNT; i++)
         {

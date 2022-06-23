@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    private PlayerInput playerInput;
+    private RePlayerInput playerInput;
     private PlayerAttack playerAttack;
     private Rigidbody2D rigid;
     private Animator anim;
@@ -31,8 +31,8 @@ public class PlayerMove : MonoBehaviour
 
     [Header("Dash 관련 변수들")]
     [SerializeField] private float _dashDelayStartTime;
-     private float _dashDelayTime;
-     private float _dashTime;
+    private float _dashDelayTime;
+    private float _dashTime;
     [SerializeField] private float startDashTime = 0.1f;
     [SerializeField] private float dashSpeed = 50f;
     [SerializeField] private float _dashDis = 1f;
@@ -40,7 +40,7 @@ public class PlayerMove : MonoBehaviour
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
-        playerInput = GetComponent<PlayerInput>();
+        playerInput = GetComponent<RePlayerInput>();
         playerAttack = GetComponent<PlayerAttack>();
         anim = GetComponentInChildren<Animator>();
     }
@@ -63,7 +63,7 @@ public class PlayerMove : MonoBehaviour
         foreach (Collider2D collider2d in colliders)
         {
             IDoor door = collider2d.GetComponent<IDoor>();
-            if(door != null && Input.GetKeyDown(KeyCode.E))
+            if (door != null && Input.GetKeyDown(KeyCode.E))
             {
                 door.Action();
             }
@@ -80,18 +80,19 @@ public class PlayerMove : MonoBehaviour
     }
     private void ValueSetting() //Input 처리 변환
     {
-        if (playerInput.movement != 0)
-        {
-            _dashDis = dashSpeed * playerInput.movement;
-        }
-        if(!playerAttack.isAttacking)
+        if (playerInput.movementLeft) 
+            _dashDis = dashSpeed * -1;
+        else if (playerInput.movementRight) 
+            _dashDis = dashSpeed;
+
+        if (!playerAttack.isAttacking)
         {
 
             if (playerInput.jump)
             {
                 _jump = true;
             }
-            if(playerInput.jumpKeyUp)
+            if (playerInput.jumpKeyUp)
             {
                 _jumpKeyUp = true;
             }
@@ -104,9 +105,9 @@ public class PlayerMove : MonoBehaviour
     }
     private void Dash()
     {
-        if(_dash && canDash && _dashDelayTime <= 0)
+        if (_dash && canDash && _dashDelayTime <= 0)
         {
-            if(_dashTime <= 0)
+            if (_dashTime <= 0)
             {
                 _dash = false;
                 canDash = false;
@@ -119,27 +120,27 @@ public class PlayerMove : MonoBehaviour
             {
                 _dashTime -= Time.deltaTime;
                 rigid.velocity = new Vector2(_dashDis, 0);
-                anim.SetBool("isDash",true);
+                anim.SetBool("isDash", true);
                 MGSound.instance.playEff("PlayerDash");
             }
         }
-        else if(_dashDelayTime > 0)
+        else if (_dashDelayTime > 0)
         {
             _dashDelayTime -= Time.deltaTime;
-            if(isGround)
+            if (isGround)
             {
                 canDash = true;
             }
         }
-        else if(!canDash)
+        else if (!canDash)
         {
-            if(isGround)
+            if (isGround)
             {
                 canDash = true;
             }
         }
     }
-    
+
     private void Jump()
     {
         if (_jump)
@@ -152,7 +153,7 @@ public class PlayerMove : MonoBehaviour
                 //Debug.Log("1단 점프");
                 canSecondJump = true;
             }
-            else if (!isGround && canSecondJump )
+            else if (!isGround && canSecondJump)
             {
                 _jump = false;
                 rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
@@ -162,18 +163,18 @@ public class PlayerMove : MonoBehaviour
             }
             MGSound.instance.playEff("PlayerJump");
         }
-        else if(!isGround && rigid.velocity.y < 0)
+        else if (!isGround && rigid.velocity.y < 0)
         {
-            
+
         }
-        
-        
+
+
         /*if(_jumpKeyUp && rigid.velocity.y < 0)
         {
             _jumpKeyUp = false;
             rigid.velocity = new Vector2(rigid.velocity.x, rigid.velocity.y * 2f);
         }*/
-        
+
     }
     private void GroundCheck()
     {
@@ -199,20 +200,31 @@ public class PlayerMove : MonoBehaviour
     {
         if (!playerAttack.isAttacking)
         {
-            if(!getHit)
+            if (!getHit)
             {
-                rigid.velocity = new Vector2(playerInput.movement * moveSpeed, rigid.velocity.y);
+                if (playerInput.movementLeft)
+                {
+                    rigid.velocity = new Vector2(-1 * moveSpeed, rigid.velocity.y);
+                }
+                else if(playerInput.movementRight)
+                {
+                    rigid.velocity = new Vector2(1 * moveSpeed, rigid.velocity.y);
+                }
+                else
+                {
+                    rigid.velocity = new Vector2(0 * moveSpeed, rigid.velocity.y);
+                }
             }
-            anim.SetBool("movement", playerInput.movement != 0);
+            anim.SetBool("movement", (playerInput.movementRight || playerInput.movementLeft));
             anim.SetFloat("ySpeed", rigid.velocity.y);
-            if(playerInput.movement == 1)
+            if (playerInput.movementRight)
             {
                 playerAttack.visualGroup.transform.localScale = Vector3.one;
                 //MGSound.instance.playEff("PlayerMove");
             }
-            else if(playerInput.movement == -1)
+            else if (playerInput.movementLeft)
             {
-                playerAttack.visualGroup.transform.localScale = new Vector3(-1,1,1);
+                playerAttack.visualGroup.transform.localScale = new Vector3(-1, 1, 1);
                 //MGSound.instance.playEff("PlayerMove");
             }
         }

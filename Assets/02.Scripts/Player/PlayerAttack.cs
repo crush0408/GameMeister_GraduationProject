@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     private Animator anim;
-    private PlayerInput playerInput;
+    private RePlayerInput playerInput;
 
     private PlayerMove playerMove;
 
@@ -35,10 +35,10 @@ public class PlayerAttack : MonoBehaviour
     void Start()
     {
         anim = GetComponentInChildren<Animator>();
-        playerInput = GetComponent<PlayerInput>();
+        playerInput = GetComponent<RePlayerInput>();
 
         playerMove = GetComponent<PlayerMove>();
-        
+
         for (int i = 0; i < skillList.Count; i++)
         {
             StartCoroutine(skillList[i].coolTime());
@@ -51,7 +51,7 @@ public class PlayerAttack : MonoBehaviour
         //Debug.Log(skillList[0].remainCoolTime + " " + skillList[1].remainCoolTime + " " + skillList[2].remainCoolTime);
         if (GetComponent<PlayerMove>().getHit == false)
         {
-            
+
             if (playerInput.basicAtk)
             {
                 if (!isAttacking)
@@ -62,7 +62,7 @@ public class PlayerAttack : MonoBehaviour
                     isAttacking = true;
                     combo++;
                 }
-                else if(isAttacking)
+                else if (isAttacking)
                 {
                     switch (combo)
                     {
@@ -88,18 +88,18 @@ public class PlayerAttack : MonoBehaviour
                     anim.SetBool("JumpAttack", !canJumpAttack);
                 }
             }
-        
+
             else if (playerInput.skillOne)
             {
-                InputSkillFunc(playerInput.skillOneName);
+                InputSkillFunc(playerInput.skillOne.ToString());
             }
             else if (playerInput.skillTwo)
             {
-                InputSkillFunc(playerInput.skillTwoName);
+                InputSkillFunc(playerInput.skillTwo.ToString());
             }
             else if (playerInput.ultimate)
             {
-                InputSkillFunc(playerInput.ultimateName);
+                InputSkillFunc(playerInput.ultimate.ToString());
             }
         }
     }
@@ -107,15 +107,15 @@ public class PlayerAttack : MonoBehaviour
     {
         for (int i = 0; i < skillList.Count; i++)
         {
-            if(skillList[i].skillName == name)
+            if (skillList[i].skillName == name)
             {
                 inputSkill = skillList[i];
 
-                if(inputSkill.remainCoolTime <= 0f && !isAttacking)
+                if (inputSkill.remainCoolTime <= 0f && !isAttacking)
                 {
-                    if(inputSkill.skillName == "FastMagic")
+                    if (inputSkill.skillName == "FastMagic")
                     {
-                        Collider2D[] cols = Physics2D.OverlapBoxAll(onePos.position, boxSize ,0f);
+                        Collider2D[] cols = Physics2D.OverlapBoxAll(onePos.position, boxSize, 0f);
                         MGSound.instance.playEff("FastTry");
                         foreach (Collider2D col in cols)
                         {
@@ -124,21 +124,21 @@ public class PlayerAttack : MonoBehaviour
                             if (target != null && col.gameObject.CompareTag("Enemy"))
                             {
                                 //target.OnDamage(inputSkill.attackDamage, this.transform.position);
-                                Attack("FastMagic",col.transform,i, "FastHit");
+                                Attack("FastMagic", col.transform, i, "FastHit");
                                 MGSound.instance.playEff("FastAttack");
                                 break; // 하나만 타겟팅
                             }
                         }
                     }
-                    else if(inputSkill.skillName == "SpinAttack")
+                    else if (inputSkill.skillName == "SpinAttack")
                     {
-                        Attack("SpinAttack",spinAttackTrm,i,"SpinHit");
+                        Attack("SpinAttack", spinAttackTrm, i, "SpinHit");
                         MGSound.instance.playEff("SpinTry");
 
                     }
-                    else if(inputSkill.skillName == "SustainMagic")
+                    else if (inputSkill.skillName == "SustainMagic")
                     {
-                        Attack("SustainMagic",sustainAttackTrm,i,"SustainHit");
+                        Attack("SustainMagic", sustainAttackTrm, i, "SustainHit");
                         MGSound.instance.playEff("SustainTry");
                     }
                     else
@@ -160,7 +160,7 @@ public class PlayerAttack : MonoBehaviour
     }
     private void Attack(string skillName, Transform skillTrm, int index, string hitEffectName)
     {
-        
+
         isAttacking = true;
         anim.Play(inputSkill.skillName, -1, 0f);
         PoolableMono poolingObject = PoolManager.Instance.Pop(skillName);
@@ -187,7 +187,7 @@ public class PlayerAttack : MonoBehaviour
 
     public void BasicAttackEnd(int value)
     {
-        if(anim.GetInteger("BasicAttack") != value)
+        if (anim.GetInteger("BasicAttack") != value)
         {
             isAttacking = false;
         }
@@ -207,7 +207,7 @@ public class PlayerAttack : MonoBehaviour
         {
             Gizmos.color = Color.blue;
             Gizmos.DrawWireCube(onePos.position, boxSize);
-            
+
         }
     }
 #endif
