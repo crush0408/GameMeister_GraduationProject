@@ -14,17 +14,6 @@ public class RePlayerInput : MonoBehaviour
     public bool skillTwo { get; private set; }
     public bool ultimate { get; private set; }
 
-    KeyCode[] defaultKeys = new KeyCode[] { KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.Z, KeyCode.C, KeyCode.X, KeyCode.A, KeyCode.S, KeyCode.Q, KeyCode.E, KeyCode.Escape };
-    private void Start()
-    {
-
-        for (int i = 0; i < (int)KeyAction.KEYCOUNT; i++)
-        {
-            KeySetting.keys.Add((KeyAction)i, defaultKeys[i]);
-            Debug.Log(System.Enum.GetName(typeof(KeyAction), i));
-        }
-    }
-
     private void Update()
     {
         movementLeft = Input.GetKeyDown(KeySetting.keys[KeyAction.LeftMove]);
