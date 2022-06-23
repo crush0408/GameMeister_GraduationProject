@@ -18,7 +18,8 @@ public class Bomb : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawSphere(transform.position, bombRadius);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, bombRadius);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
