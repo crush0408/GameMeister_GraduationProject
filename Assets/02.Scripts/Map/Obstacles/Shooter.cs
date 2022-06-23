@@ -7,7 +7,7 @@ public class Shooter : MonoBehaviour
     public GameObject bulletPrefab;
 
     [Header("총알 생성 간격")]
-    float time = 1f;
+    public float time = 1f;
 
     private void Start()
     {
