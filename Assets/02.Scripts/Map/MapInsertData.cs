@@ -7,6 +7,7 @@ public class MapInsertData
 {
     public Transform startPos;
     public GameObject door;
+    public GameObject rewardItem;
 
     public GameObject boss;
 
