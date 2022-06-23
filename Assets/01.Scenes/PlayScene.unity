@@ -1720,7 +1720,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ConfineMode: 0
   m_BoundingVolume: {fileID: 0}
-  m_BoundingShape2D: {fileID: 1435189412}
+  m_BoundingShape2D: {fileID: 0}
   m_ConfineScreenEdges: 1
   m_Damping: 0
 --- !u!1 &498625507
@@ -6062,6 +6062,7 @@ GameObject:
   - component: {fileID: 2105400322}
   - component: {fileID: 2105400321}
   - component: {fileID: 2105400320}
+  - component: {fileID: 2105400313}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -6069,6 +6070,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &2105400313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105400312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ead1606a07e0704a810d76be3f82402, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2105400314
 Transform:
   m_ObjectHideFlags: 0
@@ -6108,11 +6121,12 @@ MonoBehaviour:
   canDash: 1
   canMove: 1
   getHit: 0
+  leftLimit: {fileID: 0}
+  rightLimit: {fileID: 0}
   _dashDelayStartTime: 0.15
   startDashTime: 0.2
   dashSpeed: 40
   _dashDis: 1
-  isCrouch: 0
 --- !u!114 &2105400317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6120,7 +6134,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2105400312}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6856807cad0563f4199d773e6ffd3b42, type: 3}
   m_Name: 
@@ -6132,7 +6146,6 @@ MonoBehaviour:
   skillOneName: FastMagic
   skillTwoName: SpinAttack
   ultimateName: SustainMagic
-  crouchName: Crouch
 --- !u!61 &2105400318
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6217,6 +6230,7 @@ MonoBehaviour:
   spinAttackTrm: {fileID: 574477733}
   sustainAttackTrm: {fileID: 1996338055}
   isAttacking: 0
+  canJumpAttack: 0
 --- !u!58 &2105400322
 CircleCollider2D:
   m_ObjectHideFlags: 0
