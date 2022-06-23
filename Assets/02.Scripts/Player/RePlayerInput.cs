@@ -15,8 +15,7 @@ public class RePlayerInput : MonoBehaviour
     public bool ultimate { get; private set; }
 
     KeyCode[] defaultKeys = new KeyCode[] { KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.Z, KeyCode.C, KeyCode.X, KeyCode.A, KeyCode.S, KeyCode.Q, KeyCode.E, KeyCode.Escape };
-
-    private void Awake()
+    private void Start()
     {
 
         for (int i = 0; i < (int)KeyAction.KEYCOUNT; i++)
