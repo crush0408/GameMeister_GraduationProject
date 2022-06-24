@@ -4,21 +4,24 @@ using UnityEngine;
 
 public class ItemSpawn : MonoBehaviour
 {
-    public GameObject itemPrefab;
-    private GameObject item;
+    public GameObject item;
 
     private void OnEnable()
     {
-        item = Instantiate(itemPrefab);
+        item.SetActive(true);
+        item.transform.SetParent(transform);
 
-        while(item.transform.position.y > gameObject.transform.position.y + 10f)
-        {
-            item.GetComponent<Transform>().Translate(Vector3.up * 10f);
-        }
+        //while(item.GetComponent<Transform>().position.y < transform.position.y + 10)
+        //{
+        //    item.GetComponent<Transform>().Translate(Vector3.up * 30f * Time.deltaTime);
+        //}
     }
 
-    //IEnumerator SpawnItem()
-    //{
-    //    yield return 
-    //}
+    private void Update()
+    {
+        if (item.GetComponent<Transform>().position.y <= transform.position.y + 10)
+        {
+            item.GetComponent<Transform>().Translate(Vector3.up * 30f * Time.deltaTime);
+        }
+    }
 }
