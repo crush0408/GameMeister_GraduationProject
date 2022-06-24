@@ -202,11 +202,11 @@ public class PlayerMove : MonoBehaviour
         {
             if (!getHit)
             {
-                if (playerInput.movementLeft)
+                if (playerInput.movementLeft && !playerInput.movementRight)
                 {
                     rigid.velocity = new Vector2(-1 * moveSpeed, rigid.velocity.y);
                 }
-                else if(playerInput.movementRight)
+                else if(playerInput.movementRight && !playerInput.movementLeft)
                 {
                     rigid.velocity = new Vector2(1 * moveSpeed, rigid.velocity.y);
                 }
