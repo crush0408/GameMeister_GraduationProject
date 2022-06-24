@@ -53,7 +53,14 @@ public class KeySettingManager : MonoBehaviour
     {
         Event keyEvent = Event.current;
 
-        if (KeySetting.keys.ContainsValue(keyEvent.keyCode)) return;
+        if (KeySetting.keys.ContainsValue(keyEvent.keyCode))
+        {
+            return;
+            for (int i = 0; i < (int)KeyAction.KEYCOUNT; i++)
+            {
+                KeySetting.keys.Add((KeyAction)i, defaultKeys[i]);
+            }
+        }
 
         if (keyEvent.isKey)
         {
