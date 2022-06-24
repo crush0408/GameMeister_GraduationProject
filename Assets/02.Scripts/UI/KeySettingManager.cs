@@ -53,10 +53,10 @@ public class KeySettingManager : MonoBehaviour
     {
         Event keyEvent = Event.current;
 
-        if(keyEvent.isKey)
-        {
-            if (KeySetting.keys.ContainsValue(keyEvent.keyCode)) return;
+        if (KeySetting.keys.ContainsValue(keyEvent.keyCode)) return;
 
+        if (keyEvent.isKey)
+        {
             KeySetting.keys[(KeyAction)key] = keyEvent.keyCode;
             key = -1;
         }
