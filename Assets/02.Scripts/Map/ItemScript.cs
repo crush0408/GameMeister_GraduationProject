@@ -29,6 +29,15 @@ public class ItemScript : MonoBehaviour
 
             tooltipObject.SetActive(true);
         }
+
+        if (col.gameObject.CompareTag("Ground"))
+        {
+            Debug.Log("땅에 닿음");
+
+            Rigidbody2D itemRigid = GetComponent<Rigidbody2D>();
+            Destroy(itemRigid);
+            // GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
+        }
     }
 
     private void OnTriggerStay2D(Collider2D col)
