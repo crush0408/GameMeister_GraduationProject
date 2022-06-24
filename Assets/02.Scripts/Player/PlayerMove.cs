@@ -217,12 +217,12 @@ public class PlayerMove : MonoBehaviour
             }
             anim.SetBool("movement", (playerInput.movementLeft && !playerInput.movementRight || playerInput.movementRight && !playerInput.movementLeft));
             anim.SetFloat("ySpeed", rigid.velocity.y);
-            if (playerInput.movementRight)
+            if (playerInput.movementRight && !playerInput.movementLeft)
             {
                 playerAttack.visualGroup.transform.localScale = Vector3.one;
                 //MGSound.instance.playEff("PlayerMove");
             }
-            else if (playerInput.movementLeft)
+            else if (playerInput.movementLeft && !playerInput.movementRight)
             {
                 playerAttack.visualGroup.transform.localScale = new Vector3(-1, 1, 1);
                 //MGSound.instance.playEff("PlayerMove");
