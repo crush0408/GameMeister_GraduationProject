@@ -91,15 +91,15 @@ public class PlayerAttack : MonoBehaviour
 
             else if (playerInput.skillOne)
             {
-                InputSkillFunc(playerInput.skillOne.ToString());
+                InputSkillFunc("FastMagic");
             }
             else if (playerInput.skillTwo)
             {
-                InputSkillFunc(playerInput.skillTwo.ToString());
+                InputSkillFunc("SpinAttack");
             }
             else if (playerInput.ultimate)
             {
-                InputSkillFunc(playerInput.ultimate.ToString());
+                InputSkillFunc("SustainMagic");
             }
         }
     }
