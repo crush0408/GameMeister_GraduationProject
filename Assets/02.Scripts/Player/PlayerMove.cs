@@ -215,7 +215,7 @@ public class PlayerMove : MonoBehaviour
                     rigid.velocity = new Vector2(0 * moveSpeed, rigid.velocity.y);
                 }
             }
-            anim.SetBool("movement", (playerInput.movementRight || playerInput.movementLeft));
+            anim.SetBool("movement", (playerInput.movementLeft && !playerInput.movementRight || playerInput.movementRight && !playerInput.movementLeft));
             anim.SetFloat("ySpeed", rigid.velocity.y);
             if (playerInput.movementRight)
             {
