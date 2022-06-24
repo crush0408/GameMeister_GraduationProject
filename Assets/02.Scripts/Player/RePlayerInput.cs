@@ -16,8 +16,8 @@ public class RePlayerInput : MonoBehaviour
 
     private void Update()
     {
-        movementLeft = Input.GetKeyDown(KeySetting.keys[KeyAction.LeftMove]);
-        movementRight = Input.GetKeyDown(KeySetting.keys[KeyAction.RightMove]);
+        movementLeft = Input.GetKey(KeySetting.keys[KeyAction.LeftMove]);
+        movementRight = Input.GetKey(KeySetting.keys[KeyAction.RightMove]);
         jump = Input.GetKeyDown(KeySetting.keys[KeyAction.Jump]);
         jumpKeyUp = Input.GetKeyDown(KeySetting.keys[KeyAction.Jump]);
         dash = Input.GetKeyDown(KeySetting.keys[KeyAction.Dash]);
