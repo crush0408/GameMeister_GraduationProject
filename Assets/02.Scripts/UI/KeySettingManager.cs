@@ -55,6 +55,8 @@ public class KeySettingManager : MonoBehaviour
 
         if(keyEvent.isKey)
         {
+            if (KeySetting.keys.ContainsValue(keyEvent.keyCode)) return;
+
             KeySetting.keys[(KeyAction)key] = keyEvent.keyCode;
             key = -1;
         }
