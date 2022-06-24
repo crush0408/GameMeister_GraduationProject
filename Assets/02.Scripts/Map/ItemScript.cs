@@ -8,7 +8,8 @@ public class ItemScript : MonoBehaviour
     public float dist = 2f;
 
     private Vector3 tooltipPos;
-    private bool isRight;   // 오른쪽에 있는가
+    private bool isRight = false;   // 오른쪽에 있는가
+    // private bool floating = false;
 
     private void Start()
     {
@@ -17,16 +18,33 @@ public class ItemScript : MonoBehaviour
         tooltipPos = Camera.main.ScreenToWorldPoint(tooltipObject.transform.position);
     }
 
+    /*
+    private void OnEnable()
+    {
+        StartCoroutine(Delay(2f));
+    }
+
+    private void Update()
+    {
+        if (floating)
+        {
+            GetComponent<Rigidbody2D>().AddForce(Vector3.up * 10f * Time.deltaTime);
+        }
+    }
+    */
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Player"))
         {
             isRight = gameObject.transform.position.x < col.transform.position.x ? true : false;
+            Debug.Log("isRight : " + isRight);
 
             tooltipObject.transform.position = isRight ?
                 Camera.main.WorldToScreenPoint(new Vector3(gameObject.transform.position.x - dist, tooltipPos.y))
                 : Camera.main.WorldToScreenPoint(new Vector3(gameObject.transform.position.x + dist, tooltipPos.y));
 
+            Debug.Log(Camera.main.ScreenToWorldPoint(tooltipObject.transform.position));
             tooltipObject.SetActive(true);
         }
 
@@ -34,8 +52,10 @@ public class ItemScript : MonoBehaviour
         {
             Debug.Log("땅에 닿음");
 
+            /*
             Rigidbody2D itemRigid = GetComponent<Rigidbody2D>();
             Destroy(itemRigid);
+            */
             // GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
         }
     }
@@ -58,4 +78,13 @@ public class ItemScript : MonoBehaviour
             tooltipObject.SetActive(false);
         }
     }
+
+    /*
+    IEnumerator Delay(float delay)
+    {
+        floating = true;
+        yield return new WaitForSeconds(delay);
+        floating = false;
+    }
+    */
 }
