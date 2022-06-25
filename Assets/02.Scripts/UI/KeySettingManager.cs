@@ -55,14 +55,14 @@ public class KeySettingManager : MonoBehaviour, IPointerUpHandler
     {
         Event keyEvent = Event.current;
 
-        if (KeySetting.keys.ContainsValue(keyEvent.keyCode))
-        {
+        //if (KeySetting.keys.ContainsValue(keyEvent.keyCode))
+        //{
 
-            for (int i = 0; i < (int)KeyAction.KEYCOUNT; i++)
-            {
-                KeySetting.keys.Add((KeyAction)key, defaultKeys[i]);
-            }
-        }
+        //    for (int i = 0; i < (int)KeyAction.KEYCOUNT; i++)
+        //    {
+        //        KeySetting.keys.Add((KeyAction)key, defaultKeys[i]);
+        //    }
+        //}
 
         if (keyEvent.isKey)
         {
