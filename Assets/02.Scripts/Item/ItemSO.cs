@@ -5,8 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "ItemSO")]
 public class ItemSO : ScriptableObject
 {
-    public string itemName;
     public Sprite itemImage;
+    public string itemName;
     public string itemUse;
 
     public ItemType itemType;
