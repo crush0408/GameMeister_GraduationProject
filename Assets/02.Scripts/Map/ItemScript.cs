@@ -7,7 +7,7 @@ public class ItemScript : MonoBehaviour
     public GameObject tooltipObject;
     private RectTransform _tooltipRectTrm;
     public float yDist = 1f;
-    public float xDist = 2f;
+    public float xDist = 1f;
 
     private bool isRight = false;
     private Camera mainCam;
