@@ -253,7 +253,6 @@ GameObject:
   - component: {fileID: 20477531}
   - component: {fileID: 20477530}
   - component: {fileID: 20477529}
-  - component: {fileID: 20477532}
   m_Layer: 5
   m_Name: Button (1)
   m_TagString: Untagged
@@ -375,35 +374,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 20477527}
   m_CullTransparentMesh: 1
---- !u!114 &20477532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 20477527}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 3
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 977085194}
-          m_TargetAssemblyTypeName: KeySettingManager, Assembly-CSharp
-          m_MethodName: ChangebtnColor
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &26010568
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,7 +644,6 @@ GameObject:
   - component: {fileID: 71749179}
   - component: {fileID: 71749178}
   - component: {fileID: 71749177}
-  - component: {fileID: 71749180}
   m_Layer: 5
   m_Name: Button (8)
   m_TagString: Untagged
@@ -796,35 +765,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 71749175}
   m_CullTransparentMesh: 1
---- !u!114 &71749180
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 71749175}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 3
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 977085194}
-          m_TargetAssemblyTypeName: KeySettingManager, Assembly-CSharp
-          m_MethodName: ChangebtnColor
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &91764346
 GameObject:
   m_ObjectHideFlags: 0
@@ -2375,7 +2315,6 @@ GameObject:
   - component: {fileID: 292732785}
   - component: {fileID: 292732784}
   - component: {fileID: 292732783}
-  - component: {fileID: 292732786}
   m_Layer: 5
   m_Name: Button (9)
   m_TagString: Untagged
@@ -2497,35 +2436,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 292732781}
   m_CullTransparentMesh: 1
---- !u!114 &292732786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 292732781}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 3
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 977085194}
-          m_TargetAssemblyTypeName: KeySettingManager, Assembly-CSharp
-          m_MethodName: ChangebtnColor
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &308651864
 GameObject:
   m_ObjectHideFlags: 0
@@ -3571,7 +3481,6 @@ GameObject:
   - component: {fileID: 450052771}
   - component: {fileID: 450052770}
   - component: {fileID: 450052769}
-  - component: {fileID: 450052772}
   - component: {fileID: 450052773}
   m_Layer: 5
   m_Name: Button
@@ -3694,35 +3603,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 450052767}
   m_CullTransparentMesh: 1
---- !u!114 &450052772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 450052767}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 3
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 977085194}
-          m_TargetAssemblyTypeName: KeySettingManager, Assembly-CSharp
-          m_MethodName: ChangebtnColor
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!114 &450052773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6224,7 +6104,6 @@ GameObject:
   - component: {fileID: 1063073286}
   - component: {fileID: 1063073285}
   - component: {fileID: 1063073284}
-  - component: {fileID: 1063073287}
   m_Layer: 5
   m_Name: Button (5)
   m_TagString: Untagged
@@ -6346,35 +6225,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1063073282}
   m_CullTransparentMesh: 1
---- !u!114 &1063073287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1063073282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 3
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 977085194}
-          m_TargetAssemblyTypeName: KeySettingManager, Assembly-CSharp
-          m_MethodName: ChangebtnColor
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &1133771608
 GameObject:
   m_ObjectHideFlags: 0
@@ -6578,7 +6428,6 @@ GameObject:
   - component: {fileID: 1160464053}
   - component: {fileID: 1160464052}
   - component: {fileID: 1160464051}
-  - component: {fileID: 1160464054}
   m_Layer: 5
   m_Name: Button (6)
   m_TagString: Untagged
@@ -6700,35 +6549,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1160464049}
   m_CullTransparentMesh: 1
---- !u!114 &1160464054
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1160464049}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 3
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 977085194}
-          m_TargetAssemblyTypeName: KeySettingManager, Assembly-CSharp
-          m_MethodName: ChangebtnColor
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &1183531266
 GameObject:
   m_ObjectHideFlags: 0
@@ -8019,7 +7839,6 @@ GameObject:
   - component: {fileID: 1406157593}
   - component: {fileID: 1406157592}
   - component: {fileID: 1406157591}
-  - component: {fileID: 1406157594}
   m_Layer: 5
   m_Name: Button (2)
   m_TagString: Untagged
@@ -8141,35 +7960,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1406157589}
   m_CullTransparentMesh: 1
---- !u!114 &1406157594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1406157589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 3
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 977085194}
-          m_TargetAssemblyTypeName: KeySettingManager, Assembly-CSharp
-          m_MethodName: ChangebtnColor
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &1410794639
 GameObject:
   m_ObjectHideFlags: 0
@@ -10458,7 +10248,6 @@ GameObject:
   - component: {fileID: 1716762632}
   - component: {fileID: 1716762631}
   - component: {fileID: 1716762630}
-  - component: {fileID: 1716762633}
   m_Layer: 5
   m_Name: Button (7)
   m_TagString: Untagged
@@ -10580,35 +10369,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1716762628}
   m_CullTransparentMesh: 1
---- !u!114 &1716762633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1716762628}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 3
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 977085194}
-          m_TargetAssemblyTypeName: KeySettingManager, Assembly-CSharp
-          m_MethodName: ChangebtnColor
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &1719522483
 GameObject:
   m_ObjectHideFlags: 0
@@ -10621,7 +10381,6 @@ GameObject:
   - component: {fileID: 1719522487}
   - component: {fileID: 1719522486}
   - component: {fileID: 1719522485}
-  - component: {fileID: 1719522488}
   m_Layer: 5
   m_Name: Button (3)
   m_TagString: Untagged
@@ -10743,35 +10502,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1719522483}
   m_CullTransparentMesh: 1
---- !u!114 &1719522488
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1719522483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 3
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 977085194}
-          m_TargetAssemblyTypeName: KeySettingManager, Assembly-CSharp
-          m_MethodName: ChangebtnColor
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &1746858609
 GameObject:
   m_ObjectHideFlags: 0
@@ -11976,7 +11706,6 @@ GameObject:
   - component: {fileID: 2032381348}
   - component: {fileID: 2032381347}
   - component: {fileID: 2032381346}
-  - component: {fileID: 2032381349}
   m_Layer: 5
   m_Name: Button (4)
   m_TagString: Untagged
@@ -12098,35 +11827,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2032381344}
   m_CullTransparentMesh: 1
---- !u!114 &2032381349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2032381344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 3
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 977085194}
-          m_TargetAssemblyTypeName: KeySettingManager, Assembly-CSharp
-          m_MethodName: ChangebtnColor
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &2040700809
 GameObject:
   m_ObjectHideFlags: 0
@@ -12715,7 +12415,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2061559884}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.6
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
