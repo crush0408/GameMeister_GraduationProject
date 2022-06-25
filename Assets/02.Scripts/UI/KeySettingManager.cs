@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public enum KeyAction
@@ -23,11 +24,12 @@ public static class KeySetting
     public static Dictionary<KeyAction, KeyCode> keys = new Dictionary<KeyAction, KeyCode>();
 }
 
-public class KeySettingManager : MonoBehaviour
+public class KeySettingManager : MonoBehaviour, IPointerUpHandler
 {
     KeyCode[] defaultKeys = new KeyCode[] { KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.Z, KeyCode.C, KeyCode.X, KeyCode.A, KeyCode.S, KeyCode.Q, KeyCode.E, KeyCode.Escape };
 
     public Text[] text;
+    public Button[]  btn;
     private void Awake()
     {
         for (int i = 0; i < (int)KeyAction.KEYCOUNT; i++)
@@ -55,10 +57,10 @@ public class KeySettingManager : MonoBehaviour
 
         if (KeySetting.keys.ContainsValue(keyEvent.keyCode))
         {
-            return;
+
             for (int i = 0; i < (int)KeyAction.KEYCOUNT; i++)
             {
-                KeySetting.keys.Add((KeyAction)i, defaultKeys[i]);
+                KeySetting.keys.Add((KeyAction)key, defaultKeys[i]);
             }
         }
 
@@ -66,6 +68,7 @@ public class KeySettingManager : MonoBehaviour
         {
             KeySetting.keys[(KeyAction)key] = keyEvent.keyCode;
             key = -1;
+            Debug.Log(1);
         }
 
     }
@@ -74,5 +77,26 @@ public class KeySettingManager : MonoBehaviour
     public void ChangeKey(int num)
     {
         key = num;
+        for (int i = 0; i < 10; i++)
+        {
+            btn[key].GetComponent<Image>().color = Color.red;
+        }
+
+        Debug.Log(2);
+    }
+
+    public void ChangebtnColor()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            btn[i].GetComponent<Image>().color = Color.white;
+            Debug.Log(3);
+        }
+
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        Debug.Log(4);
     }
 }
