@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public enum KeyAction //Å° °ªµé
+public enum KeyAction //í‚¤ ê°’ë“¤
 {
     LeftMove,
     RightMove,
@@ -19,7 +19,7 @@ public enum KeyAction //Å° °ªµé
     KEYCOUNT
 }
 
-public static class KeySetting //Å°¸¦ ¹Ş´Â µñ¼Å³Ê¸®
+public static class KeySetting //í‚¤ë¥¼ ë°›ëŠ” ë”•ì…”ë„ˆë¦¬
 {
     public static Dictionary<KeyAction, KeyCode> keys = new Dictionary<KeyAction, KeyCode>();
 }
@@ -28,16 +28,16 @@ public class KeySettingManager : MonoBehaviour
 {
     KeyCode[] defaultKeys = new KeyCode[] { KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.Z, KeyCode.C, KeyCode.X, KeyCode.A, KeyCode.S, KeyCode.Q, KeyCode.E, KeyCode.Escape };
 
-    public Text[] text; //Å° UI
-    public Button[]  btn; //¹öÆ°µé
+    public Text[] text; //í‚¤ UI
+    public Button[]  btn; //ë²„íŠ¼ë“¤
     private void Awake()
     {
-        //±âº»Å°¸¦ ³Ö¾îÁİ´Ï´Ù
+        //ê¸°ë³¸í‚¤ë¥¼ ë„£ì–´ì¤ë‹ˆë‹¤
         for (int i = 0; i < (int)KeyAction.KEYCOUNT; i++)
         {
             KeySetting.keys.Add((KeyAction)i, defaultKeys[i]);
         }
-        //±âº»Å° ÅØ½ºÆ®¸¦ ³Ö¾îÁİ´Ï´Ù
+        //ê¸°ë³¸í‚¤ í…ìŠ¤íŠ¸ë¥¼ ë„£ì–´ì¤ë‹ˆë‹¤
 
         for (int j = 0; j < text.Length; j++)
         {
@@ -49,29 +49,47 @@ public class KeySettingManager : MonoBehaviour
     {
         for (int j = 0; j < text.Length; j++)
         {
-            //±ÛÂ¥ ¹«½¼ Å°·Î ¹Ù²î¾ú´ÂÁö ¹Ù²Ù´Â ÄÚµå
+            //ê¸€ì§œ ë¬´ìŠ¨ í‚¤ë¡œ ë°”ë€Œì—ˆëŠ”ì§€ ë°”ê¾¸ëŠ” ì½”ë“œ
             text[j].text = KeySetting.keys[(KeyAction)j].ToString(); 
         }
     }
 
-    private void OnGUI() //Update¶û ºñ½ÁÇÑ°Çµ¥ Event ¾²·Á¸é ½á¾ßÇÏ´Â ÇÔ¼ö
+    private void OnGUI() //Updateë‘ ë¹„ìŠ·í•œê±´ë° Event ì“°ë ¤ë©´ ì¨ì•¼í•˜ëŠ” í•¨ìˆ˜
     {
-        Event keyEvent = Event.current;//Å°°ª¹Ş±â
+        Event keyEvent = Event.current;//í‚¤ê°’ë°›ê¸°
 
         
 
-        if(keyEvent.isKey) //Å°¸¦ ÀÔ·Â ¹Ş¾ÒÀ» ¶§
+        if(keyEvent.isKey) //í‚¤ë¥¼ ì…ë ¥ ë°›ì•˜ì„ ë•Œ
         {
-            KeySetting.keys[(KeyAction)key] = keyEvent.keyCode; //¹ŞÀº Å° °ªÀ» ³Ö¾îÁİ´Ï´Ù
+            foreach (KeyValuePair<KeyAction,KeyCode> author in KeySetting.keys)
+            {
+                if(keyEvent.keyCode == author.Value)
+                {
+                    
+                    KeyCode temp = KeySetting.keys[(KeyAction)key];
+                    Debug.Log(temp.ToString());
+                    KeySetting.keys[(KeyAction)key] = keyEvent.keyCode; //ë°›ì€ í‚¤ ê°’ì„ ë„£ì–´ì¤ë‹ˆë‹¤
+                    KeySetting.keys[author.Key] = temp;
+                    return;
+                    
+                }
+                else
+                {
+                    KeySetting.keys[(KeyAction)key] = keyEvent.keyCode; //ë°›ì€ í‚¤ ê°’ì„ ë„£ì–´ì¤ë‹ˆë‹¤
+                    return;
+                }
+            }
+            
+            
             key = -1;
-            ChangebtnColor(); //»ö ¹Ù²Ş
-            if (KeySetting.keys.ContainsValue(keyEvent.keyCode)) return; //¸¸¾à °¡Áö°í ÀÖ´Â Å°°ªÀ» ¹Ş¾Ò´Ù¸é ¸®ÅÏÀ» ÇØ¼­ None°ªÀ» ¹İÈ¯ÇÑ´Ù.
+            ChangebtnColor(); //ìƒ‰ ë°”ê¿ˆ
         }
 
     }
 
-    int key = -1; //Å°ÀÇ ¼ıÀÚ
-    public void ChangeKey(int num) //¹Ù²Ù·Á°í ÇÏ´Â Å¬¸¯ °¨Áö
+    int key = -1; //í‚¤ì˜ ìˆ«ì
+    public void ChangeKey(int num) //ë°”ê¾¸ë ¤ê³  í•˜ëŠ” í´ë¦­ ê°ì§€
     {
         key = num;
         for (int i = 0; i < 10; i++)
@@ -82,7 +100,7 @@ public class KeySettingManager : MonoBehaviour
         Debug.Log(2);
     }
 
-    public void ChangebtnColor() //»ö ¿ø·¡´ë·Î µÇµ¹¸®±â
+    public void ChangebtnColor() //ìƒ‰ ì›ë˜ëŒ€ë¡œ ë˜ëŒë¦¬ê¸°
     {
         for (int i = 0; i < 10; i++)
         {
