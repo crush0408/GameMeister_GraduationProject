@@ -5,12 +5,14 @@ using UnityEngine;
 public class ItemScript : MonoBehaviour
 {
     [Header("아이템 관련")]
+    public ItemSO item;
     public ItemSO[] itemList;
     public List<int> percentList;
     [SerializeField] private int randomNum;
 
     [Space]
 
+    [Header("ToolTip")]
     public GameObject tooltipObject;
     private RectTransform _tooltipRectTrm;
     public float yDist = 1f;
@@ -22,49 +24,34 @@ public class ItemScript : MonoBehaviour
     private void Start()
     {
         SetTooltip();
+        SelectItem();
+    }
 
-        Debug.Log(1);
+    private void SelectItem()
+    {
+        randomNum = Random.Range(0, 100);
+
         for (int i = 0; i < itemList.Length; i++)
         {
-            percentList.Add(itemList[i].percent);
-        }
-        Debug.Log(2);
+            if (CalculatePercent(i))
+            {
+                item = itemList[i];
 
-        for (int i = 0; i < percentList.Count; i++)
-        {
-            if (PercentReturn(percentList[i]))
-            {
-                tooltipObject.GetComponent<ToolTipDisplay>().item = itemList[i];
-                Debug.Log("툴팁 확인용");
-            }
-            else
-            {
-                continue;
+                break;
             }
         }
     }
 
-    private bool PercentReturn(int percentListNum)
+    private bool CalculatePercent(int order)
     {
-        randomNum = Random.Range(0, 100);
+        int num = 0;
 
-        int percent = 0;
-
-        for (int i = 0; i < percentListNum; i++)
+        for (int i = 0; i <= order; i++)
         {
-            percent += percentList[i];
+            num += itemList[i].percent;
         }
 
-        Debug.Log(string.Format("{0} >= {1} && {2} < {3} + {4}", randomNum, percent, randomNum, percent, percentList[percentListNum]));
-
-        if(randomNum >= percent && randomNum < percent + percentList[percentListNum])
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return randomNum <= num ? true : false;
     }
 
     private void SetTooltip()

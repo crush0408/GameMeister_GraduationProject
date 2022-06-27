@@ -1901,6 +1901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5be797e769e29b640ac4420ab982e26a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  item: {fileID: 0}
   itemList:
   - {fileID: 11400000, guid: 36124740537827c4d9ca8de29f741dda, type: 2}
   - {fileID: 11400000, guid: d8371690cb81f3a4cb713c4070888aea, type: 2}
@@ -1911,7 +1912,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 23e3cab5796265348928679757f9a221, type: 2}
   - {fileID: 11400000, guid: 32db97a7c1498244bb723c3c17743e10, type: 2}
   percentList: 
-  randomNum: 0
+  randomNum: 50
   tooltipObject: {fileID: 573448729}
   yDist: 1
   xDist: 1
@@ -2185,6 +2186,7 @@ MonoBehaviour:
   - {fileID: 691943971}
   - {fileID: 639386293}
   btn: []
+  panel: {fileID: 0}
 --- !u!1 &431457804
 GameObject:
   m_ObjectHideFlags: 0
