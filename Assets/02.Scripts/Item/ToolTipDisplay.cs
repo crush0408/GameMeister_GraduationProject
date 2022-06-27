@@ -7,6 +7,7 @@ public class ToolTipDisplay : MonoBehaviour
 {
     [Header("Item")]
     public ItemSO item;
+    public ItemScript itemScript;
 
     [Header("UI")]
     public Image itemIcon;
@@ -15,8 +16,7 @@ public class ToolTipDisplay : MonoBehaviour
 
     private void OnEnable()
     {
-        item = 
-
+        item = itemScript.item;
         Print();
     }
 

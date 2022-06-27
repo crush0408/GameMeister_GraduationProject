@@ -1854,8 +1854,9 @@ GameObject:
   m_Component:
   - component: {fileID: 408915819}
   - component: {fileID: 408915818}
-  - component: {fileID: 408915817}
   - component: {fileID: 408915816}
+  - component: {fileID: 408915817}
+  - component: {fileID: 408915820}
   m_Layer: 0
   m_Name: Item
   m_TagString: Untagged
@@ -1913,9 +1914,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 32db97a7c1498244bb723c3c17743e10, type: 2}
   percentList: 
   randomNum: 50
-  tooltipObject: {fileID: 573448729}
-  yDist: 1
-  xDist: 1
 --- !u!212 &408915818
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1981,6 +1979,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 39
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &408915820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 408915815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78ee9ba8a2526be48aa2cfea26e2b235, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipObject: {fileID: 573448729}
+  yDist: 1
+  xDist: 1
 --- !u!1 &412599271
 GameObject:
   m_ObjectHideFlags: 0
@@ -3393,6 +3406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 0}
+  itemScript: {fileID: 408915817}
   itemIcon: {fileID: 1762248438}
   itemName: {fileID: 646256622}
   itemUse: {fileID: 907997913}
