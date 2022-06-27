@@ -16,15 +16,15 @@ public class RePlayerInput : MonoBehaviour
 
     private void Update()
     {
-        movementLeft = Input.GetKey(KeySetting.keys[KeyAction.LeftMove]);
-        movementRight = Input.GetKey(KeySetting.keys[KeyAction.RightMove]);
-        jump = Input.GetKeyDown(KeySetting.keys[KeyAction.Jump]);
-        jumpKeyUp = Input.GetKeyDown(KeySetting.keys[KeyAction.Jump]);
-        dash = Input.GetKeyDown(KeySetting.keys[KeyAction.Dash]);
-        basicAtk = Input.GetKeyDown(KeySetting.keys[KeyAction.BasicAttack]);
-        skillOne = Input.GetKeyDown(KeySetting.keys[KeyAction.FastMagicAttackSkill]);
-        skillTwo = Input.GetKeyDown(KeySetting.keys[KeyAction.SpinAttackSkill]);
-        ultimate = Input.GetKeyDown(KeySetting.keys[KeyAction.SustatinAttackSkill]);
+        movementLeft = Input.GetKey(KeySetting.KeySettingDict[KeyInputType.LeftMove]);
+        movementRight = Input.GetKey(KeySetting.KeySettingDict[KeyInputType.RightMove]);
+        jump = Input.GetKeyDown(KeySetting.KeySettingDict[KeyInputType.Jump]);
+        jumpKeyUp = Input.GetKeyDown(KeySetting.KeySettingDict[KeyInputType.Jump]);
+        dash = Input.GetKeyDown(KeySetting.KeySettingDict[KeyInputType.Dash]);
+        basicAtk = Input.GetKeyDown(KeySetting.KeySettingDict[KeyInputType.BasicAttack]);
+        skillOne = Input.GetKeyDown(KeySetting.KeySettingDict[KeyInputType.FastMagicAttackSkill]);
+        skillTwo = Input.GetKeyDown(KeySetting.KeySettingDict[KeyInputType.SpinAttackSkill]);
+        ultimate = Input.GetKeyDown(KeySetting.KeySettingDict[KeyInputType.SustatinAttackSkill]);
 
     }
 }
