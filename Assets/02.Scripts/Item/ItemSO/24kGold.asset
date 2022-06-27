@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86fa784b7828a9c4a83e52f431638439, type: 3}
   m_Name: 24kGold
   m_EditorClassIdentifier: 
+  tooltipImage: {fileID: 21300000, guid: 4e8b3f12d9e32f04181253bdce3a4a93, type: 3}
   itemImage: {fileID: 21300000, guid: 4e8b3f12d9e32f04181253bdce3a4a93, type: 3}
   itemName: 24K GOLD
   itemUse: "\uB79C\uB364 \uC7AC\uD654 ? \uD68D\uB4DD"

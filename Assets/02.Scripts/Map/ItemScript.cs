@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class ItemScript : MonoBehaviour
 {
+    [Header("툴팁 이미지")]
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;
+
     [Header("아이템 관련")]
     public ItemSO item;
     public ItemSO[] itemList;
     public List<int> percentList;
-    [SerializeField] private int randomNum;
+    [SerializeField]
+    private int randomNum;
 
     private void Start()
     {
         SelectItem();
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = item.tooltipImage;
     }
 
     private void SelectItem()
