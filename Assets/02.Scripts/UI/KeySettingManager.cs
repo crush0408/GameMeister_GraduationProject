@@ -7,12 +7,12 @@ using UnityEngine.UI;
 public enum KeyAction //키 값들
 {
     LeftMove,
-    RightMove,
-    Dash,
-    Jump,
     BasicAttack,
+    RightMove,
     FastMagicAttackSkill,
+    Jump,
     SpinAttackSkill,
+    Dash,
     SustatinAttackSkill,
     Interaction,
     OpenMenu,
@@ -26,7 +26,7 @@ public static class KeySetting //키를 받는 딕셔너리
 
 public class KeySettingManager : MonoBehaviour
 {
-    KeyCode[] defaultKeys = new KeyCode[] { KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.C, KeyCode.Z, KeyCode.E, KeyCode.X, KeyCode.A, KeyCode.S, KeyCode.Q, KeyCode.Escape };
+    KeyCode[] defaultKeys = new KeyCode[] { KeyCode.LeftArrow, KeyCode.X, KeyCode.RightArrow, KeyCode.A, KeyCode.C, KeyCode.S, KeyCode.Z, KeyCode.Q, KeyCode.E, KeyCode.Escape };
 
     public Text[] text; //키 UI
     public Button[]  btn; //버튼들
@@ -62,29 +62,26 @@ public class KeySettingManager : MonoBehaviour
 
         if(keyEvent.isKey) //키를 입력 받았을 때
         {
-            foreach (KeyValuePair<KeyAction,KeyCode> author in KeySetting.keys)
+            foreach (KeyValuePair<KeyAction, KeyCode> author in KeySetting.keys)
             {
-                if(keyEvent.keyCode == author.Value)
+                if (keyEvent.keyCode == author.Value)
                 {
-                    
                     KeyCode temp = KeySetting.keys[(KeyAction)key];
                     Debug.Log(temp.ToString());
                     KeySetting.keys[(KeyAction)key] = keyEvent.keyCode; //받은 키 값을 넣어줍니다
                     KeySetting.keys[author.Key] = temp;
+                    //key = -1;
+                    ChangebtnColor(); //색 바꿈
                     return;
-                    
                 }
                 else
                 {
                     KeySetting.keys[(KeyAction)key] = keyEvent.keyCode; //받은 키 값을 넣어줍니다
+                    key = -1;
+                    ChangebtnColor(); //색 바꿈
                     return;
                 }
             }
-            
-            
-            key = -1;
-            ChangebtnColor(); //색 바꿈
-            Debug.Log(4);
         }
 
     }
@@ -95,9 +92,6 @@ public class KeySettingManager : MonoBehaviour
         key = num;
 
         btn[key].GetComponent<Image>().color = Color.red;
-
-
-        Debug.Log(num);
     }
 
     public void ChangebtnColor() //색 원래대로 되돌리기
@@ -105,8 +99,25 @@ public class KeySettingManager : MonoBehaviour
         for (int i = 0; i < 10; i++)
         {
             btn[i].GetComponent<Image>().color = Color.white;
-            Debug.Log(3);
         }
 
+    }
+
+    public void Reset()
+    {
+        KeySetting.keys.Clear();
+        //기본키를 넣어줍니다
+        for (int i = 0; i < (int)KeyAction.KEYCOUNT; i++)
+        {
+            KeySetting.keys.Add((KeyAction)i, defaultKeys[i]);
+        }
+        //기본키 텍스트를 넣어줍니다
+
+        for (int j = 0; j < text.Length; j++)
+        {
+            text[j].text = KeySetting.keys[(KeyAction)j].ToString();
+        }
+        ChangebtnColor();
+        Debug.Log("reset");
     }
 }
