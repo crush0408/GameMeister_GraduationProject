@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.IO;
+using Newtonsoft.Json.Linq;
 
 public enum KeyAction //키 값들
 {
@@ -30,6 +32,7 @@ public class KeySettingManager : MonoBehaviour
 
     public Text[] text; //키 UI
     public Button[]  btn; //버튼들
+    const string saveFileName = "KeyData.sav";
     private void Awake()
     {
         //기본키를 넣어줍니다
@@ -119,5 +122,32 @@ public class KeySettingManager : MonoBehaviour
         }
         ChangebtnColor();
         Debug.Log("reset");
+    }
+
+    string getFilePath(string fileName)
+    {
+        return Application.persistentDataPath + "/" + fileName;
+    }
+
+    void Save()
+    {
+        JArray jObj = new JArray();
+        jObj.Add(defaultKeys);
+
+        print(jObj);
+
+        StreamWriter sw = new StreamWriter(getFilePath(saveFileName));
+        sw.WriteLine(jObj.ToString());
+        sw.Close();
+    }
+
+    void Load()
+    {
+        print("Load to :" + getFilePath(saveFileName));
+        StreamReader sr = new StreamReader(getFilePath(saveFileName));
+
+        string str = sr.ReadToEnd();
+
+        sr.Close();
     }
 }
