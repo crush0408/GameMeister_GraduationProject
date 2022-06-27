@@ -82,6 +82,7 @@ public class KeySettingManager : MonoBehaviour
                     if (item.Value == keyEvent.keyCode)
                     {
                         temp = item.Key; // 밸류가 겹치는 친구의 키를 저장
+                        break;
                     }
                 }
 
@@ -96,6 +97,7 @@ public class KeySettingManager : MonoBehaviour
 
             key = -1;
             ChangebtnColor(); //색 바꿈
+            Debug.Log("왜 안됨");
         }
 
     }
