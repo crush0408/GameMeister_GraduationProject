@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86fa784b7828a9c4a83e52f431638439, type: 3}
   m_Name: AddHp
   m_EditorClassIdentifier: 
-  itemName: "\uBAB8\uC9D1 \uD0A4\uC6B0\uAE30"
   itemImage: {fileID: 21300000, guid: e0e2c6d2ee6bab442ae564d3715c20bb, type: 3}
+  itemName: "\uBAB8\uC9D1 \uD0A4\uC6B0\uAE30"
   itemUse: "\uCD5C\uB300 \uCCB4\uB825 ? \uC99D\uAC00"
+  percent: 7
   itemType: 0

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86fa784b7828a9c4a83e52f431638439, type: 3}
   m_Name: AddAtk
   m_EditorClassIdentifier: 
-  itemName: "\uADFC\uB825 \uAC15\uD654"
   itemImage: {fileID: 21300000, guid: e0e2c6d2ee6bab442ae564d3715c20bb, type: 3}
+  itemName: "\uADFC\uB825 \uAC15\uD654"
   itemUse: "\uACF5\uACA9\uB825 ? \uC99D\uAC00"
+  percent: 10
   itemType: 0

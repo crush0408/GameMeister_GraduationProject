@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class ItemScript : MonoBehaviour
 {
+    [Header("아이템 관련")]
+    public ItemSO[] itemList;
+    public List<int> percentList;
+    [SerializeField] private int randomNum;
+
+    [Space]
+
     public GameObject tooltipObject;
     private RectTransform _tooltipRectTrm;
     public float yDist = 1f;
@@ -13,6 +20,54 @@ public class ItemScript : MonoBehaviour
     private Camera mainCam;
 
     private void Start()
+    {
+        SetTooltip();
+
+        Debug.Log(1);
+        for (int i = 0; i < itemList.Length; i++)
+        {
+            percentList.Add(itemList[i].percent);
+        }
+        Debug.Log(2);
+
+        for (int i = 0; i < percentList.Count; i++)
+        {
+            if (PercentReturn(percentList[i]))
+            {
+                tooltipObject.GetComponent<ToolTipDisplay>().item = itemList[i];
+                Debug.Log("툴팁 확인용");
+            }
+            else
+            {
+                continue;
+            }
+        }
+    }
+
+    private bool PercentReturn(int percentListNum)
+    {
+        randomNum = Random.Range(0, 100);
+
+        int percent = 0;
+
+        for (int i = 0; i < percentListNum; i++)
+        {
+            percent += percentList[i];
+        }
+
+        Debug.Log(string.Format("{0} >= {1} && {2} < {3} + {4}", randomNum, percent, randomNum, percent, percentList[percentListNum]));
+
+        if(randomNum >= percent && randomNum < percent + percentList[percentListNum])
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private void SetTooltip()
     {
         mainCam = Camera.main;
         tooltipObject.SetActive(false);

@@ -8,6 +8,7 @@ public class ItemSO : ScriptableObject
     public Sprite itemImage;
     public string itemName;
     public string itemUse;
+    public int percent;
 
     public ItemType itemType;
     public enum ItemType

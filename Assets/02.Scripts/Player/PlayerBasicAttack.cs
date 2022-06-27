@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerBasicAttack : MonoBehaviour
 {
-    private float damage = 5f;
+    private float damage = 5f;  // 플레이어 데미지
     [SerializeField]
     private bool push = false;
     private void OnTriggerEnter2D(Collider2D collision)

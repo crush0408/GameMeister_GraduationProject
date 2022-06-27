@@ -1901,6 +1901,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5be797e769e29b640ac4420ab982e26a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemList:
+  - {fileID: 11400000, guid: 36124740537827c4d9ca8de29f741dda, type: 2}
+  - {fileID: 11400000, guid: d8371690cb81f3a4cb713c4070888aea, type: 2}
+  - {fileID: 11400000, guid: b44003b1622d5a14683e8ca541489279, type: 2}
+  - {fileID: 11400000, guid: b71b9162d61846743b44037ae4c218ea, type: 2}
+  - {fileID: 11400000, guid: 89cdcdbef0f727744b50e0ce0c2d69a1, type: 2}
+  - {fileID: 11400000, guid: 3da5306fe9d8d5a419e45f4f9b1277b0, type: 2}
+  - {fileID: 11400000, guid: 23e3cab5796265348928679757f9a221, type: 2}
+  - {fileID: 11400000, guid: 32db97a7c1498244bb723c3c17743e10, type: 2}
+  percentList: 
+  randomNum: 0
   tooltipObject: {fileID: 573448729}
   yDist: 1
   xDist: 1
@@ -3379,7 +3390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0277bd9380546194e848006774f845bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: b71b9162d61846743b44037ae4c218ea, type: 2}
+  item: {fileID: 0}
   itemIcon: {fileID: 1762248438}
   itemName: {fileID: 646256622}
   itemUse: {fileID: 907997913}

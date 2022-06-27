@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86fa784b7828a9c4a83e52f431638439, type: 3}
-  m_Name: AddDef
+  m_Name: AddPass
   m_EditorClassIdentifier: 
   itemImage: {fileID: 21300000, guid: e0e2c6d2ee6bab442ae564d3715c20bb, type: 3}
-  itemName: "\uBAA8\uB4E0 \uAC78 \uB6AB\uB294 \uBC29\uD328"
-  itemUse: "\uBC29\uC5B4\uB825 ? \uC99D\uAC00"
-  percent: 10
+  itemName: "\uBAA8\uB4E0 \uAC78 \uB6AB\uB294 \uCC3D"
+  itemUse: "\uBC29\uC5B4\uB825 \uAD00\uD1B5\uB825 ? \uC99D\uAC00"
+  percent: 3
   itemType: 0

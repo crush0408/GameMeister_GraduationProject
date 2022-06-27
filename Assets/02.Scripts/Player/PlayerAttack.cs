@@ -166,7 +166,7 @@ public class PlayerAttack : MonoBehaviour
         PoolableMono poolingObject = PoolManager.Instance.Pop(skillName);
         poolingObject.transform.localScale = visualGroup.transform.localScale;
         poolingObject.transform.position = skillTrm.position;
-        poolingObject.GetComponent<NonTargetSkill>().damage = skillList[index].attackDamage;
+        poolingObject.GetComponent<NonTargetSkill>().damage = skillList[index].attackDamage;    // 어택 데미지 계산
         poolingObject.GetComponent<NonTargetSkill>().hitName = hitEffectName;
         skillList[index].remainCoolTime = skillList[index].initCoolTime;
         if (skillList[1])
