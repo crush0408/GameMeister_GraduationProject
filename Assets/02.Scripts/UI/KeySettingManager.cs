@@ -46,6 +46,8 @@ public class KeySettingManager : MonoBehaviour
         {
             text[j].text = KeySetting.keys[(KeyAction)j].ToString();
         }
+        Save();
+        Load();
     }
 
     private void Update()
@@ -134,10 +136,10 @@ public class KeySettingManager : MonoBehaviour
         JArray jObj = new JArray();
         jObj.Add(defaultKeys);
 
-        print(jObj);
+        print(jObj.ToString());
 
         StreamWriter sw = new StreamWriter(getFilePath(saveFileName));
-        sw.WriteLine(jObj.ToString());
+        sw.WriteLine(jObj);
         sw.Close();
     }
 
