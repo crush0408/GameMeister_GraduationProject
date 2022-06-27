@@ -26,7 +26,7 @@ public static class KeySetting //키를 받는 딕셔너리
 
 public class KeySettingManager : MonoBehaviour
 {
-    KeyCode[] defaultKeys = new KeyCode[] { KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.Z, KeyCode.C, KeyCode.X, KeyCode.A, KeyCode.S, KeyCode.Q, KeyCode.E, KeyCode.Escape };
+    KeyCode[] defaultKeys = new KeyCode[] { KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.C, KeyCode.Z, KeyCode.E, KeyCode.X, KeyCode.A, KeyCode.S, KeyCode.Q, KeyCode.Escape };
 
     public Text[] text; //키 UI
     public Button[]  btn; //버튼들
@@ -84,6 +84,7 @@ public class KeySettingManager : MonoBehaviour
             
             key = -1;
             ChangebtnColor(); //색 바꿈
+            Debug.Log(4);
         }
 
     }
@@ -92,12 +93,11 @@ public class KeySettingManager : MonoBehaviour
     public void ChangeKey(int num) //바꾸려고 하는 클릭 감지
     {
         key = num;
-        for (int i = 0; i < 10; i++)
-        {
-            btn[key].GetComponent<Image>().color = Color.red;
-        }
 
-        Debug.Log(2);
+        btn[key].GetComponent<Image>().color = Color.red;
+
+
+        Debug.Log(num);
     }
 
     public void ChangebtnColor() //색 원래대로 되돌리기

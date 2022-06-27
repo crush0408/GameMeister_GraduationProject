@@ -331,7 +331,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -722,7 +722,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 8
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -796,7 +796,7 @@ RectTransform:
   m_Children:
   - {fileID: 71749176}
   m_Father: {fileID: 1410794640}
-  m_RootOrder: 8
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -836,9 +836,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Interaction
-
-'
+  m_Text: Jump
 --- !u!222 &91764349
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3341,7 +3339,7 @@ RectTransform:
   m_Children:
   - {fileID: 20477528}
   m_Father: {fileID: 1410794640}
-  m_RootOrder: 1
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3381,7 +3379,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Basic Attack
+  m_Text: Spin Attack SKill
 --- !u!222 &430746308
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3481,7 +3479,6 @@ GameObject:
   - component: {fileID: 450052771}
   - component: {fileID: 450052770}
   - component: {fileID: 450052769}
-  - component: {fileID: 450052773}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -3603,19 +3600,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 450052767}
   m_CullTransparentMesh: 1
---- !u!114 &450052773
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 450052767}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates: []
 --- !u!1 &452633327
 GameObject:
   m_ObjectHideFlags: 0
@@ -4994,7 +4978,7 @@ RectTransform:
   m_Children:
   - {fileID: 1063073283}
   m_Father: {fileID: 1410794640}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5034,9 +5018,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Spin Attack Skill
-
-'
+  m_Text: Sustain Attack Skill
 --- !u!222 &773442788
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5811,25 +5793,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text:
   - {fileID: 127270124}
-  - {fileID: 1535773285}
   - {fileID: 973970267}
-  - {fileID: 1683804786}
   - {fileID: 14845587}
-  - {fileID: 1217296817}
   - {fileID: 1133771611}
-  - {fileID: 435417779}
   - {fileID: 1710153230}
+  - {fileID: 1535773285}
+  - {fileID: 1683804786}
+  - {fileID: 1217296817}
+  - {fileID: 435417779}
   - {fileID: 1024603493}
   btn:
   - {fileID: 450052769}
-  - {fileID: 20477529}
   - {fileID: 1406157591}
-  - {fileID: 1719522485}
   - {fileID: 2032381346}
-  - {fileID: 1063073284}
   - {fileID: 1160464051}
-  - {fileID: 1716762630}
   - {fileID: 71749177}
+  - {fileID: 20477529}
+  - {fileID: 1719522485}
+  - {fileID: 1063073284}
+  - {fileID: 1716762630}
   - {fileID: 292732783}
 --- !u!114 &977085195
 MonoBehaviour:
@@ -6182,7 +6164,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 6
+          m_IntArgument: 7
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -6452,7 +6434,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 249, y: 0}
+  m_AnchoredPosition: {x: 516.99994, y: 0}
   m_SizeDelta: {x: 160, y: 145}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1160464051
@@ -6506,7 +6488,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -7863,7 +7845,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 247, y: -1}
+  m_AnchoredPosition: {x: 515, y: -1}
   m_SizeDelta: {x: 160, y: 145}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1406157591
@@ -7989,14 +7971,14 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 452633328}
-  - {fileID: 430746306}
   - {fileID: 1603874779}
-  - {fileID: 1442614131}
   - {fileID: 1906258810}
-  - {fileID: 773442786}
   - {fileID: 2115813955}
-  - {fileID: 2121216989}
   - {fileID: 91764347}
+  - {fileID: 430746306}
+  - {fileID: 1442614131}
+  - {fileID: 773442786}
+  - {fileID: 2121216989}
   - {fileID: 708006063}
   m_Father: {fileID: 527515810}
   m_RootOrder: 0
@@ -8136,7 +8118,7 @@ RectTransform:
   m_Children:
   - {fileID: 1719522484}
   m_Father: {fileID: 1410794640}
-  m_RootOrder: 3
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -8176,7 +8158,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Fast Magic Skill
+  m_Text: Dash
 --- !u!222 &1442614133
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9214,7 +9196,7 @@ RectTransform:
   m_Children:
   - {fileID: 1406157590}
   m_Father: {fileID: 1410794640}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -9254,7 +9236,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Right Move
+  m_Text: Basic Attack
 --- !u!222 &1603874781
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10272,7 +10254,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 510, y: 0}
+  m_AnchoredPosition: {x: 248, y: 0}
   m_SizeDelta: {x: 160, y: 145}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1716762630
@@ -10326,7 +10308,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 7
+          m_IntArgument: 8
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -10405,7 +10387,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 512, y: -2}
+  m_AnchoredPosition: {x: 250, y: -2}
   m_SizeDelta: {x: 160, y: 145}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1719522485
@@ -10459,7 +10441,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5
+          m_IntArgument: 6
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -11011,7 +10993,7 @@ RectTransform:
   m_Children:
   - {fileID: 2032381345}
   m_Father: {fileID: 1410794640}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -11051,9 +11033,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Jump
-
-'
+  m_Text: Right Move
 --- !u!222 &1906258812
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11784,7 +11764,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -12415,7 +12395,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2061559884}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.6
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -12564,7 +12544,7 @@ RectTransform:
   m_Children:
   - {fileID: 1160464050}
   m_Father: {fileID: 1410794640}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -12604,9 +12584,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Dash
-
-'
+  m_Text: Fast Magic Skill
 --- !u!222 &2115813957
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12646,7 +12624,7 @@ RectTransform:
   m_Children:
   - {fileID: 1716762629}
   m_Father: {fileID: 1410794640}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -12686,9 +12664,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Sustatin Attack Skill
-
-'
+  m_Text: Interaction
 --- !u!222 &2121216991
 CanvasRenderer:
   m_ObjectHideFlags: 0
