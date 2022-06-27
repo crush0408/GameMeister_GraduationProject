@@ -71,7 +71,8 @@ public class KeySettingManager : MonoBehaviour
     {
         Event keyEvent = Event.current;//키값받기
 
-        if (keyEvent.isKey) //키를 입력 받았을 때
+
+        if (keyEvent.type == EventType.KeyDown && keyEvent.isKey) //키를 입력 받았을 때
         {
             if (KeySetting.KeySettingDict.ContainsValue(keyEvent.keyCode))
             {
@@ -95,21 +96,6 @@ public class KeySettingManager : MonoBehaviour
 
             key = -1;
             ChangebtnColor(); //색 바꿈
-
-            foreach (KeyValuePair<KeyInputType, KeyCode> author in KeySetting.KeySettingDict)
-            {
-                if (keyEvent.keyCode == author.Value)
-                {
-                    //key = -1;
-                    ChangebtnColor(); //색 바꿈
-                    return;
-                }
-                else
-                {
-                    //받은 키 값을 넣어줍니다
-                    return;
-                }
-            }
         }
 
     }
