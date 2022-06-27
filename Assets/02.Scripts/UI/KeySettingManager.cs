@@ -33,6 +33,7 @@ public class KeySettingManager : MonoBehaviour
     public Text[] text; //키 UI
     public Button[]  btn; //버튼들
     const string saveFileName = "KeyData.sav";
+    public GameObject panel;
     private void Awake()
     {
         //기본키를 넣어줍니다
@@ -46,6 +47,10 @@ public class KeySettingManager : MonoBehaviour
         {
             text[j].text = KeySetting.keys[(KeyAction)j].ToString();
         }
+    }
+
+    private void Start()
+    {
         Save();
         Load();
     }
@@ -126,15 +131,21 @@ public class KeySettingManager : MonoBehaviour
         Debug.Log("reset");
     }
 
+    public void Close()
+    {
+        Save();
+        panel.SetActive(false);
+    }
+
     string getFilePath(string fileName)
     {
         return Application.persistentDataPath + "/" + fileName;
     }
 
-    void Save()
+    public void Save()
     {
         JArray jObj = new JArray();
-        jObj.Add(defaultKeys);
+        jObj.Add(KeySetting.keys.Values);
 
         print(jObj.ToString());
 
