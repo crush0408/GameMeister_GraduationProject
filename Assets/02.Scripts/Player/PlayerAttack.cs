@@ -54,7 +54,7 @@ public class PlayerAttack : MonoBehaviour
 
             if (playerInput.basicAtk)
             {
-                if (!isAttacking)
+                if (!isAttacking && playerMove.isGround)
                 {
                     combo = 0;
                     anim.SetInteger("BasicAttack", combo);
