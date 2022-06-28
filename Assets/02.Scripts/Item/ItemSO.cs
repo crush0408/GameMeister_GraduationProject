@@ -5,17 +5,19 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "ItemSO")]
 public class ItemSO : ScriptableObject
 {
-    public Sprite tooltipImage;
-    public Sprite itemImage;
-    public string itemName;
-    public string itemUse;
-    public int percent;
-
-    public ItemType itemType;
     public enum ItemType
     {
         STAT,
         GOLD,
         TYPE
     }
+
+    public Sprite tooltipImage; // 아이템 이미지
+    public Sprite itemImage;    // 툴팁에 넣을 이미지
+    public string itemName;     // 아이템 이름
+    public string itemUse;      // 아이템 설명
+    public int percent; // 확률
+    public int cost;    // 가격
+
+    public ItemType itemType;
 }
