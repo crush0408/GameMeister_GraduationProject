@@ -12,10 +12,11 @@ public class SkillObject : ScriptableObject
 
     // 추후 이펙트 애니메이션, 효과음 적용하게 되면 이곳에 추가하기
 
+    public float calculation;       // 스킬 계수
     public float attackDamage;      // 스킬 사용 시 적에게 가하는 데미지
-    public float remainCoolTime;             // 스킬 쿨타임
+    public float remainCoolTime;    // 스킬 쿨타임
     public float initCoolTime;
-    public string effectSoundName;       // 효과음 재생 위해 string형 이름 받기
+    public string effectSoundName;  // 효과음 재생 위해 string형 이름 받기
 
     
     // 확인용

@@ -15,7 +15,7 @@ MonoBehaviour:
   skillName: FastMagic
   skillAnim: {fileID: 7400000, guid: 49c56fe5845d31240b7e7a403b15cf46, type: 2}
   SkillImage: {fileID: 0}
-  attackDamage: 10
+  attackDamage: 60
   remainCoolTime: 0
   initCoolTime: 3
   effectSoundName: 
