@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86fa784b7828a9c4a83e52f431638439, type: 3}
   m_Name: TypeChange
   m_EditorClassIdentifier: 
-  itemImage: {fileID: 21300000, guid: 06082bd40c7a2c742a4825811ee6c63d, type: 3}
+  tooltipImage: {fileID: 21300000, guid: 2ececb383c011df4e9c17e5a4ca050c0, type: 3}
+  itemImage: {fileID: 21300000, guid: 2ececb383c011df4e9c17e5a4ca050c0, type: 3}
   itemName: "\uBC14\uAFD4\uBCFC\uAE4C?"
   itemUse: "\uD50C\uB808\uC774\uC5B4 \uD0C0\uC785 \uBCC0\uACBD"
   percent: 10
+  cost: 750
   itemType: 2
+  getType: 0

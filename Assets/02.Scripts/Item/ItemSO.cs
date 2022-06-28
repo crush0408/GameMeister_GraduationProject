@@ -12,6 +12,13 @@ public class ItemSO : ScriptableObject
         TYPE
     }
 
+    public enum GetItem
+    {
+        BOTH,
+        STAGE,
+        STORE
+    }
+
     public Sprite tooltipImage; // 아이템 이미지
     public Sprite itemImage;    // 툴팁에 넣을 이미지
     public string itemName;     // 아이템 이름
@@ -20,4 +27,5 @@ public class ItemSO : ScriptableObject
     public int cost;    // 가격
 
     public ItemType itemType;
+    public GetItem getType;
 }
