@@ -11,7 +11,7 @@ public class StopPanelManager : MonoBehaviour
     public void ToGame()
     {
         StopPanel.SetActive(false);
-        Time.timeScale = 0;
+        Time.timeScale = 1;
     }
 
     public void ToMainMenu()
