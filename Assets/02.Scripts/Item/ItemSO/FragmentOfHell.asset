@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86fa784b7828a9c4a83e52f431638439, type: 3}
+  m_Name: FragmentOfHell
+  m_EditorClassIdentifier: 
+  tooltipImage: {fileID: 21300000, guid: 86c1636ee984195468ef80458b4e4fb2, type: 3}
+  itemImage: {fileID: 21300000, guid: 86c1636ee984195468ef80458b4e4fb2, type: 3}
+  itemName: "\uC9C0\uC625\uC758 \uD30C\uD3B8"
+  itemUse: "\uB79C\uB364 \uC7AC\uD654 \uD68D\uB4DD"
+  percent: 40
+  cost: 0
+  itemType: 1
+  getType: 1
