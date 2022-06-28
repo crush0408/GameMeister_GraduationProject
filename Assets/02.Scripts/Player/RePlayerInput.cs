@@ -13,6 +13,8 @@ public class RePlayerInput : MonoBehaviour
     public bool skillOne { get; private set; }
     public bool skillTwo { get; private set; }
     public bool ultimate { get; private set; }
+    public bool interaction { get; private set; }
+    public bool openSetting { get; private set; }
 
     private void Update()
     {
@@ -25,6 +27,7 @@ public class RePlayerInput : MonoBehaviour
         skillOne = Input.GetKeyDown(KeySetting.KeySettingDict[KeyInputType.FastMagicAttackSkill]);
         skillTwo = Input.GetKeyDown(KeySetting.KeySettingDict[KeyInputType.SpinAttackSkill]);
         ultimate = Input.GetKeyDown(KeySetting.KeySettingDict[KeyInputType.SustatinAttackSkill]);
-
+        interaction = Input.GetKeyDown(KeySetting.KeySettingDict[KeyInputType.Interaction]);
+        openSetting = Input.GetKeyDown(KeySetting.KeySettingDict[KeyInputType.OpenMenu]);
     }
 }

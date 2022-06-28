@@ -11,6 +11,7 @@ public class PlayerMove : MonoBehaviour
 
     public Transform groundCheckTrm;
     public LayerMask whatIsGround;
+    public GameObject openStop;
 
     public float moveSpeed;
     public float jumpForce;
@@ -56,19 +57,9 @@ public class PlayerMove : MonoBehaviour
         ValueSetting();
         GroundCheck();
         Col();
+        OpenStopPanel();
     }
-    public void Col()
-    {
-        Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, GetComponent<BoxCollider2D>().size, 0);
-        foreach (Collider2D collider2d in colliders)
-        {
-            IDoor door = collider2d.GetComponent<IDoor>();
-            if (door != null && Input.GetKeyDown(KeyCode.E))
-            {
-                door.Action();
-            }
-        }
-    }
+    
     private void FixedUpdate()
     {
         //if (!playerAttack.isAttacking)
@@ -238,5 +229,27 @@ public class PlayerMove : MonoBehaviour
     public void GetHitReturn()
     {
         getHit = false;
+    }
+
+    public void Col()
+    {
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, GetComponent<BoxCollider2D>().size, 0);
+        foreach (Collider2D collider2d in colliders)
+        {
+            IDoor door = collider2d.GetComponent<IDoor>();
+            if (door != null && playerInput.interaction)
+            {
+                door.Action();
+            }
+        }
+    }
+
+    public void OpenStopPanel()
+    {
+        if(playerInput.openSetting && !openStop.activeSelf)
+        {
+            openStop.SetActive(true);
+            Time.timeScale = 0;
+        }
     }
 }

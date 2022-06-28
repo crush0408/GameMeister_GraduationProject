@@ -7,9 +7,11 @@ public class StopPanelManager : MonoBehaviour
 {
     public GameObject StopPanel;
     public GameObject SettingPanel;
+    public GameObject WarningPanel;
     public void ToGame()
     {
         StopPanel.SetActive(false);
+        Time.timeScale = 0;
     }
 
     public void ToMainMenu()
@@ -19,11 +21,22 @@ public class StopPanelManager : MonoBehaviour
 
     public void OpenMenu()
     {
+        StopPanel.SetActive(false);
         SettingPanel.SetActive(true);
     }
 
     public void Quit()
     {
+        WarningPanel.SetActive(true);
+    }
+
+    public void RealQuit()
+    {
         Application.Quit();
+    }
+
+    public void CloseWarningPanel()
+    {
+        WarningPanel.SetActive(false);
     }
 }
