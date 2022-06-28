@@ -23,11 +23,7 @@ public class PlayerMove : MonoBehaviour
 
     public bool getHit = false;
 
-    public Transform leftLimit;
-    public Transform rightLimit;
-
     private bool _jump;
-    private bool _jumpKeyUp;
     private bool _dash;
 
     [Header("Dash 관련 변수들")]
@@ -67,6 +63,7 @@ public class PlayerMove : MonoBehaviour
             Move();
             Jump();
             Dash();
+
         }
     }
     private void ValueSetting() //Input 처리 변환
@@ -82,10 +79,6 @@ public class PlayerMove : MonoBehaviour
             if (playerInput.jump)
             {
                 _jump = true;
-            }
-            if (playerInput.jumpKeyUp)
-            {
-                _jumpKeyUp = true;
             }
 
             if (playerInput.dash && _dashDelayTime <= 0)
@@ -141,7 +134,7 @@ public class PlayerMove : MonoBehaviour
                 _jump = false;
                 rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
                 anim.SetTrigger("isJump");
-                //Debug.Log("1단 점프");
+                Debug.Log("1단 점프");
                 canSecondJump = true;
             }
             else if (!isGround && canSecondJump)
@@ -149,23 +142,11 @@ public class PlayerMove : MonoBehaviour
                 _jump = false;
                 rigid.velocity = new Vector2(rigid.velocity.x, jumpForce);
                 anim.SetTrigger("isJump");
-                //Debug.Log("2단 점프");
+                Debug.Log("2단 점프");
                 canSecondJump = false;
             }
             MGSound.instance.playEff("PlayerJump");
         }
-        else if (!isGround && rigid.velocity.y < 0)
-        {
-
-        }
-
-
-        /*if(_jumpKeyUp && rigid.velocity.y < 0)
-        {
-            _jumpKeyUp = false;
-            rigid.velocity = new Vector2(rigid.velocity.x, rigid.velocity.y * 2f);
-        }*/
-
     }
     private void GroundCheck()
     {
