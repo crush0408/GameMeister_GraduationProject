@@ -18,5 +18,12 @@ MonoBehaviour:
   itemUse: "\uB79C\uB364 \uC7AC\uD654 \uD68D\uB4DD"
   percent: 40
   cost: 0
+  addHp: 0
+  addAtk: 0
+  addDef: 0
+  addPass: 0
+  addCoin: 50
+  addMoveSpeed: 0
+  addAtkSpeed: 0
   itemType: 1
   getType: 1

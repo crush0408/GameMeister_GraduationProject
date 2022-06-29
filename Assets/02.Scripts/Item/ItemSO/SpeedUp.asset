@@ -15,8 +15,15 @@ MonoBehaviour:
   tooltipImage: {fileID: 21300000, guid: b61b2a1517580674ebe660fe19a64c5d, type: 3}
   itemImage: {fileID: 21300000, guid: b61b2a1517580674ebe660fe19a64c5d, type: 3}
   itemName: "\uB354 \uBE60\uB974\uAC8C !"
-  itemUse: "\uC774\uB3D9 \uC18D\uB3C4 \uC99D\uAC00"
+  itemUse: "\uC774\uB3D9 \uC18D\uB3C4 0.1 \uC99D\uAC00"
   percent: 10
   cost: 500
+  addHp: 0
+  addAtk: 0
+  addDef: 0
+  addPass: 0
+  addCoin: 0
+  addMoveSpeed: 0.1
+  addAtkSpeed: 0
   itemType: 0
   getType: 0
