@@ -67,7 +67,7 @@ public class StatPanel : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            profileBackground.color = Color.black;
+            PlayerStat.instance.MyType = PlayerStat.PlayerType.ICE_BALANCE;
         }
     }
 }
