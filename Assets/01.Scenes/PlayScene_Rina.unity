@@ -2838,7 +2838,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: 1.69648
+  m_AmplitudeGain: 0
   m_FrequencyGain: 1
   mNoiseOffsets: {x: 702.1732, y: 572.6814, z: 338.77228}
 --- !u!114 &313828007
@@ -8084,7 +8084,7 @@ Transform:
   m_GameObject: {fileID: 1297646837}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.1063, y: -0.0387, z: 10}
-  m_LocalScale: {x: 5.9775333, y: 6.6723623, z: 1.2009832}
+  m_LocalScale: {x: 7.21, y: 7.89, z: 1.2009832}
   m_Children: []
   m_Father: {fileID: 1365834209}
   m_RootOrder: 0
@@ -9145,7 +9145,7 @@ GameObject:
   - component: {fileID: 1485499244}
   - component: {fileID: 1485499245}
   - component: {fileID: 1485499246}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FireWarmVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9227,7 +9227,7 @@ Animator:
   m_GameObject: {fileID: 1485499242}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5d8b89693b479ed4899150d544df67e7, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -11495,9 +11495,9 @@ GameObject:
   - component: {fileID: 1720748431}
   - component: {fileID: 1720748432}
   - component: {fileID: 1720748433}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FireWarm
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11510,7 +11510,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1720748428}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.21, y: -4.18, z: 0}
+  m_LocalPosition: {x: -5.06, y: -4.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1485499243}
@@ -11600,7 +11600,7 @@ MonoBehaviour:
   myVelocity: {x: 0, y: 0, z: 0}
   rightDirection: {x: 0, y: 0, z: 0}
   leftDirection: {x: 0, y: 0, z: 0}
-  visualGroup: {fileID: 0}
+  visualGroup: {fileID: 1485499242}
   myTarget: {fileID: 0}
   speed: 0
   sightDistance: 0
