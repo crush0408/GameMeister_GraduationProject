@@ -5,6 +5,7 @@ using UnityEngine;
 public class GhostEnemyScript : BasicEnemyBase
 {
     private float attackCount = 0f;
+    private bool isSpecial = false;
     private void Start()
     {
         Init();
@@ -20,14 +21,19 @@ public class GhostEnemyScript : BasicEnemyBase
         attackDistance = 2.5f;
         rightDirection = Vector3.one;
         leftDirection = new Vector3(-rightDirection.x, rightDirection.y, rightDirection.z);
+        isSpecial = false;
     }
     private void Update()
     {
+        if(!isSpecial && (enemyHealth.health / enemyHealth.initHealth < 0.6f))
+        {
+            isSpecial = true;
+        }
         CheckTransition();
     }
     private void CheckTransition()
     {
-        if(getHit) { StartState(Global.EnemyFsm.GetHit); return; }
+        if(getHit && !isSpecial) { StartState(Global.EnemyFsm.GetHit); return; }
         switch (myFsm)
         {
             case Global.EnemyFsm.Idle:
@@ -111,7 +117,7 @@ public class GhostEnemyScript : BasicEnemyBase
     public override void Attack()
     {
         base.Attack();
-        if (enemyHealth.health / enemyHealth.initHealth > 0.6f)
+        if (!isSpecial)
         {
             if (attackCount % 2 == 0)
             {
