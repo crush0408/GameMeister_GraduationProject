@@ -49,4 +49,28 @@ public class ItemScript : MonoBehaviour
 
         return randomNum <= num ? true : false;
     }
+
+    public void ApplyItemfunction(ItemSO item)
+    {
+        switch (item.itemType)
+        {
+            case ItemSO.ItemType.GOLD:
+                GameManager.instance.AddCoin(item.addCoin);
+                break;
+
+            case ItemSO.ItemType.STAT:
+                PlayerStat.instance.HP += item.addHp;
+                PlayerStat.instance.Attack += item.addAtk;
+                PlayerStat.instance.Defense += item.addDef;
+                PlayerStat.instance.Pass += item.addPass;
+                PlayerStat.instance.MoveSpeed += item.addMoveSpeed;
+                PlayerStat.instance.AttackSpeed += item.addAtkSpeed;
+                break;
+
+            case ItemSO.ItemType.TYPE:
+                // 테스트용
+                PlayerStat.instance.MyType = PlayerStat.PlayerType.ICE_BALANCE;  // 랜덤
+                break;
+        }
+    }
 }

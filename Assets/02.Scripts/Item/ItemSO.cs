@@ -26,6 +26,16 @@ public class ItemSO : ScriptableObject
     public int percent; // 확률
     public int cost;    // 가격
 
+    [Header("효과")]
+    public int addHp;
+    public int addAtk;
+    public int addDef;
+    public int addPass; // 방어관통력
+    public int addCoin;
+    public float addMoveSpeed;
+    public float addAtkSpeed;
+
+    [Space]
     public ItemType itemType;
     public GetItem getType;
 }

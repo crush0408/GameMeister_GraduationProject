@@ -32,5 +32,9 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("PlayScene");
     }
-    
+
+    public void AddCoin(int add)
+    {
+        PlayerStat.instance.Coin += add;
+    }
 }

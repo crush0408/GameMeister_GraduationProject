@@ -6,6 +6,7 @@ public class FloatToolTip : MonoBehaviour
 {
     [Header("ToolTip")]
     public GameObject tooltipObject;
+    private ItemSO getItem;
     private RectTransform _tooltipRectTrm;
     public float yDist = 1f;
     public float xDist = 1f;
@@ -24,6 +25,16 @@ public class FloatToolTip : MonoBehaviour
         tooltipObject.SetActive(false);
 
         _tooltipRectTrm = tooltipObject.GetComponent<RectTransform>();
+    }
+
+    private void Update()
+    {
+        if (tooltipObject.activeSelf && Input.GetKeyDown(KeyCode.G))
+        {
+            getItem = GetComponentInChildren<ToolTipDisplay>().item;
+            Debug.Log("획득한 아이템 : " + getItem.itemName);
+            gameObject.GetComponent<ItemScript>().ApplyItemfunction(getItem);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D col)
