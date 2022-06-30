@@ -31,8 +31,8 @@ public class PanelManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            Debug.Log("현재 스탯 패널 상태 : " + StatPanel.activeSelf);
             StatPanel.SetActive(!StatPanel.activeSelf);
+            Time.timeScale = StatPanel.activeSelf ? 0f : 1f;
         }
     }
 }
