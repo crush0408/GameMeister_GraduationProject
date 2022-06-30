@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class FireWarmScript : BasicEnemyBase
 {
+    public GameObject fireBall;
+    public Transform firePosition;
     // Start is called before the first frame update
+    public bool isDelay = false;
     void Start()
     {
         Init();
@@ -123,7 +126,14 @@ public class FireWarmScript : BasicEnemyBase
     public override void Attack()
     {
         base.Attack();
+
+        Instantiate(fireBall, firePosition);
     }
 
-
+    public IEnumerator Delay(float delay)
+    {
+        isDelay = true;
+        yield return new WaitForSeconds(delay);
+        isDelay = false;
+    }
 }
