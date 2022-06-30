@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PanelManager : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class PanelManager : MonoBehaviour
 
     public GameObject StatPanel;
     public GameObject TypeChangePanel;
+
+    public Image playerProfileBackground;
 
     private void Awake()
     {

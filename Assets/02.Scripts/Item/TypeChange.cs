@@ -44,7 +44,7 @@ public class TypeChange : MonoBehaviour
 
     public void PressTypeOne()
     {
-        PlayerStat.instance.MyType = type1;
+        GameManager.instance.ChangeType(type1);
         Debug.Log("플레이어 타입 : " + PlayerStat.instance.MyType);
 
         PanelManager.instance.TypeChangePanel.SetActive(false);
@@ -52,7 +52,7 @@ public class TypeChange : MonoBehaviour
 
     public void PressTypeTwo()
     {
-        PlayerStat.instance.MyType = type2;
+        GameManager.instance.ChangeType(type2);
         Debug.Log(PlayerStat.instance.MyType);
 
         PanelManager.instance.TypeChangePanel.SetActive(false);

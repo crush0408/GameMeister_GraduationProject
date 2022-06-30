@@ -38,4 +38,25 @@ public class GameManager : MonoBehaviour
     {
         PlayerStat.instance.Coin += add;
     }
+
+    public void ChangeType(PlayerStat.PlayerType type)
+    {
+        PlayerStat.instance.MyType = type;
+
+        switch (PlayerStat.instance.MyType)
+        {
+            case PlayerStat.PlayerType.NONE:
+                PanelManager.instance.playerProfileBackground.color = Color.black;
+                break;
+            case PlayerStat.PlayerType.ICE:
+                PanelManager.instance.playerProfileBackground.color = Color.blue;
+                break;
+            case PlayerStat.PlayerType.LIGHTNING:
+                PanelManager.instance.playerProfileBackground.color = Color.yellow;
+                break;
+            case PlayerStat.PlayerType.WATER:
+                PanelManager.instance.playerProfileBackground.color = Color.cyan;
+                break;
+        }
+    }
 }
