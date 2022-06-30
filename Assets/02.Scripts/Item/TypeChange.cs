@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class TypeChange : MonoBehaviour
 {
-    public Text btn1Text;
-    public Text btn2Text;
+    public Button btn1;
+    public Button btn2;
 
     PlayerStat.PlayerType type1;
     PlayerStat.PlayerType type2;
@@ -38,8 +38,11 @@ public class TypeChange : MonoBehaviour
                 break;
         }
 
-        btn1Text.text = type1.ToString();
-        btn2Text.text = type2.ToString();
+        btn1.GetComponentInChildren<Text>().text = type1.ToString();
+        btn2.GetComponentInChildren<Text>().text = type2.ToString();
+
+        ChangeButtonColor(type1, btn1);
+        ChangeButtonColor(type2, btn2);
     }
 
     public void PressTypeOne()
@@ -56,5 +59,23 @@ public class TypeChange : MonoBehaviour
         Debug.Log(PlayerStat.instance.MyType);
 
         PanelManager.instance.TypeChangePanel.SetActive(false);
+    }
+
+    public void ChangeButtonColor(PlayerStat.PlayerType type, Button btn)
+    {
+        Image image = btn.GetComponent<Image>();
+
+        switch (type)
+        {
+            case PlayerStat.PlayerType.ICE:
+                image.color = Color.blue;
+                break;
+            case PlayerStat.PlayerType.LIGHTNING:
+                image.color = Color.yellow;
+                break;
+            case PlayerStat.PlayerType.WATER:
+                image.color = Color.cyan;
+                break;
+        }
     }
 }

@@ -3627,8 +3627,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59db8dbe911c186468fe3247208667d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  btn1Text: {fileID: 969665082}
-  btn2Text: {fileID: 732178582}
+  btn1: {fileID: 1801863915}
+  btn2: {fileID: 1681790948}
 --- !u!222 &841413323
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7702,10 +7702,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 0.97681636, b: 0.97547174, a: 1}
-    m_HighlightedColor: {r: 1, g: 0.672956, b: 0.60754716, a: 1}
-    m_PressedColor: {r: 1, g: 0.3506289, b: 0.22075468, a: 1}
-    m_SelectedColor: {r: 1, g: 0.98039216, b: 0.9764706, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9056604, g: 0.9056604, b: 0.9056604, a: 1}
+    m_PressedColor: {r: 0.766, g: 0.766, b: 0.766, a: 1}
+    m_SelectedColor: {r: 0.90588236, g: 0.90588236, b: 0.90588236, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -7955,10 +7955,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.9, g: 0.9661281, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.7018868, g: 0.9046037, b: 1, a: 1}
-    m_PressedColor: {r: 0.22075468, g: 0.75064135, b: 1, a: 1}
-    m_SelectedColor: {r: 0.9019608, g: 0.96862745, b: 1, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9056604, g: 0.9056604, b: 0.9056604, a: 1}
+    m_PressedColor: {r: 0.766, g: 0.766, b: 0.766, a: 1}
+    m_SelectedColor: {r: 0.90588236, g: 0.90588236, b: 0.90588236, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
