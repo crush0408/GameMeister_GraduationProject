@@ -34,6 +34,7 @@ public class FloatToolTip : MonoBehaviour
             getItem = GetComponentInChildren<ToolTipDisplay>().item;
             Debug.Log("획득한 아이템 : " + getItem.itemName);
             gameObject.GetComponent<ItemScript>().ApplyItemfunction(getItem);
+            Destroy(this.gameObject);
         }
     }
 

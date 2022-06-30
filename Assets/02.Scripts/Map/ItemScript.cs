@@ -52,6 +52,8 @@ public class ItemScript : MonoBehaviour
 
     public void ApplyItemfunction(ItemSO item)
     {
+        Debug.Log("얻은 아이템 타입 : " + item.itemType);
+
         switch (item.itemType)
         {
             case ItemSO.ItemType.GOLD:
@@ -59,17 +61,21 @@ public class ItemScript : MonoBehaviour
                 break;
 
             case ItemSO.ItemType.STAT:
+                
                 PlayerStat.instance.HP += item.addHp;
                 PlayerStat.instance.Attack += item.addAtk;
                 PlayerStat.instance.Defense += item.addDef;
                 PlayerStat.instance.Pass += item.addPass;
                 PlayerStat.instance.MoveSpeed += item.addMoveSpeed;
                 PlayerStat.instance.AttackSpeed += item.addAtkSpeed;
+
+                // 시험용
+                PanelManager.instance.TypeChangePanel.SetActive(true);
+
                 break;
 
             case ItemSO.ItemType.TYPE:
-                // 테스트용
-                PlayerStat.instance.MyType = PlayerStat.PlayerType.ICE_BALANCE;  // 랜덤
+                PanelManager.instance.TypeChangePanel.SetActive(true);
                 break;
         }
     }

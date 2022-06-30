@@ -60,4 +60,5 @@ public class PlayerStat : MonoBehaviour
 
         _startTime = Time.time;
     }
+
 }
