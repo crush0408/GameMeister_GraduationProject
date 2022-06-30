@@ -7,7 +7,6 @@ public class FireWarmScript : BasicEnemyBase
     public GameObject fireBall; //불 프리팹
     public Transform firePosition; //불이 나오는 입 포지션
     public bool isDelay = false; //딜레이 중인가?
-    public IEnumerator delayCoroutine; //나도 모름 걍 몽크 따라함
     void Start()
     {
         Init(); //값 세팅
@@ -21,7 +20,7 @@ public class FireWarmScript : BasicEnemyBase
         speed = 3f;
         patrolCoolTime = 0.5f;
         sightDistance = 12f;
-        attackDistance = 2.5f;
+        attackDistance = 7f;
         rightDirection = Vector3.one;
         leftDirection = new Vector3(-rightDirection.x, rightDirection.y, rightDirection.z);
     }
@@ -30,12 +29,6 @@ public class FireWarmScript : BasicEnemyBase
     void Update()
     {
         CheckTransition(); //어떤 상태인지 실행
-
-        if (delayCoroutine != null)
-        {
-            CoroutineInitialization(delayCoroutine);
-            isDelay = false;
-        }
     }
 
     private void CheckTransition()
@@ -45,7 +38,8 @@ public class FireWarmScript : BasicEnemyBase
         {
             case Global.EnemyFsm.Idle:
                 {
-                    if (DistanceDecision(sightDistance) || !isDelay) { StartState(Global.EnemyFsm.Chase); }
+                    if (DistanceDecision(sightDistance) && !isDelay) { StartState(Global.EnemyFsm.Chase); }
+                    else if (isDelay) { return; }
                     else { StartState(Global.EnemyFsm.Patrol); }
                 }
                 break;
@@ -91,8 +85,7 @@ public class FireWarmScript : BasicEnemyBase
                 {
                     Stop();
                     FlipSprite();
-                    delayCoroutine = Delay(2);
-                    StartCoroutine(delayCoroutine);
+                    StartCoroutine(Delay(2));
                 }
                 break;
             case Global.EnemyFsm.Chase:
@@ -149,5 +142,10 @@ public class FireWarmScript : BasicEnemyBase
     public override void DeadAnimScript()
     {
         base.DeadAnimScript();
+    }
+
+    public override void GetHitAfter()
+    {
+        base.GetHitAfter();
     }
 }
