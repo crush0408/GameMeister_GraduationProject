@@ -1262,7 +1262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   insertData:
     startPos: {fileID: 4911341022386233601}
-    door: {fileID: 0}
+    door: {fileID: 38626302819281844}
     rewardItem: {fileID: 0}
     boss: {fileID: 0}
     vCamCollider: {fileID: 3879162046026784922}
@@ -3007,7 +3007,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -224647919
   m_SortingLayer: -1
-  m_SortingOrder: 3
+  m_SortingOrder: 11
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -3419,6 +3419,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0378ae7f082e1e041a20be8f690fd226, type: 3}
+--- !u!1 &38626302819281844 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1231548934757229053, guid: 0378ae7f082e1e041a20be8f690fd226, type: 3}
+  m_PrefabInstance: {fileID: 1269572343268674121}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5639974028138842705 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6907214710665740312, guid: 0378ae7f082e1e041a20be8f690fd226, type: 3}
