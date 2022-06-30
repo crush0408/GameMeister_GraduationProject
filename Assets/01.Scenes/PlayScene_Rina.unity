@@ -1592,9 +1592,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -4.83, y: -1.0414336}
+  m_Offset: {x: 0, y: -1.03}
   serializedVersion: 2
-  m_Radius: 0.4816203
+  m_Radius: 0.5
 --- !u!61 &132481249
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1608,7 +1608,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -4.83, y: -0.35949904}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1619,7 +1619,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.969882, y: 1.3549002}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!50 &132481250
 Rigidbody2D:
@@ -11335,7 +11335,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!50 &1616154234
 Rigidbody2D:
   serializedVersion: 4
@@ -14825,7 +14825,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2140266231}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.86, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1624268893}
@@ -15023,6 +15023,10 @@ PrefabInstance:
     - target: {fileID: 720695319379747686, guid: a7cfdfece09f3f54ab54d3d22584a77d, type: 3}
       propertyPath: m_Name
       value: FireWarm
+      objectReference: {fileID: 0}
+    - target: {fileID: 720695319379747686, guid: a7cfdfece09f3f54ab54d3d22584a77d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 720695319379747687, guid: a7cfdfece09f3f54ab54d3d22584a77d, type: 3}
       propertyPath: m_RootOrder
