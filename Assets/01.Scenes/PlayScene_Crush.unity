@@ -3334,7 +3334,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Type2 Select
+  m_Text: 
 --- !u!222 &732178583
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3750,6 +3750,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59db8dbe911c186468fe3247208667d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  btn1Text: {fileID: 969665082}
+  btn2Text: {fileID: 732178582}
 --- !u!222 &841413323
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4010,7 +4012,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Type1 Select
+  m_Text: 
 --- !u!222 &969665083
 CanvasRenderer:
   m_ObjectHideFlags: 0

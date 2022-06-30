@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class TypeChange : MonoBehaviour
 {
+    public Text btn1Text;
+    public Text btn2Text;
+
     PlayerStat.PlayerType type1;
     PlayerStat.PlayerType type2;
 
@@ -15,31 +18,34 @@ public class TypeChange : MonoBehaviour
         switch (PlayerStat.instance.MyType)
         {
             case PlayerStat.PlayerType.NONE:
-                type1 = PlayerStat.PlayerType.ICE_BALANCE;
-                type2 = PlayerStat.PlayerType.LIGHTNING_SPEED;
+                type1 = PlayerStat.PlayerType.ICE;
+                type2 = PlayerStat.PlayerType.LIGHTNING;
                 break;
 
-            case PlayerStat.PlayerType.ICE_BALANCE:
-                type1 = PlayerStat.PlayerType.LIGHTNING_SPEED;
-                type2 = PlayerStat.PlayerType.WATER_POWER;
+            case PlayerStat.PlayerType.ICE:
+                type1 = PlayerStat.PlayerType.LIGHTNING;
+                type2 = PlayerStat.PlayerType.WATER;
                 break;
 
-            case PlayerStat.PlayerType.LIGHTNING_SPEED:
-                type1 = PlayerStat.PlayerType.ICE_BALANCE;
-                type2 = PlayerStat.PlayerType.WATER_POWER;
+            case PlayerStat.PlayerType.LIGHTNING:
+                type1 = PlayerStat.PlayerType.ICE;
+                type2 = PlayerStat.PlayerType.WATER;
                 break;
 
-            case PlayerStat.PlayerType.WATER_POWER:
-                type1 = PlayerStat.PlayerType.ICE_BALANCE;
-                type2 = PlayerStat.PlayerType.LIGHTNING_SPEED;
+            case PlayerStat.PlayerType.WATER:
+                type1 = PlayerStat.PlayerType.ICE;
+                type2 = PlayerStat.PlayerType.LIGHTNING;
                 break;
         }
+
+        btn1Text.text = type1.ToString();
+        btn2Text.text = type2.ToString();
     }
 
     public void PressTypeOne()
     {
         PlayerStat.instance.MyType = type1;
-        Debug.Log(PlayerStat.instance.MyType);
+        Debug.Log("플레이어 타입 : " + PlayerStat.instance.MyType);
 
         PanelManager.instance.TypeChangePanel.SetActive(false);
     }

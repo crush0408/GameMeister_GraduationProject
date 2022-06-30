@@ -51,13 +51,13 @@ public class StatPanel : MonoBehaviour
             case PlayerStat.PlayerType.NONE:
                 profileBackground.color = Color.black;
                 break;
-            case PlayerStat.PlayerType.ICE_BALANCE:
+            case PlayerStat.PlayerType.ICE:
                 profileBackground.color = Color.blue;
                 break;
-            case PlayerStat.PlayerType.LIGHTNING_SPEED:
+            case PlayerStat.PlayerType.LIGHTNING:
                 profileBackground.color = Color.yellow;
                 break;
-            case PlayerStat.PlayerType.WATER_POWER:
+            case PlayerStat.PlayerType.WATER:
                 profileBackground.color = Color.cyan;
                 break;
         }
@@ -67,7 +67,7 @@ public class StatPanel : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            PlayerStat.instance.MyType = PlayerStat.PlayerType.ICE_BALANCE;
+            PlayerStat.instance.MyType = PlayerStat.PlayerType.ICE; // 테스트용
         }
     }
 }

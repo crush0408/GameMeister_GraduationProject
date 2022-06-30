@@ -9,9 +9,9 @@ public class PlayerStat : MonoBehaviour
     public enum PlayerType
     {
         NONE,
-        WATER_POWER,
-        LIGHTNING_SPEED,
-        ICE_BALANCE
+        WATER,        // 파워
+        LIGHTNING,    // 스피드
+        ICE     // 밸런스
     }
 
     [SerializeField] protected PlayerType _myType;
