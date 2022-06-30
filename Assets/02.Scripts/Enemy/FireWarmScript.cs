@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class FireWarmScript : BasicEnemyBase
 {
-    public GameObject fireBall;
-    public Transform firePosition;
-    // Start is called before the first frame update
-    public bool isDelay = false;
+    public GameObject fireBall; //불 프리팹
+    public Transform firePosition; //불이 나오는 입 포지션
+    public bool isDelay = false; //딜레이 중인가?
+    public IEnumerator delayCoroutine; //나도 모름 걍 몽크 따라함
     void Start()
     {
-        Init();
+        Init(); //값 세팅
     }
 
     public override void Init()
@@ -29,7 +29,13 @@ public class FireWarmScript : BasicEnemyBase
     // Update is called once per frame
     void Update()
     {
-        CheckTransition();
+        CheckTransition(); //어떤 상태인지 실행
+
+        if (delayCoroutine != null)
+        {
+            CoroutineInitialization(delayCoroutine);
+            isDelay = false;
+        }
     }
 
     private void CheckTransition()
@@ -39,7 +45,7 @@ public class FireWarmScript : BasicEnemyBase
         {
             case Global.EnemyFsm.Idle:
                 {
-                    if (DistanceDecision(sightDistance)) { StartState(Global.EnemyFsm.Chase); }
+                    if (DistanceDecision(sightDistance) || !isDelay) { StartState(Global.EnemyFsm.Chase); }
                     else { StartState(Global.EnemyFsm.Patrol); }
                 }
                 break;
@@ -78,8 +84,6 @@ public class FireWarmScript : BasicEnemyBase
 
     private void StartState(Global.EnemyFsm state)
     {
-
-
         ChangeState(state);
         switch (myFsm)
         {
@@ -87,6 +91,8 @@ public class FireWarmScript : BasicEnemyBase
                 {
                     Stop();
                     FlipSprite();
+                    delayCoroutine = Delay(2);
+                    StartCoroutine(delayCoroutine);
                 }
                 break;
             case Global.EnemyFsm.Chase:
@@ -135,5 +141,13 @@ public class FireWarmScript : BasicEnemyBase
         isDelay = true;
         yield return new WaitForSeconds(delay);
         isDelay = false;
+    }
+    public override void AttackAfter()
+    {
+        base.AttackAfter();
+    }
+    public override void DeadAnimScript()
+    {
+        base.DeadAnimScript();
     }
 }
