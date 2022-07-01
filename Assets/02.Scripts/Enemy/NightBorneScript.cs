@@ -13,11 +13,11 @@ public class NightBorneScript : BasicEnemyBase
     {
         base.Init();
         myFsm = Global.EnemyFsm.Idle;
-        myType = Global.EnemyType.Flying;
-        speed = 4f;
+        myType = Global.EnemyType.Walking;
+        speed = 5f;
         patrolCoolTime = 0.5f;
         sightDistance = 10f;
-        attackDistance = 2.5f;
+        attackDistance = 4.8f;
         rightDirection = Vector3.one;
         leftDirection = new Vector3(-rightDirection.x, rightDirection.y, rightDirection.z);
     }
@@ -89,7 +89,7 @@ public class NightBorneScript : BasicEnemyBase
                 break;
             case Global.EnemyFsm.Chase:
                 {
-                    speed = 4f;
+                    speed = 5f;
                     Chase();
                 }
                 break;
@@ -97,7 +97,7 @@ public class NightBorneScript : BasicEnemyBase
                 {
                     if (patrolCoroutine == null)
                     {
-                        speed = 3f;
+                        speed = 5f;
                         patrolCoroutine = Patrol();
                         StartCoroutine(patrolCoroutine);
                     }
@@ -127,5 +127,11 @@ public class NightBorneScript : BasicEnemyBase
     public override void GetHitAfter()
     {
         base.GetHitAfter();
+        Debug.Log("?");
+    }
+
+    public override void AttackAfter()
+    {
+        base.AttackAfter();
     }
 }

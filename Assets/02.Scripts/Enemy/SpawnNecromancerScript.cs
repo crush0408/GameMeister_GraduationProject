@@ -129,4 +129,9 @@ public class SpawnNecromancerScript : BasicEnemyBase
     {
         base.GetHitAfter();
     }
+
+    public override void AttackAfter()
+    {
+        base.AttackAfter();
+    }
 }
