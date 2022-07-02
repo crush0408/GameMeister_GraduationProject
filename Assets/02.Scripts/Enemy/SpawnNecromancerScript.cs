@@ -121,6 +121,11 @@ public class SpawnNecromancerScript : BasicEnemyBase
         }
     }
 
+    public void SpawnMob()
+    {
+
+    }
+
     public override void DeadAnimScript()
     {
         base.DeadAnimScript();
