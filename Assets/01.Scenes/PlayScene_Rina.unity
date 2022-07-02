@@ -1715,7 +1715,7 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
-  openStop: {fileID: 0}
+  openStop: {fileID: 1888253382}
   moveSpeed: 5
   jumpForce: 15
   isGround: 0
@@ -2622,7 +2622,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &257443476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2882,7 +2882,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!61 &272821332
 BoxCollider2D:
   m_ObjectHideFlags: 0

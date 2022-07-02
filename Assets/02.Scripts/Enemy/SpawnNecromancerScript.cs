@@ -123,7 +123,7 @@ public class SpawnNecromancerScript : BasicEnemyBase
 
     public void SpawnMob()
     {
-
+        //Instantiate(fireBall, firePosition);
     }
 
     public override void DeadAnimScript()

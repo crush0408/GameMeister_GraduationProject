@@ -29,6 +29,7 @@ public class FireWarmScript : BasicEnemyBase
     void Update()
     {
         CheckTransition(); //어떤 상태인지 실행
+        Debug.Log(isDelay);
     }
 
     private void CheckTransition()
@@ -85,7 +86,7 @@ public class FireWarmScript : BasicEnemyBase
                 {
                     Stop();
                     FlipSprite();
-                    StartCoroutine(Delay(2));
+                    
                 }
                 break;
             case Global.EnemyFsm.Chase:
@@ -125,15 +126,20 @@ public class FireWarmScript : BasicEnemyBase
     public override void Attack()
     {
         base.Attack();
-
-        Instantiate(fireBall, firePosition);
+        StartCoroutine(Delay(2));
     }
 
     public IEnumerator Delay(float delay)
     {
-        isDelay = true;
-        yield return new WaitForSeconds(delay);
-        isDelay = false;
+        while (!isDelay)
+        {
+            isDelay = true;
+            Instantiate(fireBall, firePosition);
+            myAnim.SetBool("isAttacking", false);
+            isDelay = false;
+            yield return new WaitForSeconds(delay);
+        }
+        
     }
     public override void AttackAfter()
     {
