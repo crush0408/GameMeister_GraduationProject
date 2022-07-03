@@ -33,7 +33,7 @@ public class SpawnNecromancerScript : BasicEnemyBase
 
     private void CheckTransition()
     {
-        if (getHit) { StartState(Global.EnemyFsm.GetHit); return; }
+        if (getHit) { StartState(Global.EnemyFsm.GetHit); getHit = false; }
         switch (myFsm)
         {
             case Global.EnemyFsm.Idle:
