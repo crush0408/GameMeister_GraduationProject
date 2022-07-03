@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SpawnNecromancerScript : BasicEnemyBase
 {
+    public GameObject BoneMob; 
+    public Transform BonePosition;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +20,7 @@ public class SpawnNecromancerScript : BasicEnemyBase
         speed = 4f;
         patrolCoolTime = 0.5f;
         sightDistance = 10f;
-        attackDistance = 2.5f;
+        attackDistance = 10f;
         rightDirection = Vector3.one;
         leftDirection = new Vector3(-rightDirection.x, rightDirection.y, rightDirection.z);
     }
@@ -36,8 +38,8 @@ public class SpawnNecromancerScript : BasicEnemyBase
         {
             case Global.EnemyFsm.Idle:
                 {
-                    //if (DistanceDecision(sightDistance)) { StartState(Global.EnemyFsm.Chase); }
-                    //else { StartState(Global.EnemyFsm.Patrol); }
+                    if (DistanceDecision(sightDistance)) { StartState(Global.EnemyFsm.Chase); }
+                    else { StartState(Global.EnemyFsm.Patrol); }
                 }
                 break;
             case Global.EnemyFsm.Chase:
@@ -111,6 +113,7 @@ public class SpawnNecromancerScript : BasicEnemyBase
             case Global.EnemyFsm.Attack:
                 {
                     Attack();
+                    SpawnMob();
                 }
                 break;
             case Global.EnemyFsm.GetHit:
@@ -123,7 +126,18 @@ public class SpawnNecromancerScript : BasicEnemyBase
 
     public void SpawnMob()
     {
-        //Instantiate(fireBall, firePosition);
+        StopAllCoroutines();
+        StartCoroutine(Delay(10));
+    }
+
+    public IEnumerator Delay(float delay)
+    {
+        Instantiate(BoneMob, BonePosition);
+        Instantiate(BoneMob, BonePosition);
+        Debug.Log(1);
+
+        yield return new WaitForSeconds(delay);
+        StartState(Global.EnemyFsm.Idle);
     }
 
     public override void DeadAnimScript()
