@@ -120,18 +120,22 @@ public class NightBorneScript : BasicEnemyBase
         }
     }
 
+    public override void AttackAfter()
+    {
+        base.AttackAfter();
+    }
+
+    public void testHit()
+    {
+        getHit = false;
+    }
     public override void DeadAnimScript()
     {
         base.DeadAnimScript();
     }
+
     public override void GetHitAfter()
     {
         base.GetHitAfter();
-        Debug.Log("?");
-    }
-
-    public override void AttackAfter()
-    {
-        base.AttackAfter();
     }
 }

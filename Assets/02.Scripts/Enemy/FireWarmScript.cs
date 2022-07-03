@@ -159,6 +159,5 @@ public class FireWarmScript : BasicEnemyBase
     public override void GetHitAfter()
     {
         base.GetHitAfter();
-        Debug.Log("?");
     }
 }
