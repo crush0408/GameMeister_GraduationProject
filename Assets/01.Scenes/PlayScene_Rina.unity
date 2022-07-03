@@ -15375,5 +15375,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: NightBorne
       objectReference: {fileID: 0}
+    - target: {fileID: 2535990746101614612, guid: 39de10e33b1d58840b517ce40489d03e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39de10e33b1d58840b517ce40489d03e, type: 3}
