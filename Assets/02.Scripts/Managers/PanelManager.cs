@@ -9,6 +9,8 @@ public class PanelManager : MonoBehaviour
 
     public GameObject StatPanel;
     public GameObject TypeChangePanel;
+    public GameObject GameoverPanel;
+    public GameObject StartTypeSelectPanel;
 
     public Image playerProfileBackground;
 
@@ -28,6 +30,8 @@ public class PanelManager : MonoBehaviour
     {
         StatPanel.SetActive(false);
         TypeChangePanel.SetActive(false);
+        GameoverPanel.SetActive(false);
+        StartTypeSelectPanel.SetActive(true);
     }
 
     private void Update()
