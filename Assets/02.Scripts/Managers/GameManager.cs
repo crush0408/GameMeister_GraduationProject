@@ -27,11 +27,23 @@ public class GameManager : MonoBehaviour
     public void Start()
     {
         playerObj.GetComponent<PlayerHealth>().OnDead += GameOver;
+
+        // Time.timeScale = 1f;
+    }
+
+    public void Replay()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void GameOver()
     {
-        SceneManager.LoadScene("PlayScene");
+        PanelManager.instance.GameoverPanel.SetActive(true);
+    }
+
+    public void Main()
+    {
+        SceneManager.LoadScene(0);
     }
 
     public void AddCoin(int add)

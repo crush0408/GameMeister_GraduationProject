@@ -23,18 +23,18 @@ public class TypeChange : MonoBehaviour
                 break;
 
             case PlayerStat.PlayerType.ICE:
-                type1 = PlayerStat.PlayerType.LIGHTNING;
-                type2 = PlayerStat.PlayerType.WATER;
+                type1 = PlayerStat.PlayerType.WATER;
+                type2 = PlayerStat.PlayerType.LIGHTNING;
                 break;
 
             case PlayerStat.PlayerType.LIGHTNING:
-                type1 = PlayerStat.PlayerType.ICE;
-                type2 = PlayerStat.PlayerType.WATER;
+                type1 = PlayerStat.PlayerType.WATER;
+                type2 = PlayerStat.PlayerType.ICE;
                 break;
 
             case PlayerStat.PlayerType.WATER:
-                type1 = PlayerStat.PlayerType.ICE;
-                type2 = PlayerStat.PlayerType.LIGHTNING;
+                type1 = PlayerStat.PlayerType.LIGHTNING;
+                type2 = PlayerStat.PlayerType.ICE;
                 break;
         }
 
