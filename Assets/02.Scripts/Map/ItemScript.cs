@@ -57,7 +57,7 @@ public class ItemScript : MonoBehaviour
         switch (item.itemType)
         {
             case ItemSO.ItemType.GOLD:
-                GameManager.instance.AddCoin(Random.Range(100, 201));
+                GameManager.instance.AddStat(0, 0, 0, 0, Random.Range(100, 201), 0, 0);
                 break;
 
             case ItemSO.ItemType.STAT:

@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         PanelManager.instance.GameoverPanel.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     public void Main()
@@ -49,6 +50,41 @@ public class GameManager : MonoBehaviour
     public void AddCoin(int add)
     {
         PlayerStat.instance.Coin += add;
+    }
+    
+    public void AddStat(int hp, int atk, int def, int pass, int coin, float moveSpeed, float atkSpeed)
+    {
+        PlayerStat.instance.Coin += coin;
+
+        PlayerStat.instance.HP = PlayerStat.instance.HP + hp > 200 ? 200 : PlayerStat.instance.HP + hp;
+        PlayerStat.instance.Attack = PlayerStat.instance.Attack + atk > 300 ? 300 : PlayerStat.instance.Attack + atk;
+        PlayerStat.instance.Defense = PlayerStat.instance.Defense + def > 150 ? 150 : PlayerStat.instance.Defense + def;
+        PlayerStat.instance.Pass = PlayerStat.instance.Pass + pass > 100 ? 100 : PlayerStat.instance.Pass + pass;
+        PlayerStat.instance.MoveSpeed =
+            PlayerStat.instance.MoveSpeed + moveSpeed > 1.5f ? 1.5f : PlayerStat.instance.MoveSpeed + moveSpeed;
+        PlayerStat.instance.AttackSpeed =
+            PlayerStat.instance.AttackSpeed + atkSpeed > 6f ? 6f : PlayerStat.instance.AttackSpeed + atkSpeed;
+    }
+
+    public void TypeReward()
+    {
+        switch (PlayerStat.instance.MyType)
+        {
+            // 공격력 2, 공격 속도 0.02
+            case PlayerStat.PlayerType.ICE:
+                AddStat(0, 2, 0, 0, 0, 0, 0.02f);
+                break;
+
+            // 공격 속도 0.05
+            case PlayerStat.PlayerType.LIGHTNING:
+                AddStat(0, 0, 0, 0, 0, 0, 0.05f);
+                break;
+
+            // 공격력 5
+            case PlayerStat.PlayerType.WATER:
+                AddStat(0, 5, 0, 0, 0, 0, 0);
+                break;
+        }
     }
 
     public void ChangeType(PlayerStat.PlayerType type)
