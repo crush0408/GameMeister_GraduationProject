@@ -116,7 +116,7 @@ public class PlayerAttack : MonoBehaviour
                     if (inputSkill.skillName == "FastMagic")
                     {
                         Collider2D[] cols = Physics2D.OverlapBoxAll(onePos.position, boxSize, 0f);
-                        MGSound.instance.playEff("FastTry");
+                        MGSound.instance.playEff("FastTry");    // 요기
                         foreach (Collider2D col in cols)
                         {
                             IDamageable target = col.GetComponent<IDamageable>();
@@ -160,13 +160,20 @@ public class PlayerAttack : MonoBehaviour
     }
     private void Attack(string skillName, Transform skillTrm, int index, string hitEffectName)
     {
+        SkillObject skill = skillList[index];
 
         isAttacking = true;
         anim.Play(inputSkill.skillName, -1, 0f);
         PoolableMono poolingObject = PoolManager.Instance.Pop(skillName);
         poolingObject.transform.localScale = visualGroup.transform.localScale;
         poolingObject.transform.position = skillTrm.position;
-        poolingObject.GetComponent<NonTargetSkill>().damage = skillList[index].attackDamage;    // 어택 데미지 계산
+
+        float denominator = 100 + PlayerStat.instance.Defense - PlayerStat.instance.Pass;
+        float damage = (100 / denominator) * (skill.attackDamage + skill.abilityPower * (PlayerStat.instance.Attack));
+
+        poolingObject.GetComponent<NonTargetSkill>().damage = damage;    // 어택 데미지 계산
+        Debug.Log("Damage : " + damage);
+
         poolingObject.GetComponent<NonTargetSkill>().hitName = hitEffectName;
         skillList[index].remainCoolTime = skillList[index].initCoolTime;
         if (skillList[1])

@@ -14,7 +14,11 @@ public class PlayerBasicAttack : MonoBehaviour
             IDamageable target = collision.GetComponent<IDamageable>();
             if(target != null)
             {
-                target.OnDamage(damage, transform.position,push);
+                float denominator = 100 + PlayerStat.instance.Defense - PlayerStat.instance.Pass;
+                float afterDamage =
+                    (100 / denominator * (damage + PlayerStat.instance.Attack));
+                target.OnDamage(afterDamage, transform.position,push);
+                Debug.Log("뎀미징 : " + afterDamage);
                 //Debug.Log("적 기본 공격 피격");
             }
         }
