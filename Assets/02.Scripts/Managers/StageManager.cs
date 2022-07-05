@@ -45,7 +45,6 @@ public class StageManager : MonoBehaviour
         {
             SceneManager.LoadScene("PlayScene");
         }
-        Debug.Log(insertData.isTuto);
     }
 
     public void Init(int adjust)

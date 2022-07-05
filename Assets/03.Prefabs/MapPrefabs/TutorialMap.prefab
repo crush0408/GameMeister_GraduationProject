@@ -1340,7 +1340,7 @@ MonoBehaviour:
     startPos: {fileID: 4911341022386233601}
     door: {fileID: 38626302819281844}
     rewardItem: {fileID: 0}
-    isStore: 0
+    isStore: 1
     storeItems: []
     enemy:
     - {fileID: 0}
@@ -1349,6 +1349,7 @@ MonoBehaviour:
     - {fileID: 0}
     vCamCollider: {fileID: 3879162046026784922}
     notFight: 1
+    isTuto: 0
 --- !u!1 &5240113681844334151
 GameObject:
   m_ObjectHideFlags: 0
