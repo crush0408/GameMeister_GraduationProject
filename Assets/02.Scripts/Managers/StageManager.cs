@@ -16,7 +16,8 @@ public class StageManager : MonoBehaviour
     public MapInsertData insertData;
     public int index = 0;
     public int maxIndex = 0;
-    
+    int a = 0;
+
 
     private void Awake()
     {
@@ -43,6 +44,7 @@ public class StageManager : MonoBehaviour
         {
             Init(1);
         }*/
+        Debug.Log(a);
     }
     public void Init(int adjust)
     {
@@ -64,17 +66,25 @@ public class StageManager : MonoBehaviour
         }
 
         Debug.Log(insertData.enemy.Length);
-        insertData.enemy[0].GetComponent<EnemyHealth>().OnDead += () =>
-        { map.GetComponent<MapManager>().insertData.door.SetActive(true); };
-        insertData.enemy[0].GetComponent<EnemyHealth>().OnDead += () =>
+        for (int i = 0; i < insertData.enemy.Length; i++)
         {
-            if (map.GetComponent<MapManager>().insertData.rewardItem != null)
+            insertData.enemy[i].GetComponent<EnemyHealth>().OnDead += () =>
             {
-            map.GetComponent<MapManager>().insertData.rewardItem.SetActive(true);
-            }
-        };
-        insertData.enemy[0].GetComponent<EnemyHealth>().OnDead += () =>
-        { GameManager.instance.TypeReward(); };
+
+                a++;
+
+                if (a == insertData.enemy.Length)
+                {
+                    map.GetComponent<MapManager>().insertData.door.SetActive(true);
+                    if (map.GetComponent<MapManager>().insertData.rewardItem != null)
+                    {
+                        map.GetComponent<MapManager>().insertData.rewardItem.SetActive(true);
+                    }
+                    GameManager.instance.TypeReward();
+                }
+            };
+        }
+       
         
         player.transform.position = insertData.startPos.position;
         confiner.m_BoundingShape2D = insertData.vCamCollider;

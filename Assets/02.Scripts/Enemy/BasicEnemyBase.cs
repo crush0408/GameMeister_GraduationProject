@@ -17,7 +17,7 @@ public class BasicEnemyBase : EnemyBase
     
     protected IEnumerator Patrol()
     {
-        Debug.Log("Patrol Start");
+        //Debug.Log("Patrol Start");
         
         isPatroling = true;
         patDir = Random.Range(-1, 2);

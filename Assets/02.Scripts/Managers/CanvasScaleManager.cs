@@ -34,7 +34,7 @@ public class CanvasScaleManager : MonoBehaviour
     {
         dropdown.value = DataManager.instance.isWindow;
         SetScreen();
-        Debug.Log("드롭다운 값 : " + dropdown.value);
+        //Debug.Log("드롭다운 값 : " + dropdown.value);
     }
 
     public void DropDownValueChange()

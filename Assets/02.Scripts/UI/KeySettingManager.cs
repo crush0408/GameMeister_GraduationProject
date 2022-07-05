@@ -152,7 +152,7 @@ public class KeySettingManager : MonoBehaviour
         JArray jObj = new JArray();
         jObj.Add(KeySetting.KeySettingDict.Values);
 
-        print(jObj.ToString());
+        //print(jObj.ToString());
 
         StreamWriter sw = new StreamWriter(getFilePath(saveFileName));
         sw.WriteLine(jObj);
