@@ -11,7 +11,7 @@ public class FloatCost : MonoBehaviour
 
     private Camera mainCam;
 
-    private void OnEnable()
+    private void Start()
     {
         mainCam = Camera.main;
 
@@ -24,7 +24,14 @@ public class FloatCost : MonoBehaviour
             costObject.SetActive(false);
         }
 
-        _itemCostRectTrm = costObject.GetComponent<RectTransform>();
-        _itemCostRectTrm.position = mainCam.WorldToScreenPoint(gameObject.transform.position + new Vector3(0, yDist, 0));
+        // _itemCostRectTrm = costObject.GetComponent<RectTransform>();
+
+        costObject.transform.position = PlayerStat.instance.gameObject.transform.position;
+
+        Debug.Log("costObject 현재 상태 : " + costObject.activeSelf);
+        Debug.Log(mainCam.ScreenToWorldPoint(gameObject.transform.position));
+
+        // _itemCostRectTrm = costObject.GetComponent<RectTransform>();
+        // _itemCostRectTrm.position = mainCam.WorldToScreenPoint(gameObject.transform.position + new Vector3(0, 0, 0));
     }
 }

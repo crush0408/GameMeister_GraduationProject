@@ -12,6 +12,7 @@ public class ToolTipDisplay : MonoBehaviour
     public Image itemIcon;
     public Text itemName;
     public Text itemUse;
+    public Text itemCost;
 
     private void OnEnable()
     {
@@ -24,5 +25,7 @@ public class ToolTipDisplay : MonoBehaviour
         itemIcon.sprite = item.itemImage;
         itemName.text = item.itemName;
         itemUse.text = item.itemUse;
+
+        itemCost.text = StageManager.instance.insertData.isStore ? item.cost + "$" : "";
     }
 }

@@ -32,6 +32,12 @@ public class FloatToolTip : MonoBehaviour
         if (tooltipObject.activeSelf && Input.GetKeyDown(KeyCode.G))
         {
             getItem = GetComponentInChildren<ToolTipDisplay>().item;
+
+            if (StageManager.instance.insertData.isStore)
+            {
+                GameManager.instance.AddCoin(-getItem.cost);
+            }
+
             Debug.Log("획득한 아이템 : " + getItem.itemName);
             gameObject.GetComponent<ItemScript>().ApplyItemfunction(getItem);
             Destroy(this.gameObject);
