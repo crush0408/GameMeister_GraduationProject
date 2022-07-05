@@ -9,6 +9,8 @@ public class MapInsertData
     public GameObject door;
     public GameObject rewardItem;
 
+    public GameObject[] storeItems;
+
     public GameObject[] enemy;
 
     public Collider2D vCamCollider;
