@@ -62,20 +62,19 @@ public class StageManager : MonoBehaviour
         {
             map.GetComponent<MapManager>().insertData.rewardItem.SetActive(false);
         }
-        for (int i = 0; i < insertData.enemy.Length; i++)
+
+        Debug.Log(insertData.enemy.Length);
+        insertData.enemy[0].GetComponent<EnemyHealth>().OnDead += () =>
+        { map.GetComponent<MapManager>().insertData.door.SetActive(true); };
+        insertData.enemy[0].GetComponent<EnemyHealth>().OnDead += () =>
         {
-            insertData.enemy[i].GetComponent<EnemyHealth>().OnDead += () =>
-            { map.GetComponent<MapManager>().insertData.door.SetActive(true); };
-            insertData.enemy[i].GetComponent<EnemyHealth>().OnDead += () =>
+            if (map.GetComponent<MapManager>().insertData.rewardItem != null)
             {
-                if (map.GetComponent<MapManager>().insertData.rewardItem != null)
-                {
-                    map.GetComponent<MapManager>().insertData.rewardItem.SetActive(true);
-                }
-            };
-            insertData.enemy[i].GetComponent<EnemyHealth>().OnDead += () =>
-            { GameManager.instance.TypeReward(); };
-        }
+            map.GetComponent<MapManager>().insertData.rewardItem.SetActive(true);
+            }
+        };
+        insertData.enemy[0].GetComponent<EnemyHealth>().OnDead += () =>
+        { GameManager.instance.TypeReward(); };
         
         player.transform.position = insertData.startPos.position;
         confiner.m_BoundingShape2D = insertData.vCamCollider;
