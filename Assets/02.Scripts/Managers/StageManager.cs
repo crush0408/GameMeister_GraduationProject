@@ -62,7 +62,11 @@ public class StageManager : MonoBehaviour
         GameObject map = Instantiate(mapDatas[index].gameObject, this.transform);
         insertData = map.GetComponent<MapManager>().insertData;
 
-        if (!insertData.isStore) insertData.door.SetActive(false);
+        if (!insertData.isStore)
+        {
+            insertData.door.SetActive(false);
+            Debug.Log("상점이라 문 없앰");
+        }
 
         if (insertData.rewardItem != null)
         {
