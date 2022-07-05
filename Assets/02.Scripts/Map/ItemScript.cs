@@ -12,6 +12,7 @@ public class ItemScript : MonoBehaviour
     public ItemSO item;
     public ItemSO[] itemList;
     public List<int> percentList;
+
     [SerializeField]
     private int randomNum;
 

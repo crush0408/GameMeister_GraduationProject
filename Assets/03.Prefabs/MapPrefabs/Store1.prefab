@@ -1270,6 +1270,8 @@ MonoBehaviour:
     - {fileID: 7979481863102876161}
     enemy: []
     vCamCollider: {fileID: 3879162046026784922}
+    notFight: 0
+    isTuto: 0
 --- !u!1 &5240113681844334151
 GameObject:
   m_ObjectHideFlags: 0
