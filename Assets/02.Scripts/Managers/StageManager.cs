@@ -44,7 +44,6 @@ public class StageManager : MonoBehaviour
         {
             Init(1);
         }*/
-        Debug.Log(a);
     }
     public void Init(int adjust)
     {
@@ -96,6 +95,4 @@ public class StageManager : MonoBehaviour
             Destroy(this.transform.GetChild(0).gameObject);
         }
     }
-
-    
 }

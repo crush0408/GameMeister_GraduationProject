@@ -165,6 +165,7 @@ public class PlayerAttack : MonoBehaviour
         isAttacking = true;
         anim.Play(inputSkill.skillName, -1, 0f);
         PoolableMono poolingObject = PoolManager.Instance.Pop(skillName);
+        Debug.Log(poolingObject);
         poolingObject.transform.localScale = visualGroup.transform.localScale;
         poolingObject.transform.position = skillTrm.position;
 
