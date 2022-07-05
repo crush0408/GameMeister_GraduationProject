@@ -4656,6 +4656,7 @@ MonoBehaviour:
   confiner: {fileID: 0}
   mapDatas:
   - {fileID: 4577454447184940970, guid: 81fee633aa2b677478aed9d0faeebbea, type: 3}
+  - {fileID: 4577454447184940970, guid: f264877800a89594a89ad5ca2bf67385, type: 3}
   insertData:
     startPos: {fileID: 0}
     door: {fileID: 0}
@@ -4665,6 +4666,7 @@ MonoBehaviour:
     enemy: []
     vCamCollider: {fileID: 0}
     notFight: 0
+    isTuto: 0
   index: 0
   maxIndex: 0
 --- !u!4 &1050156855
@@ -5056,6 +5058,7 @@ MonoBehaviour:
     enemy: []
     vCamCollider: {fileID: 0}
     notFight: 0
+    isTuto: 0
 --- !u!114 &1106084913
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -39,8 +39,18 @@ public class StageManager : MonoBehaviour
         Init(0);
     }
 
+    private void Update()
+    {
+        if (insertData.isTuto)
+        {
+            SceneManager.LoadScene("PlayScene");
+        }
+        Debug.Log(insertData.isTuto);
+    }
+
     public void Init(int adjust)
     {
+
         index += adjust;
         if(index >= maxIndex)
         {
