@@ -16,4 +16,6 @@ public class MapInsertData
 
     public Collider2D vCamCollider;
 
+    public bool notFight = false;
+
 }

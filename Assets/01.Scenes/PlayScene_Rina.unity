@@ -2584,7 +2584,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &262090600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2613,8 +2613,11 @@ MonoBehaviour:
     startPos: {fileID: 0}
     door: {fileID: 0}
     rewardItem: {fileID: 0}
+    isStore: 0
+    storeItems: []
     enemy: []
     vCamCollider: {fileID: 0}
+    notFight: 0
   index: 0
   maxIndex: 0
 --- !u!4 &262090601
@@ -2912,8 +2915,11 @@ MonoBehaviour:
     startPos: {fileID: 0}
     door: {fileID: 0}
     rewardItem: {fileID: 0}
+    isStore: 0
+    storeItems: []
     enemy: []
     vCamCollider: {fileID: 0}
+    notFight: 0
 --- !u!114 &308651867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4349,8 +4355,11 @@ MonoBehaviour:
     startPos: {fileID: 0}
     door: {fileID: 0}
     rewardItem: {fileID: 0}
+    isStore: 0
+    storeItems: []
     enemy: []
     vCamCollider: {fileID: 0}
+    notFight: 0
   index: 0
   maxIndex: 0
 --- !u!4 &519742667
