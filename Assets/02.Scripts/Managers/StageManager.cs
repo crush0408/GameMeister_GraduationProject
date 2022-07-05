@@ -38,13 +38,7 @@ public class StageManager : MonoBehaviour
         confiner = CameraActionScript.instance.player_vCam.gameObject.GetComponent<CinemachineConfiner>();
         Init(0);
     }
-    private void Update()
-    {
-        /*if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Init(1);
-        }*/
-    }
+
     public void Init(int adjust)
     {
         index += adjust;
@@ -55,13 +49,14 @@ public class StageManager : MonoBehaviour
         }
         Reset();
 
-
         GameObject map = Instantiate(mapDatas[index].gameObject, this.transform);
         insertData = map.GetComponent<MapManager>().insertData;
-        map.GetComponent<MapManager>().insertData.door.SetActive(false);
-        if (map.GetComponent<MapManager>().insertData.rewardItem != null)
+
+        if (!insertData.isStore) insertData.door.SetActive(false);
+
+        if (insertData.rewardItem != null)
         {
-            map.GetComponent<MapManager>().insertData.rewardItem.SetActive(false);
+            insertData.rewardItem.SetActive(false);
         }
 
         Debug.Log(insertData.enemy.Length);
@@ -74,10 +69,10 @@ public class StageManager : MonoBehaviour
 
                 if (a == insertData.enemy.Length)
                 {
-                    map.GetComponent<MapManager>().insertData.door.SetActive(true);
-                    if (map.GetComponent<MapManager>().insertData.rewardItem != null)
+                    insertData.door.SetActive(true);
+                    if (insertData.rewardItem != null)
                     {
-                        map.GetComponent<MapManager>().insertData.rewardItem.SetActive(true);
+                        insertData.rewardItem.SetActive(true);
                     }
                     GameManager.instance.TypeReward();
                 }

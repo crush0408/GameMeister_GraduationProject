@@ -2620,6 +2620,8 @@ MonoBehaviour:
   player: {fileID: 0}
   confiner: {fileID: 0}
   mapDatas:
+  - {fileID: 4577454447184940970, guid: d6d51c0f29d5c064698158cf694858f0, type: 3}
+  - {fileID: 4577454447184940970, guid: e071860e6f42c7e41964ebc510861ba0, type: 3}
   - {fileID: 4577454447184940970, guid: 5e31cf6b77761a447b5234586d7d39ea, type: 3}
   - {fileID: 4577454447184940970, guid: 9f0de5db5587eea4184cfbfe6e2de1de, type: 3}
   - {fileID: 4195833597806564838, guid: 63400548c58f9704b9e114badc1d8f18, type: 3}
@@ -2627,7 +2629,8 @@ MonoBehaviour:
     startPos: {fileID: 0}
     door: {fileID: 0}
     rewardItem: {fileID: 0}
-    boss: {fileID: 0}
+    storeItems: []
+    enemy: []
     vCamCollider: {fileID: 0}
   index: 0
   maxIndex: 0
@@ -9311,7 +9314,8 @@ MonoBehaviour:
     startPos: {fileID: 0}
     door: {fileID: 0}
     rewardItem: {fileID: 0}
-    boss: {fileID: 0}
+    storeItems: []
+    enemy: []
     vCamCollider: {fileID: 0}
 --- !u!114 &1686919616
 MonoBehaviour:

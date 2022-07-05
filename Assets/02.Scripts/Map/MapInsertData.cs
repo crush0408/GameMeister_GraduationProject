@@ -9,6 +9,7 @@ public class MapInsertData
     public GameObject door;
     public GameObject rewardItem;
 
+    public bool isStore;
     public GameObject[] storeItems;
 
     public GameObject[] enemy;
