@@ -17,6 +17,10 @@ public class ItemScript : MonoBehaviour
 
     private void Start()
     {
+        if (StageManager.instance.insertData.isStore)
+        {
+            Debug.Log("상점입니다");
+        }
         SelectItem();
 
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -36,6 +40,11 @@ public class ItemScript : MonoBehaviour
                 break;
             }
         }
+    }
+
+    private void StoreItem()
+    {
+
     }
 
     private bool CalculatePercent(int order)
