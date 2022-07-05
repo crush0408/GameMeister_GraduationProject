@@ -58,17 +58,25 @@ public class StageManager : MonoBehaviour
         GameObject map = Instantiate(mapDatas[index].gameObject, this.transform);
         insertData = map.GetComponent<MapManager>().insertData;
         map.GetComponent<MapManager>().insertData.door.SetActive(false);
-        if(map.GetComponent<MapManager>().insertData.rewardItem != null)
+        if (map.GetComponent<MapManager>().insertData.rewardItem != null)
         {
             map.GetComponent<MapManager>().insertData.rewardItem.SetActive(false);
         }
-
-        insertData.boss.GetComponent<EnemyHealth>().OnDead += () => 
-        { map.GetComponent<MapManager>().insertData.door.SetActive(true); };
-        insertData.boss.GetComponent<EnemyHealth>().OnDead += () =>
-        { map.GetComponent<MapManager>().insertData.rewardItem.SetActive(true); };
-        insertData.boss.GetComponent<EnemyHealth>().OnDead += () =>
-        { GameManager.instance.TypeReward(); };
+        for (int i = 0; i < insertData.enemy.Length; i++)
+        {
+            insertData.enemy[i].GetComponent<EnemyHealth>().OnDead += () =>
+            { map.GetComponent<MapManager>().insertData.door.SetActive(true); };
+            insertData.enemy[i].GetComponent<EnemyHealth>().OnDead += () =>
+            {
+                if (map.GetComponent<MapManager>().insertData.rewardItem != null)
+                {
+                    map.GetComponent<MapManager>().insertData.rewardItem.SetActive(true);
+                }
+            };
+            insertData.enemy[i].GetComponent<EnemyHealth>().OnDead += () =>
+            { GameManager.instance.TypeReward(); };
+        }
+        
         player.transform.position = insertData.startPos.position;
         confiner.m_BoundingShape2D = insertData.vCamCollider;
     }
