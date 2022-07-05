@@ -71,7 +71,7 @@ public class EnemyHealth : LivingEntity
         a.transform.position = this.transform.position;
         if(damagePercent != 0)
         {
-            a.GetComponent<DamageText>().PlayFloating(damage.ToString());
+            a.GetComponent<DamageText>().PlayFloating(damage.ToString("F0"));
         }
         else
         {
