@@ -1293,7 +1293,7 @@ MonoBehaviour:
   insertData:
     startPos: {fileID: 4911341022386233601}
     door: {fileID: 6260636398077547294}
-    rewardItem: {fileID: 0}
+    rewardItem: {fileID: 1790805067665112649}
     boss: {fileID: 0}
     vCamCollider: {fileID: 3879162046026784922}
 --- !u!1 &5240113681844334151
@@ -5346,6 +5346,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32cc90c8e6944ec42baf62edba94a859, type: 3}
+--- !u!1 &1790805067665112649 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4410780739321166536, guid: 32cc90c8e6944ec42baf62edba94a859, type: 3}
+  m_PrefabInstance: {fileID: 2732570129647436929}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1790805067665112645 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4410780739321166532, guid: 32cc90c8e6944ec42baf62edba94a859, type: 3}

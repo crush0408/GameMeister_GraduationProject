@@ -58,7 +58,11 @@ public class StageManager : MonoBehaviour
         GameObject map = Instantiate(mapDatas[index].gameObject, this.transform);
         insertData = map.GetComponent<MapManager>().insertData;
         map.GetComponent<MapManager>().insertData.door.SetActive(false);
-        map.GetComponent<MapManager>().insertData.rewardItem.SetActive(false);
+        if(map.GetComponent<MapManager>().insertData.rewardItem != null)
+        {
+            map.GetComponent<MapManager>().insertData.rewardItem.SetActive(false);
+        }
+
         insertData.boss.GetComponent<EnemyHealth>().OnDead += () => 
         { map.GetComponent<MapManager>().insertData.door.SetActive(true); };
         insertData.boss.GetComponent<EnemyHealth>().OnDead += () =>

@@ -1522,6 +1522,7 @@ GameObject:
   - component: {fileID: 132481247}
   - component: {fileID: 132481246}
   - component: {fileID: 132481245}
+  - component: {fileID: 132481254}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -1705,6 +1706,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &132481254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132481244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 388e70766431ec24f8871b7ae41c7712, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _myType: 0
+  _hp: 0
+  _atk: 0
+  _def: 0
+  _pass: 0
+  _coin: 0
+  _moveSpeed: 0
+  _atkSpeed: 0
+  _startTime: 0
 --- !u!1 &146099090
 GameObject:
   m_ObjectHideFlags: 0
@@ -2578,7 +2600,15 @@ MonoBehaviour:
   player: {fileID: 132481244}
   confiner: {fileID: 0}
   mapDatas:
+  - {fileID: 4577454447184940970, guid: ff988851419bfea44a45b83f985fbee0, type: 3}
+  - {fileID: 4577454447184940970, guid: bdd6551233b6b724e80602ebb675b1e2, type: 3}
   - {fileID: 4577454447184940970, guid: 5fb1ba9b73b9fe54ea7da33a17b1203f, type: 3}
+  - {fileID: 4577454447184940970, guid: 8256da9bc38627d4e90b43f327fee8f7, type: 3}
+  - {fileID: 4577454447184940970, guid: 989fc30f6e5bf224a98f11c401e86f16, type: 3}
+  - {fileID: 4577454447184940970, guid: 1216ae2f672acc040abe90938b05cf28, type: 3}
+  - {fileID: 4577454447184940970, guid: 3c2970933e8b6d84bb270ac23857b7d6, type: 3}
+  - {fileID: 4577454447184940970, guid: a8a29e85b2697594084c476849c8c8cf, type: 3}
+  - {fileID: 4577454447184940970, guid: 9394af71e82894546abcecb9ac0c5b14, type: 3}
   insertData:
     startPos: {fileID: 0}
     door: {fileID: 0}
@@ -11460,7 +11490,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!50 &1616154234
 Rigidbody2D:
   serializedVersion: 4
