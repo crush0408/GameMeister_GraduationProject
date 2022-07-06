@@ -14,6 +14,8 @@ public class PanelManager : MonoBehaviour
 
     public Image playerProfileBackground;
 
+    public bool isTuto = false;
+
     private void Awake()
     {
         if (instance == null)
@@ -31,7 +33,9 @@ public class PanelManager : MonoBehaviour
         StatPanel.SetActive(false);
         TypeChangePanel.SetActive(false);
         GameoverPanel.SetActive(false);
-        StartTypeSelectPanel.SetActive(true);
+        if(isTuto)
+            StartTypeSelectPanel.SetActive(true);
+
     }
 
     private void Update()
