@@ -35,7 +35,12 @@ public class TitleUI : MonoBehaviour
     private void Start()
     {
         // 버튼에 OnClick 리스너 추가
-        startBtn.onClick.AddListener(StartBtn);
+        if(startBtn != null && settingPanel != null)
+        {
+            startBtn.onClick.AddListener(StartBtn);
+
+
+        }
         settingsBtn.onClick.AddListener(SettingsPanel);
         closeBtn.onClick.AddListener(SettingsPanel);
         quitBtn.onClick.AddListener(QuitBtn);
