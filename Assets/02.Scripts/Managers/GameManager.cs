@@ -47,9 +47,17 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    public void AddCoin(int add)
+    public bool AddCoin(int add)
     {
-        PlayerStat.instance.Coin += add;
+        if(PlayerStat.instance.Coin + add >= 0)
+        {
+            PlayerStat.instance.Coin += add;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     
     public void AddStat(int hp, int atk, int def, int pass, int coin, float moveSpeed, float atkSpeed)

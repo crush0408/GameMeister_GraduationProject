@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipImage: {fileID: 21300000, guid: 3941d913014945f468a9f74d3cf9da9e, type: 3}
   itemImage: {fileID: 21300000, guid: 3941d913014945f468a9f74d3cf9da9e, type: 3}
-  itemName: "\uBAA8\uB4E0 \uAC78 \uB6AB\uB294 \uCC3D"
+  itemName: "\uBAA8\uB4E0 \uAC78\\n\uB6AB\uB294 \uCC3D"
   itemUse: "\uBC29\uC5B4\uB825 \uAD00\uD1B5\uB825 15 \uC99D\uAC00"
   percent: 3
   cost: 1500

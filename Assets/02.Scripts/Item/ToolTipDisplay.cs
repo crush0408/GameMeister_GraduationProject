@@ -14,6 +14,8 @@ public class ToolTipDisplay : MonoBehaviour
     public Text itemUse;
     public Text itemCost;
 
+    public Text warnText;
+
     private void OnEnable()
     {
         item = GetComponentInParent<ItemScript>().item;

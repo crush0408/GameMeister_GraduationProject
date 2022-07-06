@@ -35,12 +35,24 @@ public class FloatToolTip : MonoBehaviour
 
             if (StageManager.instance.insertData.isStore)
             {
-                GameManager.instance.AddCoin(-getItem.cost);
+                if (!GameManager.instance.AddCoin(-getItem.cost))
+                {
+                    // GetComponentInChildren<ToolTipDisplay>().warnText.text = "코인이 부족합니다";
+                    Debug.Log("코인이 부족합니다");
+                }
+                else
+                {
+                    Debug.Log("획득한 아이템 : " + getItem.itemName);
+                    gameObject.GetComponent<ItemScript>().ApplyItemfunction(getItem);
+                    Destroy(this.gameObject);
+                }
             }
-
-            Debug.Log("획득한 아이템 : " + getItem.itemName);
-            gameObject.GetComponent<ItemScript>().ApplyItemfunction(getItem);
-            Destroy(this.gameObject);
+            else
+            {
+                Debug.Log("획득한 아이템 : " + getItem.itemName);
+                gameObject.GetComponent<ItemScript>().ApplyItemfunction(getItem);
+                Destroy(this.gameObject);
+            }
         }
     }
 
@@ -48,6 +60,8 @@ public class FloatToolTip : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player"))
         {
+            // GetComponentInChildren<ToolTipDisplay>().warnText.text = "";
+
             isRight = gameObject.transform.position.x < col.transform.position.x ? true : false;
             Debug.Log("isRight : " + isRight);
 
