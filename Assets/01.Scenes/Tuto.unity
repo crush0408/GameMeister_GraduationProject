@@ -1860,7 +1860,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1801295691}
         m_TargetAssemblyTypeName: StopPanelManager, Assembly-CSharp
         m_MethodName: ToGame
         m_Mode: 1
@@ -3000,7 +3000,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1801295691}
         m_TargetAssemblyTypeName: StopPanelManager, Assembly-CSharp
         m_MethodName: ToMainMenu
         m_Mode: 1
@@ -6296,7 +6296,7 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
-  openStop: {fileID: 0}
+  openStop: {fileID: 2089779737}
   moveSpeed: 5
   jumpForce: 15
   isGround: 0
@@ -9441,7 +9441,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1801295691}
         m_TargetAssemblyTypeName: StopPanelManager, Assembly-CSharp
         m_MethodName: OpenMenu
         m_Mode: 1
@@ -14350,7 +14350,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1801295691}
         m_TargetAssemblyTypeName: StopPanelManager, Assembly-CSharp
         m_MethodName: Quit
         m_Mode: 1
