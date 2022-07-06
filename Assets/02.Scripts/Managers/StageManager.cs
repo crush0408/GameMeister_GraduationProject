@@ -98,7 +98,7 @@ public class StageManager : MonoBehaviour
         if (insertData.enemy != null)
         {
 
-                insertData.enemy[insertData.enemy.Length].GetComponent<EnemyHealth>().OnDead += () =>
+                insertData.enemy[insertData.enemy.Length -1].GetComponent<EnemyHealth>().OnDead += () =>
                 {
 
                     insertData.door.SetActive(true);
