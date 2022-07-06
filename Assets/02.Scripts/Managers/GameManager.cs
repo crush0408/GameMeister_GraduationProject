@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     public void Replay()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1;
     }
 
     public void GameOver()
@@ -44,7 +45,8 @@ public class GameManager : MonoBehaviour
 
     public void Main()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("PlayScene");
+        Time.timeScale = 1;
     }
 
     public bool AddCoin(int add)
