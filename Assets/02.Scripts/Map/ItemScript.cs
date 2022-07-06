@@ -11,6 +11,7 @@ public class ItemScript : MonoBehaviour
     [Header("아이템 관련")]
     public ItemSO item;
     public ItemSO[] itemList;
+    public List<ItemSO> storeItemList;
     public List<int> percentList;
 
     [SerializeField]
@@ -21,8 +22,21 @@ public class ItemScript : MonoBehaviour
         if (StageManager.instance.insertData.isStore)
         {
             Debug.Log("상점입니다");
+            for (int i = 0; i < itemList.Length; i++)
+            {
+                if (itemList[i].getType != ItemSO.GetItem.STAGE)
+                {
+                    storeItemList.Add(itemList[i]);
+                }
+            }
+
+            StoreItem();
         }
-        SelectItem();
+        else
+        {
+            Debug.Log("상점이 아닙니다");
+            SelectItem();
+        }
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = item.tooltipImage;
