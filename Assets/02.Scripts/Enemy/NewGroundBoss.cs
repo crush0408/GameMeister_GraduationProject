@@ -216,7 +216,7 @@ public class NewGroundBoss : BossBase
     public void GoMeditate()
     {
         int random = Random.Range(0, 2);
-        transform.position = healTrm[random].position;
+        //transform.position = healTrm[random].position;
         healCoroutine = HealCoroutine(healAmount, 3f);
         StartCoroutine(healCoroutine);
     }

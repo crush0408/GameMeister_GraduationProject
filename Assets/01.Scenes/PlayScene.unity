@@ -3915,6 +3915,7 @@ MonoBehaviour:
   player: {fileID: 0}
   confiner: {fileID: 0}
   mapDatas:
+  - {fileID: 4577454447184940970, guid: 9394af71e82894546abcecb9ac0c5b14, type: 3}
   - {fileID: 4577454447184940970, guid: ff988851419bfea44a45b83f985fbee0, type: 3}
   - {fileID: 4577454447184940970, guid: bdd6551233b6b724e80602ebb675b1e2, type: 3}
   - {fileID: 4577454447184940970, guid: 5fb1ba9b73b9fe54ea7da33a17b1203f, type: 3}
@@ -3925,7 +3926,6 @@ MonoBehaviour:
   - {fileID: 4577454447184940970, guid: 3c2970933e8b6d84bb270ac23857b7d6, type: 3}
   - {fileID: 4577454447184940970, guid: a8a29e85b2697594084c476849c8c8cf, type: 3}
   - {fileID: 4577454447184940970, guid: e071860e6f42c7e41964ebc510861ba0, type: 3}
-  - {fileID: 4577454447184940970, guid: 9394af71e82894546abcecb9ac0c5b14, type: 3}
   insertData:
     startPos: {fileID: 0}
     door: {fileID: 0}
