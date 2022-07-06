@@ -4643,7 +4643,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00012207031, y: 10.69}
+  m_AnchoredPosition: {x: 0.00012207031, y: 10.690002}
   m_SizeDelta: {x: 0, y: 30.54}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &691129202
@@ -12034,29 +12034,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 339924012}
+  - {fileID: 1750886999}
+  - {fileID: 1456027693}
+  - {fileID: 1035105185}
+  - {fileID: 1670536538}
+  - {fileID: 1483634251}
+  - {fileID: 233393785}
+  - {fileID: 1380055563}
+  - {fileID: 31591837}
+  - {fileID: 1929472381}
   btn:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  panel: {fileID: 0}
-  isFirst: 0
+  - {fileID: 833153851}
+  - {fileID: 1280528793}
+  - {fileID: 2102960986}
+  - {fileID: 61348889}
+  - {fileID: 1999951123}
+  - {fileID: 1954212258}
+  - {fileID: 838827427}
+  - {fileID: 970770118}
+  - {fileID: 1860382008}
+  - {fileID: 749563261}
+  panel: {fileID: 2089779737}
+  isFirst: 1
 --- !u!114 &1801295691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12087,13 +12087,13 @@ MonoBehaviour:
   startBtn: {fileID: 0}
   settingsBtn: {fileID: 0}
   quitBtn: {fileID: 0}
-  closeBtn: {fileID: 0}
-  dropdown: {fileID: 0}
-  settingPanel: {fileID: 0}
-  keySettingPanel: {fileID: 0}
+  closeBtn: {fileID: 1639469039}
+  dropdown: {fileID: 208004303}
+  settingPanel: {fileID: 441241639}
+  keySettingPanel: {fileID: 691129200}
   canvasScaler: {fileID: 1801295687}
-  bgmSlider: {fileID: 0}
-  effSlider: {fileID: 0}
+  bgmSlider: {fileID: 1224859443}
+  effSlider: {fileID: 285173127}
   bgmName: BGM
 --- !u!1 &1822439275
 GameObject:
