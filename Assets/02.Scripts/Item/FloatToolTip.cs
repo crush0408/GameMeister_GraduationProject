@@ -37,7 +37,7 @@ public class FloatToolTip : MonoBehaviour
             {
                 if (!GameManager.instance.AddCoin(-getItem.cost))
                 {
-                    // GetComponentInChildren<ToolTipDisplay>().warnText.text = "코인이 부족합니다";
+                    GetComponentInChildren<ToolTipDisplay>().warnText.text = "코인이 부족합니다";
                     Debug.Log("코인이 부족합니다");
                 }
                 else
