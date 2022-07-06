@@ -2169,7 +2169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: 0
+  m_AmplitudeGain: 1.385746
   m_FrequencyGain: 1
   mNoiseOffsets: {x: 702.1732, y: 572.6814, z: 338.77228}
 --- !u!114 &313828007
@@ -3915,13 +3915,13 @@ MonoBehaviour:
   player: {fileID: 0}
   confiner: {fileID: 0}
   mapDatas:
+  - {fileID: 4577454447184940970, guid: 1216ae2f672acc040abe90938b05cf28, type: 3}
   - {fileID: 4577454447184940970, guid: ff988851419bfea44a45b83f985fbee0, type: 3}
   - {fileID: 4577454447184940970, guid: bdd6551233b6b724e80602ebb675b1e2, type: 3}
   - {fileID: 4577454447184940970, guid: 5fb1ba9b73b9fe54ea7da33a17b1203f, type: 3}
   - {fileID: 4577454447184940970, guid: 8256da9bc38627d4e90b43f327fee8f7, type: 3}
   - {fileID: 4577454447184940970, guid: 989fc30f6e5bf224a98f11c401e86f16, type: 3}
   - {fileID: 4577454447184940970, guid: d6d51c0f29d5c064698158cf694858f0, type: 3}
-  - {fileID: 4577454447184940970, guid: 1216ae2f672acc040abe90938b05cf28, type: 3}
   - {fileID: 4577454447184940970, guid: 3c2970933e8b6d84bb270ac23857b7d6, type: 3}
   - {fileID: 4577454447184940970, guid: a8a29e85b2697594084c476849c8c8cf, type: 3}
   - {fileID: 4577454447184940970, guid: e071860e6f42c7e41964ebc510861ba0, type: 3}
@@ -11676,6 +11676,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerObj: {fileID: 0}
+  isGetSustain: 0
 --- !u!1 &1398549805
 GameObject:
   m_ObjectHideFlags: 0
