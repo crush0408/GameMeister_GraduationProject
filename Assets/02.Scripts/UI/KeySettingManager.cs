@@ -34,22 +34,27 @@ public class KeySettingManager : MonoBehaviour
     public Button[] btn; //버튼들
     const string saveFileName = "KeyData.sav";
     public GameObject panel;
+    public bool isFirst = false;
 
     int key = -1; //키의 숫자
 
     private void Awake()
     {
-        //기본키를 넣어줍니다
-        for (int i = 0; i < (int)KeyInputType.KEYCOUNT; i++)
+        if(isFirst)
         {
-            KeySetting.KeySettingDict.Add((KeyInputType)i, defaultKeys[i]);
-        }
-        //기본키 텍스트를 넣어줍니다
+            //기본키를 넣어줍니다
+            for (int i = 0; i < (int)KeyInputType.KEYCOUNT; i++)
+            {
+                KeySetting.KeySettingDict.Add((KeyInputType)i, defaultKeys[i]);
+            }
+            //기본키 텍스트를 넣어줍니다
 
-        for (int j = 0; j < text.Length; j++)
-        {
-            text[j].text = KeySetting.KeySettingDict[(KeyInputType)j].ToString();
+            for (int j = 0; j < text.Length; j++)
+            {
+                text[j].text = KeySetting.KeySettingDict[(KeyInputType)j].ToString();
+            }
         }
+
     }
 
     private void Start()
