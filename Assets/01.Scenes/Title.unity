@@ -13890,7 +13890,7 @@ MonoBehaviour:
   canvasScaler: {fileID: 1820841494}
   bgmSlider: {fileID: 110681367}
   effSlider: {fileID: 646539039}
-  bgmName: somewhere
+  bgmName: BGM
 --- !u!114 &1820841493
 MonoBehaviour:
   m_ObjectHideFlags: 0
