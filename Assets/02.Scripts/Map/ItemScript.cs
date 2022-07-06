@@ -56,6 +56,7 @@ public class ItemScript : MonoBehaviour
             if (CalculatePercent(i))
             {
                 item = storeItemList[i];
+                storeItemList[i] = null;
 
                 break;
             }

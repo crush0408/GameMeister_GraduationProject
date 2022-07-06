@@ -448,7 +448,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 91aeb1d64433fdd42ac0f94ddee583c3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 844bbef552e4a054391116e64280872b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2620,6 +2620,8 @@ MonoBehaviour:
   player: {fileID: 0}
   confiner: {fileID: 0}
   mapDatas:
+  - {fileID: 4577454447184940970, guid: d6d51c0f29d5c064698158cf694858f0, type: 3}
+  - {fileID: 4577454447184940970, guid: d6d51c0f29d5c064698158cf694858f0, type: 3}
   - {fileID: 4577454447184940970, guid: d6d51c0f29d5c064698158cf694858f0, type: 3}
   - {fileID: 4577454447184940970, guid: e071860e6f42c7e41964ebc510861ba0, type: 3}
   - {fileID: 4577454447184940970, guid: ff988851419bfea44a45b83f985fbee0, type: 3}
@@ -5651,6 +5653,7 @@ MonoBehaviour:
   GameoverPanel: {fileID: 614943719}
   StartTypeSelectPanel: {fileID: 1411137148}
   playerProfileBackground: {fileID: 1095945178}
+  isTuto: 0
 --- !u!4 &1140221246
 Transform:
   m_ObjectHideFlags: 0
