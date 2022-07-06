@@ -40,7 +40,7 @@ public class KeySettingManager : MonoBehaviour
 
     private void Awake()
     {
-        if(isFirst)
+        if(isFirst && ischeckingkey.instance.isSecond)
         {
             //기본키를 넣어줍니다
             for (int i = 0; i < (int)KeyInputType.KEYCOUNT; i++)
@@ -53,6 +53,7 @@ public class KeySettingManager : MonoBehaviour
             {
                 text[j].text = KeySetting.KeySettingDict[(KeyInputType)j].ToString();
             }
+            ischeckingkey.instance.isSecond = false;
         }
 
     }
