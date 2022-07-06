@@ -3052,8 +3052,19 @@ MonoBehaviour:
   - {fileID: 697037657}
   - {fileID: 322075130}
   - {fileID: 1456099580}
-  btn: []
-  panel: {fileID: 0}
+  btn:
+  - {fileID: 235668473}
+  - {fileID: 1944517416}
+  - {fileID: 646727189}
+  - {fileID: 1975868191}
+  - {fileID: 2080698010}
+  - {fileID: 1312751954}
+  - {fileID: 739294746}
+  - {fileID: 767717339}
+  - {fileID: 1668561015}
+  - {fileID: 750045171}
+  panel: {fileID: 428794176}
+  isFirst: 0
 --- !u!1 &471500155
 GameObject:
   m_ObjectHideFlags: 0
@@ -13868,6 +13879,7 @@ MonoBehaviour:
   - {fileID: 856814570}
   - {fileID: 1529756129}
   panel: {fileID: 794258332}
+  isFirst: 1
 --- !u!114 &1820841492
 MonoBehaviour:
   m_ObjectHideFlags: 0
