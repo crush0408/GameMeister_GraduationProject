@@ -11,7 +11,7 @@ public class ItemScript : MonoBehaviour
     [Header("아이템 관련")]
     public ItemSO item;
     public ItemSO[] itemList;
-    public List<ItemSO> storeItemList;
+    public ItemSO[] storeItemList;
     public List<int> percentList;
 
     [SerializeField]
@@ -19,17 +19,11 @@ public class ItemScript : MonoBehaviour
 
     private void Start()
     {
+        randomNum = Random.Range(0, 100);
+
         if (StageManager.instance.insertData.isStore)
         {
             Debug.Log("상점입니다");
-            for (int i = 0; i < itemList.Length; i++)
-            {
-                if (itemList[i].getType != ItemSO.GetItem.STAGE)
-                {
-                    storeItemList.Add(itemList[i]);
-                }
-            }
-
             StoreItem();
         }
         else
@@ -44,8 +38,6 @@ public class ItemScript : MonoBehaviour
 
     private void SelectItem()
     {
-        randomNum = Random.Range(0, 100);
-
         for (int i = 0; i < itemList.Length; i++)
         {
             if (CalculatePercent(i))
@@ -59,7 +51,15 @@ public class ItemScript : MonoBehaviour
 
     private void StoreItem()
     {
+        for (int i = 0; i < storeItemList.Length; i++)
+        {
+            if (CalculatePercent(i))
+            {
+                item = storeItemList[i];
 
+                break;
+            }
+        }
     }
 
     private bool CalculatePercent(int order)
@@ -68,7 +68,7 @@ public class ItemScript : MonoBehaviour
 
         for (int i = 0; i <= order; i++)
         {
-            num += itemList[i].percent;
+            num += StageManager.instance.insertData.isStore ? storeItemList[i].percent : itemList[i].percent;
         }
 
         return randomNum <= num ? true : false;

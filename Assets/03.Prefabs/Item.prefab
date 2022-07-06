@@ -157,7 +157,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: WarnText
+  m_Text: WarningText
 --- !u!1 &4410780739321166536
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,6 +291,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b71b9162d61846743b44037ae4c218ea, type: 2}
   - {fileID: 11400000, guid: 89cdcdbef0f727744b50e0ce0c2d69a1, type: 2}
   - {fileID: 11400000, guid: 3da5306fe9d8d5a419e45f4f9b1277b0, type: 2}
+  - {fileID: 11400000, guid: 23e3cab5796265348928679757f9a221, type: 2}
+  - {fileID: 11400000, guid: 32db97a7c1498244bb723c3c17743e10, type: 2}
+  storeItemList:
+  - {fileID: 11400000, guid: d8371690cb81f3a4cb713c4070888aea, type: 2}
+  - {fileID: 11400000, guid: b44003b1622d5a14683e8ca541489279, type: 2}
+  - {fileID: 11400000, guid: b71b9162d61846743b44037ae4c218ea, type: 2}
+  - {fileID: 11400000, guid: 89cdcdbef0f727744b50e0ce0c2d69a1, type: 2}
+  - {fileID: 11400000, guid: 3da5306fe9d8d5a419e45f4f9b1277b0, type: 2}
+  - {fileID: 11400000, guid: b38973d0a55e57244a6ce4b6cd46fc06, type: 2}
+  - {fileID: 11400000, guid: 073586031713f814ea710c880cebae0d, type: 2}
   - {fileID: 11400000, guid: 23e3cab5796265348928679757f9a221, type: 2}
   - {fileID: 11400000, guid: 32db97a7c1498244bb723c3c17743e10, type: 2}
   percentList: 
