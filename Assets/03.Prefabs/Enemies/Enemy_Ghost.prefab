@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 704e1bcb1efb4c949a50ff337bcc0bac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initHealth: 400
+  initHealth: 800
   damagedEffectTime: 0.2
   hpBarPrefab: {fileID: 8495596639698628516, guid: d3be829145e612d41806c4f9c169e138, type: 3}
   hpBar: {fileID: 0}
