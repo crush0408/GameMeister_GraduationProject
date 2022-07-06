@@ -94,9 +94,6 @@ public class ItemScript : MonoBehaviour
                 PlayerStat.instance.MoveSpeed += item.addMoveSpeed;
                 PlayerStat.instance.AttackSpeed += item.addAtkSpeed;
 
-                PanelManager.instance.TypeChangePanel.SetActive(true);
-                // 테스트용
-
                 break;
 
             case ItemSO.ItemType.TYPE:
