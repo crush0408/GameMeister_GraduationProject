@@ -1137,20 +1137,20 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 3877833278993045935}
     m_ColliderPaths:
-    - - X: 366356443
-        Y: -194763216
-      - X: 366356443
-        Y: 71191184
-      - X: -128524400
-        Y: 71190891
-      - X: -128524107
-        Y: -194763216
+    - - X: 759316507
+        Y: -229953696
+      - X: 759316507
+        Y: 1095027
+      - X: 113891376
+        Y: 1094734
+      - X: 113891669
+        Y: -229953696
   m_CompositePaths:
     m_Paths:
-    - - {x: 36.635616, y: -19.476322}
-      - {x: 36.635616, y: 7.1191187}
-      - {x: -12.85244, y: 7.11906}
-      - {x: -12.852382, y: -19.476322}
+    - - {x: 75.931625, y: -22.995369}
+      - {x: 75.931625, y: 0.1095027}
+      - {x: 11.389137, y: 0.109444104}
+      - {x: 11.389196, y: -22.995369}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
 --- !u!61 &3877833278993045935
@@ -1166,7 +1166,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 1
-  m_Offset: {x: 11.891617, y: -6.1786017}
+  m_Offset: {x: 43.660408, y: -11.442933}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1177,7 +1177,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 49.488113, y: 26.59544}
+  m_Size: {x: 64.54254, y: 23.104872}
   m_EdgeRadius: 0
 --- !u!1 &2222172535701473580
 GameObject:
@@ -1276,6 +1276,8 @@ MonoBehaviour:
     startPos: {fileID: 4911341022386233601}
     door: {fileID: 7883223139791388286}
     rewardItem: {fileID: 1530510838151942532}
+    isStore: 0
+    storeItems: []
     enemy:
     - {fileID: 6776354614330351638}
     - {fileID: 8683349898578518252}
@@ -1290,6 +1292,8 @@ MonoBehaviour:
     - {fileID: 5994111190032317403}
     - {fileID: 6185237778950162430}
     vCamCollider: {fileID: 3879162046026784922}
+    notFight: 0
+    isTuto: 0
 --- !u!1 &5240113681844334151
 GameObject:
   m_ObjectHideFlags: 0
