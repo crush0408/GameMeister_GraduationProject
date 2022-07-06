@@ -18,7 +18,6 @@ public class StageManager : MonoBehaviour
     public int maxIndex = 0;
     int a = 0;
 
-
     private void Awake()
     {
         if(instance == null)
@@ -44,32 +43,6 @@ public class StageManager : MonoBehaviour
         if (insertData.isTuto)
         {
             SceneManager.LoadScene("PlayScene");
-        }
-
-
-
-        if (insertData.enemy != null)
-        {
-            Debug.Log(insertData.enemy.Length);
-
-            for (int i = 0; i < insertData.enemy.Length; i++)
-            {
-                insertData.enemy[i].GetComponent<EnemyHealth>().OnDead += () =>
-                {
-
-                    a++;
-
-                    if (a == insertData.enemy.Length)
-                    {
-                        insertData.door.SetActive(true);
-                        if (insertData.rewardItem != null)
-                        {
-                            insertData.rewardItem.SetActive(true);
-                        }
-                        GameManager.instance.TypeReward();
-                    }
-                };
-            }
         }
     }
 
@@ -103,9 +76,41 @@ public class StageManager : MonoBehaviour
             insertData.enemy = null;
         }
 
-        
+        if (insertData.enemy != null)
+        {
+            Debug.Log(insertData.enemy.Length);
+
+            for (int i = 0; i < insertData.enemy.Length; i++)
+            {
+                insertData.enemy[i].GetComponent<EnemyHealth>().OnDead += () =>
+                {
+
+                    a++;
+
+                    if (a == insertData.enemy.Length)
+                    {
+                        insertData.door.SetActive(true);
+                        if (insertData.rewardItem != null)
+                        {
+                            insertData.rewardItem.SetActive(true);
+                        }
+                        GameManager.instance.TypeReward();
+                    }
+                };
+            }
+        }
+
         player.transform.position = insertData.startPos.position;
-        confiner.m_BoundingShape2D = insertData.vCamCollider;
+
+
+        if(index == 2)
+        {
+            confiner.m_BoundingShape2D = null;
+        }
+        else
+        {
+            confiner.m_BoundingShape2D = insertData.vCamCollider;
+        }
     }
     public void Reset()
     {
