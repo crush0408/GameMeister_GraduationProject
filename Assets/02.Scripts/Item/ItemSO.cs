@@ -21,7 +21,9 @@ public class ItemSO : ScriptableObject
 
     public Sprite tooltipImage; // 아이템 이미지
     public Sprite itemImage;    // 툴팁에 넣을 이미지
+    [TextArea]
     public string itemName;     // 아이템 이름
+    [TextArea]
     public string itemUse;      // 아이템 설명
     public int percent; // 확률
     public int cost;    // 가격
