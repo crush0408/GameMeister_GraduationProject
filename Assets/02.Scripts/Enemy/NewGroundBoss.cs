@@ -229,5 +229,6 @@ public class NewGroundBoss : BossBase
     public override void DeadAnimScript()
     {
         base.DeadAnimScript();
+        GameManager.instance.AddCoin(200);
     }
 }

@@ -143,6 +143,7 @@ public class SpawnNecromancerScript : BasicEnemyBase
     public override void DeadAnimScript()
     {
         base.DeadAnimScript();
+        GameManager.instance.AddCoin(Random.Range(25, 31));
     }
     public override void GetHitAfter()
     {

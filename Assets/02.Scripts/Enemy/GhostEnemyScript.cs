@@ -144,6 +144,7 @@ public class GhostEnemyScript : BasicEnemyBase
     public override void DeadAnimScript()
     {
         base.DeadAnimScript();
+        GameManager.instance.AddCoin(Random.Range(20, 24));
     }
     public override void GetHitAfter()
     {

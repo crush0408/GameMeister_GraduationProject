@@ -133,6 +133,7 @@ public class BasicDeathAngelScript : BasicEnemyBase
     public override void DeadAnimScript()
     {
         base.DeadAnimScript();
+        GameManager.instance.AddCoin(Random.Range(15, 21));
     }
     public override void GetHitAfter()
     {

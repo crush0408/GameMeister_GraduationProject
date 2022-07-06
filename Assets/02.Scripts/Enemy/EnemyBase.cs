@@ -56,43 +56,9 @@ public class EnemyBase : MonoBehaviour
         myAnim.Play("Dead", -1, 0f);    // 죽는 애니메이션 이름 Dead로 통일하기
         Debug.Log("Die : " + this.gameObject.name);
 
-        switch (this.gameObject.name)
+        if (this.gameObject.name == "WaterPriestess")
         {
-            case "Knight":
-                GameManager.instance.AddCoin(Random.Range(1, 4));
-                break;
-
-            case "DeathAngel_red_light_Basic":
-                GameManager.instance.AddCoin(Random.Range(15, 21));
-                break;
-
-            case "DeathAngel_black_dark_Cast":
-                GameManager.instance.AddCoin(Random.Range(10, 16));
-                break;
-
-            case "Enemy_Ghost":
-                GameManager.instance.AddCoin(Random.Range(20, 24));
-                break;
-
-            case "GroundMonk":
-                GameManager.instance.AddCoin(200);
-                break;
-
-            case "FireWarm":
-                GameManager.instance.AddCoin(Random.Range(3, 6));
-                break;
-
-            case "Necromancer_creativekind":
-                GameManager.instance.AddCoin(Random.Range(25, 31));
-                break;
-
-            case "NightBorne":
-                GameManager.instance.AddCoin(Random.Range(3, 6));
-                break;
-
-            case "WaterPriestess":
-                GameManager.instance.AddCoin(500);
-                break;
+            GameManager.instance.AddCoin(500);
         }
     }
 

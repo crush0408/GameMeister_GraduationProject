@@ -127,6 +127,7 @@ public class KnightScript : BasicEnemyBase
     public override void DeadAnimScript()
     {
         base.DeadAnimScript();
+        GameManager.instance.AddCoin(Random.Range(1, 4));
     }
     public override void GetHitAfter()
     {

@@ -132,6 +132,7 @@ public class NightBorneScript : BasicEnemyBase
     public override void DeadAnimScript()
     {
         base.DeadAnimScript();
+        GameManager.instance.AddCoin(Random.Range(3, 6));
     }
 
     public override void GetHitAfter()
