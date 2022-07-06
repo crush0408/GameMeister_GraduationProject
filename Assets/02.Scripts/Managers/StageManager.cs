@@ -62,28 +62,7 @@ public class StageManager : MonoBehaviour
             confiner.m_BoundingShape2D = insertData.vCamCollider;
         }
 
-        if (insertData.enemy != null)
-        {
-
-            for (int i = 0; i < b; i++)
-            {
-                insertData.enemy[i].GetComponent<EnemyHealth>().OnDead += () =>
-                {
-
-                    a++;
-
-                    if (a == b)
-                    {
-                        insertData.door.SetActive(true);
-                        if (insertData.rewardItem != null)
-                        {
-                            insertData.rewardItem.SetActive(true);
-                        }
-                        GameManager.instance.TypeReward();
-                    }
-                };
-            }
-        }
+        
     }
 
     public void Init(int adjust)
@@ -116,7 +95,26 @@ public class StageManager : MonoBehaviour
             insertData.enemy = null;
         }
 
-        
+        if (insertData.enemy != null)
+        {
+
+                insertData.enemy[insertData.enemy.Length].GetComponent<EnemyHealth>().OnDead += () =>
+                {
+
+                    insertData.door.SetActive(true);
+                    if (insertData.rewardItem != null)
+                    {
+                        insertData.rewardItem.SetActive(true);
+                    }
+                    GameManager.instance.TypeReward();
+                    //a++;
+
+                    //if (a == b)
+                    //{
+                        
+                    //}
+                };
+        }
 
         player.transform.position = insertData.startPos.position;
     }
