@@ -23,6 +23,7 @@ public class CameraActionScript : MonoBehaviour
         {
             instance = this;
             brain = Camera.main.GetComponent<CinemachineBrain>();
+            playerCanvas = GameObject.Find("PlayerPanel");
         }
         else
         {
