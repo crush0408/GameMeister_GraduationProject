@@ -1511,6 +1511,8 @@ MonoBehaviour:
     startPos: {fileID: 4911341022386233601}
     door: {fileID: 645335438578152044}
     rewardItem: {fileID: 0}
+    isStore: 0
+    storeItems: []
     enemy:
     - {fileID: 3193097366833276665}
     - {fileID: 6093357138783705858}
@@ -1526,6 +1528,8 @@ MonoBehaviour:
     - {fileID: 4473741166997058723}
     - {fileID: 3814169718744061918}
     vCamCollider: {fileID: 3879162046026784922}
+    notFight: 0
+    isTuto: 0
 --- !u!1 &5240113681844334151
 GameObject:
   m_ObjectHideFlags: 0
@@ -6687,6 +6691,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall
       objectReference: {fileID: 0}
+    - target: {fileID: 7492220202068625643, guid: a9c11a42f56864046970d50dcf6a2968, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 23416843451020553, guid: 09de0ff3c20d1cd4f893efd5c65e4ca7, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9c11a42f56864046970d50dcf6a2968, type: 3}
 --- !u!4 &2119915168654371637 stripped
