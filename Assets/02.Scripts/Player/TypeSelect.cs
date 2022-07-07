@@ -68,13 +68,13 @@ public class TypeSelect : MonoBehaviour
         switch (type)
         {
             case PlayerStat.PlayerType.ICE:
-                image.color = Color.blue;
+                image.color = new Color(196 / 255f, 253 / 255f, 255 / 255f);
                 break;
             case PlayerStat.PlayerType.LIGHTNING:
-                image.color = Color.yellow;
+                image.color = new Color(250 / 255f, 237 / 255f, 125 / 255f);
                 break;
             case PlayerStat.PlayerType.WATER:
-                image.color = Color.cyan;
+                image.color = new Color(178 / 255f, 204 / 255f, 255 / 255f);
                 break;
         }
     }

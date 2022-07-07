@@ -109,13 +109,13 @@ public class GameManager : MonoBehaviour
                 PanelManager.instance.playerProfileBackground.color = Color.black;
                 break;
             case PlayerStat.PlayerType.ICE:
-                PanelManager.instance.playerProfileBackground.color = Color.blue;
+                PanelManager.instance.playerProfileBackground.color = new Color(196 / 255f, 253 / 255f, 255 / 255f);
                 break;
             case PlayerStat.PlayerType.LIGHTNING:
-                PanelManager.instance.playerProfileBackground.color = Color.yellow;
+                PanelManager.instance.playerProfileBackground.color = new Color(250 / 255f, 237 / 255f, 125 / 255f);
                 break;
             case PlayerStat.PlayerType.WATER:
-                PanelManager.instance.playerProfileBackground.color = Color.cyan;
+                PanelManager.instance.playerProfileBackground.color = new Color(178 / 255f, 204 / 255f, 255 / 255f);
                 break;
         }
     }

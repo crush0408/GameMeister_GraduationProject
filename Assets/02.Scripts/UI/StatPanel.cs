@@ -52,13 +52,13 @@ public class StatPanel : MonoBehaviour
                 profileBackground.color = Color.black;
                 break;
             case PlayerStat.PlayerType.ICE:
-                profileBackground.color = Color.blue;
+                profileBackground.color = new Color(196 / 255f, 253 / 255f, 255 / 255f);
                 break;
             case PlayerStat.PlayerType.LIGHTNING:
-                profileBackground.color = Color.yellow;
+                profileBackground.color = new Color(250 / 255f, 237 / 255f, 125 / 255f);
                 break;
             case PlayerStat.PlayerType.WATER:
-                profileBackground.color = Color.cyan;
+                profileBackground.color = new Color(178 / 255f, 204 / 255f, 255 / 255f);
                 break;
         }
     }
