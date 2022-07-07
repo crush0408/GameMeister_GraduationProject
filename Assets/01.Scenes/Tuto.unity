@@ -10005,7 +10005,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1801295691}
         m_TargetAssemblyTypeName: StopPanelManager, Assembly-CSharp
         m_MethodName: CloseWarningPanel
         m_Mode: 1
@@ -13159,7 +13159,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1801295691}
         m_TargetAssemblyTypeName: StopPanelManager, Assembly-CSharp
         m_MethodName: RealQuit
         m_Mode: 1
@@ -14646,7 +14646,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerObj: {fileID: 0}
-  isGetSustain: 0
 --- !u!4 &2112591618
 Transform:
   m_ObjectHideFlags: 0
