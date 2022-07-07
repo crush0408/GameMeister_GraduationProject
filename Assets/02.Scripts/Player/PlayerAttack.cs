@@ -99,10 +99,12 @@ public class PlayerAttack : MonoBehaviour
             }
             else if (playerInput.ultimate)
             {
+                /*
                 if (GameManager.instance.isGetSustain)
                 {
                     InputSkillFunc("SustainMagic");
                 }
+                */
             }
         }
     }

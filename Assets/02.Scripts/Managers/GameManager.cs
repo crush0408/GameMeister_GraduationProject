@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject playerObj = null;
 
-    public bool isGetSustain = false;
+    // public bool isGetSustain = false;
 
     private void Awake()
     {

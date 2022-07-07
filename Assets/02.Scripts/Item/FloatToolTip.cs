@@ -44,12 +44,14 @@ public class FloatToolTip : MonoBehaviour
                 {
                     Debug.Log("획득한 아이템 : " + getItem.itemName);
                     
+                    /*
                     // 임시
                     if(getItem.itemName == "Sustain\nMagic")
                     {
                         GameManager.instance.isGetSustain = true;
                         Debug.Log("서스테인 스킬 얻음");
                     }
+                    */
 
                     gameObject.GetComponent<ItemScript>().ApplyItemfunction(getItem);
                     Destroy(this.gameObject);
