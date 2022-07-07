@@ -1589,11 +1589,7 @@ MonoBehaviour:
     rewardItem: {fileID: 0}
     isStore: 1
     storeItems: []
-    enemy:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+    enemy: []
     vCamCollider: {fileID: 3879162046026784922}
     notFight: 1
     isTuto: 0

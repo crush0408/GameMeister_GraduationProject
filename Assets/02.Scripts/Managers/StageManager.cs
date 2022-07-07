@@ -45,7 +45,7 @@ public class StageManager : MonoBehaviour
         {
             SceneManager.LoadScene("PlayScene");
         }
-        if(insertData.enemy!= null)
+        if (insertData.enemy!= null)
         {
             b = insertData.enemy.Length;
 

@@ -6204,7 +6204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d87de02113f93cd46a3d53002d9f8353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initHealth: 10000
+  initHealth: 1000
   damagedEffectTime: 0.1
 --- !u!114 &907319550
 MonoBehaviour:
@@ -8242,7 +8242,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: -926134461
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!1 &1108780528
 GameObject:
@@ -11930,6 +11930,7 @@ GameObject:
   - component: {fileID: 1801295690}
   - component: {fileID: 1801295691}
   - component: {fileID: 1801295692}
+  - component: {fileID: 1801295693}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -12098,6 +12099,18 @@ MonoBehaviour:
   bgmSlider: {fileID: 1224859443}
   effSlider: {fileID: 285173127}
   bgmName: BGM
+--- !u!114 &1801295693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801295685}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a42c03e245624c643a220374be1cf0bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1822439275
 GameObject:
   m_ObjectHideFlags: 0
