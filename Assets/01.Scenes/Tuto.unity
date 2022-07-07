@@ -5094,6 +5094,7 @@ GameObject:
   - component: {fileID: 757810304}
   - component: {fileID: 757810303}
   - component: {fileID: 757810305}
+  - component: {fileID: 757810306}
   m_Layer: 0
   m_Name: PlayerCam
   m_TagString: Untagged
@@ -5169,6 +5170,19 @@ MonoBehaviour:
   m_BoundingShape2D: {fileID: 0}
   m_ConfineScreenEdges: 1
   m_Damping: 0
+--- !u!114 &757810306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757810302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fecbae50fe9e9d4eb8a4d813f01cca0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player_vCam: {fileID: 0}
 --- !u!1 &776935096
 GameObject:
   m_ObjectHideFlags: 0
@@ -6191,7 +6205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d87de02113f93cd46a3d53002d9f8353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initHealth: 100
+  initHealth: 10000
   damagedEffectTime: 0.1
 --- !u!114 &907319550
 MonoBehaviour:

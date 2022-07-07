@@ -40,6 +40,7 @@ public class PlayerMove : MonoBehaviour
         playerInput = GetComponent<RePlayerInput>();
         playerAttack = GetComponent<PlayerAttack>();
         anim = GetComponentInChildren<Animator>();
+        DontDestroyOnLoad(this.gameObject);
     }
     private void Start()
     {

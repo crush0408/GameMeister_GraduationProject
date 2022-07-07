@@ -78,6 +78,7 @@ public class TitleUI : MonoBehaviour
         }
         else
         {
+            settingPanel.SetActive(!settingPanel.activeSelf);
             Debug.Log("?");
         }
 

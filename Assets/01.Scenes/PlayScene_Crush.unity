@@ -10366,7 +10366,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerObj: {fileID: 0}
-  isGetSustain: 0
 --- !u!1 &1396544324
 GameObject:
   m_ObjectHideFlags: 0
