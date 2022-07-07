@@ -69,10 +69,20 @@ public class TitleUI : MonoBehaviour
         Debug.Log("현재 씬 넘버 : " + SceneLoadManager.instance.curSceneNum);
     }
 
-    public void SettingsPanel()
+    public void SettingsPanel() 
     {
-        settingPanel.SetActive(!settingPanel.activeSelf);
+        if(settingPanel.activeSelf)
+        {
+            settingPanel.SetActive(!settingPanel.activeSelf);
+            Time.timeScale = 1;
+        }
+        else
+        {
+            Debug.Log("?");
+        }
+
         Debug.Log("현재 설정 패널 상태 : " + settingPanel.activeSelf);
+
     }
 
     public void QuitBtn()

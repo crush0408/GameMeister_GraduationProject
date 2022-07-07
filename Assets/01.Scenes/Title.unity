@@ -6676,7 +6676,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerObj: {fileID: 0}
-  isGetSustain: 0
 --- !u!4 &1585231757
 Transform:
   m_ObjectHideFlags: 0
