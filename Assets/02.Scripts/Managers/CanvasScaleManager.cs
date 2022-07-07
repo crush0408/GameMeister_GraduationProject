@@ -7,6 +7,7 @@ public class CanvasScaleManager : MonoBehaviour
 {
     public static CanvasScaleManager instance;
     public Dropdown dropdown;
+    public GameObject a;
 
     void Awake()
     {
@@ -19,11 +20,14 @@ public class CanvasScaleManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        dropdown = GameObject.Find("Dropdown").GetComponent<Dropdown>();
+        a = GameObject.Find("SettingPanel");
     }
 
     private void Start()
     {
         DropdownSet();
+        a.SetActive(false);
         /*dropdown.onValueChanged.AddListener(delegate
         {
             myDropdownValueChangedHandler(dropdown);

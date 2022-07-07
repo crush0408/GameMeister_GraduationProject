@@ -12056,7 +12056,7 @@ MonoBehaviour:
   - {fileID: 1860382008}
   - {fileID: 749563261}
   panel: {fileID: 2089779737}
-  isFirst: 1
+  isFirst: 0
 --- !u!114 &1801295691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14646,6 +14646,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerObj: {fileID: 0}
+  isGetSustain: 0
 --- !u!4 &2112591618
 Transform:
   m_ObjectHideFlags: 0
