@@ -80,7 +80,7 @@ public class CameraActionScript : MonoBehaviour
         vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 0;
         if (isPlayer)
         {
-            playerCanvas.SetActive(false);
+            //playerCanvas.SetActive(false);
         }
         isShake = false;
     }
