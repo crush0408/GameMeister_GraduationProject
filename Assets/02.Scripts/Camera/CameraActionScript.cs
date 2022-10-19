@@ -23,13 +23,14 @@ public class CameraActionScript : MonoBehaviour
         {
             instance = this;
             brain = Camera.main.GetComponent<CinemachineBrain>();
-            playerCanvas = GameObject.Find("PlayerPanel");
+            playerCanvas.SetActive(false);
         }
         else
         {
             Destroy(this);
         }
     }
+
 
     public static void SwapCamera(CinemachineVirtualCamera cam, float time)
     {
@@ -80,7 +81,7 @@ public class CameraActionScript : MonoBehaviour
         vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 0;
         if (isPlayer)
         {
-            //playerCanvas.SetActive(false);
+            playerCanvas.SetActive(false);
         }
         isShake = false;
     }

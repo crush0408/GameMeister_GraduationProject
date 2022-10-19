@@ -55,6 +55,7 @@ public class PlayerMove : MonoBehaviour
         GroundCheck();
         Col();
         OpenStopPanel();
+        
     }
     
     private void FixedUpdate()
